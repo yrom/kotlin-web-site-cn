@@ -146,17 +146,17 @@ External annotations for JDK and Android SDK will be configured automatically. I
 kotlinOptions.annotations = file('<path to annotations>')
 ```
 
-## Kotlin2JS
+## Kotlin to JavaScript
 
-Here we use a different plugin:
+If you want to use compile Kotlin to JavaScript you need *kotlin2js* plugin:
 
-```
+``` groovy
 apply plugin: "kotlin2js"
 ```
 
-Since Kotlin2JS only works for Kotlin files and not Java files, you want to use `main.kotlin.srcDirs` if you change the default directory to something other than `src/main/kotlin`:
+If for any reason you need to change the default directory you can do it as follows:
 
-```
+``` groovy
 sourceSets {
     main.kotlin.srcDirs += 'src/main/foo'
 }
