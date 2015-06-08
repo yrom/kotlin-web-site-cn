@@ -109,8 +109,8 @@ recommended to use *withKotlin* task
 
 ## Targeting JavaScript with single source folder and metaInfo option
 
-The metaInfo option is useful, if you want to create a Kotlin/JavaScript library.
-If metaInfo was set to true, then during compilation additional js-file with
+The `metaInfo` option is useful, if you want to create a Kotlin/JavaScript library.
+If `metaInfo` was set to `true`, then during compilation additional js-file with
 binary metadata will be created.
 
 ``` xml
