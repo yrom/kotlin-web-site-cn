@@ -1,20 +1,20 @@
-### Safe
+### 安全
 
-Get rid of those pesky NullPointerExceptions, you know, The Billion Dollar Mistake
+避免那些令人讨厌的空指针异常，你知道的，这可能酿成数十亿美元的损失
 
 ``` kotlin
 var output : String
 output = null
 ```
 
-And of course, Kotlin protects you from mistakenly operating on nullable types,
-including those from Java
+当然Kotlin让你避免那些错误通过使用nullable类型，
+也包括Java的
 
 ``` kotlin
 println(output.length())
 ```
 
-And if you check a type is right, the compiler will auto-cast it for you
+在你进行类型检查的时候，如果类型匹配，那么编译器会帮你进行自动转换
 
 ``` kotlin
 fun calculateTotal(obj: Any) {

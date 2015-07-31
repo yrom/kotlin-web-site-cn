@@ -5,15 +5,15 @@ category: "Syntax"
 title: "Basic Types"
 ---
 
-# Basic Types
+# 基本类型
 
-In Kotlin, everything is an object in the sense that we can call member functions and properties on any variable. Some types are built-in, because their implementation is optimized, but to the user they look like ordinary classes. In this section we describe most of these types: numbers, characters, booleans and arrays.
+在Kotlin中,所有东西都是对象，所以我们可以调用成员函数和属性的任何变量对象。有些类型是内置的,他们的实现被优化过, 但是用户看起来他们就像普通的类. 本节我们会描述这些类型: numbers, characters, booleans 和 arrays.
 
 ## Numbers
 
-Kotlin handles numbers in a way close to Java, but not exactly the same. For example, there are no implicit widening conversions for numbers, and literals are slightly different in some cases.
+Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numbers没有隐式扩大转换,在一些情况下文字的使用有所不同.
 
-Kotlin provides the following built-in types representing numbers (this is close to Java):
+对于numbers Kotlin提供了如下的内置类型 (与Java很相近):
 
 | Type	 | Bitwidth |
 |--------|----------|
@@ -24,30 +24,29 @@ Kotlin provides the following built-in types representing numbers (this is close
 | Short	 | 16       |
 | Byte	 | 8        |
 
-Note that characters are not numbers in Kotlin.
+注意 characters 不是 numbers 在Kotlin中。
 
 ### Literal Constants
 
-There are the following kinds of literal constants for integral values:
+下面是一些常量的写法:
 
-* Decimals: `123`
-  * Longs are tagged by a capital `L`: `123L`
-* Hexadecimals: `0x0F`
-* Binaries: `0b00001011`
+* 十进制: `123`
+  * Longs类型用大写 `L` 标记: `123L`
+* 十六进制: `0x0F`
+* 二进制: `0b00001011`
 
-NOTE: Octal literals are not supported.
+注意: 不支持8进制
 
-Kotlin also supports a conventional notation for floating-point numbers:
+Kotlin 同样支持浮点数的常规表示方法:
  
 * Doubles by default: `123.5`, `123.5e10`
-* Floats are tagged by `f` or `F`: `123.5f` 
+* Floats用 `f` 或者 `F` 标记: `123.5f` 
 
-### Representation
+### 表示
 
-On the Java platform, numbers are physically stored as JVM primitive types, unless we need a nullable number reference (e.g. `Int?`) or generics are involved. 
-In the latter cases numbers are boxed.
+在Java平台数字是物理存储为JVM的原始类型,除非我们需要一个可空的引用（例如int？）或泛型. 后者情况下数字被装箱（指的是赋值的时候把实例复制了一下，不是相同实例）。
 
-Note that boxing of numbers does not preserve identity:
+装箱数字不会保存它的实例:
 
 ``` kotlin
 val a: Int = 10000
@@ -56,8 +55,7 @@ val boxedA: Int? = a
 val anotherBoxedA: Int? = a
 print(boxedA identityEquals anotherBoxedA) // !!!Prints 'false'!!!
 ```
-
-On the other hand, it preserves equality:
+另一方面它们值相等:
 
 ``` kotlin
 val a: Int = 10000
@@ -67,10 +65,10 @@ val anotherBoxedA: Int? = a
 print(boxedA == anotherBoxedA) // Prints 'true'
 ```
 
-### Explicit Conversions
+### 显示转换
 
-Due to different representations, smaller types are not subtypes of bigger ones.
-If they were, we would have troubles of the following sort
+由于不同的表示小的类型并不是大类型的子类型。
+如果它们是的话，在下面的排序中就会有麻烦：
 
 ``` kotlin
 // Hypothetical code, does not actually compile:
@@ -79,23 +77,23 @@ val b: Long? = a // implicit conversion yields a boxed Long (java.lang.Long)
 print(a == b) // Surprise! This prints "false" as Long's equals() check for other part to be Long as well
 ```
 
-So not only identity, but even equality would have been lost silently all over the place.
+假设这样是可以的，这里我们就悄无声息的丢掉了一些数据.
 
-As a consequence, smaller types are NOT implicitly converted to bigger types.
-This means that we cannot assign a value of type `Byte` to an `Int` variable without an explicit conversion
+因此较小的类型不能隐式转换为较大的类型。
+因此我们不能声明一个 `Byte` 类型给一个 `Int` 变量，在不进行显示转换的情况下。
 
 ``` kotlin
 val b: Byte = 1 // OK, literals are checked statically
 val i: Int = b // ERROR
 ```
 
-We can use explicit conversions to widen numbers
+我们可以显示转换的去扩大类型
 
 ``` kotlin
 val i: Int = b.toInt() // OK: explicitly widened
 ```
 
-Every number type supports the following conversions:
+每个number类型支持如下的转换:
 
 * `toByte(): Byte`
 * `toShort(): Short`
@@ -105,13 +103,13 @@ Every number type supports the following conversions:
 * `toDouble(): Double`
 * `toChar(): Char`
 
-Absence of implicit conversions is rarely noticeable because we can use literals almost freely cause the type is inferred from the context, and arithmetical operations are overloaded for appropriate conversions, for example
+隐式转换是很少被注意的，因为我们使用的类型是从上下文推断的和算数运算符重载的转化，如：
 
 ``` kotlin
 val l = 1.toLong() + 3 // Long + Int => Long
 ```
 
-### Operations
+### 运算符
 
 Kotlin supports the standard set of arithmetical operations over numbers, which are declared as members of appropriate classes (but the compiler optimizes the calls down to the corresponding instructions).
 See [Operator overloading](operator-overloading.html).
@@ -122,7 +120,7 @@ As of bitwise operations, there're no special characters for them, but just name
 val x = (1 shl 2) and 0x000FF000
 ```
 
-Here is the complete list of bitwise operations (available for `Int` and `Long` only):
+这是完整的位运算操作 (只能对 `Int` 或者 `Long` 使用):
 
 * `shl(bits)` – signed shift left (Java's `<<`)
 * `shr(bits)` – signed shift right (Java's `>>`)
@@ -134,7 +132,7 @@ Here is the complete list of bitwise operations (available for `Int` and `Long` 
 
 ## Characters
 
-Characters are represented by the type `Char`. They can not be treated directly as numbers
+Characters 用 `Char`来表示. 像对待numbers那样就行
 
 ``` kotlin
 fun check(c: Char) {
@@ -144,8 +142,8 @@ fun check(c: Char) {
 }
 ```
 
-Character literals go in single quotes: `'1'`, `'\n'`, `'\uFF00'`.
-We can explicitly convert a character to an `Int` number
+用单引号表示一个Character，例如: `'1'`, `'\n'`, `'\uFF00'`.
+我们可以显示的把Character转换为`Int`
 
 ``` kotlin
 fun decimalDigitValue(c: Char): Int {
@@ -155,20 +153,20 @@ fun decimalDigitValue(c: Char): Int {
 }
 ```
 
-Like numbers, characters are boxed when a nullable reference is needed. Identity is not preserved by the boxing operation.
+像numbers, characters是被装箱当使用一个可空的引用.这样实例不会被保存。
 
 ## Booleans
 
-The type `Boolean` represents booleans, and has two values: *true*{: .keyword } and *false*{: .keyword }.
+类型`Boolean`有两个值: *true*{: .keyword } 和 *false*{: .keyword }.
 
-Booleans are boxed if a nullable reference is needed.
+Booleans使用nullable时候Boolean也会被装箱.
 
-Built-in operations on booleans include
+内置对Booelan的操作
 
-* `||` – lazy disjunction
-* `&&` – lazy conjunction
+* `||` – 短路或
+* `&&` – 短路与
 
-## Arrays
+## 数组
 
 Arrays in Kotlin are represented by the `Array` class, that has `get` and `set` functions (that turn into `[]` by operator overloading conventions), and `size`, along with a few other useful member functions:
 

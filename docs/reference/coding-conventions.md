@@ -5,23 +5,23 @@ category: Basics
 title: Coding Conventions
 ---
 
-# Coding Conventions
+# 编码习惯
 
-This page contains the current coding style for the Kotlin language.
+下面是kotlin语言当前的编码习惯。
 
-## Naming Style
-If in doubt default to the Java Coding Conventions such as:
+## 命名风格
+很多情况采用Java的编码风格，例如:
 
-* use of camelCase for names (and avoid underscore in names)
-* types start with upper case
-* methods and properties start with lower case
-* use 4 space indentation
-* public functions should have documentation such that it appears in Kotlin Doc
+* 名称使用驼峰写法 (避免名称中出现下划线)
+* 类型用大写字母开头
+* 方法和属性用小写字母开头
+* 4个空格缩进
+* public 方法应该有文档注释
 
-Kotlin does not have fields as a primary concept in the language -- it only has properties.
-Avoid the use of prefixes on properties, such as _ or m_ or other kinds of notation.
-If you need access to a backing field of a property, use the $ prefix: `$foo` to refer to a field behind property `foo`;
-never create a private property and call it `_foo`
+Kotlin没有fields概念 -- 只有属性。
+避免在属性前使用前缀, 例如 _ 或者 m_ 或者其它符号。
+如果你希望一个属性能像field一样使用, 使用 $前缀: `$foo`指的是后面属性`foo`;
+永远不要建立像这样的`_foo` 私有属性。
 
 ## Colon
 
@@ -34,7 +34,7 @@ interface Foo<out T : Any> : Bar {
 ```
 
 ## Unit
-If a function returns Unit, the return type should be omitted:
+如果一个方法返回 Unit,返回类型可以被省略:
 
 ``` kotlin
 fun foo() { // ": Unit" is omitted here
