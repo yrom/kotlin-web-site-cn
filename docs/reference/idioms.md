@@ -24,7 +24,7 @@ data class Customer(val name: String, val email: String)
 * `copy()`
 * `component1()`, `component2()`, ..., 对于所有属性 (查看 [Data classes](data-classes.html))
 
-### 定义一个fianl本地变量
+### 定义常量
 
 ``` kotlin
 val a = foo()
@@ -64,7 +64,7 @@ when (x) {
 }
 ```
 
-### 成对打印
+### 遍历map
 
 ``` kotlin
 for ((k, v) in map) {
@@ -140,7 +140,7 @@ val files = File("Test").listFiles()
 println(files?.size ?: "empty")
 ```
 
-### if null执行一个声明
+### if null执行后面语句
 
 ``` kotlin
 val data = ...
@@ -157,7 +157,7 @@ data?.let {
 }
 ```
 
-### 执行声明时返回
+### 使用when声明返回
 
 ``` kotlin
 fun transform(color: String): Int {
@@ -198,7 +198,7 @@ fun foo(param: Int) {
 }
 ```
 
-### 单表达式方法
+### 单表达式方法（单语句函数）
 
 ``` kotlin
 fun theAnswer() = 42
