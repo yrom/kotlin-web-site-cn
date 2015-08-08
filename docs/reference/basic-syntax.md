@@ -39,7 +39,7 @@ fun sum(a: Int, b: Int): Int {
 fun sum(a: Int, b: Int) = a + b
 ```
 
-一个模块中对外可见的方法应该有明确的返回值:
+一个方法如果是public的，应该有明确的返回值:
 
 ``` kotlin
 public fun sum(a: Int, b: Int): Int = a + b
@@ -65,7 +65,7 @@ public fun printSum(a: Int, b: Int) {
 
 ## 定义局部变量
 
-不可变(只读)局部变量:
+不可变(只读)变量:
 
 ``` kotlin
 val a: Int = 1
@@ -83,7 +83,7 @@ x += 1
 
 查看 [Properties And Fields](properties.html).
 
-## 使用String模板
+## 使用泛型Array
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -116,9 +116,9 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 
 ## 使用可空类型（nullable）变量来判断 *null*{: .keyword }
 
-A reference must be explicitly marked as nullable when *null*{: .keyword } value is possible.
+一个引用必须被显示标记为nullable，当它可能为空的时候。
 
-Return *null*{: .keyword } if `str` does not hold an integer:
+返回 *null*{: .keyword } 如果 `str` 不是整数的话。
 
 ``` kotlin
 fun parseInt(str: String): Int? {
