@@ -51,7 +51,7 @@ reference:
     content:
       - /docs/reference/basic-syntax.html: 基础语法
       - /docs/reference/idioms.html: 习惯用法
-      - /docs/reference/coding-conventions.html: Coding Conventions
+      - /docs/reference/coding-conventions.html: 编码习惯
 
   - title: Basics
     description: The Basics

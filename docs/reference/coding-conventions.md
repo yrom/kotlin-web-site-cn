@@ -23,9 +23,9 @@ Kotlin没有fields概念 -- 只有属性。
 如果你希望一个属性能像field一样使用, 使用 $前缀: `$foo`指的是后面属性`foo`;
 永远不要建立像这样的`_foo` 私有属性。
 
-## Colon
+## 冒号
 
-There is a space before colon where colon separates type and supertype and there's no space where colon separates instance and type:
+在分隔子父类或接口的时候，或在分隔实例和类型的时候应该有一个空格:
 
 ``` kotlin
 interface Foo<out T : Any> : Bar {
@@ -34,7 +34,7 @@ interface Foo<out T : Any> : Bar {
 ```
 
 ## Unit
-如果一个方法返回 Unit,返回类型可以被省略:
+如果一个方法返回 Unit（感觉就是空）,返回类型可以被省略:
 
 ``` kotlin
 fun foo() { // ": Unit" is omitted here
