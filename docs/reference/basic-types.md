@@ -111,8 +111,8 @@ val l = 1.toLong() + 3 // Long + Int => Long
 
 ### 运算符
 
-Kotlin supports the standard set of arithmetical operations over numbers, which are declared as members of appropriate classes (but the compiler optimizes the calls down to the corresponding instructions).
-See [Operator overloading](operator-overloading.html).
+Kotlin支持标准的算数操作符，并在相应的类上定义为成员函数（但编译器会针对运算进行优化，将函数调用优化成直接的算数操作）。
+查看 [Operator overloading](operator-overloading.html).
 
 As of bitwise operations, there're no special characters for them, but just named functions that can be called in infix form, for example:
 
