@@ -47,19 +47,19 @@ docs:
 # ====================
 reference:
   - title: 开始
-    description: Get familiar with the basics of Kotlin including operations, coding conventions and idioms.
+    description: 开始熟悉Kotlin包括操作符,编码习惯和习惯用法
     content:
       - /docs/reference/basic-syntax.html: 基础语法
       - /docs/reference/idioms.html: 习惯用法
       - /docs/reference/coding-conventions.html: 编码习惯
 
-  - title: Basics
-    description: The Basics
+  - title: 基础
+    description: 基础内容
     content:
-      - /docs/reference/basic-types.html: Basic Types
-      - /docs/reference/packages.html: Packages
-      - /docs/reference/control-flow.html: Control Flow
-      - /docs/reference/returns.html: Returns and Jumps
+      - /docs/reference/basic-types.html: 基本类型
+      - /docs/reference/packages.html: 包
+      - /docs/reference/control-flow.html: 控制流
+      - /docs/reference/returns.html: 返回和跳转
 
   - title: Classes and Objects
     description: All about objects

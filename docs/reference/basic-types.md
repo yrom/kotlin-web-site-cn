@@ -11,7 +11,7 @@ title: "Basic Types"
 
 ## Numbers
 
-Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numbers没有隐式扩大转换,在一些情况下文字的使用有所不同.
+Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numbers没有隐式扩大转换(如java中int可以隐式变为long),在一些情况下文字的使用有所不同.
 
 对于numbers Kotlin提供了如下的内置类型 (与Java很相近):
 
@@ -24,9 +24,9 @@ Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numb
 | Short	 | 16       |
 | Byte	 | 8        |
 
-注意 characters 不是 numbers 在Kotlin中。
+注意在kotlin中 characters 不是 numbers 
 
-### Literal Constants
+### 字面量
 
 下面是一些常量的写法:
 
@@ -39,10 +39,10 @@ Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numb
 
 Kotlin 同样支持浮点数的常规表示方法:
  
-* Doubles by default: `123.5`, `123.5e10`
+* Doubles  `123.5`, `123.5e10`
 * Floats用 `f` 或者 `F` 标记: `123.5f` 
 
-### 表示
+### 存储方式
 
 在Java平台数字是物理存储为JVM的原始类型,除非我们需要一个可空的引用（例如int？）或泛型. 后者情况下数字被装箱（指的是赋值的时候把实例复制了一下，不是相同实例）。
 
@@ -67,8 +67,8 @@ print(boxedA == anotherBoxedA) // Prints 'true'
 
 ### 显示转换
 
-由于不同的表示小的类型并不是大类型的子类型。
-如果它们是的话，在下面的排序中就会有麻烦：
+由于不同的存储方式小的类型并不是大类型的子类型。
+如果它们是的话，就会出现下述问题（下面的代码不能通过编译）：
 
 ``` kotlin
 // Hypothetical code, does not actually compile:
@@ -103,7 +103,8 @@ val i: Int = b.toInt() // OK: explicitly widened
 * `toDouble(): Double`
 * `toChar(): Char`
 
-隐式转换是很少被注意的，因为我们使用的类型是从上下文推断的和算数运算符重载的转化，如：
+失去隐式类型转换，其实并没有带来多少困扰，因为使用字面量的时候是没有代价的，因为字面量的类型是推导出来的；
+另一方面，算数运算操作都针对不同类型的参数做好了重载，比如：
 
 ``` kotlin
 val l = 1.toLong() + 3 // Long + Int => Long
@@ -114,7 +115,7 @@ val l = 1.toLong() + 3 // Long + Int => Long
 Kotlin支持标准的算数操作符，并在相应的类上定义为成员函数（但编译器会针对运算进行优化，将函数调用优化成直接的算数操作）。
 查看 [Operator overloading](operator-overloading.html).
 
-As of bitwise operations, there're no special characters for them, but just named functions that can be called in infix form, for example:
+对于按位操作(bitwise operation)，没有特别的符号来表示，而是直接使用命名函数:
 
 ``` kotlin
 val x = (1 shl 2) and 0x000FF000
@@ -143,7 +144,7 @@ fun check(c: Char) {
 ```
 
 用单引号表示一个Character，例如: `'1'`, `'\n'`, `'\uFF00'`.
-我们可以显示的把Character转换为`Int`
+我们可以调用显示转换把Character转换为`Int`
 
 ``` kotlin
 fun decimalDigitValue(c: Char): Int {
@@ -168,7 +169,7 @@ Booleans使用nullable时候Boolean也会被装箱.
 
 ## 数组
 
-Arrays in Kotlin are represented by the `Array` class, that has `get` and `set` functions (that turn into `[]` by operator overloading conventions), and `size`, along with a few other useful member functions:
+数组在Kotlin中使用 `Array`类来表示, `Array`类定义了set和get函数(使用时可以用`[]`，通过符号重载的约定转换), 和`size`等等一些有用的成员函数:
 
 ``` kotlin
 class Array<T> private () {
@@ -181,37 +182,32 @@ class Array<T> private () {
 }
 ```
 
-To create an array, we can use a library function `array()` and pass the item values to it, so that `array(1, 2, 3)` creates an array [1, 2, 3].
-Alternatively, the `arrayOfNulls()` library function can be used to create an array of a given size filled with null elements.
-
-Another option is to use a factory function that takes the array size and the function that can return the initial value
-of each array element given its index:
+我们可以使用库函数`array()`来创建一个包含数值的数组, `array(1, 2, 3)` 创建了 array [1, 2, 3].
+或者, `arrayOfNulls()`可以创建一个指定大小，元素都为空的数组。  
+或者使用函数来创建一个数组:
 
 ``` kotlin
 // Creates an Array<String> with values ["0", "1", "4", "9", "16"]
 val asc = Array(5, {i -> (i * i).toString()})
 ```
 
-As we said above, the `[]` operation stands for calls to member functions `get()` and `set()`.
+综上, `[]`操作符代表了成员函数`get()`和`set()`.
 
-Note: unlike Java, arrays in Kotlin are invariant. This means that Kotlin does not let us assign an `Array<String>`
-to an `Array<Any>`, which prevents a possible runtime failure (but you can use `Array<out Any>`, 
-see [Type Projections](generics.html#type-projections)).
+注意: 与Java不同的是, Kotlin中数组不可变. 这意味着我们不能声明 `Array<String>`到`Array<Any>`, 否则可能会产生一个运行时错误(但是你可以使用 `Array<out Any>`, 查看 [Type Projections](generics.html#type-projections)).
 
-Kotlin also has specialized classes to represent arrays of primitive types without boxing overhead: ByteArray,
-ShortArray, IntArray and so on. These classes have no inheritance relation to the `Array` class, but they
-have the same set of methods and properties. Each of them also has a corresponding factory function:
+Kotlin有专门的类来表示原始类型的数组，避免了装箱开销: ByteArray,
+ShortArray, IntArray 等等. 这些类和`Array`并没有继承关系,但是它们有同样的方法属性集. 它们也都有相应的工厂方法:
 
 ``` kotlin
 val x: IntArray = intArray(1, 2, 3)
 x[0] = x[1] + x[2]
 ```
 
-## Strings
+## 字符串
 
-Strings are represented by the type `String`. Strings are immutable.
-Elements of a string are characters that can be accessed by the indexing operation: `s[i]`.
-A string can be iterated over with a *for*{: .keyword }-loop:
+字符串用`String`表示。字符串是不可变的。  
+字符串的原始字符可以使用操作符访问: `s[i]`.
+字符串可以使用*for*{: .keyword }循环遍历:
 
 ``` kotlin
 for (c in str) {
@@ -219,17 +215,16 @@ for (c in str) {
 }
 ```
 
-### String Literals
-
-Kotlin has two types of string literals: escaped strings that may have escaped characters in them and raw strings that can contain newlines and arbitrary text. An escaped string is very much like a Java string:
+### 字符串字面量
+Kotlin有两种类型的字符串: 转义字符串可能由转义字符、原生字符串、换行和任意文本.转义字符串很像java的String:
 
 ``` kotlin
 val s = "Hello, world!\n"
 ```
 
-Escaping is done in the conventional way, with a backslash.
+转义方式采用传统的反斜杠.
 
-A raw string is delimited by a triple quote (`"""`), contains no escaping and can contain newlines and any other characters:
+*原生字符串*使用三个引号(""")包括，内部没有转义，可以包含换行和任何其他文本:
 
 ``` kotlin
 val text = """
@@ -239,16 +234,16 @@ val text = """
 ```
 
 
-### Templates
+### 模板
 
-Strings may contain template expressions, i.e. pieces of code that are evaluated and whose results are concatenated into the string. A template expression starts with a dollar sign ($) and consists of either a simple name:
+字符串可以包含*模板表达式*，即一些小段代码，会求值并把结果合并到字符串中。模板表达式以`$`符号开始，包含一个简单的名称:
 
 ``` kotlin
 val i = 10
 val s = "i = $i" // evaluates to "i = 10"
 ```
 
-or an arbitrary expression in curly braces:
+或者用花括号扩起来，内部可以是任意表达式:
 
 ``` kotlin
 val s = "abc"

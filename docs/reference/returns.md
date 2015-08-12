@@ -5,39 +5,30 @@ category: "Syntax"
 title: "Returns and Jumps"
 ---
 
-# Returns and Jumps
-#返回和跳转
+# 返回和跳转
 
-
-Kotlin has three structural jump operators
 
 Kotlin 有三种跳出结构
 
-* *return*{: .keyword }. By default returns from the nearest enclosing function or [function expression](lambdas.html#function-expressions).
 * *return*{: .keyword }.默认情况下，从最近的一个封闭的方法或者 [方法表达式](lambdas.html#function-expressions)跳出.
-* *break*{: .keyword }. Terminates the nearest enclosing loop.
+
 * *break*{: .keyword }.终止最近的封闭循环
-* *continue*{: .keyword }. Proceeds to the next step of the nearest enclosing loop.
+
 * *continue*{: .keyword }.直接进入循环体的下次循环
 
-# Break and Continue Labels
-##中断和继续标签
-
-Any expression in Kotlin may be marked with a *label*{: .keyword }.  
-在Kotlin中任何表达式都可以用*label*{: .keyword }.来标记。  
-Labels have the form of an identifier followed by the `@` sign, for example: `abc@`, `fooBar@` are valid labels (see the [grammar](grammar.html#label)).  
-标签的格式是被'@'标识符标记，例如：`abc@`, `fooBar@`都是有效的标签（参见[语法](grammar.html#label)）  
-
-To label an expression, we just put a label in front of it  
-一个带标签的方法，我们只是放一个标签在他前面
+## 中断和继续标签
+ 
+在Kotlin中任何表达式都可以用*label*{: .keyword } （标签）来标记。  
+label的格式是被'@'标识符标记，例如：`abc@`, `fooBar@`都是有效的label（参见[语法](grammar.html#label)）  
+  
+你可以在一个方法前面放一个label。
 ``` kotlin
 loop@ for (i in 1..100) {
   // ...
 }
 ```
 
-Now, we can qualify a *break*{: .keyword } or a *continue*{: .keyword } with a label:  
-现在，我们可以将标签与 *break*{: .keyword } 或者*continue*{: .keyword }一起使用
+现在，我们可以将label与 *break*{: .keyword } 或者*continue*{: .keyword }一起使用：
 
 ``` kotlin
 loop@ for (i in 1..100) {
@@ -48,17 +39,13 @@ loop@ for (i in 1..100) {
 }
 ```
 
-A *break*{: .keyword } qualified with a label jumps to the execution point right after the loop marked with that label.  
-这个被loop标签标记的*break*{: .keyword }将跳出被loop标签标记的循环体
+break执行后将跳转到标记处。
 
-A *continue*{: .keyword } proceeds to the next iteration of that loop.  
 *continue*{: .keyword }将进入循环体的下次循环
 
 
-# Return at Labels
-##返回标签
+## 返回标签
 
-With function literals, local functions and object expression, functions can be nested in Kotlin.   
 在Kotlin里，函数字面量、局部函数和对象表达式等函数都可以被嵌套在一起
 Qualified *return*{: .keyword }s allow us to return from an outer function.   
 适当的返回方式允许我们从外部方法返回值  
@@ -136,3 +123,6 @@ fun outer() {
   }
 }                                                                             
 ```
+---
+翻译BY 恒～炫目！
+
