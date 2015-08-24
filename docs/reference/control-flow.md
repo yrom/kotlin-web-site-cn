@@ -5,12 +5,12 @@ category: "Syntax"
 title: "Control Flow"
 ---
 
-# Control Flow
+# 控制流
 
-## If Expression
+## If表达式
 
-In Kotlin, *if*{: .keyword } is an expression, i.e. it returns a value.
-Therefore there is no ternary operator (condition ? then : else), because ordinary *if*{: .keyword } works fine in this role.
+在Kotlin中, *if*{: .keyword }是一个表达式,它会返回一个值.
+因此就不需要三元运算符 (如 ? 三元表达式), 因为使用 *if*{: .keyword } 就可以了。
 
 ``` kotlin
 // Traditional usage 
@@ -29,7 +29,7 @@ else
 val max = if (a > b) a else b
 ```
 
-*if*{: .keyword } branches can be blocks, and the last expression is the value of a block:
+*if*{: .keyword }的分支可以是代码段, 最后一行的表达式作为段的返回值:
 
 ``` kotlin
 val max = if (a > b) { 
@@ -42,7 +42,7 @@ val max = if (a > b) {
   }
 ```
 
-When *if*{: .keyword } has only one branch, or one of its branches results in `Unit`, its type is `Unit`.
+当*if*{: .keyword }仅仅有一个分支, 或者其中一个分支的返回结果`Unit`, 它的类型`Unit`.
 
 See the [grammar for *if*{: .keyword }](grammar.html#if).
 

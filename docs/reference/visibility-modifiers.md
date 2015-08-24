@@ -1,24 +1,19 @@
----
-type: doc
-layout: reference
-category: "Classes and Objects"
-title: "Visibility Modifiers"
----
+# 可见性修饰符
 
-# Visibility Modifiers
+类，对象，接口，构造，功能，特性及其制定者都可以用_visibility modifiers_来做修饰。(getter一直与属性有着相同的可见性.)
 
-Classes, objects, interfaces, constructors, functions, properties and their setters can have _visibility modifiers_.
-(Getters always have the same visibility as the property.) 
-There are four visibility modifiers in Kotlin:
+以下有四个在Kotlin可见性修饰符:
 
-* `private` --- visible only in the declaring scope and its subscopes (inside the same module);
-* `protected` --- (applicable only to class/interface members) like `private`, but also visible in subclasses;
-* `internal` --- (used by default) visible everywhere within the same module (if the owner of declaring scope is visible);
-* `public` --- visible everywhere (if the owner of declaring scope is visible).
+* `private` --- 只有在声明的范围及其方法可见(在同一模块);
 
-**NOTE**: Functions _with expression bodies_ and all properties declared `public` must always specify return types explicitly. 
-This is required so that we do not accidentally change a type that is a part of a public API by merely
-altering the implementation.
+* `protected` --- (只适用于类/接口成员)和"private"一样,但也在子类可见;
+
+* `internal` --- (在默认情况下使用)在同一个模块中随处可见(如果声明范围的所有者是可见的);
+
+* `public` --- 随处可见(如果声明范围的所有者是可见的).
+
+**注意**: 函数 _with expression bodies_ 所有的属性声明`public`必须始终显式指定返回类型。
+这是必需的，这样我们就不会随意改变一个类型,仅通过改变实现公共API的一部分。
 
 ``` kotlin
 public val foo: Int = 5    // explicit return type required
@@ -26,12 +21,12 @@ public fun bar(): Int = 5  // explicit return type required
 public fun bar() {}        // block body: return type is Unit and can't be changed accidentally, so not required
 ```
 
-Below please find explanations of these for different type of declaring scopes.  
-  
-## Packages
-  
-Functions, properties and classes, objects and interfaces can be declared on the "top-level", i.e. directly inside a package:
-  
+下面请找出这些解释不同类型的声明范围的。
+
+## 包名
+
+函数，属性和类，对象和接口可以在顶层声明，即直接在包内：
+
 ``` kotlin
 // file name: example.kt
 package foo
@@ -40,14 +35,16 @@ fun baz() {}
 class Bar {}
 ```
 
-* If you do not specify any visibility modifier, `internal` is used by default, which means that your declarations will be 
-visible everywhere within the same module;  
-* If you mark a declaration `private`, it will only be visible inside this package and its subpackages, and only within 
-the same module;
-* If you mark it `public`, it is visible everywhere;
-* `protected` is not available for top-level declarations.
+*  如果你不指定任何可见性修饰符，那么默认情况下使用`internal`修饰，这意味着你们将声明在同一个模块中随处可见;
 
-Examples:
+* 如果你声明`private`，只会是这个包及其子包内可见的，并且只在相同的模块;
+
+
+* 如果你声明`public`,随处可见。
+
+* `protected`不适用于顶层声明。
+
+例子:
 
 ``` kotlin
 // file name: example.kt
@@ -61,18 +58,21 @@ public var bar: Int = 5 // property is visible everywhere
 internal val baz = 6    // visible inside the same module, the modifier can be omitted    
 ```
 
-## Classes and Interfaces
+## 类和接口
 
-When declared inside a class:
+当一个类中声明：
 
-* `private` means visible inside this class only (including all its members);
-* `protected` --- same as `private` + visible in subclasses too;
-* `internal` --- any client *inside this module* who sees the declaring class sees its `internal` members;
-* `public` --- any client who sees the declaring class sees its `public` members.
+* `private` 意味着这个类只在内部可见(包含所有成员).
 
-*NOTE* for Java users: outer class does not see private members of its inner classes in Kotlin.
- 
-Examples:
+* `protected`--- 和`private`一样+在子类可见。
+
+* `internal` --- 任何客户端 *inside this module* 谁看到声明类，其`internal`成员在里面;
+
+* `public` ---  任何客户端看到声明类看到其`public`成员。
+
+*注意* 对于Java用户:外部类没有看到Kotlin内部类的私有成员。
+
+例子:
 
 ``` kotlin
 open class Outer {
@@ -99,19 +99,20 @@ class Unrelated(o: Outer) {
 }
 ```
 
-### Constructors
+### 构造函数
 
-To specify a visibility of the primary constructor of a class, use the following syntax (note that you need to add an
-explicit *constructor*{: .keyword } keyword):
+指定一个类的可见性的主构造函数,使用以下语法(注意你需要添加一个显示构造函数{:.keyword} keyword)：
 
 ``` kotlin
 class C private constructor(a: Int) { ... }
 ```
 
-Here the constructor is private. Unlike other declarations, by default, all constructors are `public`, which effectively
-amounts to them being visible everywhere where the class is visible (i.e. a constructor of an `internal` class is only 
-visible within the same module).
-     
-### Local declarations
-     
-Local variables, functions and classes can not have visibility modifiers.
+这里的构造函数是私有的。不像其他的声明，在默认情况下，所有构造函数是`public`，这实际上等于他们是随处可见，其中的类是可见(即内部类的构造函数是唯一可见在同一模块内).
+
+###局部声明
+
+局部变量，函数和类不能有可见性修饰符。
+
+---
+
+翻译By Jacky Xu
