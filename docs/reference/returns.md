@@ -119,5 +119,5 @@ fun outer() {
 
 ---
 
-翻译BY 恒～炫目！
+翻译BY S_arige
 
