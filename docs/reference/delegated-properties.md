@@ -1,20 +1,19 @@
----
+﻿---
 type: doc
 layout: reference
 category: "Syntax"
 title: "Delegated Properties"
 ---
 
-# Delegated Properties
+# 委托的属性
 
-There are certain common kinds of properties, that, though we can implement them manually every time we need them, 
-would be very nice to implement once and for all, and put into a library. Examples include
+有一些种类的属性，虽然我们可以在每次需要的时候手动实现它们，但是如果能够把他们之实现一次并放入一个库同时又能够一直使用它们那会更好。例如：
 
-* lazy properties: the value gets computed only upon first access,
-* observable properties: listeners get notified about changes to this property,
-* storing properties in a map, not in separate field each.
+* 惰性（lazy properties）: 数值只在第一次被访问的时候计算。
+* 可控性（observable properties）: 监听器得到关于这个特性变化的通知，
+* 把所有特性储存在一个图型结构中，而不是分开每一条。
 
-To cover these (and other) cases, Kotlin supports _delegated properties_:
+为了支持这些(或者其他)例子，Kotlin 采用 _委托属性_:
 
 ``` kotlin
 class Example {
@@ -22,10 +21,10 @@ class Example {
 }
 ```
 
-The syntax is: `val/var <property name>: <Type> by <expression>`. The expression after *by*{:.keyword} is the _delegate_, 
-because `get()` (and `set()`) corresponding to the property will be delegated to it.  
-Property delegates don’t have to implement any interface, but they have to provide a `get()` function (and `set()` --- for *var*{:.keyword}'s). 
-For example:
+语法是: `val/var <property name>: <Type> by <expression>`.在*by*{:.keyword}后面的表达式是 _委托_, 
+因为 `get()` (和 `set()`) 协同的属性会被委托给它。
+特性委托不必实现任何的接口，但是需要提供一个 `get()`方法(和 `set()` --- 对于 *var*{:.keyword}'s). 
+例如:
 
 ``` kotlin
 class Delegate {
@@ -39,59 +38,59 @@ class Delegate {
 }
 ```
 
-When we read from `p` that delegates to an instance of `Delegate`, the `get()` function from `Delegate` is called, 
-so that its first parameter is the object we read `p` from and the second parameter holds a description of `p` itself 
-(e.g. you can take its name). For example:
+当我们读取一个`Delegate`的委托实例 `p` , `Delegate`中的`get()`就被调用, 
+所以它第一变量就是我们从 `p` 读取的实例,第二个变量代表 `p` 自身的描述。 
+(例如你可以用它的名字). 下面是例子:
 
 ``` kotlin
 val e = Example()
 println(e.p)
 ```
 
-This prints 
+打印结果： 
 
 ```
 Example@33a17727, thank you for delegating ‘p’ to me!
 ```
  
-Similarly, when we assign to `p`, the `set()` function is called. The first two parameters are the same, and the third holds the value being assigned:
+相同的，当我们给 `p` 赋值, `set()` 方法就被调用. 前两个参数是一样的，第三个参数代表被赋予的值:
 
 ``` kotlin
 e.p = "NEW"
 ```
 
-This prints
+打印结果：
  
 ```
 NEW has been assigned to ‘p’ in Example@33a17727.
 ```
 
-## Property Delegate Requirements
+## 属性委托要求
 
-Here we summarize requirements to delegate objects. 
+下面见到介绍委托对象的要求。 
 
-For a **read-only** property (i.e. a *val*{:.keyword}), a delegate has to provide a function named `get` that takes the following parameters:
+对于一个 **只读** 属性 (如 *val*{:.keyword}), 一个委托一定会提供一个 `get`函数来处理下面的参数:
 
-* receiver --- must be the same or a supertype of the _property owner_ (for extension properties --- the type being extended),
-* metadata --- must be of type `PropertyMetadata` or its supertype,
+* 接收者 --- 必须与_属性所有者_类型相同或者是其父类(对于扩展属性，类型范围允许扩大),
+* 包含数据 --- 一定要是 `属性包含数据` 的类型或它的父类型,
  
-this function must return the same type as property (or its subtype).
+这个函数必须返回同样的类型作为属性（或者子类型）
 
-For a **mutable** property (a *var*{:.keyword}), a delegate has to _additionally_ provide a function named `set` that takes the following parameters:
+对于一个 **可变** 属性 (如 *var*{:.keyword}), 一个委托需要提供_额外_的函数 `set` 来获取下面的参数:
  
-* receiver --- same as for `get()`,
-* metadata --- same as for `get()`,
-* new value --- must be of the same type as a property or its subtype.
+* 接收者 --- 同 `get()`,
+* 包含数据 --- 同 `get()`,
+* 新的值 --- 必须和属性同类型或者是他的子类型。
  
-## Standard Delegates
+## 标准委托
 
-The `kotlin.properties.Delegates` object from the standard library provides factory methods for several useful kinds of delegates.
+标准库中`kotlin.properties.Delegates` 对象对于一些有用的委托提供了工厂（factory）方法。
 
-### Lazy
+### 惰性 Lazy
 
-`Delegates.lazy()` is a function that takes a lambda and returns a delegate that implements a lazy property: 
-the first call to `get()` executes the lambda passed to `lazy()` and remembers the result, 
-subsequent calls to `get()` simply return the remembered result. 
+函数 `Delegates.lazy()` 会在接受一个变量而后返回一个执行惰性属性的委托: 
+第一个调用 `get()` 执行变量传递到 `lazy()` 并记录结果, 
+后来的 `get()` 调用只会返回记录的结果。 
 
 
 ``` kotlin
@@ -109,15 +108,13 @@ fun main(args: Array<String>) {
 ```
 
 
-If you want **thread safety**, use `blockingLazy()`: it works the same way, but guarantees that the values will be 
-computed only in one thread, and that all threads will see the same value.
+如果你需要 **线程安全**, 使用 `blockingLazy()`: 它会进行同样的操作，但是能够保证数值将会只在一个线程中计算，同时所有线程会看到同样的数值。
 
 
-### Observable
+### 可监控的 Observable
 
-`Delegates.observable()` takes two arguments: initial value and a handler for modifications. 
-The handler gets called every time we assign to the property (before the assignment is performed). It has three
-parameters: a property being assigned to, the old value and the new one:
+`Delegates.observable()` 需要两个参数：初始值和修改后的处理(handler)。
+这个 handler 会在每次赋值的时候被属性调用 (在工作完成前). 它有三个变量:一个被赋值的属性，旧的值和新的值：
 
 ``` kotlin
 class User {
@@ -134,19 +131,19 @@ fun main(args: Array<String>) {
 }
 ```
 
-This example prints
+结果：
 
 ```
 <no name> -> first
 first -> second
 ```
 
-If you want to be able to intercept an assignment and "veto" it, use `vetoable()` instead of `observable()`.
+如果你像能够阶段一个工作并且禁止它，就使用 `vetoable()` 取代 `observable()`.
 
-### Not-Null
+### 非空 Not-Null
 
-Sometimes we have a non-null *var*{:.keyword}, but we don’t have an appropriate value to assign to it in the constructor, 
-i.e. it must be assigned later. The problem is that you can’t have an uninitialized non-abstract property in Kotlin:
+有时候我们有一个非空的值*var*{:.keyword}, 但是我们却没有合适的值去给构造器去初始化。
+例如，它必须被之后初始化。问题是在Kotlin中你不能有一个没有被初始化的非抽象属性：
 
 ``` kotlin
 class Foo {
@@ -154,7 +151,7 @@ class Foo {
 }
 ```
 
-We could initialize it with *null*{: .keyword }, but then we’d have to check every time we access it.
+我们可以用*null*{: .keyword }去初始化它,但是我们不得不在每次使用前检查一下。
 
 `Delegates.notNull()` can solve this problem:
 
@@ -164,13 +161,12 @@ class Foo {
 }
 ```
 
-If this property is read before being written to for the first time, it throws an exception, after the first assignment it works as expected.
+如果这个属性在首次写入前进行读取，它将在第一个工作正常完成后抛出一个错误。
 
-### Storing Properties in a Map
+### 把属性储存在图中
 
-`Delegates.mapVal()` takes a map instance and returns a delegate that reads property values from this map, using property name as a key.
-There are many use cases of this kind in applications like parsing JSON or doing other “dynamic” things:
-
+`Delegates.mapVal()` 用到一个图的实例，同时返回一个从图中以把属性名作为关键字读取属性的委托。
+这有很多在程序中应用的例子，例如解析JASON数据或者做其他动态的事情：
 ``` kotlin
 class User(val map: Map<String, Any?>) {
     val name: String by Delegates.mapVal(map)
@@ -178,7 +174,7 @@ class User(val map: Map<String, Any?>) {
 }
 ```
 
-In this example, the constructor takes a map:
+在这个例子中，构造器使用一个图：
 
 ``` kotlin
 val user = User(mapOf(
@@ -187,7 +183,7 @@ val user = User(mapOf(
 ))
 ```
 
-Delegates take values from this map (by the string keys – names of properties):
+委托会从这个图中取值 (通过属性的名字，也就是string关键字):
 
 
 ``` kotlin
@@ -195,4 +191,4 @@ println(user.name) // Prints "John Doe"
 println(user.age)  // Prints 25
 ```
 
-For *var*{:.keyword}’s we can use `mapVar()` (note that it takes a `MutableMap` instead of read-only `Map`).
+对于 *var*{:.关键词}’s 我们可以使用 `mapVar()` (注意这里需要一个 `MutableMap` 而不是只读的 `Map`).
