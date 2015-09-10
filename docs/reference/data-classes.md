@@ -5,7 +5,7 @@ category: "Classes and Objects"
 title: "Data Classes"
 ---
 
-# Data Classes数据类
+# 数据类
 
 We frequently create classes that do nothing but hold data. In such classes some functionality is often mechanically
 derivable from the data they hold. In Kotlin a class can be annotated as `data`:

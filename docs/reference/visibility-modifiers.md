@@ -1,4 +1,12 @@
-# 可见性修饰符
+---
+type: doc
+layout: reference
+category: "Classes and Objects"
+title: "Visibility Modifiers"
+
+---
+
+# 可见性修饰符  
 
 类，对象，接口，构造，功能，特性及其制定者都可以用_visibility modifiers_来做修饰。(getter一直与属性有着相同的可见性.)
 
