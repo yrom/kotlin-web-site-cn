@@ -8,15 +8,15 @@ title: "Visibility Modifiers"
 
 # 可见性修饰符  
 
-类，对象，接口，构造，功能，特性及其制定者都可以用_visibility modifiers_来做修饰。(getter一直与属性有着相同的可见性.)
+类，对象，接口，构造方法，和它们的setter方法都可以用_visibility modifiers_来做修饰。(getter一直与属性有着相同的可见性.)
 
-以下有四个在Kotlin可见性修饰符:
+在Kotlin中有以下四个可见性修饰符:
 
 * `private` --- 只有在声明的范围及其方法可见(在同一模块);
 
 * `protected` --- (只适用于类/接口成员)和"private"一样,但也在子类可见;
 
-* `internal` --- (在默认情况下使用)在同一个模块中随处可见(如果声明范围的所有者是可见的);
+* `internal` --- (在默认情况下使用)在同一个模块中可见(如果声明范围的所有者是可见的);
 
 * `public` --- 随处可见(如果声明范围的所有者是可见的).
 
@@ -29,7 +29,7 @@ public fun bar(): Int = 5  // explicit return type required
 public fun bar() {}        // block body: return type is Unit and can't be changed accidentally, so not required
 ```
 
-下面请找出这些解释不同类型的声明范围的。
+下面将解释不同类型的声明范围。
 
 ## 包名
 
@@ -43,7 +43,7 @@ fun baz() {}
 class Bar {}
 ```
 
-*  如果你不指定任何可见性修饰符，那么默认情况下使用`internal`修饰，这意味着你们将声明在同一个模块中随处可见;
+*  如果你不指定任何可见性修饰符，那么默认情况下使用`internal`修饰，这意味着你们将声明在同一个模块中可见;
 
 * 如果你声明`private`，只会是这个包及其子包内可见的，并且只在相同的模块;
 
@@ -78,7 +78,7 @@ internal val baz = 6    // visible inside the same module, the modifier can be o
 
 * `public` ---  任何客户端看到声明类看到其`public`成员。
 
-*注意* 对于Java用户:外部类没有看到Kotlin内部类的私有成员。
+*注意* 对于Java用户:外部类不能访问Kotlin内部类的private成员。
 
 例子:
 
@@ -117,7 +117,7 @@ class C private constructor(a: Int) { ... }
 
 这里的构造函数是私有的。不像其他的声明，在默认情况下，所有构造函数是`public`，这实际上等于他们是随处可见，其中的类是可见(即内部类的构造函数是唯一可见在同一模块内).
 
-###局部声明
+### 局部声明
 
 局部变量，函数和类不能有可见性修饰符。
 

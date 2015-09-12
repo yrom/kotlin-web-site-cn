@@ -136,11 +136,11 @@ public val table: Map<String, Int>
 ```
 从各种角度看，这和在Java中定义Bean属性的方式一样。因为访问私有的属性的getter和setter函数，会被编译器优化成直接反问其实际字段。
 
-##重写属性
+## 重写属性
 
 查看 [Overriding Members](classes.html#overriding-members)
 
-##委托属性
+## 委托属性
   
 从支持域最常见类型的属性只读(写入)。
 另一方面,使用自定义getter和setter属性可以实现任何方法行为。

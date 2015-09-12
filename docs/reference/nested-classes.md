@@ -20,6 +20,7 @@ class Outer {
 val demo = Outer.Nested().foo() // == 2
 
 ```
+
 ## 内部类
 
 为了能被外部类访问一个类可以被标记为内部类（“inner” 关键词）。
@@ -37,8 +38,8 @@ val demo = Outer().Inner().foo() // == 1
 
 ```
 
-参阅(this-expressions.html)中“this”关键词用法来学习在内部类中如何消除“this”关键词的歧义。
+参阅[this-expressions.html](this-expressions.html)中“this”关键词用法来学习在内部类中如何消除“this”关键词的歧义。
 
 ---
 
-翻译By 走一生
+翻译By EasonZhou
