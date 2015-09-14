@@ -1,15 +1,15 @@
-﻿---
+---
 type: doc
 layout: reference
 category: "Syntax"
 title: "Delegated Properties"
 ---
 
-# 委托的属性
+# 委托属性
 
 有一些种类的属性，虽然我们可以在每次需要的时候手动实现它们，但是如果能够把他们之实现一次并放入一个库同时又能够一直使用它们那会更好。例如：
 
-* 惰性（lazy properties）: 数值只在第一次被访问的时候计算。
+* 延迟属性（lazy properties）: 数值只在第一次被访问的时候计算。
 * 可控性（observable properties）: 监听器得到关于这个特性变化的通知，
 * 把所有特性储存在一个图型结构中，而不是分开每一条。
 
@@ -86,9 +86,9 @@ NEW has been assigned to ‘p’ in Example@33a17727.
 
 标准库中`kotlin.properties.Delegates` 对象对于一些有用的委托提供了工厂（factory）方法。
 
-### 惰性 Lazy
+### 延迟属性 Lazy
 
-函数 `Delegates.lazy()` 会在接受一个变量而后返回一个执行惰性属性的委托: 
+函数 `Delegates.lazy()` 会在接受一个变量而后返回一个执行延迟属性的委托: 
 第一个调用 `get()` 执行变量传递到 `lazy()` 并记录结果, 
 后来的 `get()` 调用只会返回记录的结果。 
 
@@ -111,7 +111,7 @@ fun main(args: Array<String>) {
 如果你需要 **线程安全**, 使用 `blockingLazy()`: 它会进行同样的操作，但是能够保证数值将会只在一个线程中计算，同时所有线程会看到同样的数值。
 
 
-### 可监控的 Observable
+### 观察者 Observable
 
 `Delegates.observable()` 需要两个参数：初始值和修改后的处理(handler)。
 这个 handler 会在每次赋值的时候被属性调用 (在工作完成前). 它有三个变量:一个被赋值的属性，旧的值和新的值：
@@ -137,8 +137,7 @@ fun main(args: Array<String>) {
 <no name> -> first
 first -> second
 ```
-
-如果你像能够阶段一个工作并且禁止它，就使用 `vetoable()` 取代 `observable()`.
+如果你想截取它的分配并取消它，就使用 `vetoable()` 取代 `observable()`.
 
 ### 非空 Not-Null
 
@@ -153,7 +152,7 @@ class Foo {
 
 我们可以用*null*{: .keyword }去初始化它,但是我们不得不在每次使用前检查一下。
 
-`Delegates.notNull()` can solve this problem:
+`Delegates.notNull()` 可以解决这个问题:
 
 ``` kotlin
 class Foo {
@@ -161,11 +160,11 @@ class Foo {
 }
 ```
 
-如果这个属性在首次写入前进行读取，它将在第一个工作正常完成后抛出一个错误。
+如果这个属性在首次写入前进行读取，它就会抛出一个异常，写入后就正常了。
 
-### 把属性储存在图中
+### 把属性储存在map中
 
-`Delegates.mapVal()` 用到一个图的实例，同时返回一个从图中以把属性名作为关键字读取属性的委托。
+`Delegates.mapVal()` 用到一个map的实例，同时返回一个从map中以把属性名作为关键字读取属性的委托。
 这有很多在程序中应用的例子，例如解析JASON数据或者做其他动态的事情：
 ``` kotlin
 class User(val map: Map<String, Any?>) {
@@ -174,7 +173,7 @@ class User(val map: Map<String, Any?>) {
 }
 ```
 
-在这个例子中，构造器使用一个图：
+在这个例子中，构造函数持有一个map：
 
 ``` kotlin
 val user = User(mapOf(
@@ -192,3 +191,7 @@ println(user.age)  // Prints 25
 ```
 
 对于 *var*{:.关键词}’s 我们可以使用 `mapVar()` (注意这里需要一个 `MutableMap` 而不是只读的 `Map`).
+
+---
+ 
+翻译By EasonZhou

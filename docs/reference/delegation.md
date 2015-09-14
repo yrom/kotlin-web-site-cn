@@ -1,36 +1,20 @@
-﻿---
-
-type: doc
-
-layout: reference
-
-category: "Syntax"
-
-title: "Delegation"
-
 ---
-
-
-
-# Delegation
-
-
-
+type: doc
+layout: reference
+category: "Syntax"
+title: "Delegation"
+---
 
 # 委托
 
 ## 委托类
 
 
-
-
 [委托模式](https://en.wikipedia.org/wiki/Delegation_pattern)是实现继承的一个有效方式.
 
-Kotlin 对之提供了不需要重复性代码的支持。
+Kotlin原生支持它。
 
 一个类 `Derived` 可以从一个接口 `Base`继承并且委托所有的共有方法为具体对象。
-
-
 
 
 ``` kotlin
@@ -76,5 +60,7 @@ fun main() {
 并且编译器会把所有 `Base` 的方法生成给最终的 `b`.
 
 
+---
 
+翻译By EasonZhou
 
