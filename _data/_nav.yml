@@ -73,26 +73,26 @@ reference:
       - /docs/reference/generics.html: Generics
       - /docs/reference/nested-classes.html: 嵌套类
       - /docs/reference/enum-classes.html: 枚举类
-      - /docs/reference/object-declarations.html: Objects
-      - /docs/reference/delegation.html: Delegation
-      - /docs/reference/delegated-properties.html: Delegated Properties
+      - /docs/reference/object-declarations.html: 对象
+      - /docs/reference/delegation.html: 委托
+      - /docs/reference/delegated-properties.html: 委托属性
 
-  - title: Functions and Lambdas
-    description: All about functions
+  - title: 函数和Lambad表达式
+    description: 关于函数
     content:
-      - /docs/reference/functions.html: Functions
+      - /docs/reference/functions.html: 函数
       - /docs/reference/lambdas.html: Lambdas
       - /docs/reference/inline-functions.html: Inline Functions
 
-  - title: Other
-    description: Various bits and bobs
+  - title: 其他
+    description: 各种知识点
     content:
       - /docs/reference/multi-declarations.html: Multi-Declarations
-      - /docs/reference/ranges.html: Ranges
+      - /docs/reference/ranges.html: 范围
       - /docs/reference/typecasts.html: Type Checks and Casts
-      - /docs/reference/this-expressions.html: This expressions
-      - /docs/reference/equality.html: Equality
-      - /docs/reference/operator-overloading.html: Operator overloading
+      - /docs/reference/this-expressions.html: This表达式
+      - /docs/reference/equality.html: 等式
+      - /docs/reference/operator-overloading.html: 操作符重载
       - /docs/reference/null-safety.html: Null Safety
       - /docs/reference/exceptions.html: Exceptions
       - /docs/reference/annotations.html: Annotations
@@ -102,11 +102,11 @@ reference:
 
 
 
-  - title: Reference
-    description: API and Grammar
+  - title: 参考
+    description: API和语法
     content:
-      - /api/latest/jvm/stdlib/index.html: API Reference
-      - /docs/reference/grammar.html: Grammar
+      - /api/latest/jvm/stdlib/index.html: API参考
+      - /docs/reference/grammar.html: 语法
 
 
   - title: Interop
