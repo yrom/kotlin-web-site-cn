@@ -32,34 +32,34 @@ Kotlin允许我们实现一些我们自定义类型的运算符实现。这些�
 
 | 表达式 | 翻译为 |
 |------------|---------------|
-| `a++` | `a.inc()` + see below |
-| `a--` | `a.dec()` + see below |
+| `a++` | `a.inc()` + 见下方 |
+| `a--` | `a.dec()` + 见下方 |
 
 
 这些操作符允许修改接收者和返回类型。
 
-> **`inc()/dec()` shouldn't mutate the receiver object**.<br>
-> By "changing the receiver" we mean _the receiver-variable_, not the receiver object.
+> **`inc()/dec()` 不应该改变接收对象**.<br>
+> "修改接受者"你应该修改接收者变量而非对象。
 {:.note}
 
 编译器是这样解决有*后缀*的操作符的比如`a++`:
 
 * 决定`a`的类型, 假设为`T`。
-* Looks up a function `inc()` with no parameters, applicable to the receiver of type `T`.
-* If the function returns a type `R`, then it must be a subtype of `T`.
+* 查找接收类型为`T`无参数函数`inc()。
+* 如果返回类型为`R`,那么`R`为`T`子类型.
 
-计算表达式的效果是：
+计算表达式的步骤是：
 
-* Store the initial value of `a` to a temporary storage `a0`,
-* Assign the result of `a.inc()` to `a`,
-* Return `a0` as a result of the expression.
+* 把`a`的值存在`a0`中,
+* 把`a.inc()`结果作用于 `a`,
+* 把 `a0`作为表达式的结果.
 
 a-- 的运算步骤也是一样的。
 
-对于前缀运算符`++a`和`--a`的解决方式也是一样的, 效果是:
+对于前缀运算符`++a`和`--a`的解决方式也是一样的, 步骤是:
 
-* Assign the result of `a.inc()` to `a`,
-* Return the new value of `a` as a result of the expression.
+* 把`a.inc()`作用于`a`,
+* 返回新值`a`作为表达式结果。
 
 ### 二元操作符
 
@@ -112,11 +112,11 @@ in 和 !in 的产生步骤是一样的，但参数顺序是相反的。
 
 在分配 a+= b时编译器是下面这样实现的:
 
-* If the function from the right column is available
-  * If the corresponding binary function (i.e. `plus()` for `plusAssign()`) is available too, report error (ambiguity).
-  * Make sure its return type is `Unit`, and report an error otherwise.
-  * Generate code for `a.plusAssign(b)`
-* Otherwise, try to generate code for `a = a + b` (this includes a type check: the type of `a + b` must be a subtype of `a`).
+* 右边函数是否可用。
+  * 对应的二元函数是否 (如`plus()`和`plusAssign()`)也可用, 不可用就报告错误.
+  * 确定它的返回值是`Unit`类型, 否则报告错误。
+  * 生成`a.plusAssign(b)`
+*否则试着生成`a = a + b`代码 (这里包含类型检查: `a + b`一定要是`a`的子类型).
 
 *注意*: assignments在Kotlin中不是表达式.
 {:#Equals}
