@@ -83,7 +83,7 @@ x += 1
 
 查看 [Properties And Fields](properties.html).
 
-## 使用泛型Array
+## 使用String模板
 
 ``` kotlin
 fun main(args: Array<String>) {
