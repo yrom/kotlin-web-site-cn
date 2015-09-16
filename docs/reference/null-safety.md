@@ -9,9 +9,9 @@ title: "Null Safety"
 
 ## 可空（Nullable）和不可空（Non-Null） 类型
 
-Kotlin 的类型系统的致力于消除空指针异常，又称[《一亿美元的错误》](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)。
+Kotlin 的类型系统致力于消除空指针异常，又称[《一亿美元的错误》](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)。
 
-许多编程语言，包括 Java 中最常见的错误就是访问空引用的成员变量，导致空引用异常。在Java中，叫做 `NullPointerException` 或简称 `NPE` 。
+许多编程语言，包括 Java 中最常见的错误就是访问空引用的成员变量，导致空引用异常。在Java中，叫作 `NullPointerException` 或简称 `NPE` 。
 
 Kotlin 的类型系统的目的是从我们的代码中消除 `NullPointerException` 。 `NPE` 的原因可能是
 
