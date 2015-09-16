@@ -11,13 +11,13 @@ title: "Null Safety"
 
 Kotlin 的类型系统致力于消除空指针异常，又称[《一亿美元的错误》](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)。
 
-许多编程语言，包括 Java 中最常见的错误就是访问空引用的成员变量，导致空引用异常。在Java中，叫作 `NullPointerException` 或简称 `NPE` 。
+许多编程语言，包括 Java 中最常见的错误就是访问空引用的成员变量，导致空引用异常。在 Java 中，叫作 `NullPointerException` 或简称 `NPE` 。
 
-Kotlin 的类型系统的目的是从我们的代码中消除 `NullPointerException` 。 `NPE` 的原因可能是
+Kotlin 类型系统的目的就是从我们的代码中消除 `NullPointerException` 。 `NPE` 的原因可能是
 
 * 显式调用 `throw NullPointerException()`
 * 外部 Java 代码引起
-* 对于初始化，有一些数据不一致 (an uninitialized *this* available in a constructor is used somewhere)
+* 对于初始化，有一些数据不一致 (比如一个还没初始化的 `this` 用于构造函数的某个地方)
 
 在 Kotlin 中，类型系统是要区分一个引用是否可以是 *null*{: .keyword } （nullable references）或者不可以，即 不可空引用（non-null references）。
 例如，常见的 `String` 就不能够为 *null*{: .keyword }：
@@ -46,7 +46,7 @@ val l = a.length()
 val l = b.length() // 错误：变量 b 不能可能为 null
 ```
 
-但是我仍然需要调用这些方法，对吧？这里有一些方式可以这么做：
+可是我仍然需要调用这些方法，对吧？这里有一些方式可以这么做：
 
 ## 使用条件语句检测是否为 *null*{: .keyword } 
 
@@ -102,7 +102,7 @@ val l = b?.length() ?: -1
 如果  `?:` 的左边表达式是非空的， elvis 操作符就会返回左边的结果, 否则返回右边的内容。  
 请注意，仅在左侧为空的时候，右侧表达式才会进行计算。
 
-注意, 因为 *throw*{: .keyword } 和 *return*{: .keyword } 在 Kotlin 中都是一种表达式，它们也可以用在 elvis 操作符的右边。非常方便，例如，检查函数参数：
+注意, 因为 *throw*{: .keyword } 和 *return*{: .keyword } 在 Kotlin 中都是一种表达式，它们也可以用在 Elvis 操作符的右边。非常方便，例如，检查函数参数：
 
 ``` kotlin
 fun foo(node: Node): String? {
