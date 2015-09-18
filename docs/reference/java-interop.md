@@ -5,14 +5,13 @@ category: "Interop"
 title: "Java Interop"
 ---
 
-# Java Interop
+# Java交互
 
-Kotlin is designed with Java Interoperability in mind. Existing Java code can be called from Kotlin in a natural way, and Kotlin code can be used from
-Java rather smoothly as well. In this section we describe some details about calling Java code from Kotlin.
+Kotlin 在设计时就是以与 java 交互为中心的。现存的 Java 代码可以在 kotlin 中使用，并且 Kotlin 代码也可以在 Java 中流畅运行。这节我们会讨论在 kotlin 中调用 Java 代码的细节。
 
-## Calling Java code from Kotlin
+## 在Kotlin中调用Java代码
 
-Pretty much all Java code can be used without any issues
+基本所有的 Java 代码都可以运行
 
 ``` kotlin
 import java.util.*
@@ -28,11 +27,10 @@ fun demo(source: List<Int>) {
 }
 ```
 
-### Methods returning void
+### 返回void的方法
 
-If a Java method returns void, it will return `Unit` when called from Kotlin.
-If, by any chance, someone uses that return value, it will be assigned at the call site by the Kotlin compiler,
-since the value itself is known in advance (being `Unit`).
+如果一个Java方法返回void，那么在Kotlin中，它会返回`Unit`。
+万一有人使用它的返回值，Kotlin的编译器会在调用的地方赋值，因为这个值本身已经提前可以预知了(这个值就是`Unit`)。
 
 ### Escaping for Java identifiers that are keywords in Kotlin
 

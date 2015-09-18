@@ -81,7 +81,7 @@ reference:
     description: 关于函数
     content:
       - /docs/reference/functions.html: 函数
-      - /docs/reference/lambdas.html: Lambdas
+      - /docs/reference/lambdas.html: Lambdas表达式
       - /docs/reference/inline-functions.html: Inline Functions
 
   - title: 其他
@@ -89,16 +89,16 @@ reference:
     content:
       - /docs/reference/multi-declarations.html: Multi-Declarations
       - /docs/reference/ranges.html: 范围
-      - /docs/reference/typecasts.html: Type Checks and Casts
+      - /docs/reference/typecasts.html: 类型检查与转换
       - /docs/reference/this-expressions.html: This表达式
       - /docs/reference/equality.html: 等式
       - /docs/reference/operator-overloading.html: 操作符重载
-      - /docs/reference/null-safety.html: Null Safety
+      - /docs/reference/null-safety.html: Null 安全性
       - /docs/reference/exceptions.html: Exceptions
       - /docs/reference/annotations.html: Annotations
-      - /docs/reference/reflection.html: Reflection
-      - /docs/reference/type-safe-builders.html: Type-Safe Builders
-      - /docs/reference/dynamic-type.html: Dynamic Type
+      - /docs/reference/reflection.html: 反射
+      - /docs/reference/type-safe-builders.html: 类型安全的构建器
+      - /docs/reference/dynamic-type.html: 动态类型
 
 
 
@@ -109,12 +109,12 @@ reference:
       - /docs/reference/grammar.html: 语法
 
 
-  - title: Interop
-    description: What you need to know about interoperability with Java and JavaScript.
+  - title: 互操作
+    description: Kotlin和Java还有JavaScript互操作时候你需要知道的。
     content:
-      - /docs/reference/java-interop.html: Java Interop
+      - /docs/reference/java-interop.html: Java互操作
 
-  - title: Tools
+  - title: 工具
     description:
     content:
 #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
@@ -124,10 +124,10 @@ reference:
       - /docs/reference/using-griffon.html: Using Griffon
       - /docs/reference/using-gradle.html: Using Gradle
 
-  - title: FAQ
-    description: Every question you could possibly think of, might be answered.
+  - title: 常见问题
+    description: 你想到的问题可能会在这里得到解答.
     content:
-      - /docs/reference/faq.html: FAQ
+      - /docs/reference/faq.html: 常见问题
       - /docs/reference/comparison-to-java.html: Comparison to Java
       - /docs/reference/comparison-to-scala.html: Comparison to Scala
 
