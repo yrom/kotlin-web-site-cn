@@ -9,7 +9,7 @@ title: "Null Safety"
 
 ## 可空（Nullable）和不可空（Non-Null） 类型
 
-Kotlin 的类型系统致力于消除空指针异常，又称[《一亿美元的错误》](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)。
+Kotlin 的类型系统致力于消除空引用异常，又称[《上亿美元的错误》](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)。
 
 许多编程语言，包括 Java 中最常见的错误就是访问空引用的成员变量，导致空引用异常。在 Java 中，叫作 `NullPointerException` 或简称 `NPE` 。
 
@@ -43,7 +43,7 @@ val l = a.length()
 但是如果你想调用 `b` 的一些方法，这将是不安全的，同时编译器会报错：
 
 ``` kotlin
-val l = b.length() // 错误：变量 b 不能可能为 null
+val l = b.length() // 错误：变量 b 可能为 null
 ```
 
 可是我仍然需要调用这些方法，对吧？这里有一些方式可以这么做：
