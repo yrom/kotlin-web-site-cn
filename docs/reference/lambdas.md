@@ -1,4 +1,4 @@
-﻿---
+---
 type: doc
 layout: reference
 category: "Syntax"
