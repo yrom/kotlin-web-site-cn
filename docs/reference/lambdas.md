@@ -222,6 +222,9 @@ sum : Int.(other: Int) -> Int
 1 sum 2
 ```
 
+---
+
+翻译By Airoyee
 
 
 
