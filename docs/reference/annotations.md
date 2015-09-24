@@ -5,16 +5,17 @@ category: "Syntax"
 title: "Annotations"
 ---
 
-# Annotations
+# 注解
 
-## Annotation Declaration
-Annotations are means of attaching metadata to code. To declare an annotation, put the *annotation*{: .keyword } keyword in front of a class:
+## 注解的声明
+
+注解是连接元数据以及代码的。为了声明注解，把*annotation*{: .keyword } 这个关键字放在类前面：
 
 ``` kotlin
 annotation class fancy
 ```
 
-### Usage
+### 用途
 
 ``` kotlin
 @fancy class Foo {
@@ -24,7 +25,8 @@ annotation class fancy
 }
 ```
 
-In most cases, the `@ `sign is optional. It is only required when annotating expressions or local declarations:
+
+在很多情况下，`@ `这个标志不是强制性使用的。它只是在当注解表达式或者本地声明时需要：
 
 ``` kotlin
 fancy class Foo {
@@ -35,9 +37,8 @@ fancy class Foo {
 }
 ```
 
-If you need to annotate the primary constructor of a class, you need to add the *constructor*{: .keyword} keyword
-to the constructor declaration, and add the annotations before it:
 
+如果你需要注解类的主构造方法，你需要给构造方法的声明添加*constructor*{: .keyword}这个关键字，还有在前面添加注解：
 
 ``` kotlin
 class Foo @inject constructor(dependency: MyDependency) {
@@ -45,7 +46,8 @@ class Foo @inject constructor(dependency: MyDependency) {
 }
 ```
 
-You can also annotate property accessors:
+
+你也可以注解属性访问器：
 
 ``` kotlin
 class Foo {
@@ -54,9 +56,10 @@ class Foo {
 }
 ```
 
-### Constructors
+### 构造方法
 
-Annotations may have constructors that take parameters.
+
+注解可以有参数的构造方法。
 
 ``` kotlin
 annotation class special(val why: String)
@@ -66,9 +69,8 @@ special("example") class Foo {}
 
 ### Lambdas
 
-Annotations can also be used on lambdas. They will be applied to the `invoke()` method into which the body
-of the lambda is generated. This is useful for frameworks like [Quasar](http://www.paralleluniverse.co/quasar/),
-which uses annotations for concurrency control.
+
+注解也可以用在lambda表达式中。这将会应用到 lambda 生成的`invoke()`方法。这对[Quasar](http://www.paralleluniverse.co/quasar/)框架很有用，在这个框架中注解被用来并发控制
 
 ``` kotlin
 annotation class Suspendable
@@ -77,9 +79,10 @@ val f = @Suspendable { Fiber.sleep(10) }
 ```
 
 
-## Java Annotations
+## Jave注解
 
-Java annotations are 100% compatible with Kotlin:
+
+Java注解是百分百适用于Kotlin：
 
 ``` kotlin
 import org.junit.Test
@@ -92,7 +95,8 @@ class Tests {
 }
 ```
 
-Java annotations can also be made to look like modifiers by renaming them on import:
+
+Java注解也可像用import修饰符重新命名：
 
 ``` kotlin
 import org.junit.Test as test
@@ -104,8 +108,9 @@ class Tests {
 }
 ```
 
-Since the order of parameters for an annotation written in Java is not defined, you can't use a regular function
-call syntax for passing the arguments. Instead, you need to use the named argument syntax.
+
+因为在Java里，注释的参数顺序不是明确的，你不能使用常规的方法
+调用语法传递的参数。相反的，你需要使用指定的参数语法。
 
 ``` java
 // Java
@@ -120,7 +125,8 @@ public @interface Ann {
 Ann(intValue = 1, stringValue = "abc") class C
 ```
 
-Just like in Java, a special case is the `value` parameter; its value can be specified without an explicit name.
+
+就像在Jave里一样，需要一个特殊的参数是' value`参数;它的值可以使用不明确的名称来指定。
 
 ``` java
 // Java
@@ -134,7 +140,8 @@ public @interface AnnWithValue {
 AnnWithValue("abc") class C
 ```
 
-If the `value` argument in Java has an array type, it becomes a `vararg` parameter in Kotlin:
+
+如果在Java中`value`参数是array类型，在Kotlin中必须使用 `vararg`这个参数。
 
 ``` java
 // Java
@@ -148,10 +155,8 @@ public @interface AnnWithArrayValue {
 AnnWithArrayValue("abc", "foo", "bar") class C
 ```
 
-If you need to specify a class as an argument of an annotation, use a Kotlin class
-([KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)). The Kotlin compiler will
-automatically convert it to a Java class, so that the Java code will be able to see the annotations and arguments
-normally.
+
+如果你需要像注解参数一样指定一个类，使用一个Kotlin的类吧([KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html))。Kotlin编译器会自动把它转换成Java类，使得Java代码能正常看到注解和参数。
 
 ``` kotlin
 
@@ -162,7 +167,7 @@ annotation class Ann(val arg1: KClass<*>, val arg2: KClass<out Any?>)
 Ann(String::class, Int::class) class MyClass
 ```
 
-Values of an annotation instance are exposed as properties to Kotlin code.
+注解实例的值被视为Kotlin的属性。
 
 ``` java
 // Java
@@ -177,3 +182,7 @@ fun foo(ann: Ann) {
     val i = ann.value
 }
 ```
+
+---
+
+翻译By [Wahchi](https://github.com/wahchi)

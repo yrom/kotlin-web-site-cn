@@ -32,23 +32,21 @@ fun demo(source: List<Int>) {
 如果一个Java方法返回void，那么在Kotlin中，它会返回`Unit`。
 万一有人使用它的返回值，Kotlin的编译器会在调用的地方赋值，因为这个值本身已经提前可以预知了(这个值就是`Unit`)。
 
-### Escaping for Java identifiers that are keywords in Kotlin
+### 将Java代码中与Kotlin关键字冲突的标识符进行转义
 
-Some of the Kotlin keywords are valid identifiers in Java: *in*{: .keyword }, *object*{: .keyword }, *is*{: .keyword }, etc.
-If a Java library uses a Kotlin keyword for a method, you can still call the method
-escaping it with the backtick (`) character
+一些Kotlin的关键字在Java中是合法的标识符: *in*{: .keyword }, *object*{: .keyword }, *is*{: .keyword }, 等等.
+如果一个Java库在方法中使用了Kotlin关键字,你仍然可以使用这个方法
+使用反引号(`)转义来避免冲突。
 
 ``` kotlin
 foo.`is`(bar)
 ```
 
-### Null-Safety and Platform Types
+### Null安全性和平台类型
 
-Any reference in Java may be *null*{: .keyword }, which makes Kotlin's requirements of strict null-safety impractical for objects coming from Java.
-Types of Java declarations are treated specially in Kotlin and called *platform types*. Null-checks are relaxed for such types,
-so that safety guarantees for them are the same as in Java (see more [below](#mapped-types)).
+Java中的所有引用都可能是*null*{: .keyword }值，这使得Kotlin严格的null控制对来自Java的对象来说变得不切实际。在Kotlin中Java声明类型被特别对待叫做*platform types*.这种类型的Null检查是不严格的，所以他们还维持着同Java中一样的安全性。
 
-Consider the following examples:
+考虑如下例子:
 
 ``` kotlin
 val list = ArrayList<String>() // non-null (constructor result)

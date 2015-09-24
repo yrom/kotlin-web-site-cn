@@ -5,7 +5,7 @@ category: "Syntax"
 title: "Higher-Order Functions and Lambdas"
 ---
 
-#高阶函数和lambda表达式
+# 高阶函数和lambda表达式
 
 ## 高阶函数
 
