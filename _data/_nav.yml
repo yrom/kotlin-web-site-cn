@@ -70,7 +70,7 @@ reference:
       - /docs/reference/visibility-modifiers.html: 可见性修饰符
       - /docs/reference/extensions.html: 扩展
       - /docs/reference/data-classes.html: 数据类
-      - /docs/reference/generics.html: Generics
+      - /docs/reference/generics.html: 泛型
       - /docs/reference/nested-classes.html: 嵌套类
       - /docs/reference/enum-classes.html: 枚举类
       - /docs/reference/object-declarations.html: 对象
@@ -82,12 +82,12 @@ reference:
     content:
       - /docs/reference/functions.html: 函数
       - /docs/reference/lambdas.html: Lambdas表达式
-      - /docs/reference/inline-functions.html: Inline Functions
+      - /docs/reference/inline-functions.html: 内联函数
 
   - title: 其他
     description: 各种知识点
     content:
-      - /docs/reference/multi-declarations.html: Multi-Declarations
+      - /docs/reference/multi-declarations.html: 多重声明
       - /docs/reference/ranges.html: 范围
       - /docs/reference/typecasts.html: 类型检查与转换
       - /docs/reference/this-expressions.html: This表达式
