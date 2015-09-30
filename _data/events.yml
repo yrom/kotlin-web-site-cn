@@ -798,7 +798,7 @@
   content:
     slides: https://speakerdeck.com/pardom/kotlin-new-hope-in-a-java-6-wasteland
 
-- title: DroidCon 2015
+- title: DroidCon Berlin 2015
   url: http://droidcon.de/session/kotlin-swift-android
   subject: "Kotlin - the Swift of Android"
   speaker: Svetlana Isakova
@@ -816,6 +816,9 @@
   date: 2015-07-06
   location: Prague, Czech Republic
   lang: en
+  content:
+    video: https://www.youtube.com/watch?v=zVZFv80l_lQ
+    slides: https://onedrive.live.com/redir?resid=AE5485EE4D222D8D!155&authkey=!ALJNlYpBC_ktAV0&ithint=file%2cpptx
   
 - title: IT Letnik
   url: http://itletnik.ru
@@ -842,3 +845,179 @@
   date: [2015-06-26, 2015-06-27]
   location: Barcelona, Spain
   lang: en
+
+- title: Stockholm Java User Group
+  url: http://www.meetup.com/Stockholm-Java-User-Group/events/224295980/
+  subject: "Building APIs with Kotlin and Spark"
+  speaker: Travis Spencer
+  date: 2015-08-25
+  location: Stockholm, Sweden
+  lang: en
+  content:
+    slides: http://www.slideshare.net/nordicapis/building-apis-with-kotlin-and-spark
+    video: https://youtu.be/eDHUabQMRb4
+  
+- title: JVM Language Summit 2015
+  url: http://openjdk.java.net/projects/mlvm/jvmlangsummit/
+  subject: "Flexible types in Kotlin"
+  speaker: Andrey Breslav
+  date: 2015-08-10
+  location: Santa Clara, CA, USA
+  lang: en
+  content:
+    slides: https://onedrive.live.com/redir?resid=AE5485EE4D222D8D!157&authkey=!ACQKNL3Z2R4bTrk&ithint=file%2cpptx
+    video: https://www.youtube.com/watch?v=2IhT8HACc2E&list=PLX8CzqL3ArzUo2dtMurvpUTAaujPMeuuU&index=20
+    
+- title: DroidCon Greece 2015
+  url: http://droidcon.gr/session/svetlana-isakova/
+  subject: "Kotlin on Android"
+  speaker: Svetlana Isakova
+  date: [2015-09-10, 2015-09-11]
+  location: Thessaloniki, Greece
+  lang: en    
+
+- title: Droidcon NYC 2015
+  url: http://droidcon.nyc/2015/dcnyc/53/
+  subject: "Kotlin: New Hope in a Java 6 Wasteland"
+  speaker: Michael Pardo
+  date: 2015-08-28
+  location: New York, NY, USA
+  lang: en
+  content:
+    slides: https://speakerdeck.com/pardom/kotlin-new-hope-in-a-java-6-wasteland/
+    video: https://youtu.be/0BiPmgk3nyw
+
+- title: Mobiconf 2015
+  url: http://2015.mobiconf.org/
+  subject: "Kotlin on Android"
+  speaker: Svetlana Isakova
+  date: [2015-10-01, 2015-10-02]
+  location: Krakow, Poland
+  lang: en    
+
+- title: "Mobile Warsaw #27"
+  url: http://mobile-warsaw.pl/meetup_027.html
+  subject: "Kotlin for Android"
+  speaker: Paweł Gajda
+  date: 2015-07-20
+  location: Warsaw, Poland
+  lang: en
+  content:
+    slides: http://slides.com/pawegio/kotlin-android#/
+    video: https://youtu.be/qns9F5ZtgpI
+
+- title: Oredev
+  url: http://oredev.org/
+  subject: "Advancing Android Development with the Kotlin Language"
+  speaker: Jake Wharton
+  date: [2015-11-03, 2015-11-06]
+  location: Malmö, Sweden
+  lang: en
+
+- title: DroidCon London 2015
+  url: http://uk.droidcon.com/2015/
+  subject: "Advancing Development with the Kotlin Language"
+  speaker: Jake Wharton
+  date: [2015-10-29, 2015-10-30]
+  location: London, UK
+  lang: en
+
+- title: JOKER
+  url: http://jokerconf.com
+  subject: "The Experience of Using Kotlin in JetBrains"
+  speaker: Dmitry Jemerov
+  date: [2015-10-16, 2015-10-17]
+  location: Saint Petersburg, Russia
+  lang: ru
+
+- title: DevFest 2015
+  url: http://www.eventbrite.it/e/biglietti-devfest-2015-18033194771?aff=es2
+  subject: "Kotlin: lo Swift di Android"
+  speaker: Omar Miatello
+  date: 2015-10-03
+  location: Milan, Italy
+  lang: it
+
+- title: 関西Kotlin勉強会
+  url: http://connpass.com/event/18102/
+  subject: "Kotlinのdata classへJacksonでデシリアライズしようとして苦労した話"
+  speaker: "@yy_yankさん"
+  date: 2015-09-19
+  location: 兵庫県芦屋市業平町8番24号
+  lang: jp
+
+- title: JavaOne 2015
+  url: https://www.oracle.com/javaone/index.html
+  subject: "Type Inference in Kotlin"
+  speaker: Svetlana Isakova
+  date: [2015-10-25, 2015-10-29]
+  location: San Francisco, CA, USA
+  lang: en
+
+- title: JavaOne 2015
+  url: https://www.oracle.com/javaone/index.html
+  subject: "Kotlin in Anger"
+  speaker: Justin Lee
+  date: [2015-10-25, 2015-10-29]
+  location: San Francisco, CA, USA
+  lang: en
+
+- title: "Kotlin Developers in Manchester Meetup #1"
+  url: http://www.meetup.com/Kotlin-Manchester/events/225343001/
+  subject: "Introduction"
+  speaker: Arthur Emblenton
+  date: 2015-09-23
+  location: Manchester, UK
+  lang: en
+
+- title: "Kotlin Developers in Manchester Meetup #1"
+  url: http://www.meetup.com/Kotlin-Manchester/events/225343001/
+  subject: "Functional programming in Kotlin with funKTionale"
+  speaker: Mario Arias
+  date: 2015-09-23
+  location: Manchester, UK
+  lang: en
+  content:
+    slides: https://speakerdeck.com/marioariasc/functional-programming-in-kotlin-with-funktionale
+
+- title: dotnetconf 2015
+  url: http://dotnetconf.ru/discussion#
+  subject: "Kotlin in Production. Why? How?"
+  speaker: Kirill Bubochkin
+  date: 2015-10-31
+  location: Chelyabinsk, RU
+  lang: ru
+
+- title: Voxxed days Vilnius 2015
+  url: https://voxxeddaysvilnius2015.sched.org/
+  subject: "Intro to Kotlin"
+  speaker: Anton Rutkevich
+  date: 2015-09-18
+  location: Vilnus, LT
+  lang: en
+  content:
+    slides: http://slides.com/antonrutkevich/kotlin-intro-voxxed#/
+
+- title: JavaLand 2016
+  url: http://dukecon.org/javaland/talk.html#talk?talkId=509354
+  subject: "Kotlin in Action"
+  speaker: Justin Lee
+  date: [2016-03-08, 2016-03-10]
+  location: Brühl, Germany
+  lang: en
+
+- title: Mobilization 2015
+  url: http://2015.mobilization.pl/
+  subject: "Kotlin for Android"
+  speaker: Paweł Gajda
+  date: 2015-10-17
+  location: Lodz, Poland
+  lang: pl
+
+- title: Codemotion 2015
+  url: http://2015.codemotion.es/agenda.html#5699289732874240
+  subject: "Kotlin for Android Developers"
+  speaker: Antonio Leiva Gordillo
+  date: [2015-11-27, 2015-11-28]
+  location: Madrid, Spain
+  lang: sp

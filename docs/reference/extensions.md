@@ -17,10 +17,10 @@ Kotlin和c#、Gosu一样，能够扩展一个类的新功能,而无需继承类�
 声明一个扩展方法，我们需要用一个 _receiver type_,也就是扩展的类型来作为他的前缀。下面是为`MutableList<Int>`添加一个`swap`方法：
 
 ``` kotlin
-fun MutableList<Int>.swap(x: Int, y: Int) {
-  val tmp = this[x] // 'this' corresponds to the list
-  this[x] = this[y]
-  this[y] = tmp
+fun MutableList<Int>.swap(index1: Int, index2: Int) {
+  val tmp = this[index1] // 'this' corresponds to the list
+  this[index1] = this[index2]
+  this[index2] = tmp
 }
 ```
 
@@ -37,10 +37,10 @@ l.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'l'
 当然，这个方法像这样`MutableList<T>`，我们可以使用泛型：
 
 ``` kotlin
-fun <T> MutableList<T>.swap(x: Int, y: Int) {
-  val tmp = this[x] // 'this' corresponds to the list
-  this[x] = this[y]
-  this[y] = tmp
+fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
+  val tmp = this[index1] // 'this' corresponds to the list
+  this[index1] = this[index2]
+  this[index2] = tmp
 }
 ```
 

@@ -42,9 +42,9 @@
   url: https://play.google.com/store/apps/details?id=truefool.android
   description: True Fool. A Durak card game for Android written in Kotlin and libGDX
   
-- company: Schibsted Tech Polska
-  url:
-  description: Android news application with 99% code written in Kotlin
+- company: Schibsted Tech Polska (Omni)
+  url: https://play.google.com/store/apps/details?id=se.omni
+  description: Android news application with 96.6% code written in Kotlin
 
 - company: Level Money
   url: https://play.google.com/store/apps/details?id=com.levelmoney.mobile
@@ -57,3 +57,19 @@
 - company: Busradar (Busliniensuche)
   url: https://play.google.com/store/apps/details?id=de.raumobil.android.busliniensuche
   description: Android app for searching bus trips with new features written in Kotlin since M9
+
+- company: AzaGroup
+  url: https://play.google.com/store/apps/details?id=azagroup.reedy
+  description: Reedy – Intelligent speed reading application for Android written in Kotlin
+
+- company: Collokia
+  url: https://www.collokia.com
+  description: Everything that isn't JavaScript front-end is Kotlin.  Combined with Vert.x, Apache Spark, ElasticSearch
+
+- company: Edible Day
+  url: http://edibleday.com
+  description: Using Kotlin in mobile applicatons and backend
+
+- company: Dojo Madness
+  url: http://dojomadness.com/
+  description: About 25% of LOLSUMO Android app currently in Kotlin (w/ Dagger2, RxKotlin) ; all new code and tests in Kotlin.
