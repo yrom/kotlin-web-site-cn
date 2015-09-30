@@ -3,19 +3,19 @@
 main:
   docs:
     url: /docs/reference/
-    title: Learn
+    title: 学习
 
   contribute:
     url: /contribute.html
-    title: Contribute
+    title: 贡献
 
   try:
     url: http://try.kotlinlang.org
-    title: Try Online
+    title: 在线尝试
 
   download:
     url: /#get-kotlin
-    title: Download
+    title: 下载
     show: false
 
 
@@ -24,97 +24,97 @@ main:
 docs:
   reference:
     url: /docs/reference/
-    title: Reference
+    title: 参考
 
   tutorials:
     url: /docs/tutorials/
-    title: Tutorials
+    title: 教程
 
   videos:
     url: /docs/videos.html
-    title: Videos
+    title: 视频
 
   events:
     url: /docs/events.html
-    title: Events
+    title: 事件记
 
   resources:
     url: /docs/resources.html
-    title: More resources
+    title: 更多资源
 
 
 # Reference navigation
 # ====================
 reference:
-  - title: Getting Started
-    description: Get familiar with the basics of Kotlin including operations, coding conventions and idioms.
+  - title: 开始
+    description: 开始熟悉Kotlin包括操作符,编码习惯和习惯用法
     content:
-      - /docs/reference/basic-syntax.html: Basic Syntax
-      - /docs/reference/idioms.html: Idioms
-      - /docs/reference/coding-conventions.html: Coding Conventions
+      - /docs/reference/basic-syntax.html: 基础语法
+      - /docs/reference/idioms.html: 习惯用法
+      - /docs/reference/coding-conventions.html: 编码习惯
 
-  - title: Basics
-    description: The Basics
+  - title: 基础
+    description: 基础内容
     content:
-      - /docs/reference/basic-types.html: Basic Types
-      - /docs/reference/packages.html: Packages
-      - /docs/reference/control-flow.html: Control Flow
-      - /docs/reference/returns.html: Returns and Jumps
+      - /docs/reference/basic-types.html: 基本类型
+      - /docs/reference/packages.html: 包
+      - /docs/reference/control-flow.html: 控制流
+      - /docs/reference/returns.html: 返回和跳转
 
-  - title: Classes and Objects
-    description: All about objects
+  - title: 类和对象
+    description: 关于对象
     content:
-      - /docs/reference/classes.html: Classes and Inheritance
-      - /docs/reference/properties.html: Properties and Fields
+      - /docs/reference/classes.html: 类和继承
+      - /docs/reference/properties.html: 属性和字段
       - /docs/reference/interfaces.html: Interfaces
-      - /docs/reference/visibility-modifiers.html: Visibility Modifiers
-      - /docs/reference/extensions.html: Extensions
-      - /docs/reference/data-classes.html: Data Classes
-      - /docs/reference/generics.html: Generics
-      - /docs/reference/nested-classes.html: Nested Classes
-      - /docs/reference/enum-classes.html: Enum Classes
-      - /docs/reference/object-declarations.html: Objects
-      - /docs/reference/delegation.html: Delegation
-      - /docs/reference/delegated-properties.html: Delegated Properties
+      - /docs/reference/visibility-modifiers.html: 可见性修饰符
+      - /docs/reference/extensions.html: 扩展
+      - /docs/reference/data-classes.html: 数据类
+      - /docs/reference/generics.html: 泛型
+      - /docs/reference/nested-classes.html: 嵌套类
+      - /docs/reference/enum-classes.html: 枚举类
+      - /docs/reference/object-declarations.html: 对象
+      - /docs/reference/delegation.html: 委托
+      - /docs/reference/delegated-properties.html: 委托属性
 
-  - title: Functions and Lambdas
-    description: All about functions
+  - title: 函数和Lambad表达式
+    description: 关于函数
     content:
-      - /docs/reference/functions.html: Functions
-      - /docs/reference/lambdas.html: Lambdas
-      - /docs/reference/inline-functions.html: Inline Functions
+      - /docs/reference/functions.html: 函数
+      - /docs/reference/lambdas.html: Lambdas表达式
+      - /docs/reference/inline-functions.html: 内联函数
 
-  - title: Other
-    description: Various bits and bobs
+  - title: 其他
+    description: 各种知识点
     content:
-      - /docs/reference/multi-declarations.html: Multi-Declarations
-      - /docs/reference/ranges.html: Ranges
-      - /docs/reference/typecasts.html: Type Checks and Casts
-      - /docs/reference/this-expressions.html: This expressions
-      - /docs/reference/equality.html: Equality
-      - /docs/reference/operator-overloading.html: Operator overloading
-      - /docs/reference/null-safety.html: Null Safety
+      - /docs/reference/multi-declarations.html: 多重声明
+      - /docs/reference/ranges.html: 范围
+      - /docs/reference/typecasts.html: 类型检查与转换
+      - /docs/reference/this-expressions.html: This表达式
+      - /docs/reference/equality.html: 等式
+      - /docs/reference/operator-overloading.html: 操作符重载
+      - /docs/reference/null-safety.html: Null 安全性
       - /docs/reference/exceptions.html: Exceptions
-      - /docs/reference/annotations.html: Annotations
-      - /docs/reference/reflection.html: Reflection
-      - /docs/reference/type-safe-builders.html: Type-Safe Builders
-      - /docs/reference/dynamic-type.html: Dynamic Type
+      - /docs/reference/annotations.html: 注解
+      - /docs/reference/reflection.html: 反射
+      - /docs/reference/type-safe-builders.html: 类型安全的构建器
+      - /docs/reference/dynamic-type.html: 动态类型
 
 
 
-  - title: Reference
-    description: API and Grammar
+  - title: 参考
+    description: API和语法
     content:
-      - /api/latest/jvm/stdlib/index.html: API Reference
-      - /docs/reference/grammar.html: Grammar
+      - /api/latest/jvm/stdlib/index.html: API参考
+      - /docs/reference/grammar.html: 语法
 
 
-  - title: Interop
-    description: What you need to know about interoperability with Java and JavaScript.
+  - title: 互操作
+    description: Kotlin和Java还有JavaScript互操作时候你需要知道的。
     content:
-      - /docs/reference/java-interop.html: Java Interop
+      - /docs/reference/java-interop.html: Java互操作
 
-  - title: Tools
+  - title: 工具
     description:
     content:
 #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
@@ -124,10 +124,10 @@ reference:
       - /docs/reference/using-griffon.html: Using Griffon
       - /docs/reference/using-gradle.html: Using Gradle
 
-  - title: FAQ
-    description: Every question you could possibly think of, might be answered.
+  - title: 常见问题
+    description: 你想到的问题可能会在这里得到解答.
     content:
-      - /docs/reference/faq.html: FAQ
+      - /docs/reference/faq.html: 常见问题
       - /docs/reference/comparison-to-java.html: Comparison to Java
       - /docs/reference/comparison-to-scala.html: Comparison to Scala
 
