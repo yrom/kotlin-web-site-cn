@@ -12,6 +12,7 @@ title: "Exceptions"
 Kotlin中所有异常类都是`Exception`类的子累。每一个异常都含有一条信息、栈回溯信息和一个可选选项。
 可以使用 *throw*{: .keyword }-expression 来抛出一个异常。
 
+
 ``` kotlin
 throw MyException("Hi There!")
 ```
@@ -78,4 +79,8 @@ Bruce Eckel在[Does Java need Checked Exceptions?](http://www.mindview.net/Etc/D
 ## Java交互
 
 请在 [Java Interoperability section](java-interop.html) 异常章节中参阅Java交互相关信息。
+
+---
+
+翻译By [cx9527](https://github.com/cx9527)
 

@@ -88,11 +88,8 @@ KDoc现在支持如下的块标签：
 不包含生成的文档中的元素。可用于不属于官方API的
 模块的应用接口，但仍必须对外部可见。
 
-<<<<<<< HEAD
-> KDoc does not support the `@deprecated` tag. Instead, please use the `@Deprecated` annotation.
-=======
-> KDoc 不支持 `@deprecated` 这个标记. 请使用` @deprecated`注释
->>>>>>> 820a173... 翻译/kotlin-doc
+> KDoc 不支持 `@deprecated` 这个标记. 请使用` @Deprecated`注解
+
 {:.note}
 
 
@@ -124,5 +121,9 @@ Use [kotlin.reflect.KClass.properties] to enumerate the properties of the class.
 注意KDoc在链接中没有解决重载成员的任何语法。自从Kotlin文档生成
 工具把上所有的重载函数放在同一个页面之后，标识一个特定的重载函数
 不需要链接的方式。
+
+---
+
+翻译By [化缘](http://frblog.sinaapp.com/)
 
 
