@@ -94,7 +94,7 @@ reference:
       - /docs/reference/equality.html: 等式
       - /docs/reference/operator-overloading.html: 操作符重载
       - /docs/reference/null-safety.html: Null 安全性
-      - /docs/reference/exceptions.html: Exceptions
+      - /docs/reference/exceptions.html: 异常
       - /docs/reference/annotations.html: 注解
       - /docs/reference/reflection.html: 反射
       - /docs/reference/type-safe-builders.html: 类型安全的构建器
@@ -118,7 +118,7 @@ reference:
     description:
     content:
 #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
-      - /docs/reference/kotlin-doc.html: Documenting Kotlin Code
+      - /docs/reference/kotlin-doc.html: 生成kotlin代码文档
       - /docs/reference/using-maven.html: Using Maven
       - /docs/reference/using-ant.html: Using Ant
       - /docs/reference/using-griffon.html: Using Griffon
