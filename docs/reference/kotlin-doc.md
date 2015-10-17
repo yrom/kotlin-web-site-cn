@@ -2,7 +2,8 @@
 type: doc
 layout: reference
 category: "Tools"
-title: "Documenting Kotlin Code"
+
+标题: "Documenting Kotlin Code"
 ---
 
 # 生成kotlin代码文档
@@ -87,9 +88,14 @@ KDoc现在支持如下的块标签：
 
 不包含生成的文档中的元素。可用于不属于官方API的
 模块的应用接口，但仍必须对外部可见。
+<<<<<<< HEAD
 
 > KDoc 不支持 `@deprecated` 这个标记. 请使用` @Deprecated`注解
 
+=======
+
+> KDoc 不支持 `@deprecated` 这个标记. 请使用` @deprecated`注释
+>>>>>>> 820a173... 翻译/kotlin-doc
 {:.note}
 
 
@@ -125,5 +131,6 @@ Use [kotlin.reflect.KClass.properties] to enumerate the properties of the class.
 ---
 
 翻译By [化缘](http://frblog.sinaapp.com/)
+
 
 
