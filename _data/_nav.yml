@@ -66,7 +66,7 @@ reference:
     content:
       - /docs/reference/classes.html: 类和继承
       - /docs/reference/properties.html: 属性和字段
-      - /docs/reference/interfaces.html: Interfaces
+      - /docs/reference/interfaces.html: 接口
       - /docs/reference/visibility-modifiers.html: 可见性修饰符
       - /docs/reference/extensions.html: 扩展
       - /docs/reference/data-classes.html: 数据类
@@ -119,10 +119,10 @@ reference:
     content:
 #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
       - /docs/reference/kotlin-doc.html: 生成kotlin代码文档
-      - /docs/reference/using-maven.html: Using Maven
+      - /docs/reference/using-maven.html: 使用 Maven
       - /docs/reference/using-ant.html: Using Ant
       - /docs/reference/using-griffon.html: Using Griffon
-      - /docs/reference/using-gradle.html: Using Gradle
+      - /docs/reference/using-gradle.html: 使用 Gradle
 
   - title: 常见问题
     description: 你想到的问题可能会在这里得到解答.
