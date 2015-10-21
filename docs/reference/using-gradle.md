@@ -1,7 +1,9 @@
 ---
+
 type: doc
 layout: reference
 title: "使用 Gradle"
+
 ---
 
 # 使用 Gradle
