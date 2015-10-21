@@ -1,6 +1,6 @@
-### Interoperable
+### 与Java无缝交互
 
-Create and consume Java code at will
+随意使用Java代码
 
 ``` kotlin
 import io.netty.channel.ChannelInboundMessageHandlerAdapter
@@ -13,9 +13,9 @@ public class NettyHandler: ChannelInboundMessageHandlerAdapter<Any>() {
 }
 ```
 
-Or use any existing library on the JVM, as there’s 100% compatibility, including SAM support.
+或者在JVM上使用已有Java库, 百分百兼容, 包括SAM支持
 
-Target either the JVM or JavaScript. Write code in Kotlin and decide where you want to deploy to
+无论是JVM还是JavaScript, 用Kotlin写代码, 然后部署到你想要的地方.
 
 ``` kotlin
 import js.dom.html.*

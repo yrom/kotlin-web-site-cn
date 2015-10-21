@@ -123,6 +123,7 @@ reference:
       - /docs/reference/using-ant.html: Using Ant
       - /docs/reference/using-griffon.html: Using Griffon
       - /docs/reference/using-gradle.html: 使用 Gradle
+      - /docs/reference/kotlin-osgi.html: Kotlin and OSGi
 
   - title: 常见问题
     description: 你想到的问题可能会在这里得到解答.
@@ -136,29 +137,29 @@ reference:
 # Tutorials navigation
 # ====================
 tutorials:
-  - title: Getting Started
+  - title: 开始
     content:
-      - /docs/tutorials/getting-started.html: Getting Started with IntelliJ IDEA
-      - /docs/tutorials/getting-started-eclipse.html: Getting Started with Eclipse
-      - /docs/tutorials/command-line.html: Working with the Command Line Compiler
-      - /docs/tutorials/build-tools.html: Working with Build Tools
+      - /docs/tutorials/getting-started.html: 从IntelliJ IDEA开始
+      - /docs/tutorials/getting-started-eclipse.html: 从Eclipse开始
+      - /docs/tutorials/command-line.html: 使用命令行
+      - /docs/tutorials/build-tools.html: 使用构建工具
       - /docs/tutorials/koans.html: Koans
   - title: JavaScript
     content:
-      - /docs/tutorials/create-library-js.html: Creating Kotlin/JavaScript library with IntelliJ IDEA
-      - /docs/tutorials/command-line-library-js.html: Creating Kotlin/JavaScript library with the Command Line Compiler       
-  - title: Interop
+      - /docs/tutorials/create-library-js.html: 使用IntelliJ IDEA创建Kotlin/JavaScript库
+      - /docs/tutorials/command-line-library-js.html: 使用命令行编译器创建Kotlin/JavaScript库
+  - title: 混合开发
     content:
-      - /docs/tutorials/mixing-java-kotlin-intellij.html: Mixing Java and Kotlin in one project
-  - title: Web Development
+      - /docs/tutorials/mixing-java-kotlin-intellij.html: 项目中混合使用Java与Kotlin
+  - title: Web开发
     content:
-      - /docs/tutorials/httpservlets.html: Creating Web Applications with Http Servlets
-      - /docs/tutorials/spring-boot-restful.html: Creating a RESTful Web Service with Spring Boot"
+      - /docs/tutorials/httpservlets.html: 创建Http Servlets web程序
+      - /docs/tutorials/spring-boot-restful.html: Spring Boot创建RESTful Web服务
 
-  - title: Mobile
+  - title: 移动开发
     content:
-      - /docs/tutorials/kotlin-android.html: Getting Started With Android Development
-      - /docs/tutorials/android-plugin.html: Kotlin Android Extensions
+      - /docs/tutorials/kotlin-android.html: Android开发入门
+      - /docs/tutorials/android-plugin.html: Kotlin Android 扩展
   - title: Tools
     content:
-      - /docs/tutorials/kotlin-and-ci.html: Setting up Kotlin on TeamCity
+      - /docs/tutorials/kotlin-and-ci.html: TeamCity配置Kotlin

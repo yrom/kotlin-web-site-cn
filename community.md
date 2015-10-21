@@ -1,24 +1,23 @@
 ---
 layout: default
-title: Community 
+title: Community
 main_nav_id: community
 ---
 
-The Kotlin community is growing day by day. Join in. Take part!
+Kotlin社区每天都在增长中，加入我们！
 
-# Forums
+# 论坛
 
-You can post technical questions on
+你可以在这些站点上发布技术性问题
 
-- [Kotlin forum on JetBrains DevNet](http://devnet.jetbrains.com/community/kotlin)
-- [StackOverflow](http://stackoverflow.com/questions/tagged/kotlin). Make sure you tag questions with **kotlin**
+- [JetBrains DevNet上的Kotlin论坛](http://devnet.jetbrains.com/community/kotlin)
+- [Slack](http://kotlinlang.slack.com): [*点我获取邀请*](http://kotlinslackin.herokuapp.com)
+- [StackOverflow](http://stackoverflow.com/questions/tagged/kotlin). 提请记住加上 **kotlin** 标签哦
 - [Reddit](http://www.reddit.com/r/Kotlin/)
 
-## Other mediums
+## 媒体
 
 - [Twitter](http://twitter.com/kotlin)
-- [LinkedIn](https://www.linkedin.com/groups/Kotlin-Developers-7417237?gid=7417237&mostPopular=&trk=tyah&trkInfo=tarId%3A1404329340748%2Ctas%3Akotlin%2Cidx%3A2-1-6). Mostly for job related posts.
+- [LinkedIn](https://www.linkedin.com/groups/Kotlin-Developers-7417237?gid=7417237&mostPopular=&trk=tyah&trkInfo=tarId%3A1404329340748%2Ctas%3Akotlin%2Cidx%3A2-1-6). 多数是工作相关.
 - [Google+](https://plus.google.com/communities/104597899765146112928)
-- #kotlin channel on the [freenode.net](http://freenode.net) IRC network
-
-
+- [freenode.net](http://freenode.net) 在线聊天网上的 #kotlin 频道
