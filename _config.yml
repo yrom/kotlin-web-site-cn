@@ -32,7 +32,7 @@ twitter_url: https://twitter.com/project_kotlin
 forum_url: http://devnet.jetbrains.com/community/kotlin
 site_github_url: http://github.com/cctanfujun/kotlin-web-site-cn
 edit_on_github_url: https://github.com/cctanfujun/kotlin-web-site-cn/edit/master/%path%
-pdf_url: https://github.com/cctanfujun/kotlin-web-site-cn/kotlin-docs.pdf
+pdf_url: https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf
 img_tutorial_root: kotlin-web-site-cn/assets/images/tutorials
 
 grammar_file_path: grammar.xml
