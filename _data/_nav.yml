@@ -120,17 +120,17 @@ reference:
 #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
       - /docs/reference/kotlin-doc.html: 生成kotlin代码文档
       - /docs/reference/using-maven.html: 使用 Maven
-      - /docs/reference/using-ant.html: Using Ant
-      - /docs/reference/using-griffon.html: Using Griffon
+      - /docs/reference/using-ant.html: 使用 Ant
+      - /docs/reference/using-griffon.html: 使用 Griffon
       - /docs/reference/using-gradle.html: 使用 Gradle
-      - /docs/reference/kotlin-osgi.html: Kotlin and OSGi
+      - /docs/reference/kotlin-osgi.html: Kotlin 和 OSGi
 
   - title: 常见问题
     description: 你想到的问题可能会在这里得到解答.
     content:
       - /docs/reference/faq.html: 常见问题
-      - /docs/reference/comparison-to-java.html: Comparison to Java
-      - /docs/reference/comparison-to-scala.html: Comparison to Scala
+      - /docs/reference/comparison-to-java.html: 与Java比较
+      - /docs/reference/comparison-to-scala.html: 与Scala比较
 
 
 
