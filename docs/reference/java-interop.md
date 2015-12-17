@@ -55,6 +55,7 @@ val size = list.size() // non-null (primitive int)
 val item = list.get(0) // platform type inferred (ordinary Java object)
 ```
 
+当我们调用平台类型的变量上的方法时，编译阶段kotlin不会报出可能为空的错误，但在运行时，会产生空指针异常，或者是断言失败的错误。后者是因为kotlin为了阻止null值继续被使用会生成非空断言语句。
 When we call methods on variables of platform types, Kotlin does not issue nullability errors at compile time,
 but the call may fail at runtime, because of a null-pointer exception or an assertion that Kotlin generates to
 prevent nulls from propagating:
@@ -63,6 +64,8 @@ prevent nulls from propagating:
 item.substring(1) // allowed, may throw an exception if item == null
 ```
 
+平台类型是*不可转义*的，也就是说我们不能在程序里把他们写出来。
+当把一个平台数值赋值给kotlin变量的时候（变量会有一个推断出来的平台类型，上面的例子里就是`item`的类型），我们可以用类型推断，或者指定我们期望的类型（nullable和non-null类型都可以）
 Platform types are *non-denotable*, meaning that one can not write them down explicitly in the language.
 When a platform value is assigned to a Kotlin variable, we can rely on type inference (the variable will have an inferred platform type then,
  as `item` has in the example above), or we can choose the type that we expect (both nullable and non-null types are allowed):
@@ -72,26 +75,48 @@ val nullable: String? = item // allowed, always works
 val notNull: String = item // allowed, may fail at runtime
 ```
 
+如果我们指定了一个非空类型，编译器会在赋值前额外生成一个断言。这样kotlin的非空变量就不会有空值。当把平台数值传递给只接受非空数值的kolin函数的时候，也同样会生成这个断言，编译器尽可能的阻止空置在程序里传播。（因为泛型的存在，有时也不能百分百的阻止）
 If we choose a non-null type, the compiler will emit an assertion upon assignment. This prevents Kotlin's non-null variables from holding
 nulls. Assertions are also emitted when we pass platform values to Kotlin functions expecting non-null values etc.
 Overall, the compiler does its best to prevent nulls from propagating far through the program (although sometimes this is
 impossible to eliminate entirely, because of generics).
 
+### 平台类型的概念
 #### Notation for Platform Types
 
+如上所述，平台类型不能再程序里显式的出现，所以语言没有针对他们的语法。然而，编译器和IDE有时需要显式他们(如在错误信息，参数信息中)，所以我们用一个好记的标记来表示他们：
 As mentioned above, platform types cannot be mentioned explicitly in the program, so there's no syntax for them in the language.
 Nevertheless, the compiler and IDE need to display them sometimes (in error messages, parameter info etc), so we have a
 mnemonic notation for them:
 
+* `T!` 表示 "`T` 或者 `T?`"
+* `(Mutable)Collection<T>!` 表示 "`T`的java集合，可变的或不可变的，可空的或非空的"
+* `Array<(out) T>!` 表示 "`T`(或`T`的子类)的java数组，可空的或非空的"
 * `T!` means "`T` or `T?`",
 * `(Mutable)Collection<T>!` means "Java collection of `T` may be mutable or not, may be nullable or not",
 * `Array<(out) T>!` means "Java array of `T` (or a subtype of `T`), nullable or not"
 
+### 映射类型
 ### Mapped types
 
+Kotlin特殊处理一部分java类型。这些类型不是通过as或is来直接转换，而是_映射_到了指定的kotlin类型上。
+映射只发生在编译期间，运行时仍然是原来的类型。（？？）
+java的原生类型映射成如下kotlin类型（记得 [platform types](#platform-types)）：
 Kotlin treats some Java types specially. Such types are not loaded from Java "as is", but are _mapped_ to corresponding Kotlin types.
 The mapping only matters at compile time, the runtime representation remains unchanged.
  Java's primitive types are mapped to corresponding Kotlin types (keeping [platform types](#platform-types) in mind):
+
+| **Java类型** | **Kotlin类型**  |
+|---------------|------------------|
+| `byte`        | `kotlin.Byte`    |
+| `short`       | `kotlin.Short`   |
+| `int`         | `kotlin.Int`     |
+| `long`        | `kotlin.Long`    |
+| `char`        | `kotlin.Char`    |
+| `float`       | `kotlin.Float`   |
+| `double`      | `kotlin.Double`  |
+| `boolean`     | `kotlin.Boolean` |
+{:.zebra}
 
 | **Java type** | **Kotlin type**  |
 |---------------|------------------|
@@ -105,7 +130,24 @@ The mapping only matters at compile time, the runtime representation remains unc
 | `boolean`     | `kotlin.Boolean` |
 {:.zebra}
 
+一些非原生类型也会作映射：
 Some non-primitive built-in classes are also mapped:
+
+
+| **Java类型** | **Kotlin类型**  |
+|---------------|------------------|
+| `java.lang.Object`       | `kotlin.Any!`    |
+| `java.lang.Cloneable`    | `kotlin.Cloneable!`    |
+| `java.lang.Comparable`   | `kotlin.Comparable!`    |
+| `java.lang.Enum`         | `kotlin.Enum!`    |
+| `java.lang.Annotation`   | `kotlin.Annotation!`    |
+| `java.lang.Deprecated`   | `kotlin.deprecated!`    |
+| `java.lang.Void`         | `kotlin.Nothing!`    |
+| `java.lang.CharSequence` | `kotlin.CharSequence!`   |
+| `java.lang.String`       | `kotlin.String!`   |
+| `java.lang.Number`       | `kotlin.Number!`     |
+| `java.lang.Throwable`    | `kotlin.Throwable!`    |
+{:.zebra}
 
 | **Java type** | **Kotlin type**  |
 |---------------|------------------|
@@ -122,8 +164,22 @@ Some non-primitive built-in classes are also mapped:
 | `java.lang.Throwable`    | `kotlin.Throwable!`    |
 {:.zebra}
 
+集合类型在kotlin里可以是只读的或可变的，因此java集合类型作如下映射：
+（下表所有的kotlin类型都在`kotlin`包里）
 Collection types may be read-only or mutable in Kotlin, so Java's collections are mapped as follows
 (all Kotlin types in this table reside in the package `kotlin`):
+
+| **Java类型** | **Kotlin只读类型**  | **Kotlin可变类型** | **加载的平台类型** |
+|---------------|------------------|----|----|
+| `Iterator<T>`        | `Iterator<T>`        | `MutableIterator<T>`            | `(Mutable)Iterator<T>!`            |
+| `Iterable<T>`        | `Iterable<T>`        | `MutableIterable<T>`            | `(Mutable)Iterable<T>!`            |
+| `Collection<T>`      | `Collection<T>`      | `MutableCollection<T>`          | `(Mutable)Collection<T>!`          |
+| `Set<T>`             | `Set<T>`             | `MutableSet<T>`                 | `(Mutable)Set<T>!`                 |
+| `List<T>`            | `List<T>`            | `MutableList<T>`                | `(Mutable)List<T>!`                |
+| `ListIterator<T>`    | `ListIterator<T>`    | `MutableListIterator<T>`        | `(Mutable)ListIterator<T>!`        |
+| `Map<K, V>`          | `Map<K, V>`          | `MutableMap<K, V>`              | `(Mutable)Map<K, V>!`              |
+| `Map.Entry<K, V>`    | `Map.Entry<K, V>`    | `MutableMap.MutableEntry<K,V>` | `(Mutable)Map.(Mutable)Entry<K, V>!` |
+{:.zebra}
 
 | **Java type** | **Kotlin read-only type**  | **Kotlin mutable type** | **Loaded platform type** |
 |---------------|------------------|----|----|
@@ -137,7 +193,14 @@ Collection types may be read-only or mutable in Kotlin, so Java's collections ar
 | `Map.Entry<K, V>`    | `Map.Entry<K, V>`    | `MutableMap.MutableEntry<K,V>` | `(Mutable)Map.(Mutable)Entry<K, V>!` |
 {:.zebra}
 
+Java数组的映射在这里提到过 [below](java-interop.html#java-arrays)：
 Java's arrays are mapped as mentioned [below](java-interop.html#java-arrays):
+
+| **Java类型** | **Kotlin类型**  |
+|---------------|------------------|
+| `int[]`       | `kotlin.IntArray!` |
+| `String[]`    | `kotlin.Array<(out) String>!` |
+{:.zebra}
 
 | **Java type** | **Kotlin type**  |
 |---------------|------------------|
@@ -145,16 +208,34 @@ Java's arrays are mapped as mentioned [below](java-interop.html#java-arrays):
 | `String[]`    | `kotlin.Array<(out) String>!` |
 {:.zebra}
 
+### Kotlin中的Java泛型
 ### Java generics in Kotlin
 
+Kotlin的泛型和Java的有些不同（详见 [Generics](generics.html)）。当引入java类型的时候，我们作如下转换：
 Kotlin's generics are a little different from Java's (see [Generics](generics.html)). When importing Java types to Kotlin we perform some conversions:
 
+* Java的通配符转换成类型投射
+  * `Foo<? extends Bar>` 转换成 `Foo<out Bar!>!`
+  * `Foo<? super Bar>` 转换成 `Foo<in Bar!>!` 
 * Java's wildcards are converted into type projections
   * `Foo<? extends Bar>` becomes `Foo<out Bar!>!`
   * `Foo<? super Bar>` becomes `Foo<in Bar!>!`
 
+* Java的原始类型转换成星号投射
+  * `List` 转换成 `List<*>!`, 也就是 `List<out Any?>!`
 * Java's raw types are converted into star projections
   * `List` becomes `List<*>!`, i.e. `List<out Any?>!`
+
+和Java一样，Kotlin在运行时不保留泛型，即对象不知道传递到他们构造器中的那些参数的的实际类型。
+也就是说，运行时无法区分`ArrayList<Integer>()` 和 `ArrayList<Character>()`.
+这意味着，不可能用 *is*{: .keyword }-来检测泛型。
+Kotlin只允许用*is*{: .keyword }-来检测星号投射的泛型类型:
+
+``` kotlin
+if (a is List<Int>) // 错误: 不能检测是否是一个Int的List
+// but
+if (a is List<*>) // 可以：不保证list里面的内容类型
+```
 
 Like Java's, Kotlin's generics are not retained at runtime, i.e. objects do not carry information about actual type arguments passed to their constructors,
 i.e. `ArrayList<Integer>()` is indistinguishable from `ArrayList<Character>()`.
@@ -167,17 +248,25 @@ if (a is List<Int>) // Error: cannot check if it is really a List of Ints
 if (a is List<*>) // OK: no guarantees about the contents of the list
 ```
 
+### Java数组
 ### Java Arrays
 
+和Java不同，Kotlin里的数组不是协变的。Kotlin不允许我们把`Array<String>` 赋值给 `Array<Any>`，从而避免了可能的运行时错误。Kotlin也禁止我们把一个子类的数组当做父类的数组传递进Kotlin的方法里。
+但是对Java方法，这是允许的（考虑这种形式的平台类型[platform types](#platform-types) `Array<(out) String>!`）。
 Arrays in Kotlin are invariant, unlike Java. This means that Kotlin does not let us assign an `Array<String>` to an `Array<Any>`,
 which prevents a possible runtime failure. Passing an array of a subclass as an array of superclass to a Kotlin method is also prohibited,
 but for Java methods this is allowed (though [platform types](#platform-types) of the form `Array<(out) String>!`).
 
+Java平台上，原生数据类型的数组被用来避免封箱/开箱的操作开销。
+由于Kotlin隐藏了这些实现细节，就得有一个变通方法和Java代码交互。（？？？）
+每个原生类型的数组都有一个特有类(specialized class)来处理这种问题(`IntArray`, `DoubleArray`, `CharArray` ...)。
+它们不是`Array`类，而是被编译成java的原生数组，来获得最好的性能。
 Arrays are used with primitive datatypes on the Java platform to avoid the cost of boxing/unboxing operations.
 As Kotlin hides those implementation details, a workaround is required to interface with Java code.
 There are specialized classes for every type of primitive array (`IntArray`, `DoubleArray`, `CharArray`, and so on) to handle this case.
 They are not related to the `Array` class and are compiled down to Java's primitive arrays for maximum performance.
 
+假设有一个Java方法，它接收一个表示索引的int数组作参数
 Suppose there is a Java method that accepts an int array of indices:
 
 ``` java
@@ -188,7 +277,16 @@ public class JavaArrayExample {
     }
 }
 ```
+``` java
+public class JavaArrayExample {
 
+    public void removeIndices(int[] indices) {
+        // code here...
+    }
+}
+```
+
+在Kotlin里你可以这样传递一个原生数组:
 To pass an array of primitive values you can do the following in Kotlin:
 
 ``` kotlin
@@ -196,7 +294,13 @@ val javaObj = JavaArrayExample()
 val array = intArray(0, 1, 2, 3)
 javaObj.removeIndices(array)  // passes int[] to method
 ```
+``` kotlin
+val javaObj = JavaArrayExample()
+val array = intArray(0, 1, 2, 3)
+javaObj.removeIndices(array)  // passes int[] to method
+```
 
+Java类也会这样声明方法，表示索引的参数是可变参数。
 Java classes sometimes use a method declaration for the indices with a variable number of arguments (varargs).
 
 ``` java
@@ -207,9 +311,23 @@ public class JavaArrayExample {
     }
 }
 ```
+``` java
+public class JavaArrayExample {
 
+    public void removeIndices(int... indices) {
+        // code here...
+    }
+}
+```
+
+这种情况，你需要用展开操作符 `*` 来传递 `IntArray`：
 In that case you need to use the spread operator `*` to pass the `IntArray`:
 
+``` kotlin
+val javaObj = JavaArray()
+val array = intArray(0, 1, 2, 3)
+javaObj.removeIndicesVarArg(*array)
+```
 ``` kotlin
 val javaObj = JavaArray()
 val array = intArray(0, 1, 2, 3)
