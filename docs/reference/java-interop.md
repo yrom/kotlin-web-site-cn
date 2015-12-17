@@ -334,8 +334,10 @@ val array = intArray(0, 1, 2, 3)
 javaObj.removeIndicesVarArg(*array)
 ```
 
+目前无法传递 *null*{: .keyword } 给一个变参的方法。
 It's currently not possible to pass *null*{: .keyword } to a method that is declared as varargs.
 
+当编译成jvm字节码的时候，编译器会优化对数组的访问，确保不会产生额外的负担。
 When compiling to JVM byte codes, the compiler optimizes access to arrays so that there's no overhead introduced:
 
 ``` kotlin
@@ -344,27 +346,53 @@ array[x] = array[x] * 2 // no actual calls to get() and set() generated
 for (x in array) // no iterator created
   print(x)
 ```
+``` kotlin
+val array = array(1, 2, 3, 4)
+array[x] = array[x] * 2 // no actual calls to get() and set() generated
+for (x in array) // no iterator created
+  print(x)
+```
 
+即便是用索引遍历数组。
 Even when we navigate with an index, it does not introduce any overhead
 
+``` kotlin
+for (i in array.indices) // 不会创建迭代器
+  array[i] += 2
+```
 ``` kotlin
 for (i in array.indices) // no iterator created
   array[i] += 2
 ```
 
+最后，*in*{: .keyword }-检测也没有额外负担。
 Finally, *in*{: .keyword }-checks have no overhead either
 
+``` kotlin
+if (i in array.indices) { // 和 (i >= 0 && i < array.size) 一样
+  print(array[i])
+}
+```
 ``` kotlin
 if (i in array.indices) { // same as (i >= 0 && i < array.size)
   print(array[i])
 }
 ```
 
+### 受检异常
 ### Checked Exceptions
 
+在Kotlin里，所有的异常都是非受检的, 也就是说，编译器不会强制你去捕捉任何异常。
+因此，你调用一个声明了异常的java方法的时候，kotlin不会强制你作处理。
 In Kotlin, all exceptions are unchecked, meaning that the compiler does not force you to catch any of them.
 So, when you call a Java method that declares a checked exception, Kotlin does not force you to do anything:
 
+``` kotlin
+fun render(list: List<*>, to: Appendable) {
+  for (item in list)
+    to.append(item.toString()) // Java里会让你在这里捕捉IOException
+}
+```
 ``` kotlin
 fun render(list: List<*>, to: Appendable) {
   for (item in list)
@@ -372,14 +400,21 @@ fun render(list: List<*>, to: Appendable) {
 }
 ```
 
+### 对象方法
 ### Object Methods
 
+当java类型被引入到kotlin里时，所有的`java.lang.Object`类型引用，会被转换成 `Any`。
+因为`Any`不是平台独有的，它仅声明了三个成员方法：`toString()`, `hashCode()` 和 `equals()`，所以为了能用到`java.lang.Object`的其他方法，kotlin采用了[extension functions](extensions.html)。
 When Java types are imported into Kotlin, all the references of the type `java.lang.Object` are turned into `Any`.
 Since `Any` is not platform-specific, it only declares `toString()`, `hashCode()` and `equals()` as its members,
 so to make other members of `java.lang.Object` available, Kotlin uses [extension functions](extensions.html).
 
 #### wait()/notify()
+#### wait()/notify()
 
+[Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html) 第69条善意的提醒了要用concurrency类而不是`wait()` 和 `notify()`。
+因此，`Any`不提供这两个方法。
+你一定要用的话，就把它转换成`java.lang.Object`。
 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html) Item 69 kindly suggests to prefer concurrency utilities to `wait()` and `notify()`.
 Thus, these methods are not available on references of type `Any`.
 If you really need to call them, you can cast to `java.lang.Object`:
@@ -387,24 +422,37 @@ If you really need to call them, you can cast to `java.lang.Object`:
 ```kotlin
 (foo as java.lang.Object).wait()
 ```
+```kotlin
+(foo as java.lang.Object).wait()
+```
 
 #### getClass()
+#### getClass()
 
+获取一个对象的类型信息，我们可以用javaClass这个扩展属性。
 To retrieve the type information from an object, we use the javaClass extension property.
 
 ``` kotlin
 val fooClass = foo.javaClass
 ```
+``` kotlin
+val fooClass = foo.javaClass
+```
 
+用javaClass<Foo>()，而不是java里的写法`Foo.class`。
 Instead of Java's `Foo.class` use javaClass<Foo>().
 
-
+``` kotlin
+val fooClass = javaClass<Foo>()
+```
 ``` kotlin
 val fooClass = javaClass<Foo>()
 ```
 
 #### clone()
+#### clone()
 
+要重载`clone()`，扩展`kotlin.Cloneable`：
 To override `clone()`, your class needs to extend `kotlin.Cloneable`:
 
 ```kotlin
@@ -413,13 +461,29 @@ class Example : Cloneable {
   override fun clone(): Any { ... }
 }
 ```
+```kotlin
 
+class Example : Cloneable {
+  override fun clone(): Any { ... }
+}
+```
+
+不要忘了 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html),第11条: *谨慎的重载克隆*。
  Do not forget about [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 11: *Override clone judiciously*.
 
 #### finalize()
+#### finalize()
 
+要重载 `finalize()`, 你要做的仅仅是声明它，不需要 *override*{:.keyword} 关键字：
 To override `finalize()`, all you need to do is simply declare it, without using the *override*{:.keyword} keyword:
 
+```kotlin
+class C {
+  protected fun finalize() {
+    // 具体逻辑
+  }
+}
+```
 ```kotlin
 class C {
   protected fun finalize() {
@@ -428,13 +492,19 @@ class C {
 }
 ```
 
+根据java的规则， `finalize()`不能为 *private*{: .keyword }。
 According to Java's rules, `finalize()` must not be *private*{: .keyword }.
 
+### java类的继承
 ### Inheritance from Java classes
+在kotlin里，超类里最多只能有一个java类(java接口数目不限)。这个java类必须放在超类列表的最前面。
 At most one Java-class (and as many Java interfaces as you like) can be a supertype for a class in Kotlin. This class must go first in the supertype list.
 
+### 访问静态成员
 ### Accessing static members
 
+java类的静态成员就是它们的 “同伴对象”。我们无法将这样的“同伴对象”当作数值来传递，
+但可以显式的访问它们，比如：
 Static members of Java classes form "companion objects" for these classes. We cannot pass such a "companion object" around as a value,
 but can access the members explicitly, for example
 
@@ -443,9 +513,16 @@ if (Character.isLetter(a)) {
   // ...
 }
 ```
+``` kotlin
+if (Character.isLetter(a)) {
+  // ...
+}
+```
 
+### Java 反射
 ### Java Reflection
 
+Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 `instance.javaClass` 或者 `javaClass<ClassName>()` 开始基于 `java.lang.Class` 的java反射操作。你也可以通过调用 `.kotlin` 使用kotlin的反射。
 Java reflection works on Kotlin classes and vice versa. As mentioned above, you can use `instance.javaClass` or 
 `javaClass<ClassName>()` to enter Java reflection through `java.lang.Class`. You can then "convert" to Kotlin reflection
 by calling `.kotlin`:
@@ -453,31 +530,49 @@ by calling `.kotlin`:
 ``` kotlin 
 val kClass = x.javaClass.kotlin  
 ```
+``` kotlin 
+val kClass = x.javaClass.kotlin  
+```
  
+类似的，你可以把kotlin反射转换成java反射： `ClassName::class.java` 和 `javaClass<ClassName>()`都可以。
+其他支持的情况包括 获取一个java的getter/setter方法，或者一个kotlin属性的 backing field，getting a containing `KPackage` instance for a Java class, and getting a `KProperty` for a Java field. (???)
 In much the same way you can convert from Kotlin reflection to Java: `ClassName::class.java` is the same as `javaClass<ClassName>()`.
 Other supported cases include acquiring a Java getter/setter method or a backing field for a Kotlin property, 
 getting a containing `KPackage` instance for a Java class, and getting a `KProperty` for a Java field.
 
+### SAM(单抽象方法) 转换
 ### SAM Conversions
 
+就像java8那样，kotlin支持SAM转换，这意味着kotlin函数字面量可以被自动的转换成只有一个非默认方法的java接口的实现，只要这个方法的参数类型能够跟这个kotlin函数的参数类型匹配的上。
 Just like Java 8, Kotlin supports SAM conversions. This means that Kotlin function literals can be automatically converted
 into implementations of Java interfaces with a single non-default method, as long as the parameter types of the interface
 method match the parameter types of the Kotlin function.
 
+你可以这样创建SAM接口的实例：
 You can use this for creating instances of SAM interfaces:
 
 ``` kotlin
 val runnable = Runnable { println("This runs in a runnable") }
 ```
+``` kotlin
+val runnable = Runnable { println("This runs in a runnable") }
+```
 
+...在方法调用里:
 ...and in method calls:
 
+``` kotlin
+val executor = ThreadPoolExecutor()
+// Java签名: void execute(Runnable command)
+executor.execute { println("This runs in a thread pool") }
+```
 ``` kotlin
 val executor = ThreadPoolExecutor()
 // Java signature: void execute(Runnable command)
 executor.execute { println("This runs in a thread pool") }
 ```
 
+如果java类有多个接受函数接口的方法，你可以用一个适配函数来把闭包转成你需要的SAM类型。编译器也会在必要时生成这些适配函数。
 If the Java class has multiple methods taking functional interfaces, you can choose the one you need to call by
 using an adapter function that converts a lambda to a specific SAM type. Those adapter functions are also generated
 by the compiler when needed.
@@ -485,21 +580,39 @@ by the compiler when needed.
 ``` kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })
 ```
+``` kotlin
+executor.execute(Runnable { println("This runs in a thread pool") })
+```
 
+注意SAM的转换只对接口有效，对抽象类无效，即使它们就只有一个抽象方法。
 Note that SAM conversions only work for interfaces, not for abstract classes, even if those also have just a single
 abstract method.
 
+还要注意这个特性只针对和java的互操作；因为kotlin有合适的函数类型，把函数自动转换成kotlin接口的实现是没有必要的，也就没有支持了。
 Also note that this feature works only for Java interop; since Kotlin has proper function types, automatic conversion
 of functions into implementations of Kotlin interfaces is unnecessary and therefore unsupported.
 
+## Java调用Kotlin代码
 ## Calling Kotlin code from Java
 
+Java可以轻松调用Kotlin代码。
 Kotlin code can be called from Java easily.
 
+### 包级别的函数
 ### Package-Level Functions
 
+`org.foo.bar`包里声明的所有的函数和属性，都会被放到一个叫`org.foo.bar.BarPackage`的java类里。
 All the functions and properties declared inside a package `org.foo.bar` are put into a Java class named `org.foo.bar.BarPackage`.
 
+``` kotlin
+package demo
+
+class Foo
+
+fun bar() {
+}
+
+```
 ``` kotlin
 package demo
 
@@ -515,11 +628,19 @@ fun bar() {
 new demo.Foo();
 demo.DemoPackage.bar();
 ```
+``` java
+// Java
+new demo.Foo();
+demo.DemoPackage.bar();
+```
 
+对于最外层的包（java里叫做缺省包），创建一个叫做`_DefaultPackage`的类。
 For the root package (the one that's called a "default package" in Java), a class named `_DefaultPackage` is created.
 
+### 静态方法和字段
 ### Static Methods and Fields
 
+上面说过，kotlin把包级别的函数生成为静态方法。此外，还会把类的命名对象或伙伴对象中有`@platformStatic`标记的函数也生成为静态方法。比如：
 As mentioned above, Kotlin generates static methods for package-level functions. On top of that, it also generates static methods
 for functions defined in named objects or companion objects of classes and annotated as `@platformStatic`. For example:
 
@@ -531,14 +652,28 @@ class C {
   }
 }
 ```
+``` kotlin
+class C {
+  companion object {
+    platformStatic fun foo() {}
+    fun bar() {}
+  }
+}
+```
 
+现在，`foo()`在java里就是静态的了，而`bar()` 不是：
 Now, `foo()` is static in Java, while `bar()` is not:
 
+``` java
+C.foo(); // 没问题
+C.bar(); // 错误: 不是一个静态方法
+```
 ``` java
 C.foo(); // works fine
 C.bar(); // error: not a static method
 ```
 
+同样的，命名对象：
 Same for named objects:
 
 ``` kotlin
@@ -547,9 +682,22 @@ object Obj {
     fun bar() {}
 }
 ```
+``` kotlin
+object Obj {
+    platformStatic fun foo() {}
+    fun bar() {}
+}
+```
 
+java里：
 In Java:
 
+``` java
+Obj.foo(); // 没问题
+Obj.bar(); // 错误
+Obj.INSTANCE$.bar(); // 对单例的方法调用
+Obj.INSTANCE$.foo(); // 也行
+```
 ``` java
 Obj.foo(); // works fine
 Obj.bar(); // error
@@ -557,6 +705,8 @@ Obj.INSTANCE$.bar(); // works, a call through the singleton instance
 Obj.INSTANCE$.foo(); // works too
 ```
 
+命名对象和伙伴对象里的公开属性，还有顶层的有 `const` 标记的属性，
+会被转成java中的静态字段：
 Also, public properties defined in objects and companion objects, as well as top-level properties annotated with `const`,
 are turned into static fields in Java:
 
@@ -569,16 +719,33 @@ object Obj {
 
 const val MAX = 239
 ```
+``` kotlin
+// file example.kt
 
+object Obj {
+  val CONST = 1
+}
+
+const val MAX = 239
+```
+
+java里：
 In Java:
 
 ``` java
 int c = Obj.CONST;
 int d = ExampleKt.MAX;
 ```
+``` java
+int c = Obj.CONST;
+int d = ExampleKt.MAX;
+```
 
+### 用@platformName解决签名冲突
 ### Handling signature clashes with @platformName
 
+有时我们想让一个kotlin里的命名函数在字节码里有另外一个jvm名字。
+最突出的例子来自于 *类型擦除*:
 Sometimes we have a named function in Kotlin, for which we need a different JVM name the byte code.
 The most prominent example happens due to *type erasure*:
 
@@ -586,7 +753,14 @@ The most prominent example happens due to *type erasure*:
 fun List<String>.filterValid(): List<String>
 fun List<Int>.filterValid(): List<Int>
 ```
+``` kotlin
+fun List<String>.filterValid(): List<String>
+fun List<Int>.filterValid(): List<Int>
+```
 
+这两个函数不能同时定义，因为它们的jvm签名是一样的：
+`filterValid(Ljava/util/List;)Ljava/util/List;`.
+如果我们真的相让它们在kotlin里用同一个名字，我们需要用`@platformName`去注释它们中的一个（或两个），指定的另外一个名字当参数：
 These two functions can not be defined side-by-side, because their JVM signatures are the same: `filterValid(Ljava/util/List;)Ljava/util/List;`.
 If we really want them to have the same name in Kotlin, we can annotate one (or both) of them with `@platformName` and specify a different name as an argument:
 
@@ -595,9 +769,16 @@ fun List<String>.filterValid(): List<String>
 @platformName("filterValidInt")
 fun List<Int>.filterValid(): List<Int>
 ```
+``` kotlin
+fun List<String>.filterValid(): List<String>
+@platformName("filterValidInt")
+fun List<Int>.filterValid(): List<Int>
+```
 
+在kotlin里它们可以都用`filterValid`来访问，但是在java里，它们是`filterValid` 和 `filterValidInt`.
 From Kotlin they will be accessible by the same name `filterValid`, but from Java it will be `filterValid` and `filterValidInt`.
 
+同样的技巧也适用于属性 `x` 和函数 `getX()` 共存：
 The same trick applies when we need to have a property `x` alongside with a function `getX()`:
 
 ``` kotlin
@@ -607,20 +788,35 @@ val x: Int
 
 fun getX() = 10
 ```
+``` kotlin
+val x: Int
+  @platformName("getX_prop")
+  get() = 15
 
+fun getX() = 10
+```
 
+### 重载生成
 ### Overloads Generation
 
+通常，如果你写一个有默认参数值的kotlin方法，在java里，只会有一个有完整参数的签名。如果你要暴露多个重载给java调用者，你可以使用@jvmOverloads标记。
 Normally, if you write a Kotlin method with default parameter values, it will be visible in Java only as a full
 signature, with all parameters present. If you wish to expose multiple overloads to Java callers, you can use the
 @jvmOverloads annotation.
+
 
 ``` kotlin
 jvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
     ...
 }
 ```
+``` kotlin
+jvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
+    ...
+}
+```
 
+对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和它右边的所有参数都移除掉。在上面这个例子里，生成下面的方法。
 For every parameter with a default value, this will generate one additional overload, which has this parameter and
 all parameters to the right of it in the parameter list removed. In this example, the following methods will be
 generated:
@@ -631,17 +827,28 @@ void f(String a, int b, String c) { }
 void f(String a, int b) { }
 void f(String a) { }
 ```
+``` java
+// Java
+void f(String a, int b, String c) { }
+void f(String a, int b) { }
+void f(String a) { }
+```
 
+构造函数，静态函数等也能用这个标记。但他不能用在抽象方法上，包括接口中的方法。
 The annotation also works for constructors, static methods etc. It can't be used on abstract methods, including methods
 defined in interfaces.
 
+注意一下，[Secondary Constructors](classes.html#secondary-constructors) 描述过，如果一个类的所有构造函数参数都有默认值，会生成一个公开的无参构造函数。这就算没有@jvmOverloads标记也有效。
 Note that, as described in [Secondary Constructors](classes.html#secondary-constructors), if a class has default
 values for all constructor parameters, a public no-argument constructor will be generated for it. This works even
 if the @jvmOverloads annotation is not specified.
 
-
+### 受检异常
 ### Checked Exceptions
 
+上面说过，kotlin没有受检异常。
+所以，通常，kotlin函数的java签名没有声明抛出异常。
+于是如果我们有一个kotlin函数：
 As we mentioned above, Kotlin does not have checked exceptions.
 So, normally, the Java signatures of Kotlin functions do not declare exceptions thrown.
 Thus if we have a function in Kotlin like this:
@@ -653,9 +860,26 @@ fun foo() {
   throw IOException()
 }
 ```
+``` kotlin
+package demo
 
+fun foo() {
+  throw IOException()
+}
+```
+
+然后我们想要在java里调用它，捕捉这个异常：
 And we want to call it from Java and catch the exception:
 
+``` java
+// Java
+try {
+  demo.DemoPackage.foo();
+}
+catch (IOException e) { // 错误: foo() 没有声明 IOException
+  // ...
+}
+```
 ``` java
 // Java
 try {
@@ -666,6 +890,8 @@ catch (IOException e) { // error: foo() does not declare IOException in the thro
 }
 ```
 
+因为`foo()`没有声明 `IOException`，java编译器报了错误信息。
+为了解决这个问题，要在kotlin里使用`@throws`标记。
 we get an error message from the Java compiler, because `foo()` does not declare `IOException`.
 To work around this problem, use the `@throws` annotation in Kotlin:
 
@@ -674,13 +900,24 @@ To work around this problem, use the `@throws` annotation in Kotlin:
     throw IOException()
 }
 ```
+``` kotlin
+@throws(IOException::class) fun foo() {
+    throw IOException()
+}
+```
 
+### Null安全
 ### Null-safety
 
+当从java中调用kotlin函数时，没人阻止我们传递 *null*{: .keyword } 给一个非空参数。
+这就是为什么kotlin给所有期望非空参数的公开函数生成运行时检测。
+这样我们就能在java代码里立即得到 `NullPointerException`。
 When calling Kotlin functions from Java, nobody prevents us from passing *null*{: .keyword } as a non-null parameter.
 That's why Kotlin generates runtime checks for all public functions that expect non-nulls.
 This way we get a `NullPointerException` in the Java code immediately.
 
+### 属性
 ### Properties
 
+属性getters被转换成 *get*-方法，setters转换成*set*-方法。
 Property getters are turned into *get*-methods, and setters – into *set*-methods.
