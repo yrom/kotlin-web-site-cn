@@ -82,7 +82,7 @@ val notNull: String = item // 允许，运行时可能失败
 ### 映射类型
 
 Kotlin特殊处理一部分java类型。这些类型不是通过as或is来直接转换，而是_映射_到了指定的kotlin类型上。
-映射只发生在编译期间，运行时仍然是原来的类型。（？？）
+映射只发生在编译期间，运行时仍然是原来的类型。
 java的原生类型映射成如下kotlin类型（记得 [平台类型](#platform-types)）：
 
 | **Java类型** | **Kotlin类型**  |
@@ -160,16 +160,15 @@ if (a is List<Int>) // 错误: 不能检测是否是一个Int的List
 if (a is List<*>) // 可以：不保证list里面的内容类型
 ```
 
-（？？？）
-Like Java's, Kotlin's generics are not retained at runtime, i.e. objects do not carry information about actual type arguments passed to their constructors,
-i.e. `ArrayList<Integer>()` is indistinguishable from `ArrayList<Character>()`.
-This makes it impossible to perform *is*{: .keyword }-checks that take generics into account.
-Kotlin only allows *is*{: .keyword }-checks for star-projected generic types:
+Kotlin的范型就像Java一样不会在运行时保留信息，也就是对象不会携带传递到它们构造函数中的类型参数的信息。
+也就是，`ArrayList<Integer>()` 和 `ArrayList<Character>()` 是区分不出来的。
+这就导致，无法使用*is*{: .keyword }-检测范型。
+Kotlin只允许用*is*{: .keyword }-检测星号投射的范型类型。
 
 ``` kotlin
-if (a is List<Int>) // Error: cannot check if it is really a List of Ints
+if (a is List<Int>) // 错误: 无法检测是否是一个Int的List
 // but
-if (a is List<*>) // OK: no guarantees about the contents of the list
+if (a is List<*>) // 可以: 不确保List里的内容
 ```
 
 ### Java数组
@@ -337,7 +336,7 @@ val kClass = x.javaClass.kotlin
 ```
 
 类似的，你可以把kotlin反射转换成java反射： `ClassName::class.java` 和 `javaClass<ClassName>()`都可以。
-其他支持的情况包括 获取一个java的getter/setter方法，或者一个kotlin属性的 backing field，getting a containing `KPackage` instance for a Java class, and getting a `KProperty` for a Java field. (???)
+其他支持的情况包括 获取一个java的getter/setter方法，一个kotlin属性的 backing field，Java类获取`KPackage`实例，java字段获取`KProperty`.（注：指通过getDeclaredField等方法像读取java字段一样读取`KProperty`）
 
 ### SAM(单抽象方法) 转换
 
