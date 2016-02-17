@@ -21,7 +21,7 @@ import java.util.*
 
 包的结构并不需要与文件夹路径完全匹配：源代码可以在文件系统的任意位置
 
-参阅 [Packages](packages.html).
+参阅 [包](packages.html).
 
 ## 定义函数
 
@@ -55,7 +55,7 @@ public fun printSum(a: Int, b: Int) {
 }
 ```
 
-参阅 [Functions](functions.html).
+参阅 [函数](functions.html).
 
 ## 定义局部变量
 
@@ -75,7 +75,7 @@ var x = 5 // `Int` 类型自动推断（ 5 默认是 `Int` ）
 x += 1
 ```
 
-参阅 [Properties And Fields](properties.html).
+参阅 [属性和字段](properties.html).
 
 ## 使用字符串模板
 
@@ -87,7 +87,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参阅 [String templates](basic-types.html#string-templates).
+参阅 [字符串模板](basic-types.html#字符串模板).
 
 ## 使用条件判断
 
@@ -106,9 +106,9 @@ fun max(a: Int, b: Int): Int {
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
-参阅 [*if*{: .keyword }-expressions](control-flow.html#if-expression).
+参阅 [*if*{: .keyword } 表达式](control-flow.html#if表达式).
 
-## Using nullable values and checking for *null*{: .keyword }
+## 使用可空值及 *null*{: .keyword } 检查
 
 当某个变量的值可以为 *null*{: .keyword } 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空
 A reference must be explicitly marked as nullable when *null*{: .keyword } value is possible.
@@ -158,9 +158,9 @@ fun main(args: Array<String>) {
   print(x * y)
 ```
 
-参阅 [Null-safety](null-safety.html).
+参阅 [Null 安全性](null-safety.html).
 
-## Using type checks and automatic casts
+## 使用类型检查及自动类型转换
 
 *is*{: .keyword } 运算符用于类型判断: 检查某个实例是否是某类型
 如果一个局部常量或者不可变的类成员变量已经判断出为某类型，那么判断后的分支中可以直接当作该类型使用，无需强制转换
@@ -201,7 +201,7 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-参阅 [Classes](classes.html) and [Type casts](typecasts.html).
+参阅 [类](classes.html) and [类型转换](typecasts.html).
 
 ## 使用 `for` 循环
 
@@ -219,7 +219,7 @@ for (i in args.indices)
   print(args[i])
 ```
 
-参阅 [for循环](control-flow.html#for-loops).
+参阅 [for循环](control-flow.html#for循环).
 
 ## Using a `while` loop
 
@@ -231,7 +231,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-See [while 循环](control-flow.html#while-loops).
+See [while 循环](control-flow.html#while循环).
 
 ## 使用 `when` 表达式
 
@@ -247,7 +247,7 @@ fun cases(obj: Any) {
 }
 ```
 
-参阅 [when表达式](control-flow.html#when-expression).
+参阅 [when表达式](control-flow.html#when表达式).
 
 ## 使用区间（ranges）
 
@@ -290,10 +290,10 @@ if (text in names) // 自动调用 names.contains(text)
   print("Yes")
 ```
 
-使用字面量函数(方便的 Higher-order 函数)来过滤(filter)和变换(map)集合：
+使用字面量函数(方便的高阶函数)来过滤(filter)和变换(map)集合：
 
 ``` kotlin
 names.filter { it.startsWith("A") }.sortBy { it }.map { it.toUpperCase() }.forEach { print(it) }
 ```
 
-参阅 [Higher-order函数及Lambda表达式](lambdas.html).
+参阅 [高阶函数及Lambda表达式](lambdas.html).
