@@ -39,7 +39,7 @@ fun sum(a: Int, b: Int): Int {
 fun sum(a: Int, b: Int) = a + b
 ```
 
-不确定返回值 `Unit` 的函数:
+函数返回无意义的值:
 
 ``` kotlin
 fun printSum(a: Int, b: Int): Unit {
@@ -47,7 +47,7 @@ fun printSum(a: Int, b: Int): Unit {
 }
 ```
 
-`Unit` 类型的返回，在函数定义中可以省略:
+`Unit` 返回类型可以省略:
 
 ``` kotlin
 fun printSum(a: Int, b: Int) {
@@ -126,8 +126,7 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 
 ## 使用可空值及 *null*{: .keyword } 检查
 
-当某个变量的值可以为 *null*{: .keyword } 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空
-A reference must be explicitly marked as nullable when *null*{: .keyword } value is possible.
+当某个变量的值可以为 *null*{: .keyword } 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空。
 
 返回 *null*{: .keyword } 假如 `str` 的内容不是数字:
 
@@ -178,7 +177,7 @@ fun main(args: Array<String>) {
 
 ## 使用类型检查及自动类型转换
 
-*is*{: .keyword } 运算符用于类型判断: 检查某个实例是否是某类型
+*is*{: .keyword } 运算符用于类型判断: 检查某个实例是否是某类型。
 如果一个局部常量或者不可变的类成员变量已经判断出为某类型，那么判断后的分支中可以直接当作该类型使用，无需强制转换
 
 ``` kotlin
@@ -200,7 +199,7 @@ fun getStringLength(obj: Any): Int? {
   if (obj !is String)
     return null
 
-  // `obj` 在一下类型判断分支自动转换为 `String`
+  // `obj` 在这一类型判断分支自动转换为 `String`
   return obj.length
 }
 ```
@@ -299,7 +298,7 @@ for (name in names)
   println(name)
 ```
 
-使用 *in*{: .keyword } 运算符来判断集合内是否包含(.contains)某实例 *in*{: .keyword } ：
+使用 *in*{: .keyword } 运算符来判断集合内是否包含(.contains)某实例：
 
 ``` kotlin
 if (text in names) // 自动调用 names.contains(text)
