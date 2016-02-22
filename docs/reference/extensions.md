@@ -50,8 +50,31 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 仅仅是通过该类的实例用点表达式去调用这个新函数。
 
 我们想强调下扩展方法是被静态分发的，即他们不是接收类型的虚方法。
-如果有一个成员方法和相同类型的扩展方法都适用于给定的参数，**成员方法总是赢**。
-例如：
+This means that the extension function being called is determined by the type of the expression on which the function is invoked,
+not by the type of the result of evaluating that expression at runtime. For example:
+
+``` kotlin
+open class C
+
+class D: C()
+
+fun C.foo() = "c"
+
+fun D.foo() = "d"
+
+fun printFoo(c: C) {
+    println(c.foo())
+}
+
+printFoo(D())
+```
+
+This example will print "c", because the extension function being called depends only on the declared type of the
+parameter `c`, which is the `C` class.
+
+If a class has a member function, and an extension function is defined which has the same receiver type, the same name
+and is applicable to given arguments, the **member always wins**.
+For example:
 
 ``` kotlin
 class C {

@@ -28,7 +28,7 @@ interface MyInterface {
 
 ``` kotlin
 class Child : MyInterface {
-   fun bar() {
+   override fun bar() {
       // body
    }
 }

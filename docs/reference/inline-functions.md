@@ -164,7 +164,7 @@ inline fun <reified T> TreeNode.findParentOfType(): T? {
 虽然反射在很多情况下不一定需要，我们还是可以在泛型参数里使用它：
 
 ``` kotlin
-inline fun membersOf<reified T>() = T::class.members
+inline fun <reified T> membersOf() = T::class.members
 
 fun main(s: Array<String>) {
   println(membersOf<StringBuilder>().joinToString("\n"))

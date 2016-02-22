@@ -9,7 +9,7 @@ title: "Null Safety"
 
 ## 可空（Nullable）和不可空（Non-Null） 类型
 
-Kotlin 的类型系统致力于消除空引用异常，又称[《上亿美元的错误》](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)。
+Kotlin 的类型系统致力于消除空引用异常的危险，又称[《上亿美元的错误》](http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions)。
 
 许多编程语言，包括 Java 中最常见的错误就是访问空引用的成员变量，导致空引用异常。在 Java 中，
 将等同于 `NullPointerException` 或简称 `NPE` 。
@@ -67,7 +67,9 @@ else
   print("Empty string")
 ```
 
-需要注意的是其中 `b` 是不可变的，这仅适用（例如，不可变的局部变量，*val*{: .keyword } 成员，并且是不可重写的），否则在检查之后它可能它为空导致异常。
+需要注意的是这仅适用其中 `b` 是不可变的（i.e. a local variable which is not modified between the check and the
+usage or a member *val*{: .keyword } which has a backing field and is not overridable）情况，否则在
+检查之后它可能它为空导致异常。
 
 ## 安全的调用
 
@@ -122,16 +124,6 @@ val l = b!!.length()
 ```
 
 因此，如果你想要一个 `NPE`，你可以使用它。but you have to ask for it explicitly, and it does not appear out of the blue.
-
-另外， `!!` 是为了简明，和扩展模拟以前的标准库功能，定义如下：
-
-``` kotlin
-inline fun <T : Any> T?.sure(): T =
-  if (this == null)
-    throw NullPointerException()
-  else
-    this
-```
 
 ## 安全转型
 

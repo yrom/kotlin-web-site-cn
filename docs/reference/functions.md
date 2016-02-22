@@ -109,7 +109,7 @@ reformat(str, true, true, false, '_')
 ``` kotlin
 reformat(str,
     normalizeCase = true,
-    uppercaseFirstLetter = true,
+    upperCaseFirstLetter = true,
     divideByCamelHumps = false,
     wordSeparator = '_'
   )
@@ -174,7 +174,7 @@ Kotlin不推断返回类型与函数在模块体的功能，因为这些功能�
 函数的（通常最后一个）参数可以使用'vararg`修饰：
 
 ``` kotlin
-fun asList<T>(vararg ts: T): List<T> {
+fun <T> asList(vararg ts: T): List<T> {
   val result = ArrayList<T>()
   for (t in ts) // ts is an Array
     result.add(t)
@@ -238,25 +238,7 @@ fun dfs(graph: Graph) {
 }
 ```
 
-从外部函数使用局部函数甚至可以返回[正确的表达式](returns.html)
-
-``` kotlin
-fun reachable(from: Vertex, to: Vertex): Boolean {
-  val visited = HashSet<Vertex>()
-  fun dfs(current: Vertex) {
-    // here we return from the outer function:
-    if (current == to) return@reachable true
-    // And here -- from local function:
-    if (!visited.add(current)) return
-    for (v in current.neighbors)
-      dfs(v)
-  }
-
-  dfs(from)
-  return false // if dfs() did not return true already
-}
-```
-
+### Member Functions
 ### 成员函数
 
 成员函数是一个函数,定义在一个类或对象里
@@ -299,7 +281,31 @@ fun <T> singletonList(item: T): List<T> {
 
 高阶函数和Lambdas表达式中有详细解释 [their own section](lambdas.html)
 
+## Tail recursive functions
 
+Kotlin supports a style of functional programming known as [tail recursion](https://en.wikipedia.org/wiki/Tail_call).
+This allows some algorithms that would normally be written using loops to instead be written using a recursive function, but without the risk of stack overflow.
+When a function is marked with the `tailrec` modifier and meets the required form the compiler optimises out the recursion, leaving behind a fast and efficient loop based version instead.
+
+``` kotlin
+tailrec fun findFixPoint(x: Double = 1.0): Double
+        = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
+```
+
+This code calculates the fixpoint of cosine, which is a mathematical constant. It simply calls Math.cos repeatedly starting at 1.0 until the result doesn't change any more, yielding a result of 0.7390851332151607. The resulting code is equivalent to this more traditional style:
+
+``` kotlin
+private fun findFixPoint(): Double {
+    var x = 1.0
+    while (true) {
+        val y = Math.cos(x)
+        if (x == y) return y
+        x = y
+    }
+}
+```
+
+To be eligible for the `tailrec` modifier, a function must call itself as the last operation it performs. You cannot use tail recursion when there is more code after the recursive call, and you cannot use it within try/catch/finally blocks. Currently tail recursion is only supported in the JVM backend.
 
 ---
 

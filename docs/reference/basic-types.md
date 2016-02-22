@@ -15,12 +15,12 @@ Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numb
 
 对于numbers Kotlin提供了如下的内置类型 (与Java很相近):
 
-| Type	 | Bitwidth |
+| Type	 | Bit width|
 |--------|----------|
 | Double | 64       |
 | Float	 | 32       |
 | Long	 | 64       |
-| Int	   | 32       |
+| Int	 | 32       |
 | Short	 | 16       |
 | Byte	 | 8        |
 
@@ -45,16 +45,18 @@ Kotlin 同样支持浮点数的常规表示方法:
 ### 存储方式
 
 在Java平台数字是物理存储为JVM的原始类型,除非我们需要一个可空的引用（例如int？）或泛型. 后者情况下数字被装箱（指的是赋值的时候把实例复制了一下，不是相同实例）。
-
 装箱数字不会保存它的实例:
+
+Note that boxing of numbers does not preserve identity:
 
 ``` kotlin
 val a: Int = 10000
-print(a identityEquals a) // Prints 'true'
+print(a === a) // Prints 'true'
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA identityEquals anotherBoxedA) // !!!Prints 'false'!!!
+print(boxedA === anotherBoxedA) // !!!Prints 'false'!!!
 ```
+
 另一方面它们值相等:
 
 ``` kotlin
@@ -103,11 +105,10 @@ val i: Int = b.toInt() // OK: explicitly widened
 * `toDouble(): Double`
 * `toChar(): Char`
 
-失去隐式类型转换，其实并没有带来多少困扰，因为使用字面量的时候是没有代价的，因为字面量的类型是推导出来的；
-另一方面，算数运算操作都针对不同类型的参数做好了重载，比如：
+失去隐式类型转换，其实并没有带来多少困扰，因为使用字面量的时候是没有代价的，因为字面量的类型是推导出来的；另一方面，算数运算操作都针对不同类型的参数做好了重载，比如：
 
 ``` kotlin
-val l = 1.toLong() + 3 // Long + Int => Long
+val l = 1L + 3 // Long + Int => Long
 ```
 
 ### 运算符
@@ -143,8 +144,12 @@ fun check(c: Char) {
 }
 ```
 
-用单引号表示一个Character，例如: `'1'`, `'\n'`, `'\uFF00'`.
-我们可以调用显示转换把Character转换为`Int`
+Character literals go in single quotes: `'1'`.
+Special characters can be escaped using a backslash.
+The following escape sequences are supported: `\t`, `\b`, `\n`, `\r`, `\'`, `\"`, `\\` and `\$`.
+To encode any other character, use the Unicode escape sequence syntax: `'\uFF00'`.
+
+我们可以显式把Character转换为`Int`
 
 ``` kotlin
 fun decimalDigitValue(c: Char): Int {
@@ -173,7 +178,7 @@ Booleans使用nullable时候Boolean也会被装箱.
 数组在Kotlin中使用 `Array`类来表示, `Array`类定义了set和get函数（使用时可以用`[]`，通过符号重载的约定转换）和`size`属性，连同一些其他有用的成员函数：
 
 ``` kotlin
-class Array<T> private () {
+class Array<T> private constructor() {
   val size: Int
   fun get(index: Int): T
   fun set(index: Int, value: T): Unit
@@ -183,21 +188,26 @@ class Array<T> private () {
 }
 ```
 
-我们可以使用库函数`array()`来创建一个包含数值的数组, `array(1, 2, 3)` 创建了 array [1, 2, 3].
-或者, `arrayOfNulls()`可以创建一个指定大小，元素都为空的数组。  
-或者使用函数来创建一个数组:
+我们可以使用库函数`arrayOf()`来创建一个包含数值的数组, `arrayOf(1, 2, 3)` 创建了 array [1, 2, 3].
+或者, `arrayOfNulls()`可以创建一个指定大小，元素都为空的数组。
+
+Another option is to use a factory function that takes the array size and the function that can return the initial value
+of each array element given its index:
 
 ``` kotlin
 // Creates an Array<String> with values ["0", "1", "4", "9", "16"]
-val asc = Array(5, {i -> (i * i).toString()})
+val asc = Array(5, { i -> (i * i).toString() })
 ```
 
 综上, `[]`操作符代表了成员函数`get()`和`set()`.
 
-注意: 与Java不同的是, Kotlin中数组不可变. 这意味着我们不能声明 `Array<String>`到`Array<Any>`, 否则可能会产生一个运行时错误(但是你可以使用 `Array<out Any>`, 查看 [Type Projections](generics.html#type-projections)).
+注意: 与Java不同的是, Kotlin中数组不可变. 这意味着我们不能声明 `Array<String>`
+到`Array<Any>`, 否则可能会产生一个运行时错误(但是你可以使用 `Array<out Any>`, 
+查看 [Type Projections](generics.html#type-projections)).
 
 Kotlin有专门的类来表示原始类型的数组，避免了装箱开销: `ByteArray`,
-`ShortArray`, `IntArray` 等等. 这些类和`Array`并没有继承关系,但是它们有同样的方法属性集. 它们也都有相应的工厂方法:
+`ShortArray`, `IntArray` 等等. 这些类和`Array`并没有继承关系,但是
+它们有同样的方法属性集. 它们也都有相应的工厂方法:
 
 ``` kotlin
 val x: IntArray = intArrayOf(1, 2, 3)
@@ -217,15 +227,16 @@ for (c in str) {
 ```
 
 ### 字符串字面量
-Kotlin有两种类型的字符串: 转义字符串可能由转义字符、原生字符串、换行和任意文本.转义字符串很像java的String:
+
+Kotlin有两种类型的字符串: 转义字符串可能由转义字符、原生字符串、换行和任意文本.转义字符串很像 Java 字符串:
 
 ``` kotlin
 val s = "Hello, world!\n"
 ```
 
-转义方式采用传统的反斜杠.
+转义方式采用传统的反斜杠. See [Characters](#characters) above for the list of supported escape sequences.
 
-*原生字符串*使用三个引号(""")包括，内部没有转义，可以包含换行和任何其他文本:
+*原生字符串*使用三个引号(`"""`)包括，内部没有转义，可以包含换行和任何其他文本:
 
 ``` kotlin
 val text = """
@@ -250,6 +261,15 @@ val s = "i = $i" // evaluates to "i = 10"
 ``` kotlin
 val s = "abc"
 val str = "$s.length is ${s.length}" // evaluates to "abc.length is 3"
+```
+
+Templates are supported both inside raw strings and inside escaped strings.
+If you need to represent a literal `$` character in a raw string (which doesn't support backslash escaping), you can use the following syntax:
+
+``` kotlin
+val price = """
+${'$'}9.99
+"""
 ```
 
 ---

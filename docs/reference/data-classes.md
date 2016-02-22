@@ -5,23 +5,23 @@ category: "Classes and Objects"
 title: "Data Classes"
 ---
 
-# Êý¾ÝÀà
+# æ•°æ®ç±»
 
-ÎÒÃÇ¾­³£´´½¨Ò»Ð©Ö»ÊÇ´¦ÀíÊý¾ÝµÄÀà¡£ÔÚÕâÐ©ÀàÀïµÄ¹¦ÄÜ¾­³£ÊÇ
-ÑÜÉú×ÔËûÃÇËù³ÖÓÐµÄÊý¾Ý¡£ÔÚKotlinÖÐ£¬ÕâÑùµÄÀà¿ÉÒÔ±»±ê¼ÇÎª`data`£º
+æˆ‘ä»¬ç»å¸¸åˆ›å»ºä¸€äº›åªæ˜¯å¤„ç†æ•°æ®çš„ç±»ã€‚åœ¨è¿™äº›ç±»é‡Œçš„åŠŸèƒ½ç»å¸¸æ˜¯
+è¡ç”Ÿè‡ªä»–ä»¬æ‰€æŒæœ‰çš„æ•°æ®ã€‚åœ¨Kotlinä¸­ï¼Œè¿™æ ·çš„ç±»å¯ä»¥è¢«æ ‡è®°ä¸º`data`ï¼š
  
 ``` kotlin
 data class User(val name: String, val age: Int)
 ```
 
-Õâ±»½Ð×öÒ»¸ö _Êý¾ÝÀà_¡£±àÒëÆ÷×Ô¶¯´ÓÔÚÖ÷¹¹Ôìº¯Êý¶¨ÒåµÄÈ«²¿ÌØÐÔÖÐµÃµ½ÒÔÏÂ³ÉÔ±£º
+è¿™è¢«å«åšä¸€ä¸ª _æ•°æ®ç±»_ã€‚ç¼–è¯‘å™¨è‡ªåŠ¨ä»Žåœ¨ä¸»æž„é€ å‡½æ•°å®šä¹‰çš„å…¨éƒ¨ç‰¹æ€§ä¸­å¾—åˆ°ä»¥ä¸‹æˆå‘˜ï¼š
   
-  * `equals()`/`hashCode()` ¶Ô£¬
-  * `toString()` ¸ñÊ½ÊÇ `"User(name=John, age=42)"`£¬
-  * [`componentN()` functions](multi-declarations.html) ¶ÔÓ¦°´ÉùÃ÷Ë³Ðò³öÏÖµÄËùÓÐÊôÐÔ£¬
-  * `copy()` º¯Êý£¨¼ûÏÂÃæ£©¡£
+  * `equals()`/`hashCode()` å¯¹ï¼Œ
+  * `toString()` æ ¼å¼æ˜¯ `"User(name=John, age=42)"`ï¼Œ
+  * [`componentN()` functions](multi-declarations.html) å¯¹åº”æŒ‰å£°æ˜Žé¡ºåºå‡ºçŽ°çš„æ‰€æœ‰å±žæ€§ï¼Œ
+  * `copy()` å‡½æ•°ï¼ˆè§ä¸‹é¢ï¼‰ã€‚
   
-Èç¹ûÓÐÄ³¸öº¯Êý±»Ã÷È·µØ¶¨ÒåÔÚÀàÀï»òÕß±»¼Ì³Ð£¬±àÒëÆ÷¾Í²»»áÉú³ÉÕâ¸öº¯Êý¡£
+å¦‚æžœæœ‰æŸä¸ªå‡½æ•°è¢«æ˜Žç¡®åœ°å®šä¹‰åœ¨ç±»é‡Œæˆ–è€…è¢«ç»§æ‰¿ï¼Œç¼–è¯‘å™¨å°±ä¸ä¼šç”Ÿæˆè¿™ä¸ªå‡½æ•°ã€‚
 
 To ensure consistency and meaningful behavior of the generated code, data classes have to fulfil the following requirements:
 
@@ -30,32 +30,32 @@ To ensure consistency and meaningful behavior of the generated code, data classe
   * Data classes cannot be abstract, open, sealed or inner;
   * Data classes may not extend other classes (but may implement interfaces).
   
-> ÔÚJVMÖÐ£¬Èç¹ûÉú³ÉµÄÀàÐèÒªº¬ÓÐÒ»¸öÎÞ²ÎµÄ¹¹Ôìº¯Êý£¬ÔòËùÓÐµÄÊôÐÔ±ØÐëÓÐÄ¬ÈÏÖµ¡£
-> (²é¿´ [Constructors](classes.html#constructors)).
+> åœ¨JVMä¸­ï¼Œå¦‚æžœç”Ÿæˆçš„ç±»éœ€è¦å«æœ‰ä¸€ä¸ªæ— å‚çš„æž„é€ å‡½æ•°ï¼Œåˆ™æ‰€æœ‰çš„å±žæ€§å¿…é¡»æœ‰é»˜è®¤å€¼ã€‚
+> (æŸ¥çœ‹ [Constructors](classes.html#constructors)).
 >
 > ``` kotlin
 > data class User(val name: String = "", val age: Int = 0)
 > ```
 
-## ¸´ÖÆ
+## å¤åˆ¶
   
-ÔÚºÜ¶àÇé¿öÏÂ£¬ÎÒÃÇÎÒÃÇÐèÒª¶ÔÒ»Ð©ÊôÐÔ×öÐÞ¸Ä¶øÆäËûµÄ²»±ä¡£
-Õâ¾ÍÊÇ`copy()`Õâ¸ö·½·¨µÄÀ´Ô´¡£¶ÔÓÚÉÏÎÄµÄ`User`Àà£¬Ó¦¸ÃÊÇÕâÃ´ÊµÏÖÕâ¸ö·½·¨µÄ
+åœ¨å¾ˆå¤šæƒ…å†µä¸‹ï¼Œæˆ‘ä»¬æˆ‘ä»¬éœ€è¦å¯¹ä¸€äº›å±žæ€§åšä¿®æ”¹è€Œå…¶ä»–çš„ä¸å˜ã€‚
+è¿™å°±æ˜¯`copy()`è¿™ä¸ªæ–¹æ³•çš„æ¥æºã€‚å¯¹äºŽä¸Šæ–‡çš„`User`ç±»ï¼Œåº”è¯¥æ˜¯è¿™ä¹ˆå®žçŽ°è¿™ä¸ªæ–¹æ³•çš„
      
 ``` kotlin
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)     
 ```     
 
-Ò²¿ÉÒÔÕâÃ´Ð´
+ä¹Ÿå¯ä»¥è¿™ä¹ˆå†™
 
 ``` kotlin
 val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 ```
 
-## Êý¾ÝÀàºÍ¶àÖØÉùÃ÷
+## æ•°æ®ç±»å’Œå¤šé‡å£°æ˜Ž
 
-_³ÉÔ±·½·¨_ÓÃÓÚÊ¹Êý¾ÝÀà¿ÉÒÔ[¶àÉùÃ÷](multi-declarations.html)£º
+_æˆå‘˜æ–¹æ³•_ç”¨äºŽä½¿æ•°æ®ç±»å¯ä»¥[å¤šå£°æ˜Ž](multi-declarations.html)ï¼š
 
 ``` kotlin
 val jane = User("Jane", 35) 
@@ -63,11 +63,11 @@ val (name, age) = jane
 println("$name, $age years of age") // prints "Jane, 35 years of age"
 ```
 
-## ±ê×¼Êý¾ÝÀà
+## æ ‡å‡†æ•°æ®ç±»
 
-ÔÚ±ê×¼¿âÌá¹©ÁË`Pair`ºÍ`Triple`¡£ÔÚºÜ¶àÇé¿öÏÂ£¬¼´Ê¹ÃüÃûÊý¾ÝÀàÊÇÒ»¸ö¸üºÃµÄÉè¼ÆÑ¡Ôñ£¬
-ÒòÎªÕâÄÜÈÃ´úÂë¿É¶ÁÐÔ¸üÇ¿¡£
+åœ¨æ ‡å‡†åº“æä¾›äº†`Pair`å’Œ`Triple`ã€‚åœ¨å¾ˆå¤šæƒ…å†µä¸‹ï¼Œå³ä½¿å‘½åæ•°æ®ç±»æ˜¯ä¸€ä¸ªæ›´å¥½çš„è®¾è®¡é€‰æ‹©ï¼Œ
+å› ä¸ºè¿™èƒ½è®©ä»£ç å¯è¯»æ€§æ›´å¼ºã€‚
 
 ---
 
-·­ÒëBy Wahchi
+ç¿»è¯‘By Wahchi

@@ -77,6 +77,22 @@ x += 1
 
 参阅 [属性和字段](properties.html).
 
+
+## Comments
+
+Just like Java and JavaScript, Kotlin supports end-of-line and block comments.
+
+``` kotlin
+// This is an end-of-line comment
+
+/* This is a block comment
+   on multiple lines. */
+```
+
+Unlike Java, block comments in Kotlin can be nested.
+
+See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.
+
 ## 使用字符串模板
 
 ``` kotlin

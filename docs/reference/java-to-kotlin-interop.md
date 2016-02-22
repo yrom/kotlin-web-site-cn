@@ -88,9 +88,7 @@ demo.Utils.foo();
 demo.Utils.bar();
 ```
 
-~~对于最外层的包（java里叫做缺省包），创建一个叫做`_DefaultPackage`的类。~~
-
-## Fields
+## Instance Fields
 
 If you need to expose a Kotlin property as a field in Java, you need to annotate it with the `@JvmField` annotation.
 The field will have the same visibility as the underlying property. You can annotate a property with `@JvmField`
@@ -111,10 +109,83 @@ class JavaClient {
 }
 ```
 
-## 静态方法和字段
+[Late-Initialized](properties.html#late-initialized-properties) properties are also exposed as fields. 
+The visibility of the field will be the same as the visibility of `lateinit` property setter.
 
-上面说过，Kotlin把包级别的函数生成为静态方法。此外，还会把
-类的命名对象或伙伴对象中有`@JvmStatic`标记的函数也生成为静态方法。比如：
+## 静态字段
+
+Kotlin properties declared in a named object or a companion object will have static backing fields
+either in that named object or in the class containing the companion object.
+
+Usually these fields are private but they can be exposed in one of the following ways:
+
+ - `@JvmField` annotation;
+ - `lateinit` modifier;
+ - `const` modifier.
+ 
+Annotating such a property with `@JvmField` makes it a static field with the same visibility as the property itself.
+
+``` kotlin
+class Key(val value: Int) {
+    companion object {
+        @JvmField
+        val COMPARATOR: Comparator<Key> = compareBy<Key> { it.value }
+    }
+}
+```
+
+``` java
+// Java
+Key.COMPARATOR.compare(key1, key2);
+// public static final field in Key class
+```
+
+A [late-initialized](properties.html#late-initialized-properties) property in an object or a companion object
+has a static backing field with the same visibility as the property setter.
+
+``` kotlin
+object Singleton {
+    lateinit var provider: Provider
+}
+```
+
+``` java
+// Java
+Singleton.provider = new Provider();
+// public static non-final field in Singleton class
+```
+
+Properties annotated with `const` (in classes as well as at the top level) are turned into static fields in Java:
+
+``` kotlin
+// file example.kt
+
+object Obj {
+  const val CONST = 1
+}
+
+class C {
+    companion object {
+        const val VERSION = 9
+    }
+}
+
+const val MAX = 239
+```
+
+In Java:
+
+``` java
+int c = Obj.CONST;
+int d = ExampleKt.MAX;
+int v = C.VERSION;
+```
+
+## Static Methods
+
+As mentioned above, Kotlin generates static methods for package-level functions.
+Kotlin can also generate static methods for functions defined in named objects or companion objects if you annotate those functions as `@JvmStatic`.
+For example:
 
 ``` kotlin
 class C {
@@ -150,25 +221,9 @@ Obj.INSTANCE.bar(); // 对单例的方法调用
 Obj.INSTANCE.foo(); // 也行
 ```
 
-命名对象和伙伴对象里的公开属性，还有顶层的有 `const` 标记的属性，
-会被转成 Java 中的静态字段：
+`@JvmStatic` annotation can also be applied on a property of an object or a companion object
+making its getter and setter methods be static members in that object or the class containing the companion object.
 
-``` kotlin
-// file example.kt
-
-object Obj {
-  val CONST = 1
-}
-
-const val MAX = 239
-```
-
-Java 里：
-
-``` java
-int c = Obj.CONST;
-int d = ExampleKt.MAX;
-```
 
 ## 用@JvmName解决签名冲突
 
@@ -185,6 +240,7 @@ fun List<Int>.filterValid(): List<Int>
 
 ``` kotlin
 fun List<String>.filterValid(): List<String>
+
 @JvmName("filterValidInt")
 fun List<Int>.filterValid(): List<Int>
 ```

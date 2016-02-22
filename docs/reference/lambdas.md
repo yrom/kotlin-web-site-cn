@@ -48,7 +48,7 @@ lambda 表达式 [这里](#lambda-expressions-and-anonymous-functions)有更详�
 * 其参数（如果有的话）被声明在`->`之前（参数类型可以省略）
 * 函数体在 `->` 后面 (如果存在的话).
 
-在Kotlin中, 如果函数的最后一个参数是一个函数，那么我们可以省略括号
+在Kotlin中, 如果函数的最后一个参数是一个函数，那么该参数可以在括号外指定：
 
 ``` kotlin
 lock (lock) {
@@ -72,6 +72,8 @@ fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
 ``` kotlin
 val doubled = ints.map { it -> it * 2 }
 ```
+
+Note that the parentheses in a call can be omitted entirely if the lambda is the only argument to that call.
 
 还有一个有用的公约是：如果函数字面量有一个参数，
 那它的声明可以省略（连同 `->`），用 `it` 表示。

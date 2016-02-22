@@ -126,7 +126,7 @@ void demo(Source<String> strs) {
 
 ``` kotlin
 abstract class Source<out T> {
-  fun nextT(): T
+  abstract fun nextT(): T
 }
 
 fun demo(strs: Source<String>) {
@@ -149,7 +149,7 @@ fun demo(strs: Source<String>) {
 
 ``` kotlin
 abstract class Comparable<in T> {
-  fun compareTo(other: T): Int
+  abstract fun compareTo(other: T): Int
 }
 
 fun demo(x: Comparable<Number>) {
