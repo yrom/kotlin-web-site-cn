@@ -1,3 +1,5 @@
+<a href="http://kotlinslackin.herokuapp.com"><img src="https://kotlinslackin.herokuapp.com/badge.svg" height="20"></a>
+
 This is the source for the [Kotlin Web Site](http://kotlinlang.org)
 
 - [Filing bugs](#filing-bugs)
@@ -23,7 +25,7 @@ Site is based on [Jekyll](http://jekyllrb.com), so you will need ruby (>= 1.9.3)
 - *Windows*. Step-by-step Jekyll installation can be found [here](https://github.com/juthilo/run-jekyll-on-windows).
   We recommend to use [Cygwin](https://www.cygwin.com) or [Git Bash](http://git-scm.com) as command line interface.
 
-Run `sh ./INSTALL.sh` to install.
+Run `./INSTALL.sh` to install.
 
 ## PDF building
 
@@ -46,7 +48,7 @@ Working with site
 Site uses [rake](https://github.com/jimweirich/rake) for build management.
 To list available commands, run `rake` from project folder with no arguments.
 
-- `rake build` generates site in the `_site` fodler. Use `dest` parameter to specify another location: `rake build dest=/path`.
+- `rake build` generates site in the `_site` folder. Use `dest` parameter to specify another location: `rake build dest=/path`.
 - `rake preview` runs built-in development server that will allow you to preview what the generated site will look like in your browser locally.
   Changed files are rebuilt automatically. Host address and port can be changed by passing the following parameters: `rake preview host=172.20.209.23 port=3000`
 - `rake build_pdf` builds a PDF from documentation pages and stores it in the default folder. To change location, specify `file`: `rake build_pdf file=book.pdf`.

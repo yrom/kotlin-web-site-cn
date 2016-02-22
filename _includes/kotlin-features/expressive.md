@@ -1,6 +1,6 @@
-### Expressive
+### 表达性
 
-Add semantics to the code you write
+在代码中添加语义
 
 ``` kotlin
 val people = hashMapOf<String, Int>()

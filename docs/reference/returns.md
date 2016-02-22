@@ -7,21 +7,18 @@ title: "Returns and Jumps"
 
 # 返回和跳转
 
-
 Kotlin 有三种跳出结构
 
-* *return*{: .keyword }.默认情况下，从最近的一个封闭的方法或者 [方法表达式](lambdas.html#function-expressions)跳出.
-
+* *return*{: .keyword }.默认情况下，从最近的一个封闭的方法或者 [匿名函数](lambdas.html#anonymous-function)跳出.
 * *break*{: .keyword }.终止最近的封闭循环
-
 * *continue*{: .keyword }.直接进入循环体的下次循环
 
 ## 中断和继续标签
- 
+
 在Kotlin中任何表达式都可以用*label*{: .keyword } （标签）来标记。  
-label的格式是被'@'标识符标记，例如：`abc@`, `fooBar@`都是有效的label（参见[语法](grammar.html#label)）  
-  
-你可以在一个方法前面放一个label。
+label的格式是被'@'标识符标记，例如：`abc@`, `fooBar@`都是有效的label（参见[语法](grammar.html#label)）
+我们可以在前面放一个label来为一个表达式加标签。
+
 ``` kotlin
 loop@ for (i in 1..100) {
   // ...
@@ -40,7 +37,6 @@ loop@ for (i in 1..100) {
 ```
 
 break执行后将跳转到标记处。
-
 *continue*{: .keyword }将进入循环体的下次循环
 
 
@@ -48,8 +44,7 @@ break执行后将跳转到标记处。
 
 在Kotlin里，函数字面量、局部函数和对象表达式等函数都可以被嵌套在一起
 适当的返回方式允许我们从外部方法返回值  
-
-带标签的**return**，最重要的一个用途，就是让我们可以从函数字面量中返回。
+带标签的**return**，最重要的一个用途，就是让我们可以从 lambda 表达式中返回。
 
 ``` kotlin
 fun foo() {
@@ -60,11 +55,10 @@ fun foo() {
 }
 ```
 
-
 这个 *return*{: .keyword }表达式从最近的封闭的方法中返回，例如‘foo’。
+ (注意，非全局的返回只支持lambda表达式，参见[内联函数](inline-functions.html).)
+如果我们只是需要跳出lambda表达式，我们必须标记它并且返回这个标签
 
- (注意，非全局的返回只支持内部方法，参见[内联方法](inline-functions.html).)
-如果我们只是需要跳出内部方法，我们必须标记它并且返回这个标签
 ``` kotlin
 fun foo() {
   ints.forEach lit@ {
@@ -74,9 +68,8 @@ fun foo() {
 }
 ```
 
-
-现在只是从内部方法返回。有时候用匿名的标签将会更加方便 
-像这样和方法同名的标签是可以的
+现在只是从lambda表达式返回。有时候用匿名的标签将会更加方便 
+像这样和函数同名的标签是可以的
 
 ``` kotlin
 fun foo() {
@@ -86,8 +79,9 @@ fun foo() {
   }
 }
 ```
- 
-通常，我们用一个[方法表达式](lambdas.html#function-expressions)替代内部匿名方法。在方法内部声明一个*return*{: .keyword }将从其内部返回
+
+或者，我们用一个[匿名函数](lambdas.html#anonymous-functions).替代 lambda 表达式。
+在匿名函数内部声明一个*return*{: .keyword }将从其匿名函数自身返回
 
 ``` kotlin
 fun foo() {
@@ -98,24 +92,23 @@ fun foo() {
 }
 ```
 
-
 当要返回一个值得时候，推荐使用描述性的返回，例如：
+
 ``` kotlin
 return@a 1
 ```
 
- 
 意思是“返回被标记为‘@a’值是‘1’的标签，而不是像‘（@a 1）’的一个标签表达式”
 
-被命名的方法自动被定义成为标签
-
-``` kotlin
-fun outer() {
-  fun inner() {
-    return@outer // the label @outer was defined automatically
-  }
-}                                                                             
-```
+> ~~被命名的方法自动被定义成为标签~~
+> 
+> ``` kotlin
+> fun outer() {
+>   fun inner() {
+>     return@outer // the label @outer was defined automatically
+>   }
+> }                                                                             
+> ```
 
 ---
 

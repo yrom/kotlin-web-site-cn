@@ -1,24 +1,35 @@
-- title: Tutorials
+- title: 教程
   content:
-    - title: Getting Started
+    - title: 入门
       content:
         - title: Hello World
           url: https://www.youtube.com/watch?v=iMMBrcabSOI
 
-        - title: Variable Basics
+        - title: 变量基础
           url: https://www.youtube.com/watch?v=bklpMxuzCWU
 
-        - title: Function Basics
+        - title: 函数基础
           url: https://www.youtube.com/watch?v=-4XuESEe45c
 
-        - title: Class Basics
+        - title: 类基础
           url: https://www.youtube.com/watch?v=SI2HiSLDFFs
 
-        - title: Data Classes
+        - title: Data类
           url: https://www.youtube.com/watch?v=GhwZNoQqejQ
 
-        - title: Extension Function Basics
+        - title: 扩展函数基础
           url: https://www.youtube.com/watch?v=SMzNduaGcuo
+          
+    - title: General Overviews
+      content:
+        - title: "Better know a language: Kotlin"
+          url: https://www.youtube.com/watch?v=GIFD1AcNv-Q
+          
+        - title: Kotlin for Java developers
+          url: https://www.youtube.com/watch?v=vmjfIRsawlg
+          
+        - title: Putting Kotlin to the Test
+          url: http://www.youtube.com/watch?v=BMEkljl0Vhg
 
 
 

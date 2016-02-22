@@ -7,11 +7,7 @@ title: "Comparison to Scala"
 
 # 对比Scala
 
-设计Kotlin语言的两大目的:
-
-* 编译至少和Java一样快
-* 保证表达到位的同时，语言足够简洁
-
+The main goal of the Kotlin team is to create a pragmatic and productive programming language, rather than to advance the state of the art in programming language research.
 稍作考虑, 如果你对Scala已相当得心应手,你或许不需要再学习Kotlin
 
 ## Scala有什么Kotlin没有的
@@ -30,14 +26,14 @@ title: "Comparison to Scala"
     * 参照 [运算符重载](operator-overloading.html)
 * 嵌入式 XML
     * 参照 [类型安全 Groovy风格 builders](type-safe-builders.html)
-
-未来Kotlin或许要增加的内容:
-
 * 结构类型
 * 值类型
+    * We plan to support [Project Valhalla](http://openjdk.java.net/projects/valhalla/) once it is released as part of the JDK
 * Yield operator
 * Actors
+    * Kotlin supports [Quasar](http://www.paralleluniverse.co/quasar/), a third-party framework for actor support on the JVM
 * 并行集合
+    * Kotlin supports Java 8 streams, which provide similar functionality
 
 ## Kotlin有什么Scala没有的
 
