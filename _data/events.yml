@@ -779,6 +779,16 @@
   content:
     video: http://www.youtube.com/watch?v=ts-dnfLlZfM
     slides: http://prezi.com/_54kwvc0i_zs/?utm_campaign=share&utm_medium=copy&rc=ex0share
+    
+- title: DroidCon Montreal 2015
+  url: http://www.droidcon.ca/speakers/26
+  subject: "I built an app in Kotlin, and my client still paid me"
+  speaker: Matt Wear
+  date: [2015-04-09, 2015-04-10]
+  location: Montreal, Canada
+  lang: en  
+  content:
+    video: http://www.youtube.com/watch?v=d7BiXy3Qdt8
 
 - title: Event Madras JUG Developer Day '15
   url: http://www.meetup.com/Madras-JUG/events/221590867/
@@ -875,6 +885,9 @@
   date: [2015-09-10, 2015-09-11]
   location: Thessaloniki, Greece
   lang: en    
+  content:
+    slides: https://prezi.com/dxavcfi0l_-b/droidcon-greece-2015/
+    video: http://www.youtube.com/watch?v=vNrkXU6QebA
 
 - title: Droidcon NYC 2015
   url: http://droidcon.nyc/2015/dcnyc/53/
@@ -894,6 +907,8 @@
   date: [2015-10-01, 2015-10-02]
   location: Krakow, Poland
   lang: en    
+  content:
+    slides: https://prezi.com/5krzwy15ixea/kotlin-on-android-mobiconf-2015/
 
 - title: "Mobile Warsaw #27"
   url: http://mobile-warsaw.pl/meetup_027.html
@@ -913,6 +928,17 @@
   date: [2015-11-03, 2015-11-06]
   location: Malmö, Sweden
   lang: en
+  content:
+    slides: https://speakerdeck.com/jakewharton/advancing-development-with-kotlin-droidcon-uk-2015
+    video: https://vimeo.com/144877458
+  
+- title: CDG DevFest Dublin
+  url: "http://gdg-dublin.appspot.com/#!/schedule/4"
+  subject: "Advancing Android with Kotlin"
+  speaker: Jake Wharton
+  date: [2015-11-06, 2015-11-08]
+  location: Dublin, Ireland
+  lang: en
 
 - title: DroidCon London 2015
   url: http://uk.droidcon.com/2015/
@@ -921,6 +947,8 @@
   date: [2015-10-29, 2015-10-30]
   location: London, UK
   lang: en
+  content:
+    slides: https://speakerdeck.com/jakewharton/advancing-development-with-kotlin-droidcon-uk-2015
 
 - title: JOKER
   url: http://jokerconf.com
@@ -929,6 +957,16 @@
   date: [2015-10-16, 2015-10-17]
   location: Saint Petersburg, Russia
   lang: ru
+  
+- title: JOKER University Day
+  url: http://university.jokerconf.com/
+  subject: "Kotlin: what do we mean by the modern language"
+  speaker: Svetlana Isakova
+  date: 2015-10-18
+  location: Saint Petersburg, Russia
+  lang: ru
+  content:
+    video: https://youtu.be/IXFIUF_KW_o
 
 - title: DevFest 2015
   url: http://www.eventbrite.it/e/biglietti-devfest-2015-18033194771?aff=es2
@@ -937,6 +975,8 @@
   date: 2015-10-03
   location: Milan, Italy
   lang: it
+  content:
+    video: https://youtu.be/0xPDg8NXvko
 
 - title: 関西Kotlin勉強会
   url: http://connpass.com/event/18102/
@@ -987,6 +1027,9 @@
   date: 2015-10-31
   location: Chelyabinsk, RU
   lang: ru
+  content:
+    slides: http://www.slideshare.net/dotnetconf/kotlin-production
+    video: http://www.youtube.com/watch?v=3rQi_ydd8yE
 
 - title: Voxxed days Vilnius 2015
   url: https://voxxeddaysvilnius2015.sched.org/
@@ -1013,6 +1056,9 @@
   date: 2015-10-17
   location: Lodz, Poland
   lang: pl
+  content:
+    video: https://youtu.be/r6OCfbyNEP8
+    slides: http://slides.com/pawegio/kotlin-android
 
 - title: Codemotion 2015
   url: http://2015.codemotion.es/agenda.html#5699289732874240
@@ -1021,6 +1067,19 @@
   date: [2015-11-27, 2015-11-28]
   location: Madrid, Spain
   lang: sp
+  content:
+    video: https://youtu.be/NRJl_942r08
+    slides: https://speakerdeck.com/antoniolg/kotlin-for-android-developers-v2
+
+- title: Karumi Talks
+  url: https://www.eventbrite.es/e/entradas-karumi-talks-scala-vs-kotlin-for-android-by-javi-pacheco-and-antonio-leiva-19726542620
+  subject: "Scala vs Kotlin for Android"
+  speaker: Javi Pacheco and Antonio Leiva
+  date: 2015-12-09
+  location: Madrid, Spain
+  lang: sp
+  content:
+    slides: https://speakerdeck.com/antoniolg/scala-vs-kotlin
 
 - title: GDG Karlsruhe DevFest
   url: http://www.devfestka.de/programm
@@ -1028,4 +1087,86 @@
   speaker: Dmitry Jemerov
   date: 2015-11-14
   location: Karlsruhe, Germany
+  lang: en
+
+- title: DroidCon Paris
+  url: http://droidcon.fr/
+  subject: "Kotlin on Android"
+  speaker: Svetlana Isakova
+  date: [2015-11-09,2015-11-10]
+  location: Paris, France
+  lang: en 
+  
+- title: DroidCon Paris
+  url: http://droidcon.fr/
+  subject: "Functional Progrramming on Android with Kotlin"
+  speaker: Mounir Boudraa
+  date: [2015-11-09,2015-11-10]
+  location: Paris, France
+  lang: fr   
+
+- title: AnDevCon 2015
+  url: http://www.andevcon.com/santaclara/classes#IntroducingKotlinforAndroidDevelopment
+  subject: "Introducing Kotlin for Android Development"
+  speaker: ChongLim Kim
+  date: [2015-12-01,2015-12-03]
+  location: Santa Clara, CA, US
+  lang: en 
+
+- title: Native Development Meetup
+  url: http://www.meetup.com/Native-Development-Meetup/events/226695631/
+  subject: "How Kotlin can change Android development"
+  speaker: Mate Herber
+  date: 2015-11-25
+  location: Budapest, Hungary
+  lang: en 
+  
+- title: The JVM - A wonderful place to be
+  url: http://info.jetbrains.com/JetBrains-Night-Munich-2015-registration.html
+  subject: "Kotlin: How can another language help me?"
+  speaker: Dmitry Jemerov
+  date: 2015-11-25
+  location: Munich, Germany
+  lang: en
+  content:
+    slides: http://www.slideshare.net/intelliyole/kotlin-why-do-you-care
+  
+- title: GDC DevFest 2015 Belarus
+  url: "https://devfest-belarus.appspot.com/#!/speakers/6"
+  subject: "Kotlin for Android developers (WORKSHOP)"
+  speaker: Anton Rutkevich
+  date: [2015-11-20, 2015-11-21]
+  location: Minsk, Belarus
+  lang: en
+
+- title: GDG DevFest Warsaw
+  url: "http://devfest.pl/schedule/#session-15"
+  subject: "fun things(you: CanDo<in Kotlin>) = ..."
+  speaker: Maciej Górski
+  date: 2015-11-28
+  location: Warsaw, Poland
+  lang: en
+  
+- title: Munchen Kotlin User Group
+  url: "http://www.meetup.com/de/Kotlin-User-Group-Munich/events/219774187/?a=socialmedia"
+  subject: "First Meetup"
+  speaker: Sven Ruppert
+  date: 2015-12-15
+  location: Munich, Germany
+  lang: en
+
+- title: Gradle and Android Holiday Meetup
+  url: "http://www.meetup.com/sfandroid/events/226399275/"
+  subject: "Better Android Development with Kotlin and Gradle"
+  speaker: Ty Smith and Yohan Hartanto
+  date: 2015-12-18
+  location: San Francisco, CA, US
+  lang: en
+  
+- title: Voxxed Days Zürich 2016
+  url: https://cfp-vdz.exteso.com/2016/speaker/hadi_hariri
+  subject: "Kotlin - Ready for Production"
+  speaker: Hadi Hariri
+  date: 2016-03-03
+  location: Zürich, CH
   lang: en

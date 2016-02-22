@@ -166,14 +166,15 @@ Booleans使用nullable时候Boolean也会被装箱.
 
 * `||` – 短路或
 * `&&` – 短路与
+* `!` - negation
 
 ## 数组
 
-数组在Kotlin中使用 `Array`类来表示, `Array`类定义了set和get函数(使用时可以用`[]`，通过符号重载的约定转换), 和`size`等等一些有用的成员函数:
+数组在Kotlin中使用 `Array`类来表示, `Array`类定义了set和get函数（使用时可以用`[]`，通过符号重载的约定转换）和`size`属性，连同一些其他有用的成员函数：
 
 ``` kotlin
 class Array<T> private () {
-  fun size(): Int
+  val size: Int
   fun get(index: Int): T
   fun set(index: Int, value: T): Unit
 
@@ -195,11 +196,11 @@ val asc = Array(5, {i -> (i * i).toString()})
 
 注意: 与Java不同的是, Kotlin中数组不可变. 这意味着我们不能声明 `Array<String>`到`Array<Any>`, 否则可能会产生一个运行时错误(但是你可以使用 `Array<out Any>`, 查看 [Type Projections](generics.html#type-projections)).
 
-Kotlin有专门的类来表示原始类型的数组，避免了装箱开销: ByteArray,
-ShortArray, IntArray 等等. 这些类和`Array`并没有继承关系,但是它们有同样的方法属性集. 它们也都有相应的工厂方法:
+Kotlin有专门的类来表示原始类型的数组，避免了装箱开销: `ByteArray`,
+`ShortArray`, `IntArray` 等等. 这些类和`Array`并没有继承关系,但是它们有同样的方法属性集. 它们也都有相应的工厂方法:
 
 ``` kotlin
-val x: IntArray = intArray(1, 2, 3)
+val x: IntArray = intArrayOf(1, 2, 3)
 x[0] = x[1] + x[2]
 ```
 
@@ -236,7 +237,8 @@ val text = """
 
 ### 字符串模板
 
-字符串可以包含*模板表达式*，即一些小段代码，会求值并把结果合并到字符串中。模板表达式以`$`符号开始，包含一个简单的名称:
+字符串可以包含*模板表达式*，即一些小段代码，会求值并把结果合并到字符串中。
+模板表达式以`$`符号开始，包含一个简单的名称:
 
 ``` kotlin
 val i = 10

@@ -4,20 +4,20 @@ title: Community
 main_nav_id: community
 ---
 
-KotlinÉçÇøÃ¿Ìì¶¼ÔÚÔö³¤ÖĞ£¬¼ÓÈëÎÒÃÇ£¡
+Kotlinç¤¾åŒºæ¯å¤©éƒ½åœ¨å¢é•¿ä¸­ï¼ŒåŠ å…¥æˆ‘ä»¬ï¼
 
-# ÂÛÌ³
+# è®ºå›
 
-Äã¿ÉÒÔÔÚÕâĞ©Õ¾µãÉÏ·¢²¼¼¼ÊõĞÔÎÊÌâ
+ä½ å¯ä»¥åœ¨è¿™äº›ç«™ç‚¹ä¸Šå‘å¸ƒæŠ€æœ¯æ€§é—®é¢˜
 
-- [JetBrains DevNetÉÏµÄKotlinÂÛÌ³](http://devnet.jetbrains.com/community/kotlin)
-- [Slack](http://kotlinlang.slack.com): [*µãÎÒ»ñÈ¡ÑûÇë*](http://kotlinslackin.herokuapp.com)
-- [StackOverflow](http://stackoverflow.com/questions/tagged/kotlin). ÌáÇë¼Ç×¡¼ÓÉÏ **kotlin** ±êÇ©Å¶
+- [Kotlin forum](https://discuss.kotlinlang.org/)
+- [Slack](http://kotlinlang.slack.com): [*ç‚¹æˆ‘è·å–é‚€è¯·*](http://kotlinslackin.herokuapp.com)
+- [StackOverflow](http://stackoverflow.com/questions/tagged/kotlin). æè¯·è®°ä½åŠ ä¸Š **kotlin** æ ‡ç­¾å“¦
 - [Reddit](http://www.reddit.com/r/Kotlin/)
 
-## Ã½Ìå
+## åª’ä½“
 
 - [Twitter](http://twitter.com/kotlin)
-- [LinkedIn](https://www.linkedin.com/groups/Kotlin-Developers-7417237?gid=7417237&mostPopular=&trk=tyah&trkInfo=tarId%3A1404329340748%2Ctas%3Akotlin%2Cidx%3A2-1-6). ¶àÊıÊÇ¹¤×÷Ïà¹Ø.
+- [LinkedIn](https://www.linkedin.com/groups/Kotlin-Developers-7417237?gid=7417237&mostPopular=&trk=tyah&trkInfo=tarId%3A1404329340748%2Ctas%3Akotlin%2Cidx%3A2-1-6). å¤šæ•°æ˜¯å·¥ä½œç›¸å…³.
 - [Google+](https://plus.google.com/communities/104597899765146112928)
-- [freenode.net](http://freenode.net) ÔÚÏßÁÄÌìÍøÉÏµÄ #kotlin ÆµµÀ
+- [freenode.net](http://freenode.net) åœ¨çº¿èŠå¤©ç½‘ä¸Šçš„ #kotlin é¢‘é“

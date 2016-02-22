@@ -7,7 +7,9 @@ category: "Syntax"
 
 # 运算符重载
 
-Kotlin允许我们实现一些我们自定义类型的运算符实现。这些运算符有固定的表示(像 `+` 或者 `*`) ，和固定的[优先级](grammar.html#precedence)。为实现这样的运算符，我们提供了固定名字的[成员函数](functions.html#member-functions)和[扩展函数](extensions.html)，比如二元运算符的左值和一元运算符的参数类型。 
+Kotlin允许我们实现一些我们自定义类型的运算符实现。这些运算符有固定的表示
+（像 `+` 或者 `*`），和固定的[优先级](grammar.html#precedence)。为实现这样的运算符，我们提供了固定名字的[成员函数](functions.html#member-functions)
+或[扩展函数](extensions.html)，比如二元运算符的左值和一元运算符的参数类型。 
 Functions that overload operators need to be marked with the `operator` modifier.
 
 ## 转换
@@ -18,15 +20,14 @@ Functions that overload operators need to be marked with the `operator` modifier
 
 | 表达式 | 翻译为 |
 |------------|---------------|
-| `+a` | `a.plus()` |
-| `-a` | `a.minus()` |
+| `+a` | `a.unaryPlus()` |
+| `-a` | `a.unaryMinus()` |
 | `!a` | `a.not()` |
 
 这张表解释了当编译器运行时，比如，表达式 `+a` ，是这样运行的：
 
-
 * 决定`a`的类型, 假设为`T`。
-* 寻找接收者是`T`带有`operator`修饰的无参函数`plus()`,例如一个成员方法或者扩展方法。
+* 寻找接收者是`T`带有`operator`修饰的无参函数`unaryPlus()`,例如一个成员方法或者扩展方法。
 * 如果找不到或者不明确就返回一个错误。
 * 如果函数是当前函数或返回类型是`R`则表达式`+a`是`R`类型。
 
@@ -49,7 +50,6 @@ Functions that overload operators need to be marked with the `operator` modifier
 * 决定`a`的类型, 假设为`T`。
 * 查找接收类型为`T`带有`operator`修饰的无参数函数`inc()。
 * 如果返回类型为`R`,那么`R`为`T`子类型.
-
 
 计算表达式的步骤是：
 
@@ -85,7 +85,7 @@ a-- 的运算步骤也是一样的。
 in 和 !in 的产生步骤是一样的，但参数顺序是相反的。
 {:#in}
 
-| 标志 | 翻译为 |
+| 符号 | 翻译为 |
 | -------|-------------- |
 | `a[i]`  | `a.get(i)` |
 | `a[i, j]`  | `a.get(i, j)` |
@@ -96,15 +96,13 @@ in 和 !in 的产生步骤是一样的，但参数顺序是相反的。
 
 方括号被转换为 get set 函数。
 
-| 标志 | 翻译为 |
+| 符号 | 翻译为 |
 |--------|---------------|
 | `a(i)`  | `a.invoke(i)` |
 | `a(i, j)`  | `a.invoke(i, j)` |
 | `a(i_1, ...,  i_n)`  | `a.invoke(i_1, ...,  i_n)` |
 
-
-括号被转换为带有正确参数的 invoke 函数。
-
+括号被转换为带有正确参数的 `invoke` 函数。
 
 | 表达式 | 翻译为 |
 |------------|---------------|
@@ -133,18 +131,9 @@ in 和 !in 的产生步骤是一样的，但参数顺序是相反的。
 
 *注意*: `===` 和 `!==` (实例检查)不能重载, 所以没有转换方式。
 
-`==`运算符有两点不同:
+The `==` 运算符有点特殊: 它被翻译成一个复杂的表达式，用于筛选`null`值，而且 `null == null` 是 `true`。
 
-* 它被翻译成一个复杂的表达式，用于筛选空值，而且 `null == null` 是真.
-* 它需要带有特定签名的函数，而不仅仅是特定名称的函数，像下面这样：
-
-``` kotlin
-fun equals(other: Any?): Boolean
-```
-
-或者用相同的参数列表和返回类型的扩展函数.
-
-| 标志 | 翻译为 |
+| 符号 | 翻译为 |
 |--------|---------------|
 | `a > b`  | `a.compareTo(b) > 0` |
 | `a < b`  | `a.compareTo(b) < 0` |
@@ -155,5 +144,4 @@ fun equals(other: Any?): Boolean
 
 ## 命名函数的中缀调用
 
-我们可以通过[中缀函数的调用](functions.html#infix-notation).
-来模拟自定义中缀操作符。
+我们可以通过[中缀函数的调用](functions.html#infix-notation) 来模拟自定义中缀操作符。

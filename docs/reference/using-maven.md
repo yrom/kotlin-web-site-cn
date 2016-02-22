@@ -20,6 +20,7 @@ description: "This tutorials walks you through different scenarios when using Ma
 * X.Y.Z：指定 X.Y.Z 值使用对应的稳定版本，这些版本发布在 Maven Central Repository 中，无需在 pom 文件中进行额外的设置。
 
 以下是稳定版本对应的版本号 X.Y.Z 值：
+
 <table>
 <thead>
 <tr>
@@ -130,7 +131,7 @@ Maven 中需要引用 Kotlin 插件用于编码源码：
 <plugin>
     <artifactId>kotlin-maven-plugin</artifactId>
     <groupId>org.jetbrains.kotlin</groupId>
-    <version>0.1-SNAPSHOT</version>
+    <version>${kotlin.version}</version>
 
     <executions>
         <execution>
@@ -155,26 +156,28 @@ OSGi支持查看 [Kotlin OSGi page](kotlin-osgi.html).
 ## 使用外部的注解
 
 
-Kotlin 使用外部注解为 Java 库提供精准的类型信息，通过 &lt;configuration&gt; 标签中的 annotationPaths 指定这些注解。
-
-``` xml
-<plugin>
-    <artifactId>kotlin-maven-plugin</artifactId>
-    <groupId>org.jetbrains.kotlin</groupId>
-    <version>0.1-SNAPSHOT</version>
-
-    <configuration>
-        <annotationPaths>
-            <!--指向注解文件的根目录-->
-            <annotationPath>${project.basedir}/src/main/resources/</annotationPath>
-        </annotationPaths>
-    </configuration>
-
-...
-```
+> ~~Kotlin 使用外部注解为 Java 库提供精准的类型信息，通过 &lt;configuration&gt; 标签中的 annotationPaths 指定这些注解。~~
+> 
+> ``` xml
+> <plugin>
+>     <artifactId>kotlin-maven-plugin</artifactId>
+>     <groupId>org.jetbrains.kotlin</groupId>
+>     <version>0.1-SNAPSHOT</version>
+> 
+>     <configuration>
+>         <annotationPaths>
+>             <!--指向注解文件的根目录-->
+>             <annotationPath>${project.basedir}/src/main/resources/</annotationPath>
+>         </annotationPaths>
+>     </configuration>
+> 
+> ...
+> ```
 
 ## 例子
 
 Maven 工程的例子可从 [Github 直接下载](https://github.com/JetBrains/kotlin-examples/archive/master/maven.zip)
+
+--
 
 翻译 by [DemoJameson](http://www.demojameson.com)

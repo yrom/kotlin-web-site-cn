@@ -198,7 +198,7 @@ fun foo(param: Int) {
 ### 返回类型为 `Unit` 的方法，可以轻松实现类Builder模式的代码风格
 
 ``` kotlin
-fun arrayOfMinusOnes(size: Int) {
+fun arrayOfMinusOnes(size: Int): IntArray {
     return IntArray(size).apply { fill(-1) }
 }
 ```
@@ -226,5 +226,35 @@ fun transform(color: String): Int = when (color) {
     "Green" -> 1
     "Blue" -> 2
     else -> throw IllegalArgumentException("Invalid color param value")
+}
+```
+
+### Calling multiple methods on an object instance ('with')
+
+``` kotlin
+class Turtle {
+    fun penDown()
+    fun penUp()
+    fun turn(degrees: Double)
+    fun forward(pixels: Double)
+}
+
+val myTurtle = Turtle()
+with(myTurtle) { //draw a 100 pix square
+    penDown()
+    for(i in 1..4) {
+        forward(100.0)
+        turn(90.0)
+    }
+    penUp()
+}
+```
+
+### Java 7's try with resources
+
+``` kotlin
+val stream = Files.newInputStream(Paths.get("/some/file.txt"))
+stream.buffered().reader().use { reader ->
+    println(reader.readText())
 }
 ```

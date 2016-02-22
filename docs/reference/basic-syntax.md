@@ -50,7 +50,7 @@ fun printSum(a: Int, b: Int): Unit {
 `Unit` 类型的返回，在函数定义中可以省略:
 
 ``` kotlin
-public fun printSum(a: Int, b: Int) {
+fun printSum(a: Int, b: Int) {
   print(a + b)
 }
 ```
@@ -65,7 +65,7 @@ public fun printSum(a: Int, b: Int) {
 val a: Int = 1
 val b = 1  // `Int` 类型自动推断
 val c: Int // 如果没有初始值，声明常量时，常量的类型不能省略
-c = 1 // 明确赋值
+c = 1      // 明确赋值
 ```
 
 变量（使用 `var` 关键字声明）:
@@ -81,7 +81,7 @@ x += 1
 
 ``` kotlin
 fun main(args: Array<String>) {
-  if (args.size() == 0) return
+  if (args.size == 0) return
 
   print("First argument: ${args[0]}")
 }
@@ -125,7 +125,7 @@ fun parseInt(str: String): Int? {
 
 ``` kotlin
 fun main(args: Array<String>) {
-  if (args.size() < 2) {
+  if (args.size < 2) {
     print("Two integers expected")
     return
   }
@@ -226,7 +226,7 @@ for (i in args.indices)
 ``` kotlin
 fun main(args: Array<String>) {
   var i = 0
-  while (i < args.size())
+  while (i < args.size)
     print(args[i++])
 }
 ```
@@ -290,10 +290,14 @@ if (text in names) // 自动调用 names.contains(text)
   print("Yes")
 ```
 
-使用字面量函数(方便的高阶函数)来过滤(filter)和变换(map)集合：
+使用 lambda 表达式来过滤(filter)和变换(map)集合：
 
 ``` kotlin
-names.filter { it.startsWith("A") }.sortBy { it }.map { it.toUpperCase() }.forEach { print(it) }
+names
+    .filter { it.startsWith("A") }
+    .sortedBy { it }
+    .map { it.toUpperCase() }
+    .forEach { print(it) }
 ```
 
 参阅 [高阶函数及Lambda表达式](lambdas.html).

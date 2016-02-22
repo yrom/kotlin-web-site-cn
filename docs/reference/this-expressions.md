@@ -10,8 +10,8 @@ title: "This expressions"
 为了记录下当前的接受者我们使用*this*{: .keyword }表达式:
 
 * 在一个[类](classes.html#inheritance)成员中, *this*{: .keyword }指的是当前类对象。
-* 在一个[扩展函数](extensions.html)或者[扩展字面函数](lambdas.html#function-literals),
-*this*{: .keyword }表示左边的接受者.
+* 在一个[扩展函数](extensions.html)或者[带有接收者字面函数](lambdas.html#function-literals-with-receiver),
+*this*{: .keyword }表示左边的接收者.
 
 如果 *this*{: .keyword } 没有应用者，则指向的是最内层的闭合范围。为了在其它范围中返回 this ，需要使用标签：
 
@@ -19,7 +19,8 @@ title: "This expressions"
 {:#qualified}
 
 为了在范围外部访问*this*{: .keyword }(一个[类](classes.html), 或者[扩展函数](extensions.html),
-或者带标签的[扩展字面函数](lambdas.html#function-literals) 我们使用`this@label`作为[label](returns.html)：
+或者带标签的[带接收者的字面函数](lambdas.html#function-literals-with-receiver) 我们使用`this@label`作为[label](returns.html)：
+on the scope *this*{: .keyword } is meant to be from:
 
 ``` kotlin
 class A { // implicit label @A
@@ -38,7 +39,7 @@ class A { // implicit label @A
 
 
       val funLit2 = { (s: String) ->
-        // foo()'s receiver, since enclosing function literal 
+        // foo()'s receiver, since enclosing lambda expression
         // doesn't have any receiver
         val d1 = this 
       }

@@ -3,19 +3,19 @@
 main:
   docs:
     url: /docs/reference/
-    title: Ñ§Ï°
+    title: å­¦ä¹ 
 
   contribute:
     url: /contribute.html
-    title: ¹±Ï×
+    title: è´¡çŒ®
 
   try:
     url: http://try.kotlinlang.org
-    title: ÔÚÏß³¢ÊÔ
+    title: åœ¨çº¿å°è¯•
 
   download:
     url: /#get-kotlin
-    title: ÏÂÔØ
+    title: ä¸‹è½½
     show: false
 
 
@@ -24,142 +24,142 @@ main:
 docs:
   reference:
     url: /docs/reference/
-    title: ²Î¿¼
+    title: å‚è€ƒ
 
   tutorials:
     url: /docs/tutorials/
-    title: ½Ì³Ì
+    title: æ•™ç¨‹
 
   videos:
     url: /docs/videos.html
-    title: ÊÓÆµ
+    title: è§†é¢‘
 
   events:
     url: /docs/events.html
-    title: ÊÂ¼ş¼Ç
+    title: äº‹ä»¶è®°
 
   resources:
     url: /docs/resources.html
-    title: ¸ü¶à×ÊÔ´
+    title: æ›´å¤šèµ„æº
 
 
 # Reference navigation
 # ====================
 reference:
-  - title: ¿ªÊ¼
-    description: ¿ªÊ¼ÊìÏ¤Kotlin°üÀ¨²Ù×÷·û,±àÂëÏ°¹ßºÍÏ°¹ßÓÃ·¨
+  - title: å¼€å§‹
+    description: å¼€å§‹ç†Ÿæ‚‰KotlinåŒ…æ‹¬æ“ä½œç¬¦,ç¼–ç ä¹ æƒ¯å’Œä¹ æƒ¯ç”¨æ³•
     content:
-      - /docs/reference/basic-syntax.html: »ù´¡Óï·¨
-      - /docs/reference/idioms.html: Ï°¹ßÓÃ·¨
-      - /docs/reference/coding-conventions.html: ±àÂëÏ°¹ß
+      - /docs/reference/basic-syntax.html: åŸºç¡€è¯­æ³•
+      - /docs/reference/idioms.html: ä¹ æƒ¯ç”¨æ³•
+      - /docs/reference/coding-conventions.html: ç¼–ç ä¹ æƒ¯
 
-  - title: »ù´¡
-    description: »ù´¡ÄÚÈİ
+  - title: åŸºç¡€
+    description: åŸºç¡€å†…å®¹
     content:
-      - /docs/reference/basic-types.html: »ù±¾ÀàĞÍ
-      - /docs/reference/packages.html: °ü
-      - /docs/reference/control-flow.html: ¿ØÖÆÁ÷
-      - /docs/reference/returns.html: ·µ»ØºÍÌø×ª
+      - /docs/reference/basic-types.html: åŸºæœ¬ç±»å‹
+      - /docs/reference/packages.html: åŒ…
+      - /docs/reference/control-flow.html: æ§åˆ¶æµ
+      - /docs/reference/returns.html: è¿”å›å’Œè·³è½¬
 
-  - title: ÀàºÍ¶ÔÏó
-    description: ¹ØÓÚ¶ÔÏó
+  - title: ç±»å’Œå¯¹è±¡
+    description: å…³äºå¯¹è±¡
     content:
-      - /docs/reference/classes.html: ÀàºÍ¼Ì³Ğ
-      - /docs/reference/properties.html: ÊôĞÔºÍ×Ö¶Î
-      - /docs/reference/interfaces.html: ½Ó¿Ú
-      - /docs/reference/visibility-modifiers.html: ¿É¼ûĞÔĞŞÊÎ·û
-      - /docs/reference/extensions.html: À©Õ¹
-      - /docs/reference/data-classes.html: Êı¾İÀà
-      - /docs/reference/generics.html: ·ºĞÍ
-      - /docs/reference/nested-classes.html: Ç¶Ì×Àà
-      - /docs/reference/enum-classes.html: Ã¶¾ÙÀà
-      - /docs/reference/object-declarations.html: ¶ÔÏó
-      - /docs/reference/delegation.html: Î¯ÍĞ
-      - /docs/reference/delegated-properties.html: Î¯ÍĞÊôĞÔ
+      - /docs/reference/classes.html: ç±»å’Œç»§æ‰¿
+      - /docs/reference/properties.html: å±æ€§å’Œå­—æ®µ
+      - /docs/reference/interfaces.html: æ¥å£
+      - /docs/reference/visibility-modifiers.html: å¯è§æ€§ä¿®é¥°ç¬¦
+      - /docs/reference/extensions.html: æ‰©å±•
+      - /docs/reference/data-classes.html: æ•°æ®ç±»
+      - /docs/reference/generics.html: æ³›å‹
+      - /docs/reference/nested-classes.html: åµŒå¥—ç±»
+      - /docs/reference/enum-classes.html: æšä¸¾ç±»
+      - /docs/reference/object-declarations.html: å¯¹è±¡
+      - /docs/reference/delegation.html: å§”æ‰˜
+      - /docs/reference/delegated-properties.html: å§”æ‰˜å±æ€§
 
-  - title: º¯ÊıºÍLambad±í´ïÊ½
-    description: ¹ØÓÚº¯Êı
+  - title: å‡½æ•°å’ŒLambadè¡¨è¾¾å¼
+    description: å…³äºå‡½æ•°
     content:
-      - /docs/reference/functions.html: º¯Êı
-      - /docs/reference/lambdas.html: Lambdas±í´ïÊ½
-      - /docs/reference/inline-functions.html: ÄÚÁªº¯Êı
+      - /docs/reference/functions.html: å‡½æ•°
+      - /docs/reference/lambdas.html: Lambdasè¡¨è¾¾å¼
+      - /docs/reference/inline-functions.html: å†…è”å‡½æ•°
 
-  - title: ÆäËû
-    description: ¸÷ÖÖÖªÊ¶µã
+  - title: å…¶ä»–
+    description: å„ç§çŸ¥è¯†ç‚¹
     content:
-      - /docs/reference/multi-declarations.html: ¶àÖØÉùÃ÷
-      - /docs/reference/ranges.html: ·¶Î§
-      - /docs/reference/typecasts.html: ÀàĞÍ¼ì²éÓë×ª»»
-      - /docs/reference/this-expressions.html: This±í´ïÊ½
-      - /docs/reference/equality.html: µÈÊ½
-      - /docs/reference/operator-overloading.html: ²Ù×÷·ûÖØÔØ
-      - /docs/reference/null-safety.html: Null °²È«ĞÔ
-      - /docs/reference/exceptions.html: Òì³£
-      - /docs/reference/annotations.html: ×¢½â
-      - /docs/reference/reflection.html: ·´Éä
-      - /docs/reference/type-safe-builders.html: ÀàĞÍ°²È«µÄ¹¹½¨Æ÷
-      - /docs/reference/dynamic-type.html: ¶¯Ì¬ÀàĞÍ
+      - /docs/reference/multi-declarations.html: è§£æ„å£°æ˜
+      - /docs/reference/ranges.html: èŒƒå›´
+      - /docs/reference/typecasts.html: ç±»å‹æ£€æŸ¥ä¸è½¬æ¢
+      - /docs/reference/this-expressions.html: Thisè¡¨è¾¾å¼
+      - /docs/reference/equality.html: ç­‰å¼
+      - /docs/reference/operator-overloading.html: æ“ä½œç¬¦é‡è½½
+      - /docs/reference/null-safety.html: Null å®‰å…¨æ€§
+      - /docs/reference/exceptions.html: å¼‚å¸¸
+      - /docs/reference/annotations.html: æ³¨è§£
+      - /docs/reference/reflection.html: åå°„
+      - /docs/reference/type-safe-builders.html: ç±»å‹å®‰å…¨çš„æ„å»ºå™¨
+      - /docs/reference/dynamic-type.html: åŠ¨æ€ç±»å‹
 
 
 
-  - title: ²Î¿¼
-    description: APIºÍÓï·¨
+  - title: å‚è€ƒ
+    description: APIå’Œè¯­æ³•
     content:
-      - /api/latest/jvm/stdlib/index.html: API²Î¿¼
-      - /docs/reference/grammar.html: Óï·¨
+      - /api/latest/jvm/stdlib/index.html: APIå‚è€ƒ
+      - /docs/reference/grammar.html: è¯­æ³•
 
 
-  - title: »¥²Ù×÷
-    description: KotlinºÍJava»¹ÓĞJavaScript»¥²Ù×÷Ê±ºòÄãĞèÒªÖªµÀµÄ¡£
+  - title: äº’æ“ä½œ
+    description: Kotlinå’ŒJavaè¿˜æœ‰JavaScriptäº’æ“ä½œæ—¶å€™ä½ éœ€è¦çŸ¥é“çš„ã€‚
     content:
-      - /docs/reference/java-interop.html: Java»¥²Ù×÷
+      - /docs/reference/java-interop.html: Kotlin è°ƒç”¨ Java
+      - /docs/reference/java-to-kotlin-interop.html: Java è°ƒç”¨ Kotlin
 
-  - title: ¹¤¾ß
+  - title: å·¥å…·
     description:
     content:
 #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
-      - /docs/reference/kotlin-doc.html: Éú³Ékotlin´úÂëÎÄµµ
-      - /docs/reference/using-maven.html: Ê¹ÓÃ Maven
-      - /docs/reference/using-ant.html: Ê¹ÓÃ Ant
-      - /docs/reference/using-griffon.html: Ê¹ÓÃ Griffon
-      - /docs/reference/using-gradle.html: Ê¹ÓÃ Gradle
-      - /docs/reference/kotlin-osgi.html: Kotlin ºÍ OSGi
+      - /docs/reference/kotlin-doc.html: ç”Ÿæˆkotlinä»£ç æ–‡æ¡£
+      - /docs/reference/using-maven.html: ä½¿ç”¨ Maven
+      - /docs/reference/using-ant.html: ä½¿ç”¨ Ant
+      - /docs/reference/using-gradle.html: ä½¿ç”¨ Gradle
+      - /docs/reference/kotlin-osgi.html: Kotlin å’Œ OSGi
 
-  - title: ³£¼ûÎÊÌâ
-    description: ÄãÏëµ½µÄÎÊÌâ¿ÉÄÜ»áÔÚÕâÀïµÃµ½½â´ğ.
+  - title: å¸¸è§é—®é¢˜
+    description: ä½ æƒ³åˆ°çš„é—®é¢˜å¯èƒ½ä¼šåœ¨è¿™é‡Œå¾—åˆ°è§£ç­”.
     content:
-      - /docs/reference/faq.html: ³£¼ûÎÊÌâ
-      - /docs/reference/comparison-to-java.html: ÓëJava±È½Ï
-      - /docs/reference/comparison-to-scala.html: ÓëScala±È½Ï
+      - /docs/reference/faq.html: å¸¸è§é—®é¢˜
+      - /docs/reference/comparison-to-java.html: ä¸Javaæ¯”è¾ƒ
+      - /docs/reference/comparison-to-scala.html: ä¸Scalaæ¯”è¾ƒ
 
 
 
 # Tutorials navigation
 # ====================
 tutorials:
-  - title: ¿ªÊ¼
+  - title: å¼€å§‹
     content:
-      - /docs/tutorials/getting-started.html: ´ÓIntelliJ IDEA¿ªÊ¼
-      - /docs/tutorials/getting-started-eclipse.html: ´ÓEclipse¿ªÊ¼
-      - /docs/tutorials/command-line.html: Ê¹ÓÃÃüÁîĞĞ
-      - /docs/tutorials/build-tools.html: Ê¹ÓÃ¹¹½¨¹¤¾ß
+      - /docs/tutorials/getting-started.html: ä»IntelliJ IDEAå¼€å§‹
+      - /docs/tutorials/getting-started-eclipse.html: ä»Eclipseå¼€å§‹
+      - /docs/tutorials/command-line.html: ä½¿ç”¨å‘½ä»¤è¡Œ
+      - /docs/tutorials/build-tools.html: ä½¿ç”¨æ„å»ºå·¥å…·
       - /docs/tutorials/koans.html: Koans
   - title: JavaScript
     content:
-      - /docs/tutorials/create-library-js.html: Ê¹ÓÃIntelliJ IDEA´´½¨Kotlin/JavaScript¿â
-      - /docs/tutorials/command-line-library-js.html: Ê¹ÓÃÃüÁîĞĞ±àÒëÆ÷´´½¨Kotlin/JavaScript¿â
-  - title: »ìºÏ¿ª·¢
+      - /docs/tutorials/create-library-js.html: ä½¿ç”¨IntelliJ IDEAåˆ›å»ºKotlin/JavaScriptåº“
+      - /docs/tutorials/command-line-library-js.html: ä½¿ç”¨å‘½ä»¤è¡Œç¼–è¯‘å™¨åˆ›å»ºKotlin/JavaScriptåº“
+  - title: æ··åˆå¼€å‘
     content:
-      - /docs/tutorials/mixing-java-kotlin-intellij.html: ÏîÄ¿ÖĞ»ìºÏÊ¹ÓÃJavaÓëKotlin
-  - title: Web¿ª·¢
+      - /docs/tutorials/mixing-java-kotlin-intellij.html: é¡¹ç›®ä¸­æ··åˆä½¿ç”¨Javaä¸Kotlin
+  - title: Webå¼€å‘
     content:
-      - /docs/tutorials/httpservlets.html: ´´½¨Http Servlets web³ÌĞò
-      - /docs/tutorials/spring-boot-restful.html: Spring Boot´´½¨RESTful Web·şÎñ
+      - /docs/tutorials/httpservlets.html: åˆ›å»ºHttp Servlets webç¨‹åº
+      - /docs/tutorials/spring-boot-restful.html: Spring Bootåˆ›å»ºRESTful WebæœåŠ¡
 
-  - title: ÒÆ¶¯¿ª·¢
+  - title: ç§»åŠ¨å¼€å‘
     content:
-      - /docs/tutorials/kotlin-android.html: Android¿ª·¢ÈëÃÅ
-      - /docs/tutorials/android-plugin.html: Kotlin Android À©Õ¹
+      - /docs/tutorials/kotlin-android.html: Androidå¼€å‘å…¥é—¨
+      - /docs/tutorials/android-plugin.html: Kotlin Android æ‰©å±•
   - title: Tools
     content:
-      - /docs/tutorials/kotlin-and-ci.html: TeamCityÅäÖÃKotlin
+      - /docs/tutorials/kotlin-and-ci.html: TeamCityé…ç½®Kotlin

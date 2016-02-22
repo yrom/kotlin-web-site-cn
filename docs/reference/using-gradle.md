@@ -45,13 +45,14 @@ title: "使用 Gradle"
 apply plugin: "kotlin"
 ```
 
-在M11版本, Kotlin源文件和Java源文件可以在同一个文件夹中存在, 也可以在不同文件夹中. 默认采用的是不同的文件夹:
+Kotlin源文件和Java源文件可以在同一个文件夹中存在, 也可以在不同文件夹中. 默认采用的是不同的文件夹:
 
 ``` groovy
 project
-    - main (root)
-        - kotlin
-        - java
+    - src
+        - main (root)
+            - kotlin
+            - java
 ```
 
 如果不想使用默认选项，你需要更新对应的 *sourceSets* 属性
@@ -177,16 +178,11 @@ dependencies {
 ```
 
 
-## 使用外部注释
-
-JDK和Android SDK的外部注释将自动配置. 如果想要为一些库添加更多的注解，需要在Gradle脚本中添加下面这一行:
-
-``` groovy
-
-kotlinOptions.annotations = file('<path to annotations>')
-```
-
-
+> ~~## 使用外部注释~~
+> 
+> JDK和Android SDK的外部注释将自动配置. 如果想要为一些库添加更多的注解，需要在Gradle脚本中添加下面这一行:
+> 
+> 
 ## OSGi
 
 OSGi 支持查看 [Kotlin OSGi page](kotlin-osgi.html).
@@ -199,5 +195,7 @@ OSGi 支持查看 [Kotlin OSGi page](kotlin-osgi.html).
 * [Mixed Java and Kotlin](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/mixed-java-kotlin-hello-world)
 * [Android](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-mixed-java-kotlin-project)
 * [JavaScript](https://github.com/JetBrains/kotlin/tree/master/libraries/tools/kotlin-gradle-plugin/src/test/resources/testProject/kotlin2JsProject)
+
+--
 
 翻译By [ChiahaoLu](https://github.com/chiahaolu)

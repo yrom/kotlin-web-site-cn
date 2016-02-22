@@ -17,8 +17,6 @@ JavaEE的HttpServlet可以使用Kotlin，就像使用其他的Java库或者框�
 ``` groovy
 dependencies {
     compile group: 'javax', name: 'javaee-api', version: '7.0'
-
-    testCompile group: 'junit', name: 'junit', version: '4.11'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 ```

@@ -2,14 +2,13 @@
 type: doc
 layout: reference
 category: "Interop"
-title: "Java Interop"
+title: "Calling Java from Kotlin"
 ---
 
-# Java交互
+# 在Kotlin中调用Java代码
 
-Kotlin 在设计时就是以与 java 交互为中心的。现存的 Java 代码可以在 kotlin 中使用，并且 Kotlin 代码也可以在 Java 中流畅运行。这节我们会讨论在 kotlin 中调用 Java 代码的细节。
-
-## 在Kotlin中调用Java代码
+Kotlin 在设计时就是以与 java 交互为中心的。现存的 Java 代码可以在 kotlin 中使用，并且 Kotlin 代码也可以
+在 Java 中流畅运行。这节我们会讨论在 kotlin 中调用 Java 代码的细节。
 
 基本所有的 Java 代码都可以运行
 
@@ -27,12 +26,31 @@ fun demo(source: List<Int>) {
 }
 ```
 
-### 返回void的方法
+## Getters and Setters
+
+Methods that follow the Java conventions for getters and setters (no-argument methods with names starting with `get`
+and single-argument methods with names starting with `set`) are represented as properties in Kotlin. For example:
+
+``` kotlin
+import java.util.Calendar
+
+fun calendarDemo() {
+    val calendar = Calendar.getInstance()
+    if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // call getFirstDayOfWeek()
+        calendar.firstDayOfWeek = Calendar.MONDAY       // call setFirstDayOfWeek()
+    }
+}
+```
+
+Note that, if the Java class only has a setter, it will not be visible as a property in Kotlin, because Kotlin does not support set-only properties at this time.
+
+## 返回void的方法
 
 如果一个Java方法返回void，那么在Kotlin中，它会返回`Unit`。
-万一有人使用它的返回值，Kotlin的编译器会在调用的地方赋值，因为这个值本身已经提前可以预知了(这个值就是`Unit`)。
+万一有人使用它的返回值，Kotlin的编译器会在调用的地方赋值，
+因为这个值本身已经提前可以预知了(这个值就是`Unit`)。
 
-### 将Java代码中与Kotlin关键字冲突的标识符进行转义
+## 将Java代码中与Kotlin关键字冲突的标识符进行转义
 
 一些Kotlin的关键字在Java中是合法的标识符: *in*{: .keyword }, *object*{: .keyword }, *is*{: .keyword }, 等等.
 如果一个Java库在方法中使用了Kotlin关键字,你仍然可以使用这个方法
@@ -42,9 +60,11 @@ fun demo(source: List<Int>) {
 foo.`is`(bar)
 ```
 
-### Null安全性和平台类型
+## Null安全性和平台类型
 
-Java中的所有引用都可能是*null*{: .keyword }值，这使得Kotlin严格的null控制对来自Java的对象来说变得不切实际。在Kotlin中Java声明类型被特别对待叫做*platform types*.这种类型的Null检查是不严格的，所以他们还维持着同Java中一样的安全性。
+Java中的所有引用都可能是*null*{: .keyword }值，这使得Kotlin严格的null控制对来自Java的对象来说变得不切实际。
+在Kotlin中Java声明类型被特别对待叫做*platform types*.这种类型的Null检查是不严格的，
+所以他们还维持着同Java中一样的安全性 (更多参见[下面](#mapped-types))。
 
 考虑如下例子:
 
@@ -52,34 +72,48 @@ Java中的所有引用都可能是*null*{: .keyword }值，这使得Kotlin严格
 val list = ArrayList<String>() // non-null (constructor result)
 list.add("Item")
 val size = list.size() // non-null (primitive int)
-val item = list.get(0) // platform type inferred (ordinary Java object)
+val item = list[0] // platform type inferred (ordinary Java object)
 ```
 
-当我们调用平台类型的变量上的方法时，kotlin不会在编译阶段报出可能为空的错误，但在运行时，会产生空指针异常，或者是断言失败的错误。后者是因为kotlin为了阻止null值传播会生成非空断言语句。
+当我们调用平台类型的变量上的方法时，Kotlin不会在编译阶段报出可能为空的错误，
+但在运行时，会产生空指针异常，或者是断言失败的错误。后者是因为kotlin为了阻止null值传播会生成非空断言语句。
 
 ``` kotlin
 item.substring(1) // 允许, 如果item为空会抛异常
 ```
 
 平台类型是*不可转义*的，也就是说我们不能在程序里把他们写出来。
-当把一个平台数值赋值给kotlin变量的时候（变量会有一个推断出来的平台类型，上面的例子里就是`item`的类型），我们可以用类型推断，或者指定我们期望的类型（nullable和non-null类型都可以）：
+当把一个平台数值赋值给kotlin变量的时候（变量会有一个推断出来的平台类型，
+上面的例子里就是`item`的类型），我们可以用类型推断，或者指定我们期望的类型（nullable和non-null类型都可以）：
 
 ``` kotlin
 val nullable: String? = item // 允许，没有问题
 val notNull: String = item // 允许，运行时可能失败
 ```
 
-如果我们指定了一个非空类型，编译器会在赋值前额外生成一个断言。这样kotlin的非空变量就不会有空值。当把平台数值传递给只接受非空数值的kolin函数的时候，也同样会生成这个断言，编译器尽可能的阻止空置在程序里传播。（因为泛型的存在，有时也不能百分百的阻止）
+如果我们指定了一个非空类型，编译器会在赋值前额外生成一个断言。这样Kotlin的非空变量就不会有
+空值。当把平台数值传递给只接受非空数值的kolin函数的时候，也同样会生成这个断言，
+编译器尽可能的阻止空置在程序里传播。（因为泛型的存在，
+有时也不能百分百的阻止）
 
 ### 平台类型的概念
 
-如上所述，平台类型不能再程序里显式的出现，所以没有针对他们的语法。然而，编译器和IDE有时需要显式他们(如在错误信息，参数信息中)，所以我们用一个好记的标记来表示他们：
+如上所述，平台类型不能再程序里显式的出现，
+所以没有针对他们的语法。
+然而，编译器和IDE有时需要显式他们(如在错误信息，参数信息中)，所以我们用
+一个好记的标记来表示他们：
 
 * `T!` 表示 "`T` 或者 `T?`"
 * `(Mutable)Collection<T>!` 表示 "`T`的java集合，可变的或不可变的，可空的或非空的"
 * `Array<(out) T>!` 表示 "`T`(或`T`的子类)的java数组，可空的或非空的"
 
-### 映射类型
+### Nullability annotations
+
+Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
+Kotlin types. Currently, the compiler supports the [JetBrains flavor of the nullability annotations](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
+(`@Nullable` and `@NotNull` from the `org.jetbrains.annotations` package).
+
+## 映射类型
 
 Kotlin特殊处理一部分java类型。这些类型不是通过as或is来直接转换，而是_映射_到了指定的kotlin类型上。
 映射只发生在编译期间，运行时仍然是原来的类型。
@@ -106,7 +140,7 @@ java的原生类型映射成如下kotlin类型（记得 [平台类型](#platform
 | `java.lang.Comparable`   | `kotlin.Comparable!`    |
 | `java.lang.Enum`         | `kotlin.Enum!`    |
 | `java.lang.Annotation`   | `kotlin.Annotation!`    |
-| `java.lang.Deprecated`   | `kotlin.deprecated!`    |
+| `java.lang.Deprecated`   | `kotlin.Deprecated!`    |
 | `java.lang.Void`         | `kotlin.Nothing!`    |
 | `java.lang.CharSequence` | `kotlin.CharSequence!`   |
 | `java.lang.String`       | `kotlin.String!`   |
@@ -114,8 +148,8 @@ java的原生类型映射成如下kotlin类型（记得 [平台类型](#platform
 | `java.lang.Throwable`    | `kotlin.Throwable!`    |
 {:.zebra}
 
-集合类型在kotlin里可以是只读的或可变的，因此java集合类型作如下映射：
-（下表所有的kotlin类型都在`kotlin`包里）
+集合类型在Kotlin里可以是只读的或可变的，因此Java集合类型作如下映射：
+（下表所有的Kotlin类型都在`Kotlin`包里）
 
 | **Java类型** | **Kotlin只读类型**  | **Kotlin可变类型** | **加载的平台类型** |
 |---------------|------------------|----|----|
@@ -138,7 +172,7 @@ Java数组的映射在这里提到过 [below](java-interop.html#java-arrays)：
 {:.zebra}
 
 
-### Kotlin中的Java泛型
+## Kotlin中的Java泛型
 
 Kotlin的泛型和Java的有些不同（详见 [Generics](generics.html)）。当引入java类型的时候，我们作如下转换：
 
@@ -150,9 +184,13 @@ Kotlin的泛型和Java的有些不同（详见 [Generics](generics.html)）。�
   * `List` 转换成 `List<*>!`, 也就是 `List<out Any?>!`
 
 和Java一样，Kotlin在运行时不保留泛型，即对象不知道传递到他们构造器中的那些参数的的实际类型。
-也就是说，运行时无法区分`ArrayList<Integer>()` 和 `ArrayList<Character>()`.
+~~Kotlin的范型就像Java一样不会在运行时保留信息，也就是对象不会携带传递到它们构造函数中的类型参数的信息。~~
+~~也就是说，运行时无法区分`ArrayList<Integer>()` 和 `ArrayList<Character>()`.~~
+也就是，`ArrayList<Integer>()` 和 `ArrayList<Character>()` 是区分不出来的。
 这意味着，不可能用 *is*{: .keyword }-来检测泛型。
+~~这就导致，无法使用*is*{: .keyword }-检测范型。~~
 Kotlin只允许用*is*{: .keyword }-来检测星号投射的泛型类型:
+~~Kotlin只允许用*is*{: .keyword }-检测星号投射的范型类型。~~
 
 ``` kotlin
 if (a is List<Int>) // 错误: 不能检测是否是一个Int的List
@@ -160,20 +198,17 @@ if (a is List<Int>) // 错误: 不能检测是否是一个Int的List
 if (a is List<*>) // 可以：不保证list里面的内容类型
 ```
 
-Kotlin的范型就像Java一样不会在运行时保留信息，也就是对象不会携带传递到它们构造函数中的类型参数的信息。
-也就是，`ArrayList<Integer>()` 和 `ArrayList<Character>()` 是区分不出来的。
-这就导致，无法使用*is*{: .keyword }-检测范型。
-Kotlin只允许用*is*{: .keyword }-检测星号投射的范型类型。
-
-``` kotlin
-if (a is List<Int>) // 错误: 无法检测是否是一个Int的List
-// but
-if (a is List<*>) // 可以: 不确保List里的内容
-```
+> ~~ ~~
+> ``` kotlin
+> if (a is List<Int>) // 错误: 无法检测是否是一个Int的List
+> // but
+> if (a is List<*>) // 可以: 不确保List里的内容
+> ```
 
 ### Java数组
 
-和Java不同，Kotlin里的数组不是协变的。Kotlin不允许我们把`Array<String>` 赋值给 `Array<Any>`，从而避免了可能的运行时错误。Kotlin也禁止我们把一个子类的数组当做父类的数组传递进Kotlin的方法里。
+和Java不同，Kotlin里的数组不是协变的。Kotlin不允许我们把`Array<String>` 赋值给 `Array<Any>`，
+从而避免了可能的运行时错误。Kotlin也禁止我们把一个子类的数组当做父类的数组传递进Kotlin的方法里。
 但是对Java方法，这是允许的（考虑这种形式的平台类型[platform types](#platform-types) `Array<(out) String>!`）。
 
 Java平台上，原生数据类型的数组被用来避免封箱/开箱的操作开销。
@@ -196,30 +231,9 @@ public class JavaArrayExample {
 
 ``` kotlin
 val javaObj = JavaArrayExample()
-val array = intArray(0, 1, 2, 3)
+val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndices(array)  // passes int[] to method
 ```
-
-Java类也会这样声明方法，表示参数是可变参数。
-
-``` java
-public class JavaArrayExample {
-
-    public void removeIndices(int... indices) {
-        // code here...
-    }
-}
-```
-
-这种情况，你需要用展开操作符 `*` 来传递 `IntArray`：
-
-``` kotlin
-val javaObj = JavaArray()
-val array = intArray(0, 1, 2, 3)
-javaObj.removeIndicesVarArg(*array)
-```
-
-目前无法传递 *null*{: .keyword } 给一个变参的方法。
 
 当编译成jvm字节码的时候，编译器会优化对数组的访问，确保不会产生额外的负担。
 
@@ -245,7 +259,37 @@ if (i in array.indices) { // 和 (i >= 0 && i < array.size) 一样
 }
 ```
 
-### 受检异常
+## Java Varargs
+
+Java类也会这样声明方法，表示参数是可变参数。
+
+``` java
+public class JavaArrayExample {
+
+    public void removeIndices(int... indices) {
+        // code here...
+    }
+}
+```
+
+这种情况，你需要用展开操作符 `*` 来传递 `IntArray`：
+
+``` kotlin
+val javaObj = JavaArray()
+val array = intArrayOf(0, 1, 2, 3)
+javaObj.removeIndicesVarArg(*array)
+```
+
+目前无法传递 *null*{: .keyword } 给一个变参的方法。
+
+## Operators
+
+Since Java has no way of marking methods for which it makes sense to use the operator syntax, Kotlin allows using any
+Java methods with the right name and signature as operator overloads and other conventions (`invoke()` etc.)
+Calling Java methods using the infix call syntax is not allowed.
+
+
+## 受检异常
 
 在Kotlin里，所有的异常都是非受检的, 也就是说，编译器不会强制你去捕捉任何异常。
 因此，你调用一个声明了异常的java方法的时候，kotlin不会强制你作处理。
@@ -257,12 +301,13 @@ fun render(list: List<*>, to: Appendable) {
 }
 ```
 
-### 对象方法
+## 对象方法
 
 当java类型被引入到kotlin里时，所有的`java.lang.Object`类型引用，会被转换成 `Any`。
-因为`Any`不是平台独有的，它仅声明了三个成员方法：`toString()`, `hashCode()` 和 `equals()`，所以为了能用到`java.lang.Object`的其他方法，kotlin采用了[扩展函数](extensions.html)。
+因为`Any`不是平台独有的，它仅声明了三个成员方法：`toString()`, `hashCode()` 和 `equals()`，
+所以为了能用到`java.lang.Object`的其他方法，kotlin采用了[扩展函数](extensions.html)。
 
-#### wait()/notify()
+### wait()/notify()
 
 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html) 第69条善意的提醒了要用concurrency类而不是`wait()` 和 `notify()`。
 因此，`Any`不提供这两个方法。
@@ -272,7 +317,7 @@ fun render(list: List<*>, to: Appendable) {
 (foo as java.lang.Object).wait()
 ```
 
-#### getClass()
+### getClass()
 
 获取一个对象的类型信息，我们可以用javaClass这个扩展属性。
 
@@ -282,11 +327,12 @@ val fooClass = foo.javaClass
 
 用javaClass<Foo>()，而不是java里的写法`Foo.class`。
 
+
 ``` kotlin
 val fooClass = javaClass<Foo>()
 ```
 
-#### clone()
+### clone()
 
 要重写`clone()`，扩展`kotlin.Cloneable`：
 
@@ -299,7 +345,7 @@ class Example : Cloneable {
 
 不要忘了 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html),第11条: *谨慎的重写克隆*。
 
-#### finalize()
+### finalize()
 
 要重载 `finalize()`, 你要做的仅仅是声明它，不需要 *override*{:.keyword} 关键字：
 
@@ -313,7 +359,8 @@ class C {
 
 根据java的规则， `finalize()`不能为 *private*{: .keyword }。
 
-### java类的继承
+## java类的继承
+
 在kotlin里，超类里最多只能有一个java类(java接口数目不限)。这个java类必须放在超类列表的最前面。
 
 ### 访问静态成员
@@ -327,20 +374,18 @@ if (Character.isLetter(a)) {
 }
 ```
 
-### Java 反射
+## Java 反射
 
-Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 `instance.javaClass` 或者 `javaClass<ClassName>()` 开始基于 `java.lang.Class` 的java反射操作。你也可以通过调用 `.kotlin` 使用kotlin的反射。
+Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 `instance.javaClass` 或者 
+`ClassName::class.java` 开始基于 `java.lang.Class` 的java反射操作。
+ 
+Other supported cases include acquiring a Java getter/setter method or a backing field for a Kotlin property, a `KProperty` for a Java field, a Java method or constructor for a `KFunction` and vice versa.
 
-``` kotlin 
-val kClass = x.javaClass.kotlin  
-```
+## SAM(单抽象方法) 转换
 
-类似的，你可以把kotlin反射转换成java反射： `ClassName::class.java` 和 `javaClass<ClassName>()`都可以。
-其他支持的情况包括 获取一个java的getter/setter方法，一个kotlin属性的 backing field，Java类获取`KPackage`实例，java字段获取`KProperty`.（注：指通过getDeclaredField等方法像读取java字段一样读取`KProperty`）
-
-### SAM(单抽象方法) 转换
-
-就像java8那样，kotlin支持SAM转换，这意味着kotlin函数字面量可以被自动的转换成只有一个非默认方法的java接口的实现，只要这个方法的参数类型能够跟这个kotlin函数的参数类型匹配的上。
+就像 Java 8 那样，Kotlin 支持 SAM 转换，这意味着 Kotlin 函数字面量可以被自动的转换成
+只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型
+能够跟这个 Kotlin 函数的参数类型匹配的上。
 
 你可以这样创建SAM接口的实例：
 
@@ -356,196 +401,15 @@ val executor = ThreadPoolExecutor()
 executor.execute { println("This runs in a thread pool") }
 ```
 
-如果java类有多个接受函数接口的方法，你可以用一个适配函数来把闭包转成你需要的SAM类型。编译器也会在必要时生成这些适配函数。
+如果 Java 类有多个接受函数接口的方法，你可以用一个
+适配函数来把闭包转成你需要的 SAM 类型。编译器也会在必要时生成这些适配函数。
 
 ``` kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })
 ```
 
-注意SAM的转换只对接口有效，对抽象类无效，即使它们就只有一个抽象方法。
+注意SAM的转换只对接口有效，对抽象类无效，即使它们就只有一个
+抽象方法。
 
-还要注意这个特性只针对和java的互操作；因为kotlin有合适的函数类型，把函数自动转换成kotlin接口的实现是没有必要的，也就没有支持了。
-
-## Java调用Kotlin代码
-
-Java可以轻松调用Kotlin代码。
-
-### 包级别的函数
-
-`org.foo.bar`包里声明的所有的函数和属性，都会被放到一个叫`org.foo.bar.BarPackage`的java类里。
-
-``` kotlin
-package demo
-
-class Foo
-
-fun bar() {
-}
-
-```
-
-``` java
-// Java
-new demo.Foo();
-demo.DemoPackage.bar();
-```
-
-对于最外层的包（java里叫做缺省包），创建一个叫做`_DefaultPackage`的类。
-
-### 静态方法和字段
-
-上面说过，kotlin把包级别的函数生成为静态方法。此外，还会把类的命名对象或伙伴对象中有`@platformStatic`标记的函数也生成为静态方法。比如：
-
-``` kotlin
-class C {
-  companion object {
-    platformStatic fun foo() {}
-    fun bar() {}
-  }
-}
-```
-
-现在，`foo()`在java里就是静态的了，而`bar()` 不是：
-
-``` java
-C.foo(); // 没问题
-C.bar(); // 错误: 不是一个静态方法
-```
-
-同样的，命名对象：
-
-``` kotlin
-object Obj {
-    platformStatic fun foo() {}
-    fun bar() {}
-}
-```
-
-java里：
-
-``` java
-Obj.foo(); // 没问题
-Obj.bar(); // 错误
-Obj.INSTANCE$.bar(); // 对单例的方法调用
-Obj.INSTANCE$.foo(); // 也行
-```
-
-命名对象和伙伴对象里的公开属性，还有顶层的有 `const` 标记的属性，
-会被转成java中的静态字段：
-
-``` kotlin
-// file example.kt
-
-object Obj {
-  val CONST = 1
-}
-
-const val MAX = 239
-```
-
-java里：
-
-``` java
-int c = Obj.CONST;
-int d = ExampleKt.MAX;
-```
-
-### 用@platformName解决签名冲突
-
-有时我们想让一个kotlin里的命名函数在字节码里有另外一个jvm名字。
-最突出的例子来自于 *类型擦除*:
-
-``` kotlin
-fun List<String>.filterValid(): List<String>
-fun List<Int>.filterValid(): List<Int>
-```
-
-这两个函数不能同时定义，因为它们的jvm签名是一样的：
-`filterValid(Ljava/util/List;)Ljava/util/List;`.
-如果我们真的相让它们在kotlin里用同一个名字，我们需要用`@platformName`去注释它们中的一个（或两个），指定的另外一个名字当参数：
-
-``` kotlin
-fun List<String>.filterValid(): List<String>
-@platformName("filterValidInt")
-fun List<Int>.filterValid(): List<Int>
-```
-
-在kotlin里它们可以都用`filterValid`来访问，但是在java里，它们是`filterValid` 和 `filterValidInt`.
-
-同样的技巧也适用于属性 `x` 和函数 `getX()` 共存：
-
-``` kotlin
-val x: Int
-  @platformName("getX_prop")
-  get() = 15
-
-fun getX() = 10
-```
-
-### 重载生成
-
-通常，如果你写一个有默认参数值的kotlin方法，在java里，只会有一个有完整参数的签名。如果你要暴露多个重载给java调用者，你可以使用@jvmOverloads标记。
-
-``` kotlin
-jvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
-    ...
-}
-```
-
-对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和它右边的所有参数都移除掉。在上面这个例子里，生成下面的方法：
-
-``` java
-// Java
-void f(String a, int b, String c) { }
-void f(String a, int b) { }
-void f(String a) { }
-```
-
-构造函数，静态函数等也能用这个标记。但他不能用在抽象方法上，包括接口中的方法。
-
-注意一下，[Secondary Constructors](classes.html#secondary-constructors) 描述过，如果一个类的所有构造函数参数都有默认值，会生成一个公开的无参构造函数。这就算没有@jvmOverloads标记也有效。
-
-### 受检异常
-
-上面说过，kotlin没有受检异常。
-所以，通常，kotlin函数的java签名没有声明抛出异常。
-于是如果我们有一个kotlin函数：
-
-``` kotlin
-package demo
-
-fun foo() {
-  throw IOException()
-}
-```
-
-然后我们想要在java里调用它，捕捉这个异常：
-
-``` java
-// Java
-try {
-  demo.DemoPackage.foo();
-}
-catch (IOException e) { // 错误: foo() 没有声明 IOException
-  // ...
-}
-```
-
-因为`foo()`没有声明 `IOException`，java编译器报了错误信息。
-为了解决这个问题，要在kotlin里使用`@throws`标记。
-
-``` kotlin
-@throws(IOException::class) fun foo() {
-    throw IOException()
-}
-```
-
-### Null安全性
-
-当从java中调用kotlin函数时，没人阻止我们传递 *null*{: .keyword } 给一个非空参数。
-这就是为什么kotlin给所有期望非空参数的公开函数生成运行时检测。
-这样我们就能在java代码里立即得到 `NullPointerException`。
-
-### 属性
-
-属性getters被转换成 *get*-方法，setters转换成*set*-方法。
+还要注意这个特性只针对和 Java 的互操作；因为 Kotlin 有合适的函数类型，把函数自动转换成
+Kotlin 接口的实现是没有必要的，也就没有支持了。
