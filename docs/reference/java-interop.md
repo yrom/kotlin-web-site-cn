@@ -2,14 +2,13 @@
 type: doc
 layout: reference
 category: "Interop"
-title: "Java Interop"
+title: "Calling Java from Kotlin"
 ---
 
-# Java交互
+# 在Kotlin中调用Java代码
 
-Kotlin 在设计时就是以与 java 交互为中心的。现存的 Java 代码可以在 kotlin 中使用，并且 Kotlin 代码也可以在 Java 中流畅运行。这节我们会讨论在 kotlin 中调用 Java 代码的细节。
-
-## 在Kotlin中调用Java代码
+Kotlin 在设计时就是以与 java 交互为中心的。现存的 Java 代码可以在 kotlin 中使用，并且 Kotlin 代码也可以
+在 Java 中流畅运行。这节我们会讨论在 kotlin 中调用 Java 代码的细节。
 
 基本所有的 Java 代码都可以运行
 
@@ -27,12 +26,31 @@ fun demo(source: List<Int>) {
 }
 ```
 
-### 返回void的方法
+## Getters and Setters
+
+Methods that follow the Java conventions for getters and setters (no-argument methods with names starting with `get`
+and single-argument methods with names starting with `set`) are represented as properties in Kotlin. For example:
+
+``` kotlin
+import java.util.Calendar
+
+fun calendarDemo() {
+    val calendar = Calendar.getInstance()
+    if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // call getFirstDayOfWeek()
+        calendar.firstDayOfWeek = Calendar.MONDAY       // call setFirstDayOfWeek()
+    }
+}
+```
+
+Note that, if the Java class only has a setter, it will not be visible as a property in Kotlin, because Kotlin does not support set-only properties at this time.
+
+## 返回void的方法
 
 如果一个Java方法返回void，那么在Kotlin中，它会返回`Unit`。
-万一有人使用它的返回值，Kotlin的编译器会在调用的地方赋值，因为这个值本身已经提前可以预知了(这个值就是`Unit`)。
+万一有人使用它的返回值，Kotlin的编译器会在调用的地方赋值，
+因为这个值本身已经提前可以预知了(这个值就是`Unit`)。
 
-### 将Java代码中与Kotlin关键字冲突的标识符进行转义
+## 将Java代码中与Kotlin关键字冲突的标识符进行转义
 
 一些Kotlin的关键字在Java中是合法的标识符: *in*{: .keyword }, *object*{: .keyword }, *is*{: .keyword }, 等等.
 如果一个Java库在方法中使用了Kotlin关键字,你仍然可以使用这个方法
@@ -42,9 +60,11 @@ fun demo(source: List<Int>) {
 foo.`is`(bar)
 ```
 
-### Null安全性和平台类型
+## Null安全性和平台类型
 
-Java中的所有引用都可能是*null*{: .keyword }值，这使得Kotlin严格的null控制对来自Java的对象来说变得不切实际。在Kotlin中Java声明类型被特别对待叫做*platform types*.这种类型的Null检查是不严格的，所以他们还维持着同Java中一样的安全性。
+Java中的所有引用都可能是*null*{: .keyword }值，这使得Kotlin严格的null控制对来自Java的对象来说变得不切实际。
+在Kotlin中Java声明类型被特别对待叫做*platform types*.这种类型的Null检查是不严格的，
+所以他们还维持着同Java中一样的安全性 (更多参见[下面](#mapped-types))。
 
 考虑如下例子:
 
@@ -52,48 +72,54 @@ Java中的所有引用都可能是*null*{: .keyword }值，这使得Kotlin严格
 val list = ArrayList<String>() // non-null (constructor result)
 list.add("Item")
 val size = list.size() // non-null (primitive int)
-val item = list.get(0) // platform type inferred (ordinary Java object)
+val item = list[0] // platform type inferred (ordinary Java object)
 ```
 
-When we call methods on variables of platform types, Kotlin does not issue nullability errors at compile time,
-but the call may fail at runtime, because of a null-pointer exception or an assertion that Kotlin generates to
-prevent nulls from propagating:
+当我们调用平台类型的变量上的方法时，Kotlin不会在编译阶段报出可能为空的错误，
+但在运行时，会产生空指针异常，或者是断言失败的错误。后者是因为kotlin为了阻止null值传播会生成非空断言语句。
 
 ``` kotlin
-item.substring(1) // allowed, may throw an exception if item == null
+item.substring(1) // 允许, 如果item为空会抛异常
 ```
 
-Platform types are *non-denotable*, meaning that one can not write them down explicitly in the language.
-When a platform value is assigned to a Kotlin variable, we can rely on type inference (the variable will have an inferred platform type then,
- as `item` has in the example above), or we can choose the type that we expect (both nullable and non-null types are allowed):
+平台类型是*不可转义*的，也就是说我们不能在程序里把他们写出来。
+当把一个平台数值赋值给kotlin变量的时候（变量会有一个推断出来的平台类型，
+上面的例子里就是`item`的类型），我们可以用类型推断，或者指定我们期望的类型（nullable和non-null类型都可以）：
 
 ``` kotlin
-val nullable: String? = item // allowed, always works
-val notNull: String = item // allowed, may fail at runtime
+val nullable: String? = item // 允许，没有问题
+val notNull: String = item // 允许，运行时可能失败
 ```
 
-If we choose a non-null type, the compiler will emit an assertion upon assignment. This prevents Kotlin's non-null variables from holding
-nulls. Assertions are also emitted when we pass platform values to Kotlin functions expecting non-null values etc.
-Overall, the compiler does its best to prevent nulls from propagating far through the program (although sometimes this is
-impossible to eliminate entirely, because of generics).
+如果我们指定了一个非空类型，编译器会在赋值前额外生成一个断言。这样Kotlin的非空变量就不会有
+空值。当把平台数值传递给只接受非空数值的kolin函数的时候，也同样会生成这个断言，
+编译器尽可能的阻止空置在程序里传播。（因为泛型的存在，
+有时也不能百分百的阻止）
 
-#### Notation for Platform Types
+### 平台类型的概念
 
-As mentioned above, platform types cannot be mentioned explicitly in the program, so there's no syntax for them in the language.
-Nevertheless, the compiler and IDE need to display them sometimes (in error messages, parameter info etc), so we have a
-mnemonic notation for them:
+如上所述，平台类型不能再程序里显式的出现，
+所以没有针对他们的语法。
+然而，编译器和IDE有时需要显式他们(如在错误信息，参数信息中)，所以我们用
+一个好记的标记来表示他们：
 
-* `T!` means "`T` or `T?`",
-* `(Mutable)Collection<T>!` means "Java collection of `T` may be mutable or not, may be nullable or not",
-* `Array<(out) T>!` means "Java array of `T` (or a subtype of `T`), nullable or not"
+* `T!` 表示 "`T` 或者 `T?`"
+* `(Mutable)Collection<T>!` 表示 "`T`的java集合，可变的或不可变的，可空的或非空的"
+* `Array<(out) T>!` 表示 "`T`(或`T`的子类)的java数组，可空的或非空的"
 
-### Mapped types
+### Nullability annotations
 
-Kotlin treats some Java types specially. Such types are not loaded from Java "as is", but are _mapped_ to corresponding Kotlin types.
-The mapping only matters at compile time, the runtime representation remains unchanged.
- Java's primitive types are mapped to corresponding Kotlin types (keeping [platform types](#platform-types) in mind):
+Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
+Kotlin types. Currently, the compiler supports the [JetBrains flavor of the nullability annotations](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
+(`@Nullable` and `@NotNull` from the `org.jetbrains.annotations` package).
 
-| **Java type** | **Kotlin type**  |
+## 映射类型
+
+Kotlin特殊处理一部分java类型。这些类型不是通过as或is来直接转换，而是_映射_到了指定的kotlin类型上。
+映射只发生在编译期间，运行时仍然是原来的类型。
+java的原生类型映射成如下kotlin类型（记得 [平台类型](#platform-types)）：
+
+| **Java类型** | **Kotlin类型**  |
 |---------------|------------------|
 | `byte`        | `kotlin.Byte`    |
 | `short`       | `kotlin.Short`   |
@@ -105,16 +131,16 @@ The mapping only matters at compile time, the runtime representation remains unc
 | `boolean`     | `kotlin.Boolean` |
 {:.zebra}
 
-Some non-primitive built-in classes are also mapped:
+一些非原生类型也会作映射：
 
-| **Java type** | **Kotlin type**  |
+| **Java类型** | **Kotlin类型**  |
 |---------------|------------------|
 | `java.lang.Object`       | `kotlin.Any!`    |
 | `java.lang.Cloneable`    | `kotlin.Cloneable!`    |
 | `java.lang.Comparable`   | `kotlin.Comparable!`    |
 | `java.lang.Enum`         | `kotlin.Enum!`    |
 | `java.lang.Annotation`   | `kotlin.Annotation!`    |
-| `java.lang.Deprecated`   | `kotlin.deprecated!`    |
+| `java.lang.Deprecated`   | `kotlin.Deprecated!`    |
 | `java.lang.Void`         | `kotlin.Nothing!`    |
 | `java.lang.CharSequence` | `kotlin.CharSequence!`   |
 | `java.lang.String`       | `kotlin.String!`   |
@@ -122,10 +148,10 @@ Some non-primitive built-in classes are also mapped:
 | `java.lang.Throwable`    | `kotlin.Throwable!`    |
 {:.zebra}
 
-Collection types may be read-only or mutable in Kotlin, so Java's collections are mapped as follows
-(all Kotlin types in this table reside in the package `kotlin`):
+集合类型在Kotlin里可以是只读的或可变的，因此Java集合类型作如下映射：
+（下表所有的Kotlin类型都在`Kotlin`包里）
 
-| **Java type** | **Kotlin read-only type**  | **Kotlin mutable type** | **Loaded platform type** |
+| **Java类型** | **Kotlin只读类型**  | **Kotlin可变类型** | **加载的平台类型** |
 |---------------|------------------|----|----|
 | `Iterator<T>`        | `Iterator<T>`        | `MutableIterator<T>`            | `(Mutable)Iterator<T>!`            |
 | `Iterable<T>`        | `Iterable<T>`        | `MutableIterable<T>`            | `(Mutable)Iterable<T>!`            |
@@ -137,48 +163,60 @@ Collection types may be read-only or mutable in Kotlin, so Java's collections ar
 | `Map.Entry<K, V>`    | `Map.Entry<K, V>`    | `MutableMap.MutableEntry<K,V>` | `(Mutable)Map.(Mutable)Entry<K, V>!` |
 {:.zebra}
 
-Java's arrays are mapped as mentioned [below](java-interop.html#java-arrays):
+Java数组的映射在这里提到过 [below](java-interop.html#java-arrays)：
 
-| **Java type** | **Kotlin type**  |
+| **Java类型** | **Kotlin类型**  |
 |---------------|------------------|
 | `int[]`       | `kotlin.IntArray!` |
 | `String[]`    | `kotlin.Array<(out) String>!` |
 {:.zebra}
 
-### Java generics in Kotlin
 
-Kotlin's generics are a little different from Java's (see [Generics](generics.html)). When importing Java types to Kotlin we perform some conversions:
+## Kotlin中的Java泛型
 
-* Java's wildcards are converted into type projections
-  * `Foo<? extends Bar>` becomes `Foo<out Bar!>!`
-  * `Foo<? super Bar>` becomes `Foo<in Bar!>!`
+Kotlin的泛型和Java的有些不同（详见 [Generics](generics.html)）。当引入java类型的时候，我们作如下转换：
 
-* Java's raw types are converted into star projections
-  * `List` becomes `List<*>!`, i.e. `List<out Any?>!`
+* Java的通配符转换成类型投射
+  * `Foo<? extends Bar>` 转换成 `Foo<out Bar!>!`
+  * `Foo<? super Bar>` 转换成 `Foo<in Bar!>!` 
 
-Like Java's, Kotlin's generics are not retained at runtime, i.e. objects do not carry information about actual type arguments passed to their constructors,
-i.e. `ArrayList<Integer>()` is indistinguishable from `ArrayList<Character>()`.
-This makes it impossible to perform *is*{: .keyword }-checks that take generics into account.
-Kotlin only allows *is*{: .keyword }-checks for star-projected generic types:
+* Java的原始类型转换成星号投射
+  * `List` 转换成 `List<*>!`, 也就是 `List<out Any?>!`
+
+和Java一样，Kotlin在运行时不保留泛型，即对象不知道传递到他们构造器中的那些参数的的实际类型。
+~~Kotlin的范型就像Java一样不会在运行时保留信息，也就是对象不会携带传递到它们构造函数中的类型参数的信息。~~
+~~也就是说，运行时无法区分`ArrayList<Integer>()` 和 `ArrayList<Character>()`.~~
+也就是，`ArrayList<Integer>()` 和 `ArrayList<Character>()` 是区分不出来的。
+这意味着，不可能用 *is*{: .keyword }-来检测泛型。
+~~这就导致，无法使用*is*{: .keyword }-检测范型。~~
+Kotlin只允许用*is*{: .keyword }-来检测星号投射的泛型类型:
+~~Kotlin只允许用*is*{: .keyword }-检测星号投射的范型类型。~~
 
 ``` kotlin
-if (a is List<Int>) // Error: cannot check if it is really a List of Ints
+if (a is List<Int>) // 错误: 不能检测是否是一个Int的List
 // but
-if (a is List<*>) // OK: no guarantees about the contents of the list
+if (a is List<*>) // 可以：不保证list里面的内容类型
 ```
 
-### Java Arrays
+> ~~ ~~
+> ``` kotlin
+> if (a is List<Int>) // 错误: 无法检测是否是一个Int的List
+> // but
+> if (a is List<*>) // 可以: 不确保List里的内容
+> ```
 
-Arrays in Kotlin are invariant, unlike Java. This means that Kotlin does not let us assign an `Array<String>` to an `Array<Any>`,
-which prevents a possible runtime failure. Passing an array of a subclass as an array of superclass to a Kotlin method is also prohibited,
-but for Java methods this is allowed (though [platform types](#platform-types) of the form `Array<(out) String>!`).
+### Java数组
 
-Arrays are used with primitive datatypes on the Java platform to avoid the cost of boxing/unboxing operations.
-As Kotlin hides those implementation details, a workaround is required to interface with Java code.
-There are specialized classes for every type of primitive array (`IntArray`, `DoubleArray`, `CharArray`, and so on) to handle this case.
-They are not related to the `Array` class and are compiled down to Java's primitive arrays for maximum performance.
+和Java不同，Kotlin里的数组不是协变的。Kotlin不允许我们把`Array<String>` 赋值给 `Array<Any>`，
+从而避免了可能的运行时错误。Kotlin也禁止我们把一个子类的数组当做父类的数组传递进Kotlin的方法里。
+但是对Java方法，这是允许的（考虑这种形式的平台类型[platform types](#platform-types) `Array<(out) String>!`）。
 
-Suppose there is a Java method that accepts an int array of indices:
+Java平台上，原生数据类型的数组被用来避免封箱/开箱的操作开销。
+由于Kotlin隐藏了这些实现细节，就得有一个变通方法和Java代码交互。
+每个原生类型的数组都有一个特有类(specialized class)来处理这种问题(`IntArray`, `DoubleArray`, `CharArray` ...)。
+它们不是`Array`类，而是被编译成java的原生数组，来获得最好的性能。
+
+假设有一个Java方法，它接收一个表示索引的int数组作参数
 
 ``` java
 public class JavaArrayExample {
@@ -189,15 +227,41 @@ public class JavaArrayExample {
 }
 ```
 
-To pass an array of primitive values you can do the following in Kotlin:
+在Kotlin里你可以这样传递一个原生数组:
 
 ``` kotlin
 val javaObj = JavaArrayExample()
-val array = intArray(0, 1, 2, 3)
+val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndices(array)  // passes int[] to method
 ```
 
-Java classes sometimes use a method declaration for the indices with a variable number of arguments (varargs).
+当编译成jvm字节码的时候，编译器会优化对数组的访问，确保不会产生额外的负担。
+
+``` kotlin
+val array = array(1, 2, 3, 4)
+array[x] = array[x] * 2 // 不会生成对get() 和 set()的调用
+for (x in array) // 不会创建迭代器
+  print(x)
+```
+
+即便是用索引遍历数组。
+
+``` kotlin
+for (i in array.indices) // 不会创建迭代器
+  array[i] += 2
+```
+
+最后，*in*{: .keyword }-检测也没有额外负担。
+
+``` kotlin
+if (i in array.indices) { // 和 (i >= 0 && i < array.size) 一样
+  print(array[i])
+}
+```
+
+## Java Varargs
+
+Java类也会这样声明方法，表示参数是可变参数。
 
 ``` java
 public class JavaArrayExample {
@@ -208,86 +272,69 @@ public class JavaArrayExample {
 }
 ```
 
-In that case you need to use the spread operator `*` to pass the `IntArray`:
+这种情况，你需要用展开操作符 `*` 来传递 `IntArray`：
 
 ``` kotlin
 val javaObj = JavaArray()
-val array = intArray(0, 1, 2, 3)
+val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndicesVarArg(*array)
 ```
 
-It's currently not possible to pass *null*{: .keyword } to a method that is declared as varargs.
+目前无法传递 *null*{: .keyword } 给一个变参的方法。
 
-When compiling to JVM byte codes, the compiler optimizes access to arrays so that there's no overhead introduced:
+## Operators
 
-``` kotlin
-val array = array(1, 2, 3, 4)
-array[x] = array[x] * 2 // no actual calls to get() and set() generated
-for (x in array) // no iterator created
-  print(x)
-```
+Since Java has no way of marking methods for which it makes sense to use the operator syntax, Kotlin allows using any
+Java methods with the right name and signature as operator overloads and other conventions (`invoke()` etc.)
+Calling Java methods using the infix call syntax is not allowed.
 
-Even when we navigate with an index, it does not introduce any overhead
 
-``` kotlin
-for (i in array.indices) // no iterator created
-  array[i] += 2
-```
+## 受检异常
 
-Finally, *in*{: .keyword }-checks have no overhead either
-
-``` kotlin
-if (i in array.indices) { // same as (i >= 0 && i < array.size)
-  print(array[i])
-}
-```
-
-### Checked Exceptions
-
-In Kotlin, all exceptions are unchecked, meaning that the compiler does not force you to catch any of them.
-So, when you call a Java method that declares a checked exception, Kotlin does not force you to do anything:
+在Kotlin里，所有的异常都是非受检的, 也就是说，编译器不会强制你去捕捉任何异常。
+因此，你调用一个声明了异常的java方法的时候，kotlin不会强制你作处理。
 
 ``` kotlin
 fun render(list: List<*>, to: Appendable) {
   for (item in list)
-    to.append(item.toString()) // Java would require us to catch IOException here
+    to.append(item.toString()) // Java里会让你在这里捕捉IOException
 }
 ```
 
-### Object Methods
+## 对象方法
 
-When Java types are imported into Kotlin, all the references of the type `java.lang.Object` are turned into `Any`.
-Since `Any` is not platform-specific, it only declares `toString()`, `hashCode()` and `equals()` as its members,
-so to make other members of `java.lang.Object` available, Kotlin uses [extension functions](extensions.html).
+当java类型被引入到kotlin里时，所有的`java.lang.Object`类型引用，会被转换成 `Any`。
+因为`Any`不是平台独有的，它仅声明了三个成员方法：`toString()`, `hashCode()` 和 `equals()`，
+所以为了能用到`java.lang.Object`的其他方法，kotlin采用了[扩展函数](extensions.html)。
 
-#### wait()/notify()
+### wait()/notify()
 
-[Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html) Item 69 kindly suggests to prefer concurrency utilities to `wait()` and `notify()`.
-Thus, these methods are not available on references of type `Any`.
-If you really need to call them, you can cast to `java.lang.Object`:
+[Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html) 第69条善意的提醒了要用concurrency类而不是`wait()` 和 `notify()`。
+因此，`Any`不提供这两个方法。
+你一定要用的话，就把它转换成`java.lang.Object`。
 
 ```kotlin
 (foo as java.lang.Object).wait()
 ```
 
-#### getClass()
+### getClass()
 
-To retrieve the type information from an object, we use the javaClass extension property.
+获取一个对象的类型信息，我们可以用javaClass这个扩展属性。
 
 ``` kotlin
 val fooClass = foo.javaClass
 ```
 
-Instead of Java's `Foo.class` use javaClass<Foo>().
+用javaClass<Foo>()，而不是java里的写法`Foo.class`。
 
 
 ``` kotlin
 val fooClass = javaClass<Foo>()
 ```
 
-#### clone()
+### clone()
 
-To override `clone()`, your class needs to extend `kotlin.Cloneable`:
+要重写`clone()`，扩展`kotlin.Cloneable`：
 
 ```kotlin
 
@@ -296,29 +343,30 @@ class Example : Cloneable {
 }
 ```
 
- Do not forget about [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html), Item 11: *Override clone judiciously*.
+不要忘了 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html),第11条: *谨慎的重写克隆*。
 
-#### finalize()
+### finalize()
 
-To override `finalize()`, all you need to do is simply declare it, without using the *override*{:.keyword} keyword:
+要重载 `finalize()`, 你要做的仅仅是声明它，不需要 *override*{:.keyword} 关键字：
 
 ```kotlin
 class C {
   protected fun finalize() {
-    // finalization logic
+    // 具体逻辑
   }
 }
 ```
 
-According to Java's rules, `finalize()` must not be *private*{: .keyword }.
+根据java的规则， `finalize()`不能为 *private*{: .keyword }。
 
-### Inheritance from Java classes
-At most one Java-class (and as many Java interfaces as you like) can be a supertype for a class in Kotlin. This class must go first in the supertype list.
+## java类的继承
 
-### Accessing static members
+在kotlin里，超类里最多只能有一个java类(java接口数目不限)。这个java类必须放在超类列表的最前面。
 
-Static members of Java classes form "companion objects" for these classes. We cannot pass such a "companion object" around as a value,
-but can access the members explicitly, for example
+### 访问静态成员
+
+java类的静态成员就是它们的 “同伴对象”。我们无法将这样的“同伴对象”当作数值来传递，
+但可以显式的访问它们，比如：
 
 ``` kotlin
 if (Character.isLetter(a)) {
@@ -326,243 +374,42 @@ if (Character.isLetter(a)) {
 }
 ```
 
-### Java Reflection
+## Java 反射
 
-Java reflection works on Kotlin classes and vice versa. As mentioned above, you can use `instance.javaClass` or 
-`javaClass<ClassName>()` to enter Java reflection through `java.lang.Class`. You can then "convert" to Kotlin reflection
-by calling `.kotlin`:
+Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 `instance.javaClass` 或者 
+`ClassName::class.java` 开始基于 `java.lang.Class` 的java反射操作。
  
-``` kotlin 
-val kClass = x.javaClass.kotlin  
-```
- 
-In much the same way you can convert from Kotlin reflection to Java: `ClassName::class.java` is the same as `javaClass<ClassName>()`.
-Other supported cases include acquiring a Java getter/setter method or a backing field for a Kotlin property, 
-getting a containing `KPackage` instance for a Java class, and getting a `KProperty` for a Java field.
+Other supported cases include acquiring a Java getter/setter method or a backing field for a Kotlin property, a `KProperty` for a Java field, a Java method or constructor for a `KFunction` and vice versa.
 
-### SAM Conversions
+## SAM(单抽象方法) 转换
 
-Just like Java 8, Kotlin supports SAM conversions. This means that Kotlin function literals can be automatically converted
-into implementations of Java interfaces with a single non-default method, as long as the parameter types of the interface
-method match the parameter types of the Kotlin function.
+就像 Java 8 那样，Kotlin 支持 SAM 转换，这意味着 Kotlin 函数字面量可以被自动的转换成
+只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型
+能够跟这个 Kotlin 函数的参数类型匹配的上。
 
-You can use this for creating instances of SAM interfaces:
+你可以这样创建SAM接口的实例：
 
 ``` kotlin
 val runnable = Runnable { println("This runs in a runnable") }
 ```
 
-...and in method calls:
+...在方法调用里:
 
 ``` kotlin
 val executor = ThreadPoolExecutor()
-// Java signature: void execute(Runnable command)
+// Java签名: void execute(Runnable command)
 executor.execute { println("This runs in a thread pool") }
 ```
 
-If the Java class has multiple methods taking functional interfaces, you can choose the one you need to call by
-using an adapter function that converts a lambda to a specific SAM type. Those adapter functions are also generated
-by the compiler when needed.
+如果 Java 类有多个接受函数接口的方法，你可以用一个
+适配函数来把闭包转成你需要的 SAM 类型。编译器也会在必要时生成这些适配函数。
 
 ``` kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })
 ```
 
-Note that SAM conversions only work for interfaces, not for abstract classes, even if those also have just a single
-abstract method.
+注意SAM的转换只对接口有效，对抽象类无效，即使它们就只有一个
+抽象方法。
 
-Also note that this feature works only for Java interop; since Kotlin has proper function types, automatic conversion
-of functions into implementations of Kotlin interfaces is unnecessary and therefore unsupported.
-
-## Calling Kotlin code from Java
-
-Kotlin code can be called from Java easily.
-
-### Package-Level Functions
-
-All the functions and properties declared inside a package `org.foo.bar` are put into a Java class named `org.foo.bar.BarPackage`.
-
-``` kotlin
-package demo
-
-class Foo
-
-fun bar() {
-}
-
-```
-
-``` java
-// Java
-new demo.Foo();
-demo.DemoPackage.bar();
-```
-
-For the root package (the one that's called a "default package" in Java), a class named `_DefaultPackage` is created.
-
-### Static Methods and Fields
-
-As mentioned above, Kotlin generates static methods for package-level functions. On top of that, it also generates static methods
-for functions defined in named objects or companion objects of classes and annotated as `@platformStatic`. For example:
-
-``` kotlin
-class C {
-  companion object {
-    platformStatic fun foo() {}
-    fun bar() {}
-  }
-}
-```
-
-Now, `foo()` is static in Java, while `bar()` is not:
-
-``` java
-C.foo(); // works fine
-C.bar(); // error: not a static method
-```
-
-Same for named objects:
-
-``` kotlin
-object Obj {
-    platformStatic fun foo() {}
-    fun bar() {}
-}
-```
-
-In Java:
-
-``` java
-Obj.foo(); // works fine
-Obj.bar(); // error
-Obj.INSTANCE$.bar(); // works, a call through the singleton instance
-Obj.INSTANCE$.foo(); // works too
-```
-
-Also, public properties defined in objects and companion objects, as well as top-level properties annotated with `const`,
-are turned into static fields in Java:
-
-``` kotlin
-// file example.kt
-
-object Obj {
-  val CONST = 1
-}
-
-const val MAX = 239
-```
-
-In Java:
-
-``` java
-int c = Obj.CONST;
-int d = ExampleKt.MAX;
-```
-
-### Handling signature clashes with @platformName
-
-Sometimes we have a named function in Kotlin, for which we need a different JVM name the byte code.
-The most prominent example happens due to *type erasure*:
-
-``` kotlin
-fun List<String>.filterValid(): List<String>
-fun List<Int>.filterValid(): List<Int>
-```
-
-These two functions can not be defined side-by-side, because their JVM signatures are the same: `filterValid(Ljava/util/List;)Ljava/util/List;`.
-If we really want them to have the same name in Kotlin, we can annotate one (or both) of them with `@platformName` and specify a different name as an argument:
-
-``` kotlin
-fun List<String>.filterValid(): List<String>
-@platformName("filterValidInt")
-fun List<Int>.filterValid(): List<Int>
-```
-
-From Kotlin they will be accessible by the same name `filterValid`, but from Java it will be `filterValid` and `filterValidInt`.
-
-The same trick applies when we need to have a property `x` alongside with a function `getX()`:
-
-``` kotlin
-val x: Int
-  @platformName("getX_prop")
-  get() = 15
-
-fun getX() = 10
-```
-
-
-### Overloads Generation
-
-Normally, if you write a Kotlin method with default parameter values, it will be visible in Java only as a full
-signature, with all parameters present. If you wish to expose multiple overloads to Java callers, you can use the
-@jvmOverloads annotation.
-
-``` kotlin
-jvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
-    ...
-}
-```
-
-For every parameter with a default value, this will generate one additional overload, which has this parameter and
-all parameters to the right of it in the parameter list removed. In this example, the following methods will be
-generated:
-
-``` java
-// Java
-void f(String a, int b, String c) { }
-void f(String a, int b) { }
-void f(String a) { }
-```
-
-The annotation also works for constructors, static methods etc. It can't be used on abstract methods, including methods
-defined in interfaces.
-
-Note that, as described in [Secondary Constructors](classes.html#secondary-constructors), if a class has default
-values for all constructor parameters, a public no-argument constructor will be generated for it. This works even
-if the @jvmOverloads annotation is not specified.
-
-
-### Checked Exceptions
-
-As we mentioned above, Kotlin does not have checked exceptions.
-So, normally, the Java signatures of Kotlin functions do not declare exceptions thrown.
-Thus if we have a function in Kotlin like this:
-
-``` kotlin
-package demo
-
-fun foo() {
-  throw IOException()
-}
-```
-
-And we want to call it from Java and catch the exception:
-
-``` java
-// Java
-try {
-  demo.DemoPackage.foo();
-}
-catch (IOException e) { // error: foo() does not declare IOException in the throws list
-  // ...
-}
-```
-
-we get an error message from the Java compiler, because `foo()` does not declare `IOException`.
-To work around this problem, use the `@throws` annotation in Kotlin:
-
-``` kotlin
-@throws(IOException::class) fun foo() {
-    throw IOException()
-}
-```
-
-### Null-safety
-
-When calling Kotlin functions from Java, nobody prevents us from passing *null*{: .keyword } as a non-null parameter.
-That's why Kotlin generates runtime checks for all public functions that expect non-nulls.
-This way we get a `NullPointerException` in the Java code immediately.
-
-### Properties
-
-Property getters are turned into *get*-methods, and setters – into *set*-methods.
+还要注意这个特性只针对和 Java 的互操作；因为 Kotlin 有合适的函数类型，把函数自动转换成
+Kotlin 接口的实现是没有必要的，也就没有支持了。

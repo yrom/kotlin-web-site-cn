@@ -10,7 +10,7 @@ Kotlin社区每天都在增长中，加入我们！
 
 你可以在这些站点上发布技术性问题
 
-- [JetBrains DevNet上的Kotlin论坛](http://devnet.jetbrains.com/community/kotlin)
+- [Kotlin forum](https://discuss.kotlinlang.org/)
 - [Slack](http://kotlinlang.slack.com): [*点我获取邀请*](http://kotlinslackin.herokuapp.com)
 - [StackOverflow](http://stackoverflow.com/questions/tagged/kotlin). 提请记住加上 **kotlin** 标签哦
 - [Reddit](http://www.reddit.com/r/Kotlin/)

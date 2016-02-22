@@ -51,6 +51,6 @@ import bar.Bar as bBar // bBar stands for 'bar.Bar'
 ## 可见性和包嵌套
 
 如果顶层声明是*private*{: .keyword }, 它将是私有的(查看 [Visibility Modifiers](visibility-modifiers.html)).
-尽管Kotlin中可以包嵌套, 如 包`foo.bar` 是`foo`的一个成员,但是一些*private*{: .keyword } 仅仅可以被它的子包所见.
-
-注意外部包成员**不是**默认引入的,例如，在`foo.bar`包的文件中我们不能在不引入的情况下访问`foo`.
+> ~~尽管Kotlin中可以包嵌套, 如 包`foo.bar` 是`foo`的一个成员,但是一些*private*{: .keyword } 仅仅可以被它的子包所见.~~
+> 
+> ~~注意外部包成员**不是**默认引入的,例如，在`foo.bar`包的文件中我们不能在不引入的情况下访问`foo`.~~

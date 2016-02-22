@@ -5,16 +5,20 @@ category: "Syntax"
 title: "Type-Safe Groovy-Style Builders"
 ---
 
+# Type-Safe Builders
 
-[构建器](http://groovy.codehaus.org/Builders)(builders)的概念在*Groovy*社区非常热门。
-使用构建器我们可以用半声明(semi-declarative)的方式定义数据。
-构建器非常适合用来生成[XML](http://groovy.codehaus.org/GroovyMarkup)，[组装UI组件](http://groovy.codehaus.org/GroovySWT), [描述3D场景](http://www.artima.com/weblogs/viewpost.jsp?thread=296081)，以及很多其他功能...
+[构建器](http://www.groovy-lang.org/dsls.html#_nodebuilder)(builders)的概念在*Groovy*社区非常热门。
+使用构建器我们可以用半声明(semi-declarative)的方式定义数据。构建器非常适合用来生成[XML](http://www.groovy-lang.org/processing-xml.html#_creating_xml)，
+[组装UI组件](http://www.groovy-lang.org/swing.html), 
+[描述3D场景](http://www.artima.com/weblogs/viewpost.jsp?thread=296081)，以及很多其他功能...
+
 很多情况下，Kotlin允许*检查类型*的构建器，这样比Groovy本身提供的构建器更有吸引力。
+
 其他情况下，Kotlin也支持*动态类型*的构建器。
 
 ## 一个类型安全的构建器的示例
 
-考虑下面的代码。这段代码是从[这里](http://groovy.codehaus.org/Builders)摘出来并稍作修改的：
+考虑下面的代码~~。这段代码是从[这里](http://groovy.codehaus.org/Builders)摘出来并稍作修改的~~：
 
 ``` kotlin
 import com.example.html.* // see declarations below
@@ -29,14 +33,14 @@ fun result(args: Array<String>) =
       p  {+"this format can be used as an alternative markup to XML"}
 
       // an element with attributes and text content
-      a(href = "http://jetbrains.com/kotlin") {+"Kotlin"}
+      a(href = "http://kotlinlang.org") {+"Kotlin"}
 
       // mixed content
       p {
         +"This is some"
         b {+"mixed"}
         +"text. For more see the"
-        a(href = "http://jetbrains.com/kotlin") {+"Kotlin"}
+        a(href = "http://kotlinlang.org") {+"Kotlin"}
         +"project"
       }
       p {+"some text"}
@@ -50,7 +54,8 @@ fun result(args: Array<String>) =
   }
 ```
 
-这是一段完全合法的Kotlin代码。(在IDEA中)，可以点击函数名称浏览他们的定义代码。 [这里](http://try.kotlinlang.org/#/Examples/Longer examples/HTML Builder/HTML Builder.kt).
+这是一段完全合法的Kotlin代码。
+[这里](http://try.kotlinlang.org/#/Examples/Longer examples/HTML Builder/HTML Builder.kt)可以在线运行这段代码（在你的浏览器中修改它）。
 
 ## 构建器的实现原理
 
@@ -68,7 +73,7 @@ html {
 }
 ```
 
-这实际上是一个函数，其参数是一个[函数字面量](lambdas.html)(查看[这个页面](lambdas.html#higher-order-functions)的详细说明)
+`html`实际上是一个函数，其参数是一个[lambda 表达式](lambdas.html)
 这个函数定义如下：
 
 ``` kotlin
@@ -79,8 +84,11 @@ fun html(init: HTML.() -> Unit): HTML {
 }
 ```
 
-这个函数定义一个叫做`init`的参数，本身是个函数。实际上，它是一个[扩展函数](extensions.html)，其接受者类型为`HTML`(并且返回`Unit`)。
-所以，当我们传入一个函数字面量作为参数时， 它被认定为一个扩展函数，从而在内部就可以使用*this*{: .keyword }引用了。
+这个函数定义一个叫做`init`的参数，本身是个函数。
+The type of the function is `HTML.() -> Unit`, which is a _function type with receiver_.
+This means that we need to pass an instance of type `HTML` (a _receiver_) to the function,
+and we can call members of that instance inside the function.
+The receiver can be accessed through the *this*{: .keyword } keyword:
 
 ``` kotlin
 html {
@@ -88,7 +96,6 @@ html {
   this.body { /* ... */ }
 }
 ```
-
 
 (`head` 和 `body`都是`HTML`类的成员函数)
 
@@ -108,14 +115,14 @@ html {
 HTML类里定义的`head`和`body`函数的定义类似于`html`函数。唯一的区别是，它们将新建的实力先添加到html的children属性上，再返回：
 
 ``` kotlin
-fun head(init: Head.() -> Unit) {
+fun head(init: Head.() -> Unit) : Head {
   val head = Head()
   head.init()
   children.add(head)
   return head
 }
 
-fun body(init: Body.() -> Unit) {
+fun body(init: Body.() -> Unit) : Body {
   val body = Body()
   body.init()
   children.add(body)
@@ -126,7 +133,7 @@ fun body(init: Body.() -> Unit) {
 实际上这两个函数做的是完全相同的事情，所以我们可以定义一个泛型函数`initTag`：
 
 ``` kotlin
-  protected fun initTag<T : Element>(tag: T, init: T.() -> Unit): T {
+  protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
     tag.init()
     children.add(tag)
     return tag
@@ -156,24 +163,25 @@ html {
 ```
 
 所以基本上，我们直接在标签体中添加文字，但前面需要在前面加一个`+`符号。
-事实上这个符号是用一个扩展函数`plus()`来定义的。
-`plus()`是抽象类`TagWithText`(`Title`的父类)的成员函数。
+事实上这个符号是用一个扩展函数`unaryPlus()`来定义的。
+`unaryPlus()`是抽象类`TagWithText`(`Title`的父类)的成员函数。
 
 ``` kotlin
-fun String.plus() {
+fun String.unaryPlus() {
   children.add(TextElement(this))
 }
 ```
 
 所以，前缀`+`所做的事情是把字符串用`TextElement`对象包裹起来，并添加到children集合上，这样就正确加入到标签树中了。
+
 所有这些都定义在包`com.example.html`里，上面的构建器例子在代码顶端导入了。
 下一节里你可以详细的浏览这个名字空间中的所有定义。
 
 ## 包`com.example.html`的完整定义
 
-
 下面是包`com.example.html`的定义（只列出了上面的例子中用到的元素）。它可以生成一个HTML树。
-代码中大量使用了[扩展函数](extensions.html)和[扩展函数字面量](lambdas.html#extension-function-expressions)技术
+代码中大量使用了[扩展函数](extensions.html)和
+[带接收者的lambda](lambdas.html#function-literals-with-receiver)技术
 
 <a name='declarations'></a>
 
@@ -182,25 +190,19 @@ package com.example.html
 
 interface Element {
     fun render(builder: StringBuilder, indent: String)
-
-    override fun toString(): String {
-        val builder = StringBuilder()
-        render(builder, "")
-        return builder.toString()
-    }
 }
 
-class TextElement(val text: String): Element {
+class TextElement(val text: String) : Element {
     override fun render(builder: StringBuilder, indent: String) {
         builder.append("$indent$text\n")
     }
 }
 
-abstract class Tag(val name: String): Element {
+abstract class Tag(val name: String) : Element {
     val children = arrayListOf<Element>()
     val attributes = hashMapOf<String, String>()
 
-    protected fun initTag<T: Element>(tag: T, init: T.() -> Unit): T {
+    protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
         tag.init()
         children.add(tag)
         return tag
@@ -216,32 +218,39 @@ abstract class Tag(val name: String): Element {
 
     private fun renderAttributes(): String? {
         val builder = StringBuilder()
-        for (a in attributes.keySet()) {
+        for (a in attributes.keys) {
             builder.append(" $a=\"${attributes[a]}\"")
         }
         return builder.toString()
     }
+
+
+    override fun toString(): String {
+        val builder = StringBuilder()
+        render(builder, "")
+        return builder.toString()
+    }
 }
 
-abstract class TagWithText(name: String): Tag(name) {
-    fun String.plus() {
+abstract class TagWithText(name: String) : Tag(name) {
+    operator fun String.unaryPlus() {
         children.add(TextElement(this))
     }
 }
 
-class HTML(): TagWithText("html") {
+class HTML() : TagWithText("html") {
     fun head(init: Head.() -> Unit) = initTag(Head(), init)
 
     fun body(init: Body.() -> Unit) = initTag(Body(), init)
 }
 
-class Head(): TagWithText("head") {
+class Head() : TagWithText("head") {
     fun title(init: Title.() -> Unit) = initTag(Title(), init)
 }
 
-class Title(): TagWithText("title")
+class Title() : TagWithText("title")
 
-abstract class BodyTag(name: String): TagWithText(name) {
+abstract class BodyTag(name: String) : TagWithText(name) {
     fun b(init: B.() -> Unit) = initTag(B(), init)
     fun p(init: P.() -> Unit) = initTag(P(), init)
     fun h1(init: H1.() -> Unit) = initTag(H1(), init)
@@ -251,12 +260,12 @@ abstract class BodyTag(name: String): TagWithText(name) {
     }
 }
 
-class Body(): BodyTag("body")
+class Body() : BodyTag("body")
+class B() : BodyTag("b")
+class P() : BodyTag("p")
+class H1() : BodyTag("h1")
 
-class B(): BodyTag("b")
-class P(): BodyTag("p")
-class H1(): BodyTag("h1")
-class A(): BodyTag("a") {
+class A() : BodyTag("a") {
     public var href: String
         get() = attributes["href"]!!
         set(value) {
@@ -272,25 +281,25 @@ fun html(init: HTML.() -> Unit): HTML {
 ```
 
 
-### 附录.让Java类更好
-
-上面的代码中有一段很好的：
-
-``` kotlin
-  class A() : BodyTag("a") {
-    var href: String
-      get() = attributes["href"]!!
-      set(value) { attributes["href"] = value }
-  }
-```
-
-我们访问映射(Map) `attributes`的方式，是把它当作 "关联数组" (associate array)来访问的：用`[]`操作符。
-依照编译器的[惯例](operator-overloading.html))它被翻译成`get(K)`和`set(K, V)`，正好。
-但是我们说过，`attributes`是一个*Java*`Map`，也就是说，它没有`set(K, V)`函数。(译注：Java的映射中的函数是`put(K, V)`)。
-在Kotlin中，这个问题很容易解决：
-
-``` kotlin
-  fun <K, V> Map<K, V>.set(key: K, value: V) = this.put(key, value)
-```
-
-所以我们只要给`Map`类添加一个[扩展函数](extensions.html)`set(K, V)`， 并委托`Map`类原有的`put(K, V)`函数，就可以让*Java*类使用Kotlin的操作符号了。
+> ~~### 附录.让Java类更好~~
+> 
+> 上面的代码中有一段很好的：
+> 
+> ``` kotlin
+>   class A() : BodyTag("a") {
+>     var href: String
+>       get() = attributes["href"]!!
+>       set(value) { attributes["href"] = value }
+>   }
+> ```
+> 
+> 我们访问映射(Map) `attributes`的方式，是把它当作 "关联数组" (associate array)来访问的：用`[]`操作符。
+> 依照编译器的[惯例](operator-overloading.html))它被翻译成`get(K)`和`set(K, V)`，正好。
+> 但是我们说过，`attributes`是一个*Java*`Map`，也就是说，它没有`set(K, V)`函数。(译注：Java的映射中的函数是`put(K, V)`)。
+> 在Kotlin中，这个问题很容易解决：
+> 
+> ``` kotlin
+>   fun <K, V> Map<K, V>.set(key: K, value: V) = this.put(key, value)
+> ```
+> 
+> 所以我们只要给`Map`类添加一个[扩展函数](extensions.html)`set(K, V)`， 并委托`Map`类原有的`put(K, V)`函数，就可以让*Java*类使用Kotlin的操作符号了。

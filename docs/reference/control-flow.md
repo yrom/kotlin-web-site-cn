@@ -42,7 +42,8 @@ val max = if (a > b) {
   }
 ```
 
-当*if*{: .keyword }仅仅有一个分支, 或者其中一个分支的返回结果`Unit`, 它的类型`Unit`.
+If you're using *if*{: .keyword } as an expression rather than a statement (for example, returning its value or
+assigning it to a variable), the expression is required to have an `else` branch.
 
 See the [grammar for *if*{: .keyword }](grammar.html#if).
 
@@ -61,10 +62,14 @@ when (x) {
 ```
 
 *when*{: .keyword } 将它的参数和所有的分支条件进行比较，直到某个分支满足条件。
-*when*{: .keyword }既可以被当做表达式使用也可以被当做语句使用。 如果它被当做表达式, 符合条件的分支的值就是整个表达式的值，如果当做语句使用，则忽略单个分支的值。(就像*if*{: .keyword },每一个分支可以是一个代码块,它的值是最后的表达式的值.)
+*when*{: .keyword }既可以被当做表达式使用也可以被当做语句使用。如果它被当做表达式，
+符合条件的分支的值就是整个表达式的值，如果当做语句使用，
+则忽略单个分支的值。（就像*if*{: .keyword },每一个分支可以是一个代码块,它的值
+是最后的表达式的值。）
 
 *else*{: .keyword } 分支将被执行如果其他分支都不满足条件。
-如果 *when*{: .keyword } 作为一个表达式被使用,*else*{: .keyword } 分支是必须的，除非编译器能够检测出所有的可能情况都已经覆盖了。
+如果 *when*{: .keyword } 作为一个表达式被使用,*else*{: .keyword } 分支是必须的，
+除非编译器能够检测出所有的可能情况都已经覆盖了。
 
 如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起, 用`,`逗号分隔:
 
@@ -74,6 +79,7 @@ when (x) {
   else -> print("otherwise")
 }
 ```
+
 我们可以在判断分支条件的地方使用任何表达式，而不仅仅是常量(和switch不同)：
 
 ``` kotlin
@@ -94,7 +100,9 @@ when (x) {
 }
 ```
 
-另一种用法是可以检查一个值*is*{: .keyword }或者*!is*{: .keyword }某种特定类型.注意,由于[smart casts](typecasts.html#smart-casts), 你可以访问该类型的方法和属性而不用额外的检查。
+另一种用法是可以检查一个值*is*{: .keyword }或者*!is*{: .keyword }某种特定类型.注意：
+由于[smart casts](typecasts.html#smart-casts), 你可以访问该类型的方法和属性而不用
+额外的检查。
 
 ```kotlin
 val hasPrefix = when(x) {
@@ -140,13 +148,24 @@ for (item: Int in ints) {
   * 有一个成员函数或者扩展函数`next()`,并且
   * 有一个成员函数或者扩展函数`hasNext()`返回 `Boolean`.
 
+All of these three functions need to be marked as `operator`.
+
 如果你想要遍历一个数组或者一个list，你可以这么做:
 
 ``` kotlin
 for (i in array.indices)
   print(array[i])
 ```
+
 注意这种“遍历一个范围”的函数会被编译器优化，不会产生额外的对象。
+
+Alternatively, you can use the `withIndex` library function:
+
+``` kotlin
+for ((index, value) in array.withIndex()) {
+    println("the element at $index is $value")
+}
+```
 
 See the [grammar for *for*{: .keyword }](grammar.html#for).
 
