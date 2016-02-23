@@ -53,7 +53,7 @@ val adHoc = object {
 print(adHoc.x + adHoc.y)
 ```
 
-就像Jave的匿名内部类，在对象表达里代码可以使变量与作用域联系起来
+就像Java的匿名内部类，在对象表达里代码可以使变量与作用域联系起来
 （与Java不同的是，这不是受final变量限制的。）
 
 ``` kotlin
