@@ -78,20 +78,20 @@ x += 1
 参阅 [属性和字段](properties.html).
 
 
-## Comments
+## 注释
 
-Just like Java and JavaScript, Kotlin supports end-of-line and block comments.
+正如 Java 和 JavaScript，Kotlin 行注释及块注释。
 
 ``` kotlin
-// This is an end-of-line comment
+// 这是一个行注释
 
-/* This is a block comment
-   on multiple lines. */
+/* 这是一个多行的
+   块注释。 */
 ```
 
-Unlike Java, block comments in Kotlin can be nested.
+与 Java 不同的是，Kotlin 的块注释可以嵌套。
 
-See [Documenting Kotlin Code](kotlin-doc.html) for information on the documentation comment syntax.
+参见 [生成 Kotlin 代码文档](kotlin-doc.html) 查看关于文档注释语法的信息。
 
 ## 使用字符串模板
 
