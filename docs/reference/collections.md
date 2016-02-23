@@ -2,46 +2,46 @@
 type: doc
 layout: reference
 category: Other
-title: "Collections"
+title: "集合"
 ---
 
-# Collections
+# 集合
 
-Unlike many languages, Kotlin distinguishes between mutable and immutable collections (lists, sets, maps, etc). Precise control over exactly when collections can be edited is useful for eliminating bugs, and for designing good APIs.
+与大多数语言不同，Kotlin 区分可变集合和不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 和设计良好的 API。
 
-It is important to understand up front the difference between a read only _view_ of a mutable collection, and an actually immutable collection. Both are easy to create, but the type system doesn't express the difference, so keeping track of that (if it's relevant) is up to you.
+预先了解一个可变集合的只读 _视图_ 和一个真正的不可变集合之间的区别是很重要的。它们都容易创建，但类型系统不能表达它们的差别，所以由你来跟踪（是否相关）。
 
-The Kotlin `List<out T>` type is an interface that provides read only operations like `size`, `get` and so on. Like in Java, it inherits from `Collection<T>` and that in turn inherits from `Iterable<T>`. Methods that change the list are added by the `MutableList<T>` interface. This pattern holds also for `Set<out T>/MutableSet<T>` and `Map<K, out V>/MutableMap<K, V>`.
+Kotlin 的 `List<out T>` 类型是一个提供只读操作如 `size`、`get`等的接口。和 Java 类似，它继承自 `Collection<T>` 进而继承自 `Iterable<T>`。改变 list 的方法是由 `MutableList<T>` 加入的。这一模式同样适用于 `Set<out T>/MutableSet<T>` 及 `Map<K, out V>/MutableMap<K, V>`。
 
-We can see basic usage of the list and set types below:
+我们可以看下 list 及 set 类型的基本用法：
 
 ``` kotlin
 val numbers: MutableList<Int> = mutableListOf(1, 2, 3)
 val readOnlyView: List<Int> = numbers
-println(numbers)        // prints "[1, 2, 3]"
+println(numbers)        // 打印 "[1, 2, 3]"
 numbers.add(4)
-println(readOnlyView)   // prints "[1, 2, 3, 4]"
-readOnlyView.clear()    // -> does not compile
+println(readOnlyView)   // 打印 "[1, 2, 3, 4]"
+readOnlyView.clear()    // -> 不能编译
 
 val strings = hashSetOf("a", "b", "c", "c")
 assert(strings.size == 3)
 ```
 
-Kotlin does not have dedicated syntax constructs for creating lists or sets. Use methods from the standard library, such as
-`listOf()`, `mutableListOf()`, `setOf()`, `mutableSetOf()`.
-For creating maps in a not performance-critical code a simple [idiom](idioms.html#read-only-map) may be used: `mapOf(a to b, c to d)`
+Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如
+`listOf()`、 `mutableListOf()`、 `setOf()`、 `mutableSetOf()`。
+创建 map 在非性能关键代码中可以用一个简单的[惯用法](idioms.html#read-only-map)：`mapOf(a to b, c to d)`
 
-Note that the `readOnlyView` variable points to the same list and changes as the underlying list changes. If the only references that exist to a list are of the read only variety, we can consider the collection fully immutable. A simple way to create such a collection is like this:
+注意上面的 `readOnlyView` 变量（译者注：与对应可变集合变量 `numbers`）指向相同的底层 list 并会随之改变。 如果一个 list 只存在只读引用，我们可以考虑该集合完全不可变。创建一个这样的集合的一个简单方式如下：
 
 ``` kotlin
 val items = listOf(1, 2, 3)
 ```
 
-Currently, the `listOf` method is implemented using an array list, but in future more memory-efficient fully immutable collection types could be returned that exploit the fact that they know they can't change.
+目前 `listOf` 方法是使用 array list 实现的，但是未来可以利用它们知道自己不能变的事实，返回更节约内存的完全不可变的集合类型。
 
-Note that the read only types are [covariant](generics.html#variance). That means, you can take a `List<Rectangle>` and assign it to `List<Shape>` assuming Rectangle inherits from Shape. This wouldn't be allowed with the mutable collection types because it would allow for failures at runtime.
+注意这些类型是[协变的](generics.html#variance)。这意味着，你可以把一个 `List<Rectangle>` 赋值给 `List<Shape>` 假定 Rectangle 继承自 Shape。对于可变集合类型这是不允许的，因为这将导致运行时故障。
 
-Sometimes you want to return to the caller a snapshot of a collection at a particular point in time, one that's guaranteed to not change:
+有时你想给调用者返回一个集合在某个特定时间的一个快照, 一个保证不会变的：
 
 ``` kotlin
 class Controller {
@@ -50,26 +50,30 @@ class Controller {
 }
 ```
 
-The `toList` extension method just duplicates the lists items, thus, the returned list is guaranteed to never change.
+这个 `toList` 扩展方法只是复制列表项，因此返回的 list 保证永远不会改变。
 
-There are various useful extension methods on lists and sets that are worth being familiar with:
+List 和 set 有很多有用的扩展方法值得熟悉：
 
 ``` kotlin
 val items = listOf(1, 2, 3, 4)
 items.first == 1
 items.last == 4
-items.filter { it % 2 == 0 }   // Returns [2, 4]
+items.filter { it % 2 == 0 }   // 返回 [2, 4]
 rwList.requireNoNulls()
 if (rwList.none { it > 6 }) println("No items above 6")
 val item = rwList.firstOrNull()
 ```
 
-... as well as all the utilities you would expect such as sort, zip, fold, reduce and so on.
+…… 以及所有你所期望的实用工具，例如 sort、zip、fold、reduce 等等。
 
-Maps follow the same pattern. They can be easily instantiated and accessed like this:
+Map 遵循同样模式。它们可以容易地实例化和访问，像这样：
 
 ``` kotlin
 val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
 println(map["foo"])
 val snapshot: Map<String, Int> = HashMap(readWriteMap)
 ```
+
+--- 
+
+翻译By 灰蓝天际
