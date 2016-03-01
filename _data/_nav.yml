@@ -77,7 +77,7 @@ reference:
       - /docs/reference/delegation.html: 委托
       - /docs/reference/delegated-properties.html: 委托属性
 
-  - title: 函数和Lambad表达式
+  - title: 函数和Lambdas表达式
     description: 关于函数
     content:
       - /docs/reference/functions.html: 函数
