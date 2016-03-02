@@ -17,7 +17,7 @@ data class Customer(val name: String, val email: String)
 
 会为 `Customer` 类提供以下功能：
 
-* 所有属性的 getters （对 *var*{: .keyword } 定义的还有 setters）
+* 所有属性的 getters （对于 *var*{: .keyword } 定义的还有 setters）
 * `equals()`
 * `hashCode()`
 * `toString()`
@@ -69,7 +69,7 @@ for ((k, v) in map) {
 
 `k`, `v` 可以改成任意名字.
 
-### 使用区间（ranges）
+### 使用区间（range）
 
 ``` kotlin
 for (i in 1..100) { ... }

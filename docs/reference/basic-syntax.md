@@ -264,7 +264,7 @@ fun cases(obj: Any) {
 
 参阅 [when表达式](control-flow.html#when表达式).
 
-## 使用区间（ranges）
+## 使用区间（range）
 
 使用 *in*{: .keyword } 运算符来检查某个数字是否在指定区间内：
 
@@ -287,7 +287,7 @@ for (x in 1..5)
   print(x)
 ```
 
-参阅 [区间 Ranges](ranges.html).
+参阅 [区间 Range](ranges.html).
 
 ## 使用集合
 

@@ -20,7 +20,7 @@ title: Coding Conventions
 
 ## 冒号
 
-类和超类之间的冒号前要有一个空格，而实例和类型之间的冒号前不要有空格：
+类型和超类型之间的冒号前要有一个空格，而实例和类型之间的冒号前不要有空格：
 
 ``` kotlin
 interface Foo<out T : Any> : Bar {
@@ -31,7 +31,7 @@ interface Foo<out T : Any> : Bar {
 ## Lambda表达式
 
 在lambda表达式中, 大括号左右要加空格，分隔参数与代码体的箭头左右也要加空格
-。lambda表达应尽可能不要写在括号中
+。lambda表达应尽可能不要写在圆括号中
 
 ``` kotlin
 list.filter { it > 10 }.map { element -> element * 2 }
