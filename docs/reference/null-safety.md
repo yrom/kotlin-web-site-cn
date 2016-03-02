@@ -17,6 +17,7 @@ Kotlin 的类型系统致力于消除空引用异常的危险，又称[《上亿
 Kotlin 类型系统的目的就是从我们的代码中消除 `NullPointerException` 。 `NPE` 的原因可能是
 
 * 显式调用 `throw NullPointerException()`
+* Usage of the `!!` operator that is described below
 * 外部 Java 代码引起
 * 对于初始化，有一些数据不一致 (比如一个还没初始化的 `this` 用于构造函数的某个地方)
 
