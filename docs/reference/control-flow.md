@@ -150,7 +150,9 @@ for (item: Int in ints) {
 
 All of these three functions need to be marked as `operator`.
 
-如果你想要遍历一个数组或者一个list，你可以这么做:
+A `for` loop over an array is compiled to an index-based loop that does not create an iterator object.
+
+如果你想要通过索引遍历一个数组或者一个list，你可以这么做:
 
 ``` kotlin
 for (i in array.indices)

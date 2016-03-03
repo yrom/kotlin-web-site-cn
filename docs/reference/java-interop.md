@@ -413,3 +413,13 @@ executor.execute(Runnable { println("This runs in a thread pool") })
 
 还要注意这个特性只针对和 Java 的互操作；因为 Kotlin 有合适的函数类型，把函数自动转换成
 Kotlin 接口的实现是没有必要的，也就没有支持了。
+
+## Using JNI with Kotlin
+
+To declare a function that is implemented in native (C or C++) code, you need to mark it with the `external` modifier:
+
+``` kotlin
+external fun foo(x: Int): Double
+```
+
+The rest of the procedure works in exactly the same way as in Java.

@@ -9,7 +9,7 @@ title: "Basic Syntax"
 
 ## 定义包
 
-包的声明应处于文件顶部：
+包的声明应处于源文件顶部：
 
 ``` kotlin
 package my.demo
@@ -19,13 +19,13 @@ import java.util.*
 // ...
 ```
 
-包的结构并不需要与文件夹路径完全匹配：源代码可以在文件系统的任意位置
+目录与包的结构无需匹配：源代码可以在文件系统的任意位置
 
 参阅 [包](packages.html).
 
 ## 定义函数
 
-带有两个 `Int` 参数， 返回 `Int` 的函数:
+带有两个 `Int` 参数、返回 `Int` 的函数:
 
 ``` kotlin
 fun sum(a: Int, b: Int): Int {
@@ -33,7 +33,7 @@ fun sum(a: Int, b: Int): Int {
 }
 ```
 
-将表达式作为函数体，返回值自动推断的函数:
+将表达式作为函数体、返回值类型自动推断的函数:
 
 ``` kotlin
 fun sum(a: Int, b: Int) = a + b
@@ -71,7 +71,7 @@ c = 1      // 明确赋值
 变量（使用 `var` 关键字声明）:
 
 ``` kotlin
-var x = 5 // `Int` 类型自动推断（ 5 默认是 `Int` ）
+var x = 5 // `自动推断出 Int` 类型
 x += 1
 ```
 
@@ -80,7 +80,7 @@ x += 1
 
 ## 注释
 
-正如 Java 和 JavaScript，Kotlin 行注释及块注释。
+正如 Java 和 JavaScript，Kotlin 支持行注释及块注释。
 
 ``` kotlin
 // 这是一个行注释
@@ -128,7 +128,7 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 
 当某个变量的值可以为 *null*{: .keyword } 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空。
 
-返回 *null*{: .keyword } 假如 `str` 的内容不是数字:
+如果 `str` 的内容不是数字返回 *null*{: .keyword }:
 
 ``` kotlin
 fun parseInt(str: String): Int? {
@@ -136,7 +136,7 @@ fun parseInt(str: String): Int? {
 }
 ```
 
-返回值可以是 *null*{: .keyword } 的函数:
+返回可空值的函数:
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -150,7 +150,7 @@ fun main(args: Array<String>) {
 
   // 直接使用 `x * y` 可能会报错，因为他们可能为 null
   if (x != null && y != null) {
-    // 在空指针判断后，x 和 y 会自动变成非空(non-nullable)值
+    // 在空指针判断后，x 和 y 会自动转换为非空值（non-nullable）
     print(x * y)
   }
 }
@@ -169,7 +169,7 @@ fun main(args: Array<String>) {
     return
   }
 
-  // 在空指针判断后，x 和 y 会自动变成非空值
+  // 在空指针判断后，x 和 y 会自动转换为非空值
   print(x * y)
 ```
 
@@ -178,7 +178,7 @@ fun main(args: Array<String>) {
 ## 使用类型检查及自动类型转换
 
 *is*{: .keyword } 运算符用于类型判断: 检查某个实例是否是某类型。
-如果一个局部常量或者不可变的类成员变量已经判断出为某类型，那么判断后的分支中可以直接当作该类型使用，无需强制转换
+如果一个局部常量或者不可变的类成员变量已经判断出为某类型，那么判断后的分支中可以直接当作该类型使用，无需显式转换
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
@@ -264,7 +264,7 @@ fun cases(obj: Any) {
 
 参阅 [when表达式](control-flow.html#when表达式).
 
-## 使用区间（ranges）
+## 使用区间（range）
 
 使用 *in*{: .keyword } 运算符来检查某个数字是否在指定区间内：
 
@@ -287,7 +287,7 @@ for (x in 1..5)
   print(x)
 ```
 
-参阅 [区间 Ranges](ranges.html).
+参阅 [区间 Range](ranges.html).
 
 ## 使用集合
 
@@ -298,14 +298,14 @@ for (name in names)
   println(name)
 ```
 
-使用 *in*{: .keyword } 运算符来判断集合内是否包含(.contains)某实例：
+使用 *in*{: .keyword } 运算符来判断集合内是否包含某实例：
 
 ``` kotlin
-if (text in names) // 自动调用 names.contains(text)
+if (text in names) // 会调用 names.contains(text)
   print("Yes")
 ```
 
-使用 lambda 表达式来过滤(filter)和变换(map)集合：
+使用 lambda 表达式来过滤（filter）和变换（map）集合：
 
 ``` kotlin
 names
@@ -316,3 +316,4 @@ names
 ```
 
 参阅 [高阶函数及Lambda表达式](lambdas.html).
+
