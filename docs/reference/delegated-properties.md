@@ -7,12 +7,12 @@ title: "Delegated Properties"
 
 # 委托属性
 
-有一些种类的属性，虽然我们可以在每次需要的时候手动实现它们，但是如果能够把他们之实现一次
+有一些种类的属性，虽然我们可以在每次需要的时候手动实现它们，但是如果能够把他们只实现一次
 并放入一个库同时又能够一直使用它们那会更好。例如：
 
 * 延迟属性（lazy properties）: 数值只在第一次被访问的时候计算。
-* 可控性（observable properties）: 监听器得到关于这个特性变化的通知，
-* 把所有特性储存在一个映射结构中，而不是分开每一条。
+* 可观察属性（observable properties）: 监听器得到关于这个特性变化的通知，
+* 把所有属性储存在一个map中，而不是每个在单独的字段里。
 
 为了支持这些(或者其他)例子，Kotlin 采用 _委托属性_:
 
@@ -23,7 +23,7 @@ class Example {
 ```
 
 语法是: `val/var <property name>: <Type> by <expression>`.在*by*{:.keyword}后面的表达式是 _委托_, 
-因为 `get()` (和 `set()`) 协同的属性会被委托给它的 `getValue()` 和 `setValue()` 方法。
+因为 `get()` (和 `set()`) 相当于属性会被委托给它的 `getValue()` 和 `setValue()` 方法。
 特性委托不必实现任何的接口，但是需要提供一个 `getValue()`函数（和 `setValue()` --- 对于 *var*{:.keyword}'s）。
 例如:
 
@@ -54,7 +54,7 @@ println(e.p)
 Example@33a17727, thank you for delegating ‘p’ to me!
 ```
  
-相同的，当我们给 `p` 赋值, `setValue()` 函数就被调用. 前两个参数是一样的，第三个参数代表被赋予的值:
+类似的，当我们给 `p` 赋值, `setValue()` 函数就被调用. 前两个参数是一样的，第三个参数保存着将要被赋予的值:
 
 ``` kotlin
 e.p = "NEW"
@@ -68,24 +68,24 @@ NEW has been assigned to ‘p’ in Example@33a17727.
 
 ## 属性委托要求
 
-下面见到介绍委托对象的要求。 
+这里我们总结委托对象的要求。 
 
-对于一个 **只读** 属性 (如 *val*{:.keyword}), 一个委托一定会提供一个 `getValue`函数来处理下面的参数:
+对于一个 **只读** 属性 (如 *val*{:.keyword}), 一个委托一定会提供一个 `getValue`函数来获取下面的参数:
 
 * 接收者 --- 必须与_属性所有者_类型相同或者是其父类(对于扩展属性，类型范围允许扩大),
 * 包含数据 --- 一定要是 `KProperty<*>` 的类型或它的父类型,
  
 这个函数必须返回同样的类型作为属性（或者子类型）
 
-对于一个 **可变** 属性 (如 *var*{:.keyword}), 一个委托需要提供_额外_的函数 `setValue` 来获取下面的参数:
+对于一个 **可变** 属性 (如 *var*{:.keyword}), 一个委托需要额外地提供一个函数 `setValue` 来获取下面的参数:
  
 * 接收者 --- 同 `getValue()`,
 * 包含数据 --- 同 `getValue()`,
-* 新的值 --- 必须和属性同类型或者是他的超类型。
+* 新的值 --- 必须和属性同类型或者是他的父类型。
  
-`getValue()` and/or `setValue()` functions may be provided either as member functions of the delegate class or extension functions.
-The latter is handy when you need to delegate property to an object which doesn't originally provide these functions.
-Both of the functions need to be marked with the `operator` keyword.
+`getValue()` 或/和 `setValue()` 函数可能会作为代理类的成员函数或者扩展函数来提供。
+当你需要代理一个属性给一个不是原来就提供这些函数的对象的时候，后者更为方便。
+两种函数都需要用`operator`关键字来进行标记
 
 
 ## 标准委托
@@ -94,9 +94,9 @@ Both of the functions need to be marked with the `operator` keyword.
 
 ### 延迟属性 Lazy
 
-函数 `lazy()` 接受一个 lambda 然后返回一个可以作为委托 `Lazy<T>` 实例来实现延迟属性: 
-第一个调用 `get()` 执行变量传递到 `lazy()` 并记录结果, 
-后来的 `get()` 调用只会返回记录的结果。 
+函数 `lazy()` 接受一个 lambda 然后返回一个可以作为实现延迟属性的委托 `Lazy<T>` 实例来: 
+第一次对于 `get()`的调用会执行（之前）传递到 `lazy()`的lamda表达式并记录结果, 
+后面的 `get()` 调用会直接返回记录的结果。 
 
 
 ``` kotlin
@@ -111,18 +111,14 @@ fun main(args: Array<String>) {
 }
 ```
 
-By default, the evaluation of lazy properties is **synchronized**: the value is computed only in one thread, and all threads
-will see the same value. If the synchronization of initialization delegate is not required, so that multiple threads
-can execute it simultaneously, pass `LazyThreadSafetyMode.PUBLICATION` as a parameter to the `lazy()` function. 
-And if you're sure that the initialization will always happen on a single thread, you can use `LazyThreadSafetyMode.NONE` mode, 
-which doesn't incur any thread-safety guarantees and the related overhead.
+默认地，对于lazy属性的计算是**同步锁（synchronized）** 的: 这个值只在一个线程被计算，并且所有的线程会看到相同的值。如果初始化代理的同步锁不是必须的，以至于多个线程可以同步地执行，那么将`LazyThreadSafetyMode.PUBLICATION`作为一个变量传递给`lazy()`函数。而且如果你确定初始化将总是发生在单个线程，那么你可以使用 `LazyThreadSafetyMode.NONE` 模式, 它不会有任何线程安全的保证和相关的开销
 
 
-### 观察者 Observable
+### 可观察属性 Observable
 
-`Delegates.observable()` 需要两个参数：初始值和修改后的处理(handler)。
-这个 handler 会在每次赋值的时候被属性调用 (在工作完成前). 它有三个
-参数:一个被赋值的属性，旧的值和新的值：
+`Delegates.observable()` 需要两个参数：初始值和handler。
+这个 handler 会在每次我们给赋值的时候被调用 (在工作完成前). 
+它有三个参数:一个被赋值的属性，旧的值和新的值：
 
 ``` kotlin
 import kotlin.properties.Delegates
@@ -141,14 +137,14 @@ fun main(args: Array<String>) {
 }
 ```
 
-结果：
+这个例子输出：
 
 ```
 <no name> -> first
 first -> second
 ```
-如果你想截取它的分配并取消它，就使用 `vetoable()` 取代 `observable()`.
-The handler passed to the `vetoable` is called _before_ the assignment of a new property value has been performed.
+如果你想有能力来截取和“否决”它分派的事件，就使用 `vetoable()` 取代 `observable()`.
+被传递给 `vetoable` 的handler会在属性被赋新的值_之前_执行
 
 > ~~### 非空 Not-Null~~
 > 
@@ -174,10 +170,9 @@ The handler passed to the `vetoable` is called _before_ the assignment of a new 
 > 如果这个属性在首次写入前进行读取，它就会抛出一个异常，写入后就正常了。
 
 ### 把属性储存在map中
-
-One common use case is storing the values of properties in a map.
-This comes up often in applications like parsing JSON or doing other “dynamic” things.
-In this case, you can use the map instance itself as the delegate for a delegated property.
+一个参加的用例是在一个map里存储属性的值。
+这经常出现在解析JSON或者做其他的“动态”的事情应用里头。
+在这样的情况下，你需要使用map的实例本身作为代理用于代理属性
 
 ``` kotlin
 class User(val map: Map<String, Any?>) {
@@ -186,7 +181,7 @@ class User(val map: Map<String, Any?>) {
 }
 ```
 
-在这个例子中，构造函数持有一个map：
+在这个例子中，构造函数会接收一个map参数：
 
 ``` kotlin
 val user = User(mapOf(
@@ -195,7 +190,7 @@ val user = User(mapOf(
 ))
 ```
 
-委托会从这个图中取值 (通过属性的名字，也就是string关键字):
+委托会从这个map中取值 (通过string类型的key，就是属性的名字):
 
 
 ``` kotlin
@@ -203,8 +198,7 @@ println(user.name) // Prints "John Doe"
 println(user.age)  // Prints 25
 ```
 
-This works also for *var*{:.keyword}’s properties if you use a `MutableMap` instead of read-only `Map`:
-对于 *var*{:.关键词}’s 我们可以使用 `mapVar()` (注意这里需要一个 `MutableMap` 而不是只读的 `Map`).
+对于 *var*{:.关键词}的变量，我们可以把只读的`Map`换成 `MutableMap`就可以了
 
 ``` kotlin
 class MutableUser(val map: MutableMap<String, Any?>) {
