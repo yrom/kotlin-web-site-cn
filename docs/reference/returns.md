@@ -7,17 +7,17 @@ title: "Returns and Jumps"
 
 # 返回和跳转
 
-Kotlin 有三种跳出结构
+Kotlin 有三种结构化跳转操作符
 
-* *return*{: .keyword }.默认情况下，从最近的一个封闭的方法或者 [匿名函数](lambdas.html#anonymous-function)跳出.
-* *break*{: .keyword }.终止最近的封闭循环
-* *continue*{: .keyword }.直接进入循环体的下次循环
+* *return*{: .keyword }.默认从最直接包围它的函数或者[匿名函数](lambdas.html#匿名函数)返回。
+* *break*{: .keyword }.终止最直接包围它的循环。
+* *continue*{: .keyword }.继续下一次最直接包围它的循环。
 
-## 中断和继续标签
+## Break和Continue标签
 
-在Kotlin中任何表达式都可以用*label*{: .keyword } （标签）来标记。  
-label的格式是被'@'标识符标记，例如：`abc@`, `fooBar@`都是有效的label（参见[语法](grammar.html#label)）
-我们可以在前面放一个label来为一个表达式加标签。
+在 Kotlin 中任何表达式都可以用标签（*label*{: .keyword }）来标记。
+标签的格式为标识符后跟 `@` 符号，例如：`abc@`、`fooBar@`都是有效的标签（参见[语法](grammar.html#label)）。
+要为一个表达式加标签，我们只要在其前加标签即可。
 
 ``` kotlin
 loop@ for (i in 1..100) {
@@ -25,7 +25,7 @@ loop@ for (i in 1..100) {
 }
 ```
 
-现在，我们可以将label与 *break*{: .keyword } 或者*continue*{: .keyword }一起使用：
+现在，我们可以用标签限制 *break*{: .keyword } 或者*continue*{: .keyword }：
 
 ``` kotlin
 loop@ for (i in 1..100) {
@@ -36,15 +36,15 @@ loop@ for (i in 1..100) {
 }
 ```
 
-break执行后将跳转到标记处。
-*continue*{: .keyword }将进入循环体的下次循环
+标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。
+*continue*{: .keyword } 继续标签指定的循环的下一次迭代。
 
 
-## 返回标签
+## 标签处返回
 
-在Kotlin里，函数字面量、局部函数和对象表达式等函数都可以被嵌套在一起
-适当的返回方式允许我们从外部方法返回值  
-带标签的**return**，最重要的一个用途，就是让我们可以从 lambda 表达式中返回。
+Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。
+标签限制的 *return*{: .keyword } 允许我们从外层函数返回。
+最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：
 
 ``` kotlin
 fun foo() {
@@ -55,9 +55,9 @@ fun foo() {
 }
 ```
 
-这个 *return*{: .keyword }表达式从最近的封闭的方法中返回，例如‘foo’。
- (注意，非全局的返回只支持lambda表达式，参见[内联函数](inline-functions.html).)
-如果我们只是需要跳出lambda表达式，我们必须标记它并且返回这个标签
+这个 *return*{: .keyword } 表达式从最直接包围它的函数即 `foo` 中返回。
+（注意，这种非局部的返回只支持传给[内联函数](inline-functions.html)的 lambda 表达式。）
+如果我们需要从 lambda 表达式中返回，我们必须给它加标签并用以限制 *return*{: .keyword }。
 
 ``` kotlin
 fun foo() {
@@ -68,8 +68,8 @@ fun foo() {
 }
 ```
 
-现在只是从lambda表达式返回。有时候用匿名的标签将会更加方便 
-像这样和函数同名的标签是可以的
+现在，它只会从 lambda 表达式中返回。通常情况下使用隐式标签更方便。
+该标签与接受该 lambda 的函数同名。
 
 ``` kotlin
 fun foo() {
@@ -80,8 +80,8 @@ fun foo() {
 }
 ```
 
-或者，我们用一个[匿名函数](lambdas.html#anonymous-functions).替代 lambda 表达式。
-在匿名函数内部声明一个*return*{: .keyword }将从其匿名函数自身返回
+或者，我们用一个[匿名函数](lambdas.html#匿名函数)替代 lambda 表达式。
+匿名函数内部的 *return*{: .keyword } 语句将从该匿名函数自身返回
 
 ``` kotlin
 fun foo() {
@@ -92,23 +92,13 @@ fun foo() {
 }
 ```
 
-当要返回一个值得时候，推荐使用描述性的返回，例如：
+当要返一个回值的时候，解析器优先选用标签限制的 return，即
 
 ``` kotlin
 return@a 1
 ```
 
-意思是“返回被标记为‘@a’值是‘1’的标签，而不是像‘（@a 1）’的一个标签表达式”
-
-> ~~被命名的方法自动被定义成为标签~~
-> 
-> ``` kotlin
-> fun outer() {
->   fun inner() {
->     return@outer // the label @outer was defined automatically
->   }
-> }                                                                             
-> ```
+意为“从标签 `@a` 返回 1”，而不是“返回一个标签标注的表达式 `(@a 1)`”。
 
 ---
 
