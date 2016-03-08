@@ -9,14 +9,14 @@ title: "Returns and Jumps"
 
 Kotlin 有三种结构化跳转操作符
 
-* *return*{: .keyword }.默认从最直接包围它的函数或者[匿名函数](lambdas.html#anonymous-function)返回。
+* *return*{: .keyword }.默认从最直接包围它的函数或者[匿名函数](lambdas.html#匿名函数)返回。
 * *break*{: .keyword }.终止最直接包围它的循环。
 * *continue*{: .keyword }.继续下一次最直接包围它的循环。
 
 ## Break和Continue标签
 
-在 Kotlin 中任何表达式都可以用 *label*{: .keyword }（标签）来标记。  
-标签的格式标识符后跟 `@` 符号，例如：`abc@`、`fooBar@`都是有效的标签（参见[语法](grammar.html#label)）。
+在 Kotlin 中任何表达式都可以用标签（*label*{: .keyword }）来标记。
+标签的格式为标识符后跟 `@` 符号，例如：`abc@`、`fooBar@`都是有效的标签（参见[语法](grammar.html#label)）。
 要为一个表达式加标签，我们只要在其前加标签即可。
 
 ``` kotlin
@@ -36,13 +36,13 @@ loop@ for (i in 1..100) {
 }
 ```
 
-标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点处。
-*continue*{: .keyword } 继续标签指定循环的下一次迭代。
+标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。
+*continue*{: .keyword } 继续标签指定的循环的下一次迭代。
 
 
 ## 标签处返回
 
-Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数都可以被嵌套。
+Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。
 标签限制的 *return*{: .keyword } 允许我们从外层函数返回。
 最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：
 
@@ -55,7 +55,7 @@ fun foo() {
 }
 ```
 
-这个 *return*{: .keyword } 表达式从最直接包围它的函数中返回，即 `foo`。
+这个 *return*{: .keyword } 表达式从最直接包围它的函数即 `foo` 中返回。
 （注意，这种非局部的返回只支持传给[内联函数](inline-functions.html)的 lambda 表达式。）
 如果我们需要从 lambda 表达式中返回，我们必须给它加标签并用以限制 *return*{: .keyword }。
 
@@ -68,8 +68,8 @@ fun foo() {
 }
 ```
 
-现在，它只会从 lambda 表达式中返回。通常请夸下使用隐式标签更方便。
-该标签与接受 lambda 的函数同名。
+现在，它只会从 lambda 表达式中返回。通常情况下使用隐式标签更方便。
+该标签与接受该 lambda 的函数同名。
 
 ``` kotlin
 fun foo() {
@@ -80,7 +80,7 @@ fun foo() {
 }
 ```
 
-或者，我们用一个[匿名函数](lambdas.html#anonymous-functions).替代 lambda 表达式。
+或者，我们用一个[匿名函数](lambdas.html#匿名函数)替代 lambda 表达式。
 匿名函数内部的 *return*{: .keyword } 语句将从该匿名函数自身返回
 
 ``` kotlin
