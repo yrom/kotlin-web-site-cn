@@ -8,11 +8,11 @@ title: "Inline Functions"
 # 内联函数 inline
 
 使用[高阶函数](lambdas.html)会带来一些运行时间效率的损失：每一个函数都是一个对象，并且都会捕获一个闭包。
-即一些在函数体内会被访问的变量。
-内存分配(对于函数对象和类)和虚拟调用引入运行时间开销。
+即那些在函数体内会被访问的变量。
+内存分配(对于函数对象和类)和虚拟调用会引入运行时间开销。
 
-但是在许多情况下通过内联化 lambda 表达式可以降低这类的开销。
-我们通过下面的示例函数来分析上面这些内容。如，`lock()` 函数可以被很容易的在申明调用时被内联化。
+但是在许多情况下通过内联化 lambda 表达式可以消除这类的开销。
+我们通过下面的示例函数来分析上面这些内容。如，`lock()` 函数可以被很容易地在调用点被内联。考虑下面的例子：
 
 ``` kotlin
 lock(l) { foo() }
@@ -32,7 +32,7 @@ finally {
 
 这个不是我们在一开始时候想要的么？
 
-为了让编译器做这个，我们需要在`lock()`函数前面加上`inline`:
+为了让编译器做这个，我们需要在`lock()`函数前面加上`inline`修饰符:
 
 ``` kotlin
 inline fun lock<T>(lock: Lock, body: () -> T): T {
@@ -40,16 +40,15 @@ inline fun lock<T>(lock: Lock, body: () -> T): T {
 }
 ```
 
-`inline`关键字注释会影响函数体本身以及传递过来的lambdas: 这些所都会被内联到
+`inline`修饰符会影响函数体本身以及传递过来的lambdas: 所有的这些会被内联到
 调用点。
 
 内联本身有时会引起生成的代码数量增加，但是如果我们使用得当(不要内联大的函数)。它将在
-性能上有所提升，尤其是在极其巨大的调用循环中。
+性能上有所提升，尤其是在超多态(megamorphic)调用点的循环中。
 
 ## 禁止内联（noinline）
 
-为了预防有时候你只希望一部分的lambdas传递到一个内联函数后背内联，你可以把一些你的函数
-参数用 `noinline` 修饰:
+为了预防 有时候你只希望被（作为参数）传递到一个内联函数的lamdas 只有一些被内联，你可以用 `noinline` 修饰符标记你的参数:
 
 ``` kotlin
 inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
@@ -60,15 +59,15 @@ inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
 可以内联的lambdas只能在内联函数内部被调用或者被当作一个可内联的参数传递。
 但是通过 `noinline` 我们可以把它变化成任何的方式：储存在指定地点，传递它等等。
 
-需要注意的是，如果一个内联函数没有可以内联的函数变量并且没有
-[泛型变量](#reified-type-parameters), 编译器会产生一个警告。因为内联一个这样的函数
-很可能是无意义的(你可以无视这个警告如果你确定内联是必须的).
+需要注意的是，如果一个内联函数没有可以内联的函数参数并且没有
+[泛型变量](#reified-type-parameters), 编译器会产生一个警告。因为内联这样的函数
+很可能是无意义的(你可以supress这个警告如果你确定内联是必须的).
 
-## 非本地的返回
+## 非本地（Non-local）的返回
 
-在Kotlin中，我们只能使用一个普通的，无限制的`return`来退出一个命名的函数或者匿名函数。
+在Kotlin中，我们只能使用一个普通的，无限制的`return`来退出一个有名的函数或者匿名函数。
 这个意味着为了退出一个lambda,我们不得不用一个 [标签](returns.html#return-at-labels),同时 在一个
-lambda中`return`单独出现时不允许的，因为一个lambda不可能让完整的函数返回:
+lambda中`return`单独出现时不允许的，因为一个lambda不可能让外围的函数返回:
 
 ``` kotlin
 fun foo() {
@@ -78,7 +77,7 @@ fun foo() {
 }
 ```
 
-但是如果函数和lambda被传到一个内联函数中，return也可以被内联。于是下面就是允许的：
+但是如果lambda所传递到的函数是内联的，那么return也会被内联。于是下面就是允许的：
 
 ``` kotlin
 fun foo() {
@@ -88,8 +87,8 @@ fun foo() {
 }
 ```
 
-这样的返回(在lambda中，但是退出闭包的函数)被称作*non-local*返回。我们把
-这种排序构造用在循环中。通常这些内联函数是闭合的：
+这样的返回(在lambda中，但是退出封闭的函数)被称作*non-local*返回。我们把
+这种排序构造用在循环中。通常这些内联函数是封闭的：
 
 ``` kotlin
 fun hasZeros(ints: List<Int>): Boolean {
@@ -100,8 +99,8 @@ fun hasZeros(ints: List<Int>): Boolean {
 }
 ```
 
-注意有些内联函数可能会不直接从在函数体中调用被作为参数传递过来的lambdas，
-而从其他执行语句中调用，像一个本地对象或者一个嵌套函数。在这种情况下，非本地的控制流程
+注意有些内联函数可能会不直接地在函数体中调用那些被作为参数传递过来的lambdas，
+而从其他执行上下文中调用，比如一个本地对象或者一个嵌套函数。在这种情况下， non-local的控制流程
 也会被lambdas禁止。为了标识这种情况，lambda参数需要
 以`crossinline` 修饰:
 
@@ -119,7 +118,7 @@ inline fun f(crossinline body: () -> Unit) {
 
 ## 泛型变量
 
-有时候我们需要访问一个作为参数传递过来的变量类型：
+有时候我们需要访问一个作为参数传递过来的一个类型：
 
 ``` kotlin
 fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
@@ -132,8 +131,8 @@ fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
 }
 ```
 
-在这里我们访问一个树并且检查每个节点是不是特定的类型。
-这都没有问题，但是访问点并不理想：
+在这里我们向上遍历一棵树并且检查每个节点是不是特定的类型。
+这都没有问题，但是函数调用点十分不优雅：
 
 ``` kotlin
 myTree.findParentOfType(MyTreeNodeType::class.java)
@@ -157,9 +156,10 @@ inline fun <reified T> TreeNode.findParentOfType(): T? {
 }
 ```
 
-我们用泛型修饰符`reified`表示变量类型，于是现在它在函数内部
-就可以像正常函数一样的访问了。既然这个函数是内联的，没有必须的反射，一般的运算符 `!is`
-和 `as`就开始工作. 同时，我们也可以这样调用它: `myTree.findParentOfType<MyTreeNodeType>()`.
+我们用泛型修饰符`reified`来修饰这个类型参数，现在它就像一个普通的类一样，能在函数内部被正常访问了。
+因为这个函数是内联的，不需要反射，一般的运算符 `!is`
+和 `as`就可以工作了。 此外，我们可以像上面说的调用它:
+`myTree.findParentOfType<MyTreeNodeType>()`.
 
 虽然反射在很多情况下不一定需要，我们还是可以在泛型参数里使用它：
 
@@ -171,7 +171,7 @@ fun main(s: Array<String>) {
 }
 ```
 
-正常的函数 (没有被标记为内联) 不能够有泛型参数.
+普通的函数 (没有被标记为内联) 不能够有泛型参数.
 一个没有一个运行时表示的类型 (例如一个非泛型参数或者一个虚构类型如 `Nothing`)
 不能被用做泛型参数的变量。
 
@@ -179,4 +179,4 @@ fun main(s: Array<String>) {
 
 ---
 
-翻译By EasonZhou
+翻译By EasonZhou ， [pecpwee](https://github.com/pecpwee)
