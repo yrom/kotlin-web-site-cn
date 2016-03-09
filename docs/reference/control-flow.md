@@ -9,27 +9,27 @@ title: "Control Flow"
 
 ## If表达式
 
-在Kotlin中, *if*{: .keyword }是一个表达式,它会返回一个值.
-因此就不需要三元运算符 (如 ? 三元表达式), 因为使用 *if*{: .keyword } 就可以了。
+在 Kotlin 中，*if*{: .keyword }是一个表达式，即它会返回一个值。
+因此就不需要三元运算符（条件 ? 然后 : 否则），因为普通的 *if*{: .keyword } 就能胜任这个角色。
 
 ``` kotlin
-// Traditional usage 
+// 传统用法
 var max = a 
 if (a < b) 
   max = b 
  
-// With else 
+// 有 else 
 var max: Int
 if (a > b) 
   max = a 
 else 
   max = b 
  
-// As expression 
+// 作为表达式
 val max = if (a > b) a else b
 ```
 
-*if*{: .keyword }的分支可以是代码段, 最后一行的表达式作为段的返回值:
+*if*{: .keyword }的分支可以是代码块，最后的表达式作为该块的值：
 
 ``` kotlin
 val max = if (a > b) { 
@@ -42,36 +42,36 @@ val max = if (a > b) {
   }
 ```
 
-If you're using *if*{: .keyword } as an expression rather than a statement (for example, returning its value or
-assigning it to a variable), the expression is required to have an `else` branch.
+如果你使用 *if*{: .keyword } 作为表达式而不是语句（例如：返回它的值或者
+把它赋给变量），该表达式需要有 `else` 分支。
 
-See the [grammar for *if*{: .keyword }](grammar.html#if).
+参见 [*if*{: .keyword } 语法](grammar.html#if)。
 
 ## When表达式
 
-*when*{: .keyword } 替代了c语言风格的switch操作符. 最简单的形式如下：
+*when*{: .keyword } 取代了类 C 语言的 switch 操作符。其最简单的形式如下：
 
 ``` kotlin
 when (x) {
   1 -> print("x == 1")
   2 -> print("x == 2")
-  else -> { // Note the block
+  else -> { // 注意这个块
     print("x is neither 1 nor 2")
   }
 }
 ```
 
-*when*{: .keyword } 将它的参数和所有的分支条件进行比较，直到某个分支满足条件。
-*when*{: .keyword }既可以被当做表达式使用也可以被当做语句使用。如果它被当做表达式，
+*when*{: .keyword } 将它的参数和所有的分支条件顺序比较，直到某个分支满足条件。
+*when*{: .keyword } 既可以被当做表达式使用也可以被当做语句使用。如果它被当做表达式，
 符合条件的分支的值就是整个表达式的值，如果当做语句使用，
-则忽略单个分支的值。（就像*if*{: .keyword },每一个分支可以是一个代码块,它的值
-是最后的表达式的值。）
+则忽略个别分支的值。（像 *if*{: .keyword } 一样，每一个分支可以是一个代码块，它的值
+是块中最后的表达式的值。）
 
-*else*{: .keyword } 分支将被执行如果其他分支都不满足条件。
-如果 *when*{: .keyword } 作为一个表达式被使用,*else*{: .keyword } 分支是必须的，
+如果其他分支都不满足条件将会求值 *else*{: .keyword } 分支。
+如果 *when*{: .keyword } 作为一个表达式使用，则必须有 *else*{: .keyword } 分支，
 除非编译器能够检测出所有的可能情况都已经覆盖了。
 
-如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起, 用`,`逗号分隔:
+如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：
 
 ``` kotlin
 when (x) {
@@ -80,7 +80,7 @@ when (x) {
 }
 ```
 
-我们可以在判断分支条件的地方使用任何表达式，而不仅仅是常量(和switch不同)：
+我们可以用任意表达式（而不只是常量）作为分支条件
 
 ``` kotlin
 when (x) {
@@ -89,7 +89,7 @@ when (x) {
 }
 ```
 
-我们也可以检查一个值 *in*{: .keyword } 或者 *!in*{: .keyword } 一个 [范围](ranges.html) 或者集合:
+我们也可以检测一个值在（*in*{: .keyword }）或者不在（*!in*{: .keyword }）一个[区间](ranges.html)或者集合中：
 
 ``` kotlin
 when (x) {
@@ -100,9 +100,9 @@ when (x) {
 }
 ```
 
-另一种用法是可以检查一个值*is*{: .keyword }或者*!is*{: .keyword }某种特定类型.注意：
-由于[smart casts](typecasts.html#smart-casts), 你可以访问该类型的方法和属性而不用
-额外的检查。
+另一种可能性是检测一个值是（*is*{: .keyword }）或者不是（*!is*{: .keyword }）一个特定类型的值。注意：
+由于[智能转换](typecasts.html#smart-casts)，你可以访问该类型的方法和属性而无需
+任何额外的检测。
 
 ```kotlin
 val hasPrefix = when(x) {
@@ -111,8 +111,8 @@ val hasPrefix = when(x) {
 }
 ```
 
-*when*{: .keyword } 也可以用来替代*if*{: .keyword }-*else*{: .keyword } *if*{: .keyword }链.
-如果不提供参数，所有的分支条件都是简单的布尔值，而当一个分支的条件返回true时，则调用该分支：
+*when*{: .keyword } 也可以用来取代 *if*{: .keyword }-*else*{: .keyword } *if*{: .keyword }链。
+如果不提供参数，所有的分支条件都是简单的布尔表达式，而当一个分支的条件为真时则执行该分支：
 
 ``` kotlin
 when {
@@ -122,19 +122,19 @@ when {
 }
 ```
 
-查看 [grammar for *when*{: .keyword }](grammar.html#when).
+参见 [*when*{: .keyword } 语法](grammar.html#when)。
 
 
 ## For循环
 
-*for*{: .keyword } 循环可以对任何提供迭代器(iterator)的集合进行遍历，语法如下:
+*for*{: .keyword } 循环可以对任何提供迭代器（iterator）的对象进行遍历，语法如下:
 
 ``` kotlin
 for (item in collection)
   print(item)
 ```
 
-循环体可以是一个代码块.
+循环体可以是一个代码块。
 
 ``` kotlin
 for (item: Int in ints) {
@@ -142,24 +142,26 @@ for (item: Int in ints) {
 }
 ```
 
-像上面提到的一样, *for*{: .keyword }可以循环遍历任何提供了迭代器的集合。例如：
+如上所述，*for*{: .keyword } 可以循环遍历任何提供了迭代器的对象。即：
 
-* 有一个成员函数或者扩展函数`iterator()`,它返回一个类型
-  * 有一个成员函数或者扩展函数`next()`,并且
-  * 有一个成员函数或者扩展函数`hasNext()`返回 `Boolean`.
+* 有一个成员函数或者扩展函数 `iterator()`，它的返回类型
+  * 有一个成员函数或者扩展函数 `next()`，并且
+  * 有一个成员函数或者扩展函数 `hasNext()` 返回 `Boolean`。
 
-All of these three functions need to be marked as `operator`.
+这三个函数都需要标记为 `operator`。
 
-如果你想要遍历一个数组或者一个list，你可以这么做:
+对数组的 `for` 循环会被编译为并不创建迭代器的基于索引的循环。
+
+如果你想要通过索引遍历一个数组或者一个 list，你可以这么做：
 
 ``` kotlin
 for (i in array.indices)
   print(array[i])
 ```
 
-注意这种“遍历一个范围”的函数会被编译器优化，不会产生额外的对象。
+注意这种“在区间上遍历”会编译成优化的实现而不会创建额外对象。
 
-Alternatively, you can use the `withIndex` library function:
+或者你可以用库函数 `withIndex`：
 
 ``` kotlin
 for ((index, value) in array.withIndex()) {
@@ -167,11 +169,11 @@ for ((index, value) in array.withIndex()) {
 }
 ```
 
-See the [grammar for *for*{: .keyword }](grammar.html#for).
+参见 [*for*{: .keyword } 语法](grammar.html#for)。
 
 ## While循环
 
-*while*{: .keyword } 和 *do*{: .keyword }..*while*{: .keyword } 的使用方法和其他语言一致
+*while*{: .keyword } 和 *do*{: .keyword }..*while*{: .keyword } 照常使用
 
 ``` kotlin
 while (x > 0) {
@@ -180,13 +182,13 @@ while (x > 0) {
 
 do {
   val y = retrieveData()
-} while (y != null) // y is visible here!
+} while (y != null) // y 在此处可见
 ```
 
-查看 [grammar for *while*{: .keyword }](grammar.html#while).
+参见 [*while*{: .keyword } 语法](grammar.html#while).
 
-## Break和continue在循环中的使用
+## 循环中的Break和continue
 
-在循环中Kotlin支持传统的*break*{: .keyword }和*continue*{: .keyword }操作符.查看[Returns and jumps](returns.html).
+在循环中 Kotlin 支持传统的 *break*{: .keyword } 和 *continue*{: .keyword } 操作符。参见[返回和跳转](returns.html)。
 
 

@@ -38,7 +38,8 @@ The main goal of the Kotlin team is to create a pragmatic and productive program
 ## Kotlin有什么Scala没有的
 
 * [零开销 空安全](null-safety.html)
-    * Scala的“语法和运行时包装”选项
+    * Scala 的 Option，它是语法和运行时包装
 * [智能转换](typecasts.html)
 * [Kotlin的内联函数助力非局部跳跃](inline-functions.html#inline-functions)
 * [第一类 授权](delegation.html). Also implemented via 3rd party plugin: Autoproxy
+* [Member references](reflection.html#function-references) (also supported in Java 8).

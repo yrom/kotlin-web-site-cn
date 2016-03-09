@@ -7,13 +7,13 @@ title: "Basic Types"
 
 # 基本类型
 
-在Kotlin中,所有东西都是对象，所以我们可以调用成员函数和属性的任何变量对象。有些类型是内置的,他们的实现被优化过, 但是用户看起来他们就像普通的类. 本节我们会描述这些类型: numbers, characters, booleans 和 arrays.
+在 Kotlin 中，所有东西都是对象，在这个意义上讲所以我们可以在任何变量上调用成员函数和属性。有些类型是内置的，因为他们的实现是优化过的。但是用户看起来他们就像普通的类。本节我们会描述大多数这些类型：数字、字符、布尔和数组。
 
-## Numbers
+## 数字
 
-Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numbers没有隐式扩大转换(如java中int可以隐式变为long),在一些情况下文字的使用有所不同.
+Kotlin 处理数字在某种程度上接近 Java，但是并不完全相同。例如，对于数字没有隐式拓宽转换（如 Java 中 `int` 可以隐式转换为`long`——译者注)，另外有些情况的字面值略有不同。
 
-对于numbers Kotlin提供了如下的内置类型 (与Java很相近):
+Kotlin 提供了如下的内置类型来表示数字（与 Java 很相近）：
 
 | Type	 | Bit width|
 |--------|----------|
@@ -24,40 +24,40 @@ Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numb
 | Short	 | 16       |
 | Byte	 | 8        |
 
-注意在kotlin中 characters 不是 numbers 
+注意在 Kotlin 中字符不是数字
 
-### 字面量
+### 字面常量
 
-下面是一些常量的写法:
+数值常量字面值有以下几种:
 
 * 十进制: `123`
-  * Longs类型用大写 `L` 标记: `123L`
+  * Long 类型用大写 `L` 标记: `123L`
 * 十六进制: `0x0F`
 * 二进制: `0b00001011`
 
-注意: 不支持8进制
+注意: 不支持八进制
 
 Kotlin 同样支持浮点数的常规表示方法:
  
-* Doubles  `123.5`, `123.5e10`
-* Floats用 `f` 或者 `F` 标记: `123.5f` 
+* 默认 double：`123.5`、`123.5e10`
+* Float 用 `f` 或者 `F` 标记: `123.5f` 
 
 ### 存储方式
 
-在Java平台数字是物理存储为JVM的原始类型,除非我们需要一个可空的引用（例如int？）或泛型. 后者情况下数字被装箱（指的是赋值的时候把实例复制了一下，不是相同实例）。
-装箱数字不会保存它的实例:
+在 Java 平台数字是物理存储为 JVM 的原生类型，除非我们需要一个可空的引用（如 `Int?`）或泛型。
+后者情况下会把数字装箱。
 
-Note that boxing of numbers does not preserve identity:
+注意数字装箱不会保留同一性:
 
 ``` kotlin
 val a: Int = 10000
-print(a === a) // Prints 'true'
+print(a === a) // 打印 'true'
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA === anotherBoxedA) // !!!Prints 'false'!!!
+print(boxedA === anotherBoxedA) // !!!打印 'false'!!!
 ```
 
-另一方面它们值相等:
+另一方面，它保留了相等性:
 
 ``` kotlin
 val a: Int = 10000
@@ -67,35 +67,35 @@ val anotherBoxedA: Int? = a
 print(boxedA == anotherBoxedA) // Prints 'true'
 ```
 
-### 显示转换
+### 显式转换
 
-由于不同的存储方式小的类型并不是大类型的子类型。
-如果它们是的话，就会出现下述问题（下面的代码不能通过编译）：
-
-``` kotlin
-// Hypothetical code, does not actually compile:
-val a: Int? = 1 // A boxed Int (java.lang.Integer)
-val b: Long? = a // implicit conversion yields a boxed Long (java.lang.Long)
-print(a == b) // Surprise! This prints "false" as Long's equals() check for other part to be Long as well
-```
-
-假设这样是可以的，这里我们就悄无声息的丢掉了一些数据.
-
-因此较小的类型不能隐式转换为较大的类型。
-因此我们不能声明一个 `Byte` 类型给一个 `Int` 变量，在不进行显示转换的情况下。
+由于不同的表示方式，较小类型并不是较大类型的子类型。
+如果它们是的话，就会出现下述问题：
 
 ``` kotlin
-val b: Byte = 1 // OK, literals are checked statically
-val i: Int = b // ERROR
+// 假想的代码，实际上并不能编译：
+val a: Int? = 1 // 一个装箱的 Int (java.lang.Integer)
+val b: Long? = a // 隐式转换产生一个装箱的 Long (java.lang.Long)
+print(a == b) // 惊！这将打印 "false" 鉴于 Long 的 equals() 检测其他部分也是 Long
 ```
 
-我们可以显示转换的去扩大类型
+所以同一性还有相等性都会在所有地方悄无声息地失去。
+
+因此较小的类型**不能**隐式转换为较大的类型。
+这意味着在不进行显式转换的情况下我们不能把 `Byte` 型值赋给一个 `Int` 变量。
 
 ``` kotlin
-val i: Int = b.toInt() // OK: explicitly widened
+val b: Byte = 1 // OK, 字面值是静态检测的
+val i: Int = b // 错误
 ```
 
-每个number类型支持如下的转换:
+我们可以显式转换来拓宽数字
+
+``` kotlin
+val i: Int = b.toInt() // OK: 显式拓宽
+```
+
+每个数字类型支持如下的转换:
 
 * `toByte(): Byte`
 * `toShort(): Short`
@@ -105,77 +105,77 @@ val i: Int = b.toInt() // OK: explicitly widened
 * `toDouble(): Double`
 * `toChar(): Char`
 
-失去隐式类型转换，其实并没有带来多少困扰，因为使用字面量的时候是没有代价的，因为字面量的类型是推导出来的；另一方面，算数运算操作都针对不同类型的参数做好了重载，比如：
+缺乏隐式类型转换并不显著，因为类型会从上下文推断出来，而算术运算会有重载做适当转换，例如：
 
 ``` kotlin
 val l = 1L + 3 // Long + Int => Long
 ```
 
-### 运算符
+### 运算
 
-Kotlin支持标准的算数操作符，并在相应的类上定义为成员函数（但编译器会针对运算进行优化，将函数调用优化成直接的算数操作）。
-查看 [Operator overloading](operator-overloading.html).
+Kotlin支持数字运算的标准集，运算被定义为相应的类成员（但编译器会将函数调用优化为相应的指令）。
+参见 [运算符重载](operator-overloading.html)。
 
-对于按位操作(bitwise operation)，没有特别的符号来表示，而是直接使用命名函数:
+对于位运算，没有特殊字符来表示，而只可用中缀方式调用命名函数，例如:
 
 ``` kotlin
 val x = (1 shl 2) and 0x000FF000
 ```
 
-这是完整的位运算操作 (只能对 `Int` 或者 `Long` 使用):
+这是完整的位运算列表（只用于 `Int` 和 `Long`）：
 
-* `shl(bits)` – signed shift left (Java's `<<`)
-* `shr(bits)` – signed shift right (Java's `>>`)
-* `ushr(bits)` – unsigned shift right (Java's `>>>`)
-* `and(bits)` – bitwise and
-* `or(bits)` – bitwise or
-* `xor(bits)` – bitwise xor
-* `inv()` – bitwise inversion
+* `shl(bits)` – 有符号左移 (Java's `<<`)
+* `shr(bits)` – 有符号右移 (Java's `>>`)
+* `ushr(bits)` – 无符号右移 (Java's `>>>`)
+* `and(bits)` – 位与
+* `or(bits)` – 位或
+* `xor(bits)` – 位异或
+* `inv()` – 位非
 
-## Characters
+## 字符
 
-Characters 用 `Char`来表示. 不能像对待numbers那样处理
+字符用 `Char` 类型表示。它们不能直接当作数字
 
 ``` kotlin
 fun check(c: Char) {
-  if (c == 1) { // ERROR: incompatible types
+  if (c == 1) { // 错误：类型不兼容
     // ...
   }
 }
 ```
 
-Character literals go in single quotes: `'1'`.
-Special characters can be escaped using a backslash.
-The following escape sequences are supported: `\t`, `\b`, `\n`, `\r`, `\'`, `\"`, `\\` and `\$`.
-To encode any other character, use the Unicode escape sequence syntax: `'\uFF00'`.
+字符串字面值用单引号括起来: `'1'`。
+特殊字符可以用反斜杠转义。
+支持这几个转义序列：`\t`、 `\b`、`\n`、`\r`、`\'`、`\"`、`\\` 和 `\$`。
+编码其他字符要用 Unicode 转义序列语法：`'\uFF00'`。
 
-我们可以显式把Character转换为`Int`
+我们可以显式把字符转换为 `Int` 数字：
 
 ``` kotlin
 fun decimalDigitValue(c: Char): Int {
   if (c !in '0'..'9')
     throw IllegalArgumentException("Out of range")
-  return c.toInt() - '0'.toInt() // Explicit conversions to numbers
+  return c.toInt() - '0'.toInt() // 显式转换为数字
 }
 ```
 
-像numbers, characters是被装箱当使用一个可空的引用.这样实例不会被保存。
+当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性。
 
-## Booleans
+## 布尔
 
-类型`Boolean`有两个值: *true*{: .keyword } 和 *false*{: .keyword }.
+布尔用 `Boolean` 类型表示，它有两个值：*true*{: .keyword } 和 *false*{: .keyword }。
 
-Booleans使用nullable时候Boolean也会被装箱.
+若需要可空引用布尔会被装箱。
 
-内置对Booelan的操作
+内置的布尔运算有：
 
-* `||` – 短路或
-* `&&` – 短路与
-* `!` - negation
+* `||` – 短路逻辑或
+* `&&` – 短路逻辑与
+* `!` - 逻辑非
 
 ## 数组
 
-数组在Kotlin中使用 `Array`类来表示, `Array`类定义了set和get函数（使用时可以用`[]`，通过符号重载的约定转换）和`size`属性，连同一些其他有用的成员函数：
+数组在 Kotlin 中使用 `Array` 类来表示，它定义了 `get` 和 `set` 函数（按照运算符重载约定这会转变为 `[]`）和 `size` 属性，以及一些其他有用的成员函数：
 
 ``` kotlin
 class Array<T> private constructor() {
@@ -188,26 +188,26 @@ class Array<T> private constructor() {
 }
 ```
 
-我们可以使用库函数`arrayOf()`来创建一个包含数值的数组, `arrayOf(1, 2, 3)` 创建了 array [1, 2, 3].
-或者, `arrayOfNulls()`可以创建一个指定大小，元素都为空的数组。
+我们可以使用库函数 `arrayOf()` 来创建一个数组并传递元素值给它，这样 `arrayOf(1, 2, 3)` 创建了 array [1, 2, 3]。
+或者，库函数 `arrayOfNulls()` 可以用于创建一个指定大小、元素都为空的数组。
 
-Another option is to use a factory function that takes the array size and the function that can return the initial value
-of each array element given its index:
+另一个选项是用接受数组大小和一个函数参数的工厂函数，用作参数的函数能够返回
+给定索引的每个元素初始值：
 
 ``` kotlin
-// Creates an Array<String> with values ["0", "1", "4", "9", "16"]
+// 创建一个 Array<String> 初始化为 ["0", "1", "4", "9", "16"]
 val asc = Array(5, { i -> (i * i).toString() })
 ```
 
-综上, `[]`操作符代表了成员函数`get()`和`set()`.
+如上所述，`[]` 运算符代表调用成员函数 `get()` 和 `set()`。
 
-注意: 与Java不同的是, Kotlin中数组不可变. 这意味着我们不能声明 `Array<String>`
-到`Array<Any>`, 否则可能会产生一个运行时错误(但是你可以使用 `Array<out Any>`, 
-查看 [Type Projections](generics.html#type-projections)).
+注意: 与 Java 不同的是，Kotlin 中数组是不变的（invariant）。这意味着 Kotlin 不让我们把 `Array<String>`
+赋值给 `Array<Any>`，以防止可能的运行时失败（但是你可以使用 `Array<out Any>`, 
+参见 [类型预测](generics.html#类型预测)）。
 
-Kotlin有专门的类来表示原始类型的数组，避免了装箱开销: `ByteArray`,
-`ShortArray`, `IntArray` 等等. 这些类和`Array`并没有继承关系,但是
-它们有同样的方法属性集. 它们也都有相应的工厂方法:
+Kotlin 也有无装箱开销的专门的类来表示原生类型数组: `ByteArray`、
+`ShortArray`、`IntArray` 等等。这些类和 `Array` 并没有继承关系，但是
+它们有同样的方法属性集。它们也都有相应的工厂方法:
 
 ``` kotlin
 val x: IntArray = intArrayOf(1, 2, 3)
@@ -216,9 +216,9 @@ x[0] = x[1] + x[2]
 
 ## 字符串
 
-字符串用`String`表示。字符串是不可变的。  
-字符串的原始字符可以使用操作符访问: `s[i]`.
-字符串可以使用*for*{: .keyword }循环遍历:
+字符串用 `String` 类型表示。字符串是不可变的。
+字符串的元素——字符可以使用索引运算符访问: `s[i]`。
+可以用 *for*{: .keyword } 循环迭代字符串:
 
 ``` kotlin
 for (c in str) {
@@ -226,17 +226,17 @@ for (c in str) {
 }
 ```
 
-### 字符串字面量
+### 字符串字面值
 
-Kotlin有两种类型的字符串: 转义字符串可能由转义字符、原生字符串、换行和任意文本.转义字符串很像 Java 字符串:
+Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原生字符串白可以包含换行和任意文本。转义字符串很像 Java 字符串:
 
 ``` kotlin
 val s = "Hello, world!\n"
 ```
 
-转义方式采用传统的反斜杠. See [Characters](#characters) above for the list of supported escape sequences.
+转义采用传统的反斜杠方式。参见上面的 [字符](#字符) 查看支持的转义序列。
 
-*原生字符串*使用三个引号(`"""`)包括，内部没有转义，可以包含换行和任何其他文本:
+*原生字符串* 使用三个引号（`"""`）分界符括起来，内部没有转义并且可以包含换行和任何其他字符:
 
 ``` kotlin
 val text = """
@@ -248,23 +248,23 @@ val text = """
 
 ### 字符串模板
 
-字符串可以包含*模板表达式*，即一些小段代码，会求值并把结果合并到字符串中。
-模板表达式以`$`符号开始，包含一个简单的名称:
+字符串可以包含*模板表达式* ，即一些小段代码，会求值并把结果合并到字符串中。
+模板表达式以美元符（`$`）开头，由一个简单的名字构成:
 
 ``` kotlin
 val i = 10
-val s = "i = $i" // evaluates to "i = 10"
+val s = "i = $i" // 求值结果为 "i = 10"
 ```
 
-或者用花括号扩起来，内部可以是任意表达式:
+或者用花括号扩起来的任意表达式:
 
 ``` kotlin
 val s = "abc"
-val str = "$s.length is ${s.length}" // evaluates to "abc.length is 3"
+val str = "$s.length is ${s.length}" // 求值结果为 "abc.length is 3"
 ```
 
-Templates are supported both inside raw strings and inside escaped strings.
-If you need to represent a literal `$` character in a raw string (which doesn't support backslash escaping), you can use the following syntax:
+原生字符串和转义字符串内部都支持模板。
+如果你需要在原生字符串中表示字面值 `$` 字符（它不支持反斜杠转义），你可以用下列语法：
 
 ``` kotlin
 val price = """
@@ -275,4 +275,3 @@ ${'$'}9.99
 ---
 
 校对BY 空白
-

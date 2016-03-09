@@ -56,7 +56,7 @@ demo.DemoUtils.bar();
 
 如果多个文件中生成了相同的Java类名（包名相同，类名相同或者有相同的`@JvmName`注解）通常会报错，然而，可以在每个文件添加 `@JvmMultifileClass`注解，可以让编译器生成一个统一的带有特殊名字的类，这个类包含了对应这些文件中所有的声明。
 
-[//]: # (Having multiple files which have the same generated Java class name (the same package and the same name or the same@JvmName annotation) is normally an error. However, the compiler has the ability to generate a single Java facade class which has the specified name and contains all the declarations from all the files which have that name.To enable the generation of such a facade, use the @JvmMultifileClass annotation in all of the files.)
+
 
 ``` kotlin
 // oldutils.kt
@@ -89,7 +89,7 @@ demo.Utils.bar();
 ## 实例字段
 
 如果在 Java 需要像字段一样调用一个 Kotlin 的属性，你需要使用`@JvmField`注解。这个字段与属性具有相同的可见性。属性符合有实际字段(backing field)、非私有、没有`open`, `override` 或者 `const`修饰符、不是被委托的属性这些条件才可以使用`@JvmField`注解。
-[//]:# (If you need to expose a Kotlin property as a field in Java, you need to annotate it with the `@JvmField` annotation.The field will have the same visibility as the underlying property. You can annotate a property with `@JvmField`if it has a backing field, is not private, does not have `open`, `override` or `const` modifiers, and is not a delegated property.)
+
 
 ``` kotlin
 class C(id: String) {
@@ -107,7 +107,7 @@ class JavaClient {
 ```
 
 [延迟初始化](properties.html#late-initialized-properties) 的属性（在Java中）也可以被作为字段调用，字段的可见性和　`lateinit`　属性的　setter　相同。
-[//]:# ([Late-Initialized](properties.html#late-initialized-properties) properties are also exposed as fields. The visibility of the field will be the same as the visibility of `lateinit` property setter.)
+
 
 ## 静态字段
 
@@ -137,7 +137,7 @@ Key.COMPARATOR.compare(key1, key2);
 ```
 
 在命名对象或者伴生对象中的一个[延迟初始化](properties.html#late-initialized-properties) 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。
-[//]:# ( A [late-initialized](properties.html#late-initialized-properties) property in an object or a companion object has a static backing field with the same visibility as the property setter.)
+
 
 ``` kotlin
 object Singleton {
@@ -152,7 +152,7 @@ Singleton.provider = new Provider();
 ```
 
 使用`const` 注解可以将 Kotlin 属性转换成 Java 中的静态字段。
-[//]:# (Properties annotated with `const` (in classes as well as at the top level) are turned into static fields in Java:)
+
 
 ``` kotlin
 // file example.kt
@@ -182,8 +182,6 @@ int v = C.VERSION;
 
 正如上面所说，Kotlin 自动为包级函数生成了静态方法
 在Kotlin 中，还可以通过`@JvmStatic`注解在命名对象或者伴生对象中定义的函数来生成对应的静态方法。
-[//]:# ( As mentioned above, Kotlin generates static methods for package-level functions.)
-[//]:# (Kotlin can also generate static methods for functions defined in named objects or companion objects if you annotate those functions as `@JvmStatic`.)
 例如：
 
 ``` kotlin
@@ -222,7 +220,7 @@ Obj.INSTANCE.foo(); // 也行
 
 通过使用　`@JvmStatic`　注解对象的属性或伴生对象，使对应的getter 和 setter 方法在这个对象或者包含这个伴生对象的类中也成为静态成员。
 
-[//]:# (`@JvmStatic` annotation can also be applied on a property of an object or a companion object making its getter and setter methods be static members in that object or the class containing the companion object.)
+
 
 
 ## 用@JvmName解决签名冲突
@@ -333,7 +331,7 @@ fun foo() {
 
 
 当Kotlin 的类使用了 [declaration-site variance](generics.html#declaration-site-variance)，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。
-[//]:# (When Kotlin classes make use of [declaration-site variance](generics.html#declaration-site-variance), there are two options of how their usages are seen from the Java code. Let's say we have the following class and two functions that use it:)
+
 
 ``` kotlin
 class Box<out T>(val value: T)
@@ -346,7 +344,7 @@ fun unboxBase(box: Box<Base>): Base = box.value
 ```
 
 一种看似理所当然地将函数转换成 Java 代码的方式可能会是这样：
-[//]:# (A naive way of translating these functions into Java would be this:)
+
  
 ``` java
 Box<Derived> boxDerived(Derived value) { ... }
@@ -361,10 +359,9 @@ Base unboxBase(Box<? extends Base> box) { ... }
 ```  
 
 我们在这里通过使用 Java 的 *通配符类型* (`? extends Base`) 去模拟[declaration-site variance](generics.html#declaration-site-variance)，因为在 Java   中只能这么做。
-[//]:# (Here we make use of Java's *wildcards types* (`? extends Base`) to emulate declaration-site variance through use-site variance, because it is all Java has.)
 
 当作为参数的时候，为了让 Kotlin 的 API 工作，针对`Box` 我们将Koltin 中的 `Box<Super>` 在 Java 中生成为 `Box<? extends Super>`(`Foo`将生成为 `Foo<? super Bar>`) 。当作为返回值的时候，我们不需要生成通配符类型，因为如果生成通配符在 Java 中还需要做其他操作来转换(这是常见的 Java 代码风格)。因此上面例子中的函数实际上会被转换成下面的代码：
-[//]:# (To make Kotlin APIs work in Java we generate `Box<Super>` as `Box<? extends Super>` for covariantly defined `Box` (or `Foo<? super Bar>` for contravariantly defined `Foo`) when it appears *as a parameter*. When it's a return value,we don't generate wildcards, because otherwise Java clients will have to deal with them (and it's against the common Java coding style). Therefore, the functions from our example are actually translated as follows:)
+
   
 ``` java
 // 作为返回类型 - 没有泛型
@@ -375,10 +372,10 @@ Base unboxBase(Box<? extends Base> box) { ... }
 ```
 
 注意：如果参数类型是 final 的，就不用生成泛型了，比如，无论在什么地方`Box<String>`转换成 Java 代码始终还是　`Box<String>`，
-[//]:# (NOTE: when the argument type is final, there's usually no point in generating the wildcard, so `Box<String>` is always `Box<String>`, no matter what position it takes.)
+
 
 如果我们不想要默认生成的通配符，需要自己指定可以使用`@JvmWildcard` 注解：
-[///]:# (If we need wildcards where they are not generated by default, we can use the `@JvmWildcard` annotation:)
+
 
 ``` kotlin
 fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
@@ -387,7 +384,7 @@ fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 ```
 
 另一方面，如果我们根本不需要默认的通配符转换，我们可以使用`@JvmSuppressWildcards`
-[//]:# (On the other hand, if we don't need wildcards where they are generated, we can use `@JvmSuppressWildcards`:)
+
 
 ``` kotlin
 fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
@@ -397,7 +394,7 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 
 注意：`@JvmSuppressWildcards` 不是只可以用在单独的类型参数上面，是可以是用在所有声明上，比如 函数，类等，其对应下面所有的泛型都不会自动转换为Java 中的通配符。
 
-[//]:# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)
+
 
 ### Nothing 类型的转换
  

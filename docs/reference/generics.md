@@ -226,9 +226,19 @@ fun fill(dest: Array<in String>, value: String) {
 
 有时，你试图说你并不知道任何类型声明的方法，但是仍旧想安全地使用他。
 这里的安全方法指我们需要对*out*\-预测
-（对象并没有使用任何未知类型），预测具有相对参数的上界，例如大多数情况下的 `out Any?` 。
-Kotlin提供了一种简单的方法，称为**星预测**：`Foo<*>`代表`Foo<out Bar>`，`Bar`是
-`Foo`参数类型的上界。
+
+Kotlin提供了所谓的**星预测**语法如下：
+
+ - For `Foo<out T>`, where `T` is a covariant type parameter with the upper bound `TUpper`, `Foo<*>` is equivalent to `Foo<out TUpper>`. It means that when the `T` is unknown you can safely *read* values of `TUpper` from `Foo<*>`.
+ - For `Foo<in T>`, where `T` is a contravariant type parameter, `Foo<*>` is equivalent to `Foo<in Nothing>`. It means there is nothing you can *write* to `Foo<*>` in a safe way when `T` is unknown.
+ - For `Foo<T>`, where `T` is an invariant type parameter with the upper bound `TUpper`, `Foo<*>` is equivalent to `Foo<out TUpper>` for reading values and to `Foo<in Nothing>` for writing values.
+
+If a generic type has several type parameters each of them can be projected independently.
+For example, if the type is declared as `interface Function<in T, out U>` we can imagine the following star-projections:
+
+ - `Function<*, String>` means `Function<in Nothing, String>`;
+ - `Function<Int, *>` means `Function<Int, out Any?>`;
+ - `Function<*, *>` means `Function<in Nothing, out Any?>`.
 
 *注记*：星预测很像Java中的raw类型，但是比raw类型更加安全。
 

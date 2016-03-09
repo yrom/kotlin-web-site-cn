@@ -166,8 +166,8 @@ ints.filter { it > 0 } // this literal is of type '(it: Int) -> Boolean'
 ### 匿名函数
 
 上述 lambda 表达式的语法还少了一个东西： 能够指定函数的返回
-类型。在大多数情况下, 这是不必要的。因为返回类型可以被自动推断出来. 然而，如果你
-需要要明确的指定。你需要一个替代语法:_匿名函数_.
+类型。在大多数情况下, 这是不必要的。因为返回类型可以被自动推断出来.
+然而，如果你需要要明确的指定。你需要一个替代语法:_匿名函数_.
 
 ``` kotlin
 fun(x: Int, y: Int): Int = x + y
@@ -215,31 +215,31 @@ print(sum)
 
 ### 带接收者得函数字面值
 
-Kotlin provides the ability to call a function literal with a specified _receiver object_.
-Inside the body of the function literal, you can call methods on that receiver object without any additional qualifiers.
-This is similar to extension functions, which allow you to access members of the receiver object inside the body of the function.
+kotlin提供了使用一个特定的 _receiver对象_ 来调用一个函数的能力.
+在函数体内部，你可以调用 接受者对象 的方法而不需要任何额外的限定符。
+这和 扩展函数 有点类似，它允你在函数体内访问接收器对象的成员。
+
 他们的一个最重要的例子是[Type-safe Groovy-style builders](type-safe-builders.html)的使用。
 
-The type of such a function literal is a function type with receiver:
+这样的函数字面量的类型是一个带receiver的函数类型
 
 ``` kotlin
 sum : Int.(other: Int) -> Int
 ```
-
-The function literal can be called as if it were a method on the receiver object:
+如果函数是一个在receiver对象上的方法，那么这个函数可以被调用
 
 ``` kotlin
 1.sum(2)
 ```
 
-The anonymous function syntax allows you to specify the receiver type of a function literal directly.
-This can be useful if you need to declare a variable of a function type with receiver, and to use it later.
+匿名函数的语法允许你直接指定函数的receiver的类型
+如果你需要用一个receiver声明一个函数类型的变量，并且在后面用到它，那么这个语法就很有用
 
 ``` kotlin
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
-Lambda expressions can be used as function literals with receiver when the receiver type can be inferred from context.
+当receiver类型能够被从上下文推断的时候，Lamda表达式能够被用于带receiver的函数字面量
 
 ``` kotlin
 class HTML {
@@ -261,5 +261,5 @@ html {       // lambda with receiver begins here
 ---
 
 
-翻译By Airoyee
+翻译By Airoyee，[pecpwee](https://github.com/pecpwee)
 

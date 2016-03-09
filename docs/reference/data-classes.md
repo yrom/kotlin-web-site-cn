@@ -7,14 +7,14 @@ title: "Data Classes"
 
 # 数据类
 
-我们经常创建一些只是处理数据的类。在这些类里的功能经常是
-衍生自他们所持有的数据。在Kotlin中，这样的类可以被标记为`data`：
+我们经常创建一些只是处理数据的类。在这些类里的标准功能经常是
+衍生自数据。在Kotlin中，这叫做 _数据类_ 并标记为`data`：
  
 ``` kotlin
 data class User(val name: String, val age: Int)
 ```
 
-这被叫做一个 _数据类_。编译器自动从在主构造函数定义的全部特性中得到以下成员：
+编译器自动从在主构造函数定义的全部特性中得到以下成员：
   
   * `equals()`/`hashCode()` 对，
   * `toString()` 格式是 `"User(name=John, age=42)"`，
