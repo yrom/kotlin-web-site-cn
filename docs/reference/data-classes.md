@@ -68,6 +68,4 @@ println("$name, $age years of age") // prints "Jane, 35 years of age"
 在标准库提供了`Pair`和`Triple`。在很多情况下，即使命名数据类是一个更好的设计选择，
 因为这能让代码可读性更强。
 
----
 
-翻译By Wahchi

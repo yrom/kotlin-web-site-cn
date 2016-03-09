@@ -166,8 +166,6 @@ class MyClass {
 
 
 
---- 
 
-翻译By Wahchi,[pecpwee](https://github.com/pecpwee)
 
 

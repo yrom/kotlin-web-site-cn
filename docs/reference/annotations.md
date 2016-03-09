@@ -274,6 +274,4 @@ fun foo(ann: Ann) {
 }
 ```
 
----
 
-翻译By [Wahchi](https://github.com/wahchi)

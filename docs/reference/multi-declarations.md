@@ -91,6 +91,4 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
   
 于是你可以自由的使用解构声明 *for*{: .keyword }-loops 来操作映射(也可以用在数据类实例的集合等)。
 
----
 
-翻译By EasonZhou

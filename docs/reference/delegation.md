@@ -60,7 +60,3 @@ fun main() {
 并且编译器会生成所有的用于转发给`b`的`base`的方法
 
 
----
-
-翻译By EasonZhou
-
