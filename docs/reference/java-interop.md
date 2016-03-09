@@ -238,7 +238,7 @@ javaObj.removeIndices(array)  // passes int[] to method
 当编译成jvm字节码的时候，编译器会优化对数组的访问，确保不会产生额外的负担。
 
 ``` kotlin
-val array = array(1, 2, 3, 4)
+val array = arrayOf(1, 2, 3, 4)
 array[x] = array[x] * 2 // 不会生成对get() 和 set()的调用
 for (x in array) // 不会创建迭代器
   print(x)
