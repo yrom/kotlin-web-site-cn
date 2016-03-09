@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Higher-Order Functions and Lambdas"
+title: "高阶函数和lambda表达式"
 ---
 
 # 高阶函数和lambda表达式
@@ -194,7 +194,7 @@ ints.filter(fun(item) = item > 0)
 请注意，匿名函数参数始终在圆括号内传递。允许在
 函数括号外使用的速记语法只针对于 lambda 函数。
 
-另一个 lambda 表达式和匿名函数区别是 
+另一个 lambda 表达式和匿名函数区别是
 [non-local    returns](inline-functions.html#non-local-returns)的行为。一个不带标签的*return*{：. keyword} 语句
 总是在用*fun*{: .keyword } 关键词声明的函数中返回。这意味着 lambda 表达式中的return*{: .keyword }
 将在函数闭包中返回 。然而匿名函数*return*{: .keyword}的就是在匿名函数自身中返回。
@@ -262,4 +262,3 @@ html {       // lambda with receiver begins here
 
 
 翻译By Airoyee，[pecpwee](https://github.com/pecpwee)
-

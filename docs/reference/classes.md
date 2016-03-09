@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Classes and Inheritance"
+title: "类和继承"
 related:
     - functions.md
     - nested-classes.md
@@ -29,7 +29,7 @@ class Empty
 ```
 
 
-### 构造 
+### 构造
 
 在Kotlin中的类可以有**主构造函数**和一个或多个**二级构造函数**。主构造
 函数是类头的一部分:它跟在这个类名后面（和可选的类型参数）
@@ -268,16 +268,16 @@ class C() : A(), B {
 类和其中的某些实现可以声明为*abstract*{：.keyword}。
 抽象成员在本类中可以不用实现。。
 > ~~ 因此，当一些子类继承一个抽象的成员，它并不算是一个实现：~~
-> 
+>
 > ``` kotlin
 > abstract class A {
 >   abstract fun f()
 > }
-> 
+>
 > interface B {
 >   open fun f() { print("B") }
 > }
-> 
+>
 > class C() : A(), B {
 >   // We are not required to override f()
 > }

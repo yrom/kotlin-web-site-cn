@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Reflection"
+title: "反射"
 ---
 
 # 反射
@@ -39,9 +39,9 @@ val c = MyClass::class
 fun isOdd(x: Int) = x % 2 != 0
 ```
 
-我们可以直接调用(`isOdd(5)`), 也可以把它作为一个值传给其他函数. 
+我们可以直接调用(`isOdd(5)`), 也可以把它作为一个值传给其他函数.
 我们使用`::`操作符实现:  
-  
+
 ``` kotlin
 val numbers = listOf(1, 2, 3)
 println(numbers.filter(::isOdd)) // prints [1, 3]
@@ -52,7 +52,7 @@ println(numbers.filter(::isOdd)) // prints [1, 3]
 注意现在`::`不能被使用来重载函数. 将来, 我们计划
 提供一个语法明确参数类型这样就可以使用明确的重载函数了。
 
-如果我们需要使用类成员或者一个扩展方法，它必须是有权访问的, 
+如果我们需要使用类成员或者一个扩展方法，它必须是有权访问的,
 例如`String::toCharArray`带着一个`String`: `String.() -> CharArray`类型扩展函数.
 
 ### 例子: 函数组合
@@ -97,10 +97,10 @@ fun main(args: Array<String>) {
 查看[docs on the `KProperty` class](/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html).
 
 对于可变属性,例如`var y = 1`, `::y`返回值类型是[`KMutableProperty<Int>`](/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html),
-它有一个`set()`方法. 
+它有一个`set()`方法.
 
 A property reference can be used where a function with no parameters is expected:
- 
+
 ``` kotlin
 val strs = listOf("a", "bc", "def")
 println(strs.map(String::length)) // prints [1, 2, 3]
@@ -139,9 +139,9 @@ fun main(args: Array<String>) {
 
 ``` kotlin
 import kotlin.reflect.jvm.*
- 
+
 class A(val p: Int)
- 
+
 fun main(args: Array<String>) {
     println(A::p.javaGetter) // prints "public final int A.getP()"
     println(A::p.javaField)  // prints "private final int A.p"
@@ -157,7 +157,7 @@ fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 ## 构造函数引用
 
 构造函数可以像属性和方法那样引用. 它们可以使用在任何一个函数类型的对象的地方，
-期望得到相同参数的构造函数，并返回一个适当类型的对象. 
+期望得到相同参数的构造函数，并返回一个适当类型的对象.
 构造函数使用`::`操作符加类名引用.考虑如下函数，
 需要一个无参数函数返回类型是`Foo`:
 

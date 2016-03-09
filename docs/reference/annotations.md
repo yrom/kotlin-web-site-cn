@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Annotations"
+title: "注解"
 ---
 
 # 注解
@@ -48,7 +48,7 @@ public annotation class Fancy
 
 
 > ~~在很多情况下，`@ `这个标志不是强制性使用的。它只是在当注解表达式或者本地声明时需要：~~
-> 
+>
 > ``` kotlin
 > fancy class Foo {
 >   fancy fun baz(fancy foo: Int): Int {
@@ -192,10 +192,10 @@ class Tests {
 
 
 > ~~Java注解也可像用import修饰符重新命名：~~
-> 
+>
 > ``` kotlin
 > import org.junit.Test as test
-> 
+>
 > class Tests {
 >   test fun simple() {
 >     ...

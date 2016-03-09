@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Extensions"
+title: "扩展"
 ---
 
 # 扩展
@@ -42,7 +42,7 @@ fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
 ```
 
 在接收类型表达式中，我们要在方法名可用前声明泛型类型参数。
-参见[Generic functions](generics.html). 
+参见[Generic functions](generics.html).
 
 ## 扩展的静态解析
 
@@ -84,7 +84,7 @@ class C {
 fun C.foo() { println("extension") }
 ```
 
-如果我们调用`C`类型的`c`的`c.foo()`，它将打印"member"，而不是"extension". 
+如果我们调用`C`类型的`c`的`c.foo()`，它将打印"member"，而不是"extension".
 
 ## Nullable接收者
 
@@ -146,12 +146,12 @@ MyClass.foo()
 ## 扩展范围
 
 大多数时候，我们定义扩张方法在顶层，即直接在包里
- 
+
 ``` kotlin
 package foo.bar
- 
-fun Baz.goo() { ... } 
-``` 
+
+fun Baz.goo() { ... }
+```
 
 使用一个定义的包之外的扩展，我们需要导入他的头文件：
 
@@ -245,7 +245,7 @@ C1().caller(D())  // prints "D.foo in C1" - dispatch receiver is resolved virtua
 C().caller(D1())  // prints "D.foo in C" - extension receiver is resolved statically
 ```
 
- 
+
 ## Motivation
 
 ## 动机
@@ -275,6 +275,6 @@ list.swap(list.binarySearch(otherList.max()), list.max())
 但是我们不希望实现`List`类内所有可能的方法，对吧？这时候扩展将会帮助我们。
 
 
---- 
+---
 
 翻译By S_arige
