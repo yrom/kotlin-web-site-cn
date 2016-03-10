@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Basics"
-title: "Basic Syntax"
+title: "基本语法"
 ---
 
 # 基本语法
@@ -316,4 +316,3 @@ names
 ```
 
 参阅 [高阶函数及Lambda表达式](lambdas.html).
-

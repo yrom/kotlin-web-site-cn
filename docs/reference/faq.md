@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: FAQ
-title: FAQ
+title: "FAQ"
 ---
 
 # FAQ
@@ -102,5 +102,3 @@ Currently at 5.
 ### Does the JavaScript back-end support module systems?
 
 Yes. There are plans to provide CommonJS and AMD support.
-
-

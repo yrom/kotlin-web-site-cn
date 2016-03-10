@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Packages"
+title: "包"
 ---
 
 # 包
@@ -21,7 +21,7 @@ class Goo {}
 
 源文件所有内容（无论是类还是函数）都包含在声明的包内。
 所以上例中 `baz()` 的全名是 `foo.bar.baz`、`Goo` 的全名是 `foo.bar.Goo`。
- 
+
 如果没有指明包，该文件的内容属于无名字的默认包。
 
 ## 导入

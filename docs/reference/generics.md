@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Generics"
+title: "泛型"
 ---
 
 # 泛型
@@ -196,7 +196,7 @@ val any = Array<Any>(3)
 copy(ints, any) // Error: expects (Array<Any>, Array<Any>)
 ```
 
-这里，我们陷入了一个类似的问题：`Array<T>`中的`T`是**不变**的，所以不论是`Array<Int>`或`Array<Any>` 
+这里，我们陷入了一个类似的问题：`Array<T>`中的`T`是**不变**的，所以不论是`Array<Int>`或`Array<Any>`
 都不是另一个的子类型。为什么？因为copy操作**可能**是不安全的行为，例如，它可能尝试向来源**写**一个String，
 如果我们真的将其转换为`Int`数组，随后 `ClassCastException`异常可能会被抛出。
 
@@ -294,6 +294,6 @@ fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>
 }
 ```
 
---- 
+---
 
 翻译By 咩咩

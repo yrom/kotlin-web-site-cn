@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Inline Functions"
+title: "内联函数"
 ---
 
 # 内联函数 inline

@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Ranges"
+title: "范围"
 ---
 
 # 范围
@@ -76,15 +76,15 @@ The `last` element of the progression is calculated to find maximum value not gr
 
 
 > ~~###常见的接口定义~~
-> 
+>
 > 有两种基本接口:`Range`和`Progression`。
-> 
+>
 > `Range` 接口定义了一个范围或一个数学意义上的区间。
 > 它有两个端点,`start` 和`end`,并且`contains()`函数检查是否包含一个给定的数字范围
 > (也可以作为*in*{: .keyword } /*!in*{: .keyword }操作符)。
 > “开始”和“结束”是包含在范围内。如果`start`= =`end`,范围包含一个确定的元素。
 > 如果 `start` > `end`,范围是空的.
-> 
+>
 > ``` kotlin
 > interface Range<T : Comparable<T>> {
 >   val start: T
@@ -92,13 +92,13 @@ The `last` element of the progression is calculated to find maximum value not gr
 >   fun contains(element: T): Boolean
 > }
 > ```
-> 
+>
 > `Progression`定义了一种等差算法。
 > 它有 `start`(进程中的第一个元素), `end`(被包含的最后一个元素)
 > 和`increment` (每个进程元素和以前的区别,非零)。
 > 但它的主要特征是,可以遍历过程,所以这是`Iterable`的子类。
 > `end`最后一个元素不是必须的，如 `start < end && increment < 0` or `start > end && increment > 0`.
-> 
+>
 > ``` kotlin
 > interface Progression<N : Number> : Iterable<N> {
 >   val start: N
@@ -107,39 +107,39 @@ The `last` element of the progression is calculated to find maximum value not gr
 >   // fun iterator(): Iterator<N> is defined in Iterable interface
 > }
 > ```
-> 
+>
 > 迭代'Progression'相当于一个索引*for* {:.Java关键字}循环:
-> 
+>
 > ``` java
 > // if increment > 0
 > for (int i = start; i <= end; i += increment) {
 >   // ...
 > }
-> 
+>
 > // if increment < 0
 > for (int i = start; i >= end; i += increment) {
 >   // ...
 > }
 > ```
-> 
-> 
+>
+>
 > ### 类的实现
-> 
+>
 > 为了避免不必要的重复,让我们只考虑一个数字类型,`Int`。
 > 对于其他类型的数量实现是一样的。
 > 注意,可以使用这些类的构造函数创建实例,
 > 而更方便使用的`rangeTo()`(这个名字,或作为`..`操作符), `downTo()`, `reversed()`和`step()`等实用的函数,以后介绍。
-> 
+>
 > `IntProgression` 类很简单快捷:
-> 
+>
 > ``` kotlin
 > class IntProgression(override val start: Int, override val end: Int, override val increment: Int): Progression<Int> {
 >   override fun iterator(): Iterator<Int> = IntProgressionIteratorImpl(start, end, increment) // implementation of iterator is obvious
 > }
 > ```
-> 
+>
 > `IntRange` IntRange是有点复杂:它的实现类是 `Progression<Int>`和`Range<Int>`,因为它是自然的遍历的(默认增量值为1整数和浮点类型):
-> 
+>
 > ``` kotlin
 > class IntRange(override val start: Int, override val end: Int): Range<Int>, Progression<Int> {
 >   override val increment: Int
@@ -148,15 +148,15 @@ The `last` element of the progression is calculated to find maximum value not gr
 >   override fun iterator(): Iterator<Int> = IntProgressionIteratorImpl(start, end, increment)
 > }
 > ```
-> 
+>
 > `ComparableRange` 也很简单(请记住,比较转换是`compareTo()`):
-> 
+>
 > ``` kotlin
 > class ComparableRange<T : Comparable<T>>(override val start: T, override val end: T): Range<T> {
 >   override fun contains(element: T): Boolean = start <= element && element <= end
 > }
 > ```
-> 
+>
 ## 一些实用函数
 
 ### `rangeTo()`

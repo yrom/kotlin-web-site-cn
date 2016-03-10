@@ -1,7 +1,7 @@
 ---
 type: doc
 layout: reference
-title: "Operator overloading"
+title: "运算符重载"
 category: "Syntax"
 ---
 
@@ -9,7 +9,7 @@ category: "Syntax"
 
 Kotlin允许我们实现一些我们自定义类型的运算符实现。这些运算符有固定的表示
 （像 `+` 或者 `*`），和固定的[优先级](grammar.html#precedence)。为实现这样的运算符，我们提供了固定名字的[成员函数](functions.html#member-functions)
-或[扩展函数](extensions.html)，比如二元运算符的左值和一元运算符的参数类型。 
+或[扩展函数](extensions.html)，比如二元运算符的左值和一元运算符的参数类型。
 Functions that overload operators need to be marked with the `operator` modifier.
 
 ## 转换

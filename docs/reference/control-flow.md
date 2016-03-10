@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Control Flow"
+title: "控制流"
 ---
 
 # 控制流
@@ -14,17 +14,17 @@ title: "Control Flow"
 
 ``` kotlin
 // 传统用法
-var max = a 
-if (a < b) 
-  max = b 
- 
-// 有 else 
+var max = a
+if (a < b)
+  max = b
+
+// 有 else
 var max: Int
-if (a > b) 
-  max = a 
-else 
-  max = b 
- 
+if (a > b)
+  max = a
+else
+  max = b
+
 // 作为表达式
 val max = if (a > b) a else b
 ```
@@ -32,13 +32,13 @@ val max = if (a > b) a else b
 *if*{: .keyword }的分支可以是代码块，最后的表达式作为该块的值：
 
 ``` kotlin
-val max = if (a > b) { 
-    print("Choose a") 
-    a 
-  } 
-  else { 
-    print("Choose b") 
-    b 
+val max = if (a > b) {
+    print("Choose a")
+    a
+  }
+  else {
+    print("Choose b")
+    b
   }
 ```
 
@@ -190,5 +190,3 @@ do {
 ## 循环中的Break和continue
 
 在循环中 Kotlin 支持传统的 *break*{: .keyword } 和 *continue*{: .keyword } 操作符。参见[返回和跳转](returns.html)。
-
-

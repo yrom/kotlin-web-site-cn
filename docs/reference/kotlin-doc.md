@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Tools"
-title: "Documenting Kotlin Code"
+title: "生成kotlin代码文档"
 ---
 
 # 生成kotlin代码文档
@@ -141,5 +141,3 @@ Use [kotlin.reflect.KClass.properties] to enumerate the properties of the class.
 注意KDoc在链接中没有解决重载成员的任何语法。自从Kotlin文档生成
 工具把上所有的重载函数放在同一个页面之后，标识一个特定的重载函数
 不需要链接的方式。
-
-
