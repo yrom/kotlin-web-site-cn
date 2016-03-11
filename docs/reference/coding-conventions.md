@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: Basics
-title: Coding Conventions
+title: "编码规范"
 ---
 
 # 编码规范

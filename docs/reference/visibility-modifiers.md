@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Classes and Objects"
-title: "Visibility Modifiers"
+title: "可见性修饰符"
 
 ---
 
@@ -62,7 +62,7 @@ private fun foo() {} // visible inside this package and subpackaged
 
 public var bar: Int = 5 // property is visible everywhere
     private set         // setter is visible only in this package and subpackages
-    
+
 internal val baz = 6    // visible inside the same module, the modifier can be omitted    
 ```
 
@@ -88,7 +88,7 @@ open class Outer {
     protected val b = 2
     val c = 3 // internal by default
     public val d: Int = 4 // return type required
-    
+
     protected class Nested {
         public val e: Int = 5
     }
@@ -103,7 +103,7 @@ class Subclass : Outer() {
 class Unrelated(o: Outer) {
     // o.a, o.b are not visible
     // o.c and o.d are visible (same module)
-    // Outer.Nested is not visible, and Nested::e is not visible either 
+    // Outer.Nested is not visible, and Nested::e is not visible either
 }
 ```
 

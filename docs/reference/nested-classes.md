@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Nested Classes"
+title: "嵌套类"
 ---
 
 # 嵌套类  

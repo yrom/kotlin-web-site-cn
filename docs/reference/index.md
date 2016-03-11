@@ -1,6 +1,6 @@
 ---
 layout: reference
-title: "Reference"
+title: "参考"
 ---
 
 # 参考

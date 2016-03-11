@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: FAQ
-title: FAQ
+title: "FAQ"
 ---
 
 # FAQ

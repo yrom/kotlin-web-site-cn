@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Dynamic Type"
+title: "动态类型"
 ---
 
 # 动态类型
@@ -43,5 +43,3 @@ dyn.foo {
 ```
 
 更多细节, [查看](https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md).
-
-

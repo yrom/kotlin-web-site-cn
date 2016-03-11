@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: FAQ
-title: "Comparison to Scala"
+title: "对比Scala"
 ---
 
 # 对比Scala
