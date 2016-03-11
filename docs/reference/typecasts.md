@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Type Checks and Casts"
+title: "类型的检查与转换"
 ---
 
 # 类型的检查与转换
@@ -98,7 +98,7 @@ val x: String? = y as String?
 ## “安全的”（可为空的）转换运算符
 
 
-为了避免异常的抛出，一个可以使用*安全的*转换运算符——*as?*{: .keyword } ，它可以在失败时返回一个*null*{: .keyword }： 
+为了避免异常的抛出，一个可以使用*安全的*转换运算符——*as?*{: .keyword } ，它可以在失败时返回一个*null*{: .keyword }：
 
 ``` kotlin
 val x: String? = y as? String

@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Dynamic Type"
+title: "动态类型"
 ---
 
 # 动态类型
@@ -23,7 +23,7 @@ val dyn: dynamic = ...
 
 ``` kotlin
 dyn.whatever(1, "foo", dyn) // 'whatever' is not defined anywhere
-dyn.whatever(*array(1, 2, 3))
+dyn.whatever(*arrayOf(1, 2, 3))
 ```
 
 在JavaScript平台这段代码被编译为"as is": `dyn.whatever(1)`在Kotlin中`dyn.whatever(1)` 生成JavaScript 代码.
@@ -43,5 +43,3 @@ dyn.foo {
 ```
 
 更多细节, [查看](https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md).
-
-

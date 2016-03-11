@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Functions"
+title: "函数"
 ---
 
 # 函数
@@ -31,7 +31,7 @@ val result = double(2)
 Sample().foo() // create instance of class Sample and calls foo
 ```
 
-### 中缀表示法 
+### 中缀表示法
 
 函数还可以用中缀表示法，当
 

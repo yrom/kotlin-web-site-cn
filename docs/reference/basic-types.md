@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Basic Types"
+title: "基本类型"
 ---
 
 # 基本类型
@@ -38,9 +38,9 @@ Kotlin 提供了如下的内置类型来表示数字（与 Java 很相近）：
 注意: 不支持八进制
 
 Kotlin 同样支持浮点数的常规表示方法:
- 
+
 * 默认 double：`123.5`、`123.5e10`
-* Float 用 `f` 或者 `F` 标记: `123.5f` 
+* Float 用 `f` 或者 `F` 标记: `123.5f`
 
 ### 存储方式
 
@@ -202,7 +202,7 @@ val asc = Array(5, { i -> (i * i).toString() })
 如上所述，`[]` 运算符代表调用成员函数 `get()` 和 `set()`。
 
 注意: 与 Java 不同的是，Kotlin 中数组是不变的（invariant）。这意味着 Kotlin 不让我们把 `Array<String>`
-赋值给 `Array<Any>`，以防止可能的运行时失败（但是你可以使用 `Array<out Any>`, 
+赋值给 `Array<Any>`，以防止可能的运行时失败（但是你可以使用 `Array<out Any>`,
 参见 [类型预测](generics.html#类型预测)）。
 
 Kotlin 也有无装箱开销的专门的类来表示原生类型数组: `ByteArray`、

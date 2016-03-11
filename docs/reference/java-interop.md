@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Interop"
-title: "Calling Java from Kotlin"
+title: "在Kotlin中调用Java代码"
 ---
 
 # 在Kotlin中调用Java代码
@@ -178,7 +178,7 @@ Kotlin的泛型和Java的有些不同（详见 [Generics](generics.html)）。�
 
 * Java的通配符转换成类型投射
   * `Foo<? extends Bar>` 转换成 `Foo<out Bar!>!`
-  * `Foo<? super Bar>` 转换成 `Foo<in Bar!>!` 
+  * `Foo<? super Bar>` 转换成 `Foo<in Bar!>!`
 
 * Java的原始类型转换成星号投射
   * `List` 转换成 `List<*>!`, 也就是 `List<out Any?>!`
@@ -238,7 +238,7 @@ javaObj.removeIndices(array)  // passes int[] to method
 当编译成jvm字节码的时候，编译器会优化对数组的访问，确保不会产生额外的负担。
 
 ``` kotlin
-val array = array(1, 2, 3, 4)
+val array = arrayOf(1, 2, 3, 4)
 array[x] = array[x] * 2 // 不会生成对get() 和 set()的调用
 for (x in array) // 不会创建迭代器
   print(x)
@@ -376,9 +376,9 @@ if (Character.isLetter(a)) {
 
 ## Java 反射
 
-Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 `instance.javaClass` 或者 
+Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 `instance.javaClass` 或者
 `ClassName::class.java` 开始基于 `java.lang.Class` 的java反射操作。
- 
+
 Other supported cases include acquiring a Java getter/setter method or a backing field for a Kotlin property, a `KProperty` for a Java field, a Java method or constructor for a `KFunction` and vice versa.
 
 ## SAM(单抽象方法) 转换

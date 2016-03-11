@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Other"
-title: "Destructuring Declarations"
+title: "解构声明"
 ---
 
 # 解构声明
@@ -10,12 +10,12 @@ title: "Destructuring Declarations"
 有时把一个对象_解构_成很多变量很比较方便，比如:
 
 ``` kotlin
-val (name, age) = person 
+val (name, age) = person
 ```
 
 这种语法叫做_解构声明_。一个解构声明同时创造多个变量。
 我们申明了两个新变量：`name` 和 `age`,并且可以独立使用他们。
- 
+
 ``` kotlin
 println(name)
 println(age)
@@ -28,7 +28,7 @@ val name = person.component1()
 val age = person.component2()
 ```
 
-`component1()` 和 `component2()` 函数是 _principle of conventions_ widely 在Kotlin 中的另一个例子。 
+`component1()` 和 `component2()` 函数是 _principle of conventions_ widely 在Kotlin 中的另一个例子。
 (参考运算符如 `+` ， `*`, *for*{: .keyword }-loops 等)
 任何可以被放在解构声明右边的和组件函数的需求数字都可以调用它。
 当然，这里可以有更多的如 `component3()` 和 `component4()`.
@@ -44,15 +44,15 @@ for ((a, b) in collection) { ... }
 变量 `a` 和 `b` 从调用从 `component1()` 和 `component2()` 返回的集合collection中的对象。
 
 ## 例：从函数中返回两个变量
- 
+
 让我们从一个函数中返回两个变量。例如，一个结果对象和一些排序的状态。
 在Kotlin中一个简单的实现方式是申明一个[_data class_](data-classes.html)并且返回他的实例：
- 
+
 ``` kotlin
 data class Result(val result: Int, val status: Status)
 fun function(...): Result {
     // computations
-    
+
     return Result(result, status)
 }
 
@@ -62,7 +62,7 @@ val (result, status) = function(...)
 
 既然数据类自动申明 `componentN()` 函数，解构声明在这里也有效。
 
-**NOTE**: 我们也可用标准类 `Pair` 并且让 `function()` 返回 `Pair<Int, Status>`, 
+**NOTE**: 我们也可用标准类 `Pair` 并且让 `function()` 返回 `Pair<Int, Status>`,
 但是如果让数据合理命名通常还是更好。  
 
 ## 例: 解构和映射。
@@ -79,16 +79,16 @@ for ((key, value) in map) {
 
 * 通过提供一个 `iterator()`迭代函数来表示一系列有序值来表示映射。
 * 把每个元素标识为一对函数 `component1()` 和 `component2()`.
-  
+
 当然，标准库中提供了这一扩展:
 
 ``` kotlin
 operator fun <K, V> Map<K, V>.iterator(): Iterator<Map.Entry<K, V>> = entrySet().iterator()
 operator fun <K, V> Map.Entry<K, V>.component1() = getKey()
 operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
-  
+
 ```  
-  
+
 于是你可以自由的使用解构声明 *for*{: .keyword }-loops 来操作映射(也可以用在数据类实例的集合等)。
 
 

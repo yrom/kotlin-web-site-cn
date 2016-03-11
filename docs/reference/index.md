@@ -1,6 +1,6 @@
 ---
 layout: reference
-title: "Reference"
+title: "参考"
 ---
 
 # 参考
@@ -12,24 +12,34 @@ title: "Reference"
 * *兼容*: 使用Java和JavaScript时候你需要知道的兼容性问题。
 * *FAQ*: 一些提问和回答.
 
+### 从哪开始
+
+这个参考是为让你很容易地在几个小时内学习 Kotlin 而设计的。
+先从[基本语法](basic-syntax.html)开始，然后再到更高级主题。
+阅读时你可以在[在线 IDE](http://try.kotlinlang.org/)中尝试代码示例。
+
+一旦你认识到 Kotlin 是什么样的，尝试自己解决一些[Kotlin 心印](/docs/tutorials/koans.html)交互式编程练习。
+如果你不确定如何解决一个心印，或者你正在寻找一个更优雅的解决方案，看看[Kotlin 习惯用法](idioms.html)。
+> 心印：Koan，佛教用语，不建议译作“公案”——译者注
+
 ### 离线浏览
 下载离线文档 [PDF file](http://kotlinlang.org/docs/kotlin-docs.pdf).
 
-# Books
+# 参考书
 
 ## Kotlin in Action
 
    <a href="https://manning.com/books/kotlin-in-action"><img src="{{ site.baseurl }}/assets/images/Jemerov-Kotlin-MEAP-HI.png" style="float: left; margin-right: 10px; margin-bottom: 10px;"></a>
 
-[Kotlin in Action](https://manning.com/books/kotlin-in-action) is a book on Kotlin being written by Dmitry Jemerov and Svetlana Isakova,
-developers on the Kotlin team. The book is currently available through the MEAP program, which allows you to read the book
-chapter-by-chapter while it is being written and get the final book when it is finished.
+[Kotlin in Action](https://manning.com/books/kotlin-in-action) 是由 Kotlin 开发团队的 Dmitry Jemerov 和 Svetlana Isakova 合著的
+一本关于 Kotlin 的书。这本书目前可通过 MEAP 计划获得，它允许你在本书编写中
+逐章去读、而当编写完成时获得本书最终版。
 
-Use the coupon code '39jemerov' to get a 39% discount code on the book.
+使用优惠码“39jemerov”这本书可优惠 39%。
 
 <h2 style="clear: left">Kotlin for Android Developers</h2>
 
   <a href="https://leanpub.com/kotlin-for-android-developers"><img src="{{ site.baseurl }}/assets/images/kotlin-for-android-developers.png" style="float: left; margin-right: 10px; margin-bottom: 10px;"></a>
 
-[Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers) is a book by Antonio Leiva showing
-how Kotlin can be used for creating an Android application from scratch.
+[Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers) 是由 Antonio Leiva 所著展示
+如何使用 Kotlin 从头创建一个 Android 应用程序的一本书。

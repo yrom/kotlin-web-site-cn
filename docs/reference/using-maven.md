@@ -2,7 +2,7 @@
 
 type: doc
 layout: reference
-title: "Using Maven"
+title: "使用 Maven"
 description: "This tutorials walks you through different scenarios when using Maven for building applications that contain Kotlin code"
 
 ---

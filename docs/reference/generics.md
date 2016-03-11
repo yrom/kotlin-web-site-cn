@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Generics"
+title: "泛型"
 ---
 
 # 泛型
@@ -191,12 +191,12 @@ fun copy(from: Array<Any>, to: Array<Any>) {
 该方法试图从一个数组中copy元素到另一个数组。我们尝试着在实际中运用它：
 
 ``` kotlin
-val ints: Array<Int> = array(1, 2, 3)
+val ints: Array<Int> = arrayOf(1, 2, 3)
 val any = Array<Any>(3)
 copy(ints, any) // Error: expects (Array<Any>, Array<Any>)
 ```
 
-这里，我们陷入了一个类似的问题：`Array<T>`中的`T`是**不变**的，所以不论是`Array<Int>`或`Array<Any>` 
+这里，我们陷入了一个类似的问题：`Array<T>`中的`T`是**不变**的，所以不论是`Array<Int>`或`Array<Any>`
 都不是另一个的子类型。为什么？因为copy操作**可能**是不安全的行为，例如，它可能尝试向来源**写**一个String，
 如果我们真的将其转换为`Int`数组，随后 `ClassCastException`异常可能会被抛出。
 

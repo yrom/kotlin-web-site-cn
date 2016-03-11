@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Properties and Fields"
+title: "属性和字段"
 ---
 
 # 属性和字段
@@ -13,7 +13,7 @@ Kotlin的类可以有属性.
 这些声明是可变的,用关键字*var*{: .keyword }或者使用只读关键字*val*{: .keyword }.
 
 ``` kotlin
-public class Address { 
+public class Address {
   public var name: String = ...
   public var street: String = ...
   public var city: String = ...
@@ -55,11 +55,11 @@ var initialized = 1 // has type Int, default getter and setter
 
 > ~~注意公有的API(即**public**和**protected**)的属性，类型是不做推导的。~~
 > ~~这么设计是为了防止改变初始化器时不小心改变了公有API。比如：~~
-> 
+>
 > ``` kotlin
 > public val example = 1 // error: a public property must have a type specified explicitly
 > ```
-> 
+>
 一个只读属性的语法和一个可变的语法有两方面的不同：1、只读属性的用`val`开始代替`var` 2、只读属性不许setter
 
 ``` kotlin
@@ -186,12 +186,12 @@ a primitive type.
 Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
 being accessed and the fact that it hasn't been initialized.
 
-## 重写属性 
+## 重写属性
 
 查看 [Overriding Members](classes.html#overriding-members)
 
 ## 委托属性
-  
+
 从支持域最常见类型的属性只读(写入)。
 另一方面,使用自定义getter和setter属性可以实现任何方法行为。
 介于两者之间,有一些常见的模式属性是如何工作的。一个例子:lazy values,从映射读取关键字,访问一个数据库,访问通知侦听器,等等。

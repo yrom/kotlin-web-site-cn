@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Null Safety"
+title: "Null 安全性"
 ---
 
 # Null 安全性
@@ -50,7 +50,7 @@ val l = b.length // 错误：变量 b 可能为 null
 
 可是我仍然需要访问这些属性，对吧？这里有一些方式可以这么做：
 
-## 使用条件语句检测是否为 *null*{: .keyword } 
+## 使用条件语句检测是否为 *null*{: .keyword }
 
 首先，你可以明确地检查 `b` 是否为 *null*{: .keyword }，并分别处理两种选择：
 

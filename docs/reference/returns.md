@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Returns and Jumps"
+title: "返回和跳转"
 ---
 
 # 返回和跳转

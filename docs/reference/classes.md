@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Classes and Inheritance"
+title: "类和继承"
 related:
     - functions.md
     - nested-classes.md
@@ -29,7 +29,7 @@ class Empty
 ```
 
 
-### 构造 
+### 构造
 
 在Kotlin中的类可以有**主构造函数**和一个或多个**二级构造函数**。主构造
 函数是类头的一部分:它跟在这个类名后面（和可选的类型参数）
@@ -268,16 +268,16 @@ class C() : A(), B {
 类和其中的某些实现可以声明为*abstract*{：.keyword}。
 抽象成员在本类中可以不用实现。。
 > ~~ 因此，当一些子类继承一个抽象的成员，它并不算是一个实现：~~
-> 
+>
 > ``` kotlin
 > abstract class A {
 >   abstract fun f()
 > }
-> 
+>
 > interface B {
 >   open fun f() { print("B") }
 > }
-> 
+>
 > class C() : A(), B {
 >   // We are not required to override f()
 > }
@@ -311,15 +311,11 @@ abstract class Derived : Base() {
 修饰语。
 
 
-## Sealed Classes
+## 密封类
 
-Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a
-limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values
-for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass
-of a sealed class can have multiple instances which can contain state.
+当一个值类型只能限制于某个类型范围内，而且不能有其他子类的情况下，我们就可以使用密封类。在某种意义上来说，密封类其实是枚举的扩展：一个枚举的类型也受到严格限制，但是每个枚举常量都仅仅作为单例存在，而一个密封类的子类是可以有多个包含状态的子类的。
 
-To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have
-subclasses, but all of them must be nested inside the declaration of the sealed class itself.
+要声明一个密封类，需要在类名前面添加 `sealed`  修饰符，虽然密封类也可以有子类，但是所以子类声明都必须嵌套在这个密封类中。
 
 ``` kotlin
 sealed class Expr {
@@ -329,18 +325,15 @@ sealed class Expr {
 }
 ```
 
-Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily inside
-the declaration of the sealed class.
+值得注意的是一个密封类的子类的继承者（间接继承）可以在任何地方声明，不一定要在这个密封类中声明。
 
-The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible
-to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.
+使用密封类的关键好处在于使用[`when` 表达式](control-flow.html#when-expression) 的时候，可以只使用密封类即可覆盖所有可能的情况，不需要一个 `else`语句去排除其他情况。
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {
     is Const -> expr.number
     is Sum -> eval(expr.e1) + eval(expr.e2)
     NotANumber -> Double.NaN
-    // the `else` clause is not required because we've covered all the cases
+    // 我们在这里不需要使用 else 语句，因为我们已经覆盖到了所有的情况。
 }
 ```
-

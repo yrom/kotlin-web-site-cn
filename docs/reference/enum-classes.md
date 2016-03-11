@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Enum Classes"
+title: "枚举类"
 ---
 
 # 枚举类

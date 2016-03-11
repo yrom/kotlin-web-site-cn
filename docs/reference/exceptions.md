@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Exceptions"
+title: "异常"
 ---
 
 # 异常

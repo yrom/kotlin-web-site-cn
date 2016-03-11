@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Delegation"
+title: "委托"
 ---
 
 # 委托
