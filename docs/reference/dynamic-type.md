@@ -23,7 +23,7 @@ val dyn: dynamic = ...
 
 ``` kotlin
 dyn.whatever(1, "foo", dyn) // 'whatever' is not defined anywhere
-dyn.whatever(*array(1, 2, 3))
+dyn.whatever(*arrayOf(1, 2, 3))
 ```
 
 在JavaScript平台这段代码被编译为"as is": `dyn.whatever(1)`在Kotlin中`dyn.whatever(1)` 生成JavaScript 代码.

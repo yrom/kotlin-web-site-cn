@@ -191,7 +191,7 @@ fun copy(from: Array<Any>, to: Array<Any>) {
 该方法试图从一个数组中copy元素到另一个数组。我们尝试着在实际中运用它：
 
 ``` kotlin
-val ints: Array<Int> = array(1, 2, 3)
+val ints: Array<Int> = arrayOf(1, 2, 3)
 val any = Array<Any>(3)
 copy(ints, any) // Error: expects (Array<Any>, Array<Any>)
 ```
