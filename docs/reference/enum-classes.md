@@ -70,6 +70,3 @@ val ordinal: Int
 枚举常量也可以实现[Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) 接口。他们会依照在枚举类中的定义先后以自然顺序排列。
 
 
----
-
-翻译By EasonZhou

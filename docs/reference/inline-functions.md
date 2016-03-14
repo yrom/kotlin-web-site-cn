@@ -177,6 +177,4 @@ fun main(s: Array<String>) {
 
 更详细解释参考 [spec document](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md).
 
----
 
-翻译By EasonZhou ， [pecpwee](https://github.com/pecpwee)

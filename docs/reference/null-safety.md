@@ -135,6 +135,3 @@ val l = b!!.length()
 val aInt: Int? = a as? Int
 ```
 
-------------
-
-翻译 by [drakeet](https://github.com/drakeet)

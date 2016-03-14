@@ -80,5 +80,3 @@ Bruce Eckel在[Does Java need Checked Exceptions?](http://www.mindview.net/Etc/D
 请在 [Java Interoperability section](java-interop.html) 异常章节中参阅Java交互相关信息。
 
 
----
-翻译： [cx9527](https://github.com/cx9527)
