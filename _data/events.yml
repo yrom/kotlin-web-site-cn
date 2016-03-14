@@ -1067,12 +1067,14 @@
     slides: http://slides.com/antonrutkevich/kotlin-intro-voxxed#/
 
 - title: JavaLand 2016
-  url: http://dukecon.org/javaland/talk.html#talk?talkId=509354
-  subject: "Kotlin in Action"
-  speaker: Justin Lee
+  url: "https://dukecon.org/javaland/talk.html#talk?talkId=509710"
+  subject: "Kotlin für Android-Entwickler"
+  speaker: Benedict Pregler
   date: [2016-03-08, 2016-03-10]
   location: Brühl, Germany
-  lang: en
+  lang: de
+  content:
+    slides: https://speakerdeck.com/benedict_p/kotlin-fur-android-entwickler
 
 - title: Mobilization 2015
   url: http://2015.mobilization.pl/
@@ -1218,6 +1220,8 @@
   date: 2015-12-18
   location: San Francisco, CA, US
   lang: en
+  content:
+    video: https://youtu.be/Hm37rWYdfv4
   
 - title: Voxxed Days Zürich 2016
   url: https://cfp-vdz.exteso.com/2016/speaker/hadi_hariri
@@ -1226,6 +1230,8 @@
   date: 2016-03-03
   location: Zürich, CH
   lang: en
+  content:
+    video: https://youtu.be/mSg9kSYfeX0
 
 - title: "Kotlin Developers in Manchester Meetup"
   url: http://www.meetup.com/Kotlin-Manchester/events/rkrdmlyvdblb/
@@ -1294,7 +1300,9 @@
   speaker: Benedict Pregler
   date: [2016-03-14, 2016-03-16]
   location: München, Germany
-  lang: en
+  lang: de
+  content:
+    slides: https://speakerdeck.com/benedict_p/kotlin-fur-android-entwickler
 
 - title: "CraftCon"
   url: http://craft-conf.com
@@ -1390,7 +1398,7 @@
   url: "http://winter.ulcamp.ru/program/#kotlin"
   subject: "Kotlin Language"
   speaker: Vasily Vasilkov
-  date: 2015-02-13
+  date: 2016-02-13
   location: Uljanovsk, Russia
   lang: ru
 
@@ -1398,7 +1406,92 @@
   url: "https://www.railsschool.org/l/kotlin-tour"
   subject: "Kotlin Tour"
   speaker: ADRIEN CADET
-  date: 2015-02-23
+  date: 2016-02-23
   location: San Francisco, USA
   lang: en
 
+- title: "Seoul Kotlin Meetup #1"
+  url: "http://www.meetup.com/kotlinkr/events/229274004/"
+  date: 2016-03-09
+  location: Seoul, Korea 
+  lang: ko
+  
+- title: "第2回Kotlin勉強会 ＠ Sansan"
+  url: "http://connpass.com/event/27583/"
+  date: 2016-03-24
+  location: Tokio, Japan 
+  lang: jp
+
+- title: "Bash Kotlin"
+  url: "http://www.meetup.com/devbash/events/229123685/"
+  subject: "Methods are no fun - An introduction to Kotlin"
+  speaker: Gareth Fleming
+  date: 2016-04-05
+  location: Belfast, United Kingdom
+  lang: en
+  
+- title: "VI Codemotion Meetup"
+  url: "http://www.meetup.com/es-ES/Codemotion-Meetups/events/229413565/"
+  subject: "Kotlin for Android Developers impartida"
+  speaker: Antonio Leiva Gordillo
+  date: 2016-03-17
+  location: Madrid, España
+  lang: es
+  
+- title: "Tallin DevClub"
+  url: "http://www.devclub.eu/"
+  subject: "About Kotlin"
+  speaker: Ilya Ryzhenkov
+  date: 2016-03-29
+  location: Tallin, Estonia
+  lang: ru
+  
+- title: "Saint-Petersburg JUG"
+  url: "https://jugru.timepad.ru/event/296642/"
+  subject: "Kotlin 1.0"
+  speaker: Andrey Breslav, Dmitry Jemerov
+  date: 2016-02-26
+  location: Saint-Petersburg, Russia
+  lang: ru
+  
+- title: "Avito TechTalks"
+  url: "https://avitotech.timepad.ru/event/292911/"
+  subject: "Android Development with Kotlin"
+  speaker: Dmitry Jemerov, Dmitry Voronon, Vladimir Mironov
+  date: 2016-02-26
+  location: Saint-Petersburg, Russia
+  lang: ru
+  content:
+    video: https://youtu.be/8u4fZ1z4X-w
+
+- title: "JUG Moscow"
+  url: "https://jugmsk.timepad.ru/event/303219/"
+  subject: "Kotlin 1.0"
+  speaker: Andrey Breslav, Dmitry Jemerov
+  date: 2016-03-17
+  location: Moscow, Russia
+  lang: ru
+
+- title: "JUG Marseille"
+  url: "http://marsjug.org/#reunions"
+  subject: "Kotlin 1.0: pragmatic mais fun"
+  speaker: Gaetan Zoritchak
+  date: 2016-04-07
+  location: Marseille, France
+  lang: fr
+
+- title: GDG Hamburd Android
+  url: http://www.meetup.com/GDG-Hamburg-Android/events/229433532/
+  subject: "Succumb to the Kotlin side"
+  speaker: Alberto Ballano
+  date: 2016-03-16
+  location: Hamburg, Germany
+  lang: en
+  
+- title: DroidCon SF
+  url: "http://sf.droidcon.com/#home"
+  subject: "Better Android Development with Kotlin and Gradle"
+  speaker: Ty Smith
+  date: [2016-03-17, 2016-03-18]
+  location: San Francisco, CA, US
+  lang: en
