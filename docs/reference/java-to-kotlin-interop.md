@@ -405,5 +405,3 @@ fun emptyList(): List<Nothing> = listOf()
 // 被转换为
 // List emptyList() { ... }
 ```
-
-

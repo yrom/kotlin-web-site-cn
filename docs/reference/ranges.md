@@ -230,5 +230,3 @@ Note that the `last` value of the returned progression may become different from
   (1..12 step 3).last == 10  // progression with values [1, 4, 7, 10]
   (1..12 step 4).last == 9   // progression with values [1, 5, 9]
 ```
-
-

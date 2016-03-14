@@ -73,5 +73,3 @@ val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
 println(map["foo"])
 val snapshot: Map<String, Int> = HashMap(readWriteMap)
 ```
-
-
