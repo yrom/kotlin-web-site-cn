@@ -16,10 +16,10 @@ title: "参考"
 
 这个参考是为让你很容易地在几个小时内学习 Kotlin 而设计的。
 先从[基本语法](basic-syntax.html)开始，然后再到更高级主题。
-阅读时你可以在[在线 IDE](http://try.kotlinlang.org/)中尝试代码示例。
+阅读时你可以在[在线 IDE](http://try.kotlinlang.org/) 中尝试代码示例。
 
-一旦你认识到 Kotlin 是什么样的，尝试自己解决一些[Kotlin 心印](/docs/tutorials/koans.html)交互式编程练习。
-如果你不确定如何解决一个心印，或者你正在寻找一个更优雅的解决方案，看看[Kotlin 习惯用法](idioms.html)。
+一旦你认识到 Kotlin 是什么样的，尝试自己解决一些 [Kotlin 心印](/docs/tutorials/koans.html)交互式编程练习。
+如果你不确定如何解决一个心印，或者你正在寻找一个更优雅的解决方案，看看 [Kotlin 习惯用法](idioms.html)。
 > 心印：Koan，佛教用语，不建议译作“公案”——译者注
 
 ### 离线浏览
