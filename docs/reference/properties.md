@@ -90,10 +90,10 @@ var stringRepresentation: String
 您可以定义访问器而不定义它的实例:
 
 ``` kotlin
-var setterVisibility: String = "abc" // Initializer required, not a nullable type
+var setterVisibility: String = "abc"
   private set // the setter is private and has the default implementation
 
-var setterWithAnnotation: Any?
+var setterWithAnnotation: Any? = null
   @Inject set // annotate the setter with Inject
 ```
 
@@ -196,6 +196,5 @@ being accessed and the fact that it hasn't been initialized.
 另一方面,使用自定义getter和setter属性可以实现任何方法行为。
 介于两者之间,有一些常见的模式属性是如何工作的。一个例子:lazy values,从映射读取关键字,访问一个数据库,访问通知侦听器,等等。
 
-像常见的行为可以从函数库调用像delegated properties。
-更多信息在[这里](delegated-properties.html)。
+像常见的行为可以从函数库调用像[_delegated properties_](delegated-properties.html)。
 
