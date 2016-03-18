@@ -122,5 +122,3 @@ class C private constructor(a: Int) { ... }
 局部变量，函数和类不能有可见性修饰符。
 
 ---
-
-翻译By Jacky Xu

@@ -258,7 +258,5 @@ html {       // lambda with receiver begins here
 }
 ```
 
----
 
 
-翻译By Airoyee，[pecpwee](https://github.com/pecpwee)

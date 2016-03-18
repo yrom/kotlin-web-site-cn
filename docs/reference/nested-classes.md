@@ -40,6 +40,3 @@ val demo = Outer().Inner().foo() // == 1
 
 参阅[this-expressions.html](this-expressions.html)中“this”关键词用法来学习在内部类中如何消除“this”关键词的歧义。
 
----
-
-翻译By EasonZhou

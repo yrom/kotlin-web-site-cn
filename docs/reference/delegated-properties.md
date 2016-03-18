@@ -206,7 +206,3 @@ class MutableUser(val map: MutableMap<String, Any?>) {
     var age: Int     by map
 }
 ```
-
----
-
-翻译By EasonZhou,[pecpwee](https://github.com/pecpwee)

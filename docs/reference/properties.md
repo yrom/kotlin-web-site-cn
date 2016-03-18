@@ -199,6 +199,4 @@ being accessed and the fact that it hasn't been initialized.
 像常见的行为可以从函数库调用像delegated properties。
 更多信息在[这里](delegated-properties.html)。
 
----
 
-翻译BY 空白

@@ -337,7 +337,3 @@ fun eval(expr: Expr): Double = when(expr) {
     // 我们在这里不需要使用 else 语句，因为我们已经覆盖到了所有的情况。
 }
 ```
-
----
-
-翻译BY S_arige

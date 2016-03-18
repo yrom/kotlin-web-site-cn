@@ -108,6 +108,6 @@ val x: String? = y as? String
 记住尽管事实是右边的*as?*{: .keyword }可使一个不为空的`String`类型的转换结果为可空的。
 
 
-----
 
-翻译By [Wahchi](https://github.com/wahchi)
+
+
