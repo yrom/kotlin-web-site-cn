@@ -1337,7 +1337,7 @@
   lang: en   
   
 - title: DroidCon Italy 2016
-  url: http://it.droidcon.com/2016/
+  url: http://it.droidcon.com/2016/sessions/you-can-do-better-with-kotlin/
   subject: "You can do better with Kotlin"
   speaker: Svetlana Isakova
   date: [2016-04-07, 2016-04-08]
@@ -1421,6 +1421,9 @@
   date: 2016-03-24
   location: Tokio, Japan 
   lang: jp
+  content:
+    slides: https://speakerdeck.com/hotchemi/khronos
+  
 
 - title: "Bash Kotlin"
   url: "http://www.meetup.com/devbash/events/229123685/"
@@ -1510,4 +1513,86 @@
   speaker: Dmitry Jemerov
   date: 2016-04-25
   location: Minsk, Belarus
+  lang: en
+
+- title: "MIX-IT 2016"
+  url: "https://www.mix-it.fr/session/3202/"
+  subject: "Atelier: utiliser Kotlin dans une architecture standard"
+  speaker: Gaetan Zoritchak
+  date: [2016-04-21, 2016-04-22]
+  location: Lyon, France
+  lang: fr
+
+- title: "WWX 2016"
+  url: "http://wwx.silexlabs.org/2016/#speakers"
+  subject: "JTransc: Java and Kotlin everywhere through Haxe"
+  speaker: Carlos Ballesteros
+  date: [2016-05-27, 2016-05-30]
+  location: Paris, France
+  lang: en
+  
+- title: "BGJUG Meetup"
+  url: "https://jug.bg/events/%D0%B2%D1%8A%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-kotlin-%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2%D1%8A%D1%82-%D0%B5-%D1%85%D1%83%D0%B1%D0%B0%D0%B2-%D0%BD%D0%BE-%D0%B5%D0%B7%D0%B8%D0%BA/"
+  subject: "Въведение в Kotlin – островът е хубав, но езикът още повече!"
+  speaker: Иван Йонков
+  date: 2016-03-22
+  location: Sofia, Bulgaria
+  lang: bg
+  
+- title: "Breizh Camp"
+  url: "http://www.breizhcamp.org/#"
+  subject: "Développer un Web Service Géospatial avec Kotlin et Spring Boot"
+  speaker: Sébastien Deleuze
+  date: [2016-03-23, 2016-03-25]
+  location: Rennes, France
+  lang: fr
+
+- title: "GeeCON 2016"
+  url: http://2016.geecon.org/speakers/info.html?id=114
+  subject: "Caught in the Act: Kotlin Bytecode Generation and Runtime Performance"
+  speaker: Dmitry Jemerov
+  date: [2016-05-11, 2016-05-13]
+  location: Kraków, Poland
+  lang: en
+
+- title: "JEEConf 2016"
+  url: http://jeeconf.com/program/caught-in-the-act-kotlin-bytecode-generation-and-runtime-performance/
+  subject: "Caught in the Act: Kotlin Bytecode Generation and Runtime Performance"
+  speaker: Dmitry Jemerov
+  date: [2016-05-20, 2016-05-21]
+  location: Kyiv, Ukraine
+  lang: en
+
+- title: "TMPA 2015"
+  url: "http://tmpaconf.org/thesesen-ru/kotlin-from-null-dereference-to-smart-casts-ru"
+  subject: "Язык Котлин: от разадресации нуля до умных преобразований типов"
+  speaker: Mikhail Glukhikh
+  date: 2015-11-12
+  location: Saint Petersburg, Russia
+  lang: ru
+  content:
+    video: https://youtu.be/CUS698jQXYE
+  
+- title: DroidCon Italy 2016
+  url: http://it.droidcon.com/2016/sessions/fun-thingsyou-cando/
+  subject: "fun things (you: CanDo <in Kotlin> ) = …"
+  speaker: Maciej Górski
+  date: [2016-04-07, 2016-04-08]
+  location: Turin, Italy
+  lang: en 
+  
+- title: "Poznań Android Developer Group Meetup #11"
+  url: https://www.facebook.com/events/199872703726759/
+  subject: "Kotlin for Android developers"
+  speaker: Bartosz Kosarzycki
+  date: 2016-04-07
+  location: Poznan, Poland
+  lang: pl
+
+- title: "Austin Droids Meetup"
+  url: http://www.meetup.com/Austin-Android/events/229998925/
+  subject: "Kotlin for Android"
+  speaker: Jim Baca
+  date: 2016-04-14
+  location: Austin, USA
   lang: en

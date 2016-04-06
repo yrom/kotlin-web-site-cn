@@ -321,9 +321,9 @@ sealed class Expr {
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {
-    is Const -> expr.number
-    is Sum -> eval(expr.e1) + eval(expr.e2)
-    NotANumber -> Double.NaN
+    is Expr.Const -> expr.number
+    is Expr.Sum -> eval(expr.e1) + eval(expr.e2)
+    Expr.NotANumber -> Double.NaN
     // 不再需要 else 语句，因为我们已经覆盖了所有的情况
 }
 ```
