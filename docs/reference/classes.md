@@ -102,7 +102,7 @@ class Person {
 ```
 
 如果类有一个主构造函数，每个次构造函数需要委托给主构造函数，
-直接委托或间接通过别的次构造函数委托。委托到同一个类的另一个构造函数
+可以直接委托或者通过别的次构造函数间接委托。委托到同一个类的另一个构造函数
 用 *this*{: .keyword } 关键字即可：
 
 ``` kotlin
@@ -115,7 +115,7 @@ class Person(val name: String) {
 
 如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的
 不带参数的主构造函数。构造函数的可见性是 public。如果你不希望你的类
-有一个公共构造函数，你需要声明一个带有非默认可见性的空的主构造函数：
+有一个公有构造函数，你需要声明一个带有非默认可见性的空的主构造函数：
 
 ``` kotlin
 class DontCreateMe private constructor () {
@@ -146,7 +146,7 @@ val customer = Customer("Joe Smith")
 
 ### 类成员
 
-类可以包括
+类可以包含
 
 * 构造函数和初始化块
 * [函数](functions.html)
@@ -157,16 +157,16 @@ val customer = Customer("Joe Smith")
 
 ## 继承
 
-在 Kotlin 中所有类都有一个共同的父类 `Any`，这对于没有父类型声明的类是默认父类：
+在 Kotlin 中所有类都有一个共同的超类 `Any`，这对于没有超类型声明的类是默认超类：
 
 ``` kotlin
-class Example // Implicitly inherits from Any
+class Example // 从 Any 隐式继承
 ```
 
-`Any` 不是 `java.lang.Object`；特别地，它除了 `equals()`、`hashCode()`和`toString()`外没有任何成员。
+`Any` 不是 `java.lang.Object`；尤其是，它除了 `equals()`、`hashCode()`和`toString()`外没有任何成员。
 更多细节请查阅[Java互通性](java-interop.html#object-methods)部分。
 
-要声明一个显式的父类，我们把类型放到类头的冒号之后：
+要声明一个显式的超类型，我们把类型放到类头的冒号之后：
 
 ``` kotlin
 open class Base(p: Int)
@@ -191,15 +191,15 @@ class MyView : View {
 }
 ```
 
-父类上的 *open*{：.keyword} 标注与 Java 中 *final*{：.keyword} 相反，它允许其他类
+类上的 *open*{：.keyword} 标注与 Java 中 *final*{：.keyword} 相反，它允许其他类
 从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
 对应于 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html)书中的
 第 17 条：**要么为继承而设计，并提供文档说明，要么就禁止继承**。
 
 ### 覆盖成员
 
-我们之前提到过，Kotlin 力求清晰显式。不像 Java 中，Kotli n需要显式
-标注可覆盖的成员（我们称之为*开放*）和重写后的成员：
+我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式
+标注可覆盖的成员（我们称之为*开放*）和覆盖后的成员：
 
 ``` kotlin
 open class Base {
@@ -215,7 +215,7 @@ Derived.v() 函数上必须加上 **override**标注。如果没写，编译器�
 如果函数没有标注 **open** 如 `Base.nv()`，则子类中不允许定义相同签名的函数，
 不论加不加 **override**。在一个 **final** 类中（没有用 **open** 标注的类），开放成员是禁止的。
 
-标记为 *override*{：.keyword} 的成员本身是开放的，也就是说，它可以在子类中重写。如果你想禁止再次重写，使用 *final*{：.keyword} 关键字：
+标记为 *override*{：.keyword} 的成员本身是开放的，也就是说，它可以在子类中覆盖。如果你想禁止再次覆盖，使用 *final*{：.keyword} 关键字：
 
 ``` kotlin
 open class AnotherDerived() : Base() {
@@ -230,14 +230,14 @@ open class AnotherDerived() : Base() {
 我们认为这不是一个劣势，原因如下：
 
 * 最佳实践已经表明不应该使用这些hacks
-* 其他的有类似机制的语言(C++, C#)已经证明是成功的
-* 如果人们实在想hack，仍然有办法：比如某些情况下可以使用Java进行hack，再用Kotlin调用；或者使用面向切面的框架(Aspect)。（请参阅[Java的互操作](java-interop.html))
+* 其他的有类似机制的语言（C++、C#）已经证明是成功的
+* 如果人们实在想 hack，仍然有办法：你总可以使用 Java 进行 hack 再用 Kotlin 调用它（*参见[Java 互操作](java-interop.html)*），另外切面（Aspect）框架就是以此为目的的。
 
 ### 覆盖规则
 
 在 Kotlin 中，实现继承由下述规则规定：如果一个类从它的直接超类继承相同成员的多个实现，
 它必须覆盖这个成员并提供其自己的实现（也许用继承来的其中之一）。
-为了表示采用从哪个父类继承的实现，我们使用由尖括号中超类型名限定的 *super*{: .keyword }，如 `super<Base>`：
+为了表示采用从哪个超类型继承的实现，我们使用由尖括号中超类型名限定的 *super*{: .keyword }，如 `super<Base>`：
 
 ``` kotlin
 open class A {
@@ -246,15 +246,15 @@ open class A {
 }
 
 interface B {
-  fun f() { print("B") } // interface members are 'open' by default
+  fun f() { print("B") } // 接口成员默认就是 'open' 的
   fun b() { print("b") }
 }
 
 class C() : A(), B {
-  // The compiler requires f() to be overridden:
+  // 编译器要求覆盖 f()：
   override fun f() {
-    super<A>.f() // call to A.f()
-    super<B>.f() // call to B.f()
+    super<A>.f() // 调用 A.f()
+    super<B>.f() // 调用 B.f()
   }
 }
 ```
