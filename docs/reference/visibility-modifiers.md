@@ -121,4 +121,12 @@ class C private constructor(a: Int) { ... }
 
 局部变量，函数和类不能有可见性修饰符。
 
----
+
+## Modules
+
+The `internal` visibility modifier means that the member is visible with the same module. More specifically,
+a module is a set of Kotlin files compiled together:
+
+  * an IntelliJ IDEA module;
+  * a Maven or Gradle project;
+  * a set of files compiled with one invocation of the <kotlinc> Ant task.

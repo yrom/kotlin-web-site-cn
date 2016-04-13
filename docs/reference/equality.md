@@ -36,3 +36,5 @@ a?.equals(b) ?: (b === null)
 就是说如果 `a` 不是 `null` 则调用 `equals(Any?)` 函数，否则（即 `a` 是 `null`）检查 b 的是不是 `null` 引用。
 
 注意当与 `null` 比较时完全没有必要为优化你的代码而将 `a == null` 写成 `a === null` 编译器会自动帮你做的。
+
+

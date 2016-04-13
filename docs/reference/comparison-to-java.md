@@ -41,6 +41,6 @@ Kotlin 修复了Java中一系列长期困扰我们的问题
 * [声明点变化 & 类型预测](generics.html)
 * [范围表达式](ranges.html)
 * [运算符重载](operator-overloading.html)
-* [同伴对象](classes.html#companion-objects)
+* [伴生对象](classes.html#companion-objects)
 * [Data classes](data-classes.html)
 * [Separate interfaces for read-only and mutable collections](collections.html)

@@ -43,3 +43,5 @@ dyn.foo {
 ```
 
 更多细节, [查看](https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md).
+
+

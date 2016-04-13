@@ -257,6 +257,3 @@ html {       // lambda with receiver begins here
     body()   // calling a method on the receiver object
 }
 ```
-
-
-

@@ -293,5 +293,3 @@ fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>
   return list.filter { it > threshold }.map { it.clone() }
 }
 ```
-
-

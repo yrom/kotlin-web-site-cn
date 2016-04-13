@@ -176,5 +176,3 @@ fun main(s: Array<String>) {
 不能被用做泛型参数的变量。
 
 更详细解释参考 [spec document](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md).
-
-

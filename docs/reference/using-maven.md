@@ -115,5 +115,3 @@ OSGi支持查看 [Kotlin OSGi page](kotlin-osgi.html).
 ## 例子
 
 Maven 工程的例子可从 [Github 直接下载](https://github.com/JetBrains/kotlin-examples/archive/master/maven.zip)
-
-

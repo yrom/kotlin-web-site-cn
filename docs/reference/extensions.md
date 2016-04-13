@@ -273,6 +273,3 @@ list.swap(list.binarySearch(otherList.max()), list.max())
 ```
 
 但是我们不希望实现`List`类内所有可能的方法，对吧？这时候扩展将会帮助我们。
-
-
-

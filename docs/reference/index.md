@@ -5,21 +5,17 @@ title: "参考"
 
 # 参考
 
-提供关于Kotlin完整的参考
+提供关于 Kotlin 语言的完整参考以及[标准库](/api/latest/jvm/stdlib/index.html)。
 
-* *基础*: 让你熟悉Kotlin基础包括操作符、编码规则和习惯用法
-* *语法*: 完整的Kotlin语法
-* *兼容*: 使用Java和JavaScript时候你需要知道的兼容性问题。
-* *FAQ*: 一些提问和回答.
 
 ### 从哪开始
 
 这个参考是为让你很容易地在几个小时内学习 Kotlin 而设计的。
 先从[基本语法](basic-syntax.html)开始，然后再到更高级主题。
-阅读时你可以在[在线 IDE](http://try.kotlinlang.org/)中尝试代码示例。
+阅读时你可以在[在线 IDE](http://try.kotlinlang.org/) 中尝试代码示例。
 
-一旦你认识到 Kotlin 是什么样的，尝试自己解决一些[Kotlin 心印](/docs/tutorials/koans.html)交互式编程练习。
-如果你不确定如何解决一个心印，或者你正在寻找一个更优雅的解决方案，看看[Kotlin 习惯用法](idioms.html)。
+一旦你认识到 Kotlin 是什么样的，尝试自己解决一些 [Kotlin 心印](/docs/tutorials/koans.html)交互式编程练习。
+如果你不确定如何解决一个心印，或者你正在寻找一个更优雅的解决方案，看看 [Kotlin 习惯用法](idioms.html)。
 > 心印：Koan，佛教用语，不建议译作“公案”——译者注
 
 ### 离线浏览

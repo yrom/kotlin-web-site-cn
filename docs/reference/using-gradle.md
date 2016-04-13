@@ -8,6 +8,8 @@ title: "使用 Gradle"
 
 # 使用 Gradle
 
+In order to build Kotlin with Gradle you should [set up the *kotlin-gradle* plugin](#plugin-and-versions), [apply it](#targeting-the-jvm) to your project and [add *kotlin-stdlib* dependencies](#configuring-dependencies). Those actions may also be performed automatically in IntelliJ IDEA by invoking the Tools | Kotlin | Configure Kotlin in Project action.
+
 ## 插件和版本
 
 使用 *kotlin-gradle-plugin* 编译Kotlin的源代码和模块.
@@ -178,5 +180,3 @@ OSGi 支持查看 [Kotlin OSGi page](kotlin-osgi.html).
 * [Mixed Java and Kotlin](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/mixed-java-kotlin-hello-world)
 * [Android](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-mixed-java-kotlin-project)
 * [JavaScript](https://github.com/JetBrains/kotlin/tree/master/libraries/tools/kotlin-gradle-plugin/src/test/resources/testProject/kotlin2JsProject)
-
-

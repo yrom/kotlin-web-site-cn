@@ -22,7 +22,7 @@ data class Customer(val name: String, val email: String)
 * `hashCode()`
 * `toString()`
 * `copy()`
-* 所有属性的 `component1()`, `component2()`, ... 等等 (参阅 [Data classes](data-classes.html))
+* 所有属性的 `component1()`, `component2()`, ... 等等 (参阅[数据类](data-classes.html))
 
 
 ### 函数的默认参数
@@ -67,7 +67,7 @@ for ((k, v) in map) {
 }
 ```
 
-`k`, `v` 可以改成任意名字.
+`k`、`v` 可以改成任意名字。
 
 ### 使用区间（range）
 
