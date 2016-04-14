@@ -26,10 +26,9 @@ fun demo(source: List<Int>) {
 }
 ```
 
-## Getters and Setters
+## Getters 和 Setters
 
-Methods that follow the Java conventions for getters and setters (no-argument methods with names starting with `get`
-and single-argument methods with names starting with `set`) are represented as properties in Kotlin. For example:
+若一个属性的getter/setter方法按照约定的规范(getter方法以`get`开头,不带参数/setter方法以`set`开头,带一个参数)进行命名，那么在Kotlin中可以直接对这个属性进行直接访问。如：
 
 ``` kotlin
 import java.util.Calendar
@@ -42,7 +41,7 @@ fun calendarDemo() {
 }
 ```
 
-Note that, if the Java class only has a setter, it will not be visible as a property in Kotlin, because Kotlin does not support set-only properties at this time.
+需要注意的是，对于只有setter方法的属性，kotlin目前还不支持对它的直接访问。
 
 ## 返回void的方法
 
@@ -98,7 +97,7 @@ val notNull: String = item // 允许，运行时可能失败
 
 ### 平台类型的概念
 
-如上所述，平台类型不能再程序里显式的出现，
+如上所述，平台类型不能在程序里显式的出现，
 所以没有针对他们的语法。
 然而，编译器和IDE有时需要显式他们(如在错误信息，参数信息中)，所以我们用
 一个好记的标记来表示他们：
@@ -107,11 +106,9 @@ val notNull: String = item // 允许，运行时可能失败
 * `(Mutable)Collection<T>!` 表示 "`T`的java集合，可变的或不可变的，可空的或非空的"
 * `Array<(out) T>!` 表示 "`T`(或`T`的子类)的java数组，可空的或非空的"
 
-### Nullability annotations
+### 标识是否为空的注解
 
-Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
-Kotlin types. Currently, the compiler supports the [JetBrains flavor of the nullability annotations](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
-(`@Nullable` and `@NotNull` from the `org.jetbrains.annotations` package).
+Java中被空注解符标注的类型，Kotlin会把它们当作nullable/non-null类型，而不是平台类型。目前，kotlin编译器支持[JetBrains风格的注解](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)(`@Nullable`和`@NotNull`的定义可以在`org.jetbrains.annotations`包中找到)。
 
 ## 映射类型
 
@@ -282,11 +279,9 @@ javaObj.removeIndicesVarArg(*array)
 
 目前无法传递 *null*{: .keyword } 给一个变参的方法。
 
-## Operators
+## 操作符
 
-Since Java has no way of marking methods for which it makes sense to use the operator syntax, Kotlin allows using any
-Java methods with the right name and signature as operator overloads and other conventions (`invoke()` etc.)
-Calling Java methods using the infix call syntax is not allowed.
+虽然Java不能自定义操作符重载，但Kotlin允许任意使用方法名合法的方法与标示符进行操作符重载，也可以自定义其它的约定（如`invoke()`等）。但调用Java代码的时候，使用中缀语法(`infix call syntax`)是不被允许的。
 
 
 ## 受检异常
@@ -414,12 +409,12 @@ executor.execute(Runnable { println("This runs in a thread pool") })
 还要注意这个特性只针对和 Java 的互操作；因为 Kotlin 有合适的函数类型，把函数自动转换成
 Kotlin 接口的实现是没有必要的，也就没有支持了。
 
-## Using JNI with Kotlin
+## 在Kotlin中使用JNI
 
-To declare a function that is implemented in native (C or C++) code, you need to mark it with the `external` modifier:
+如果要声明一个使用本机代码(C 或者 C++)实现的方法，你需要给它加上`external`的标识符(等同于Java里的`native`)
 
 ``` kotlin
 external fun foo(x: Int): Double
 ```
 
-The rest of the procedure works in exactly the same way as in Java.
+余下的工作和Java完全一样
