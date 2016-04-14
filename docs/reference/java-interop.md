@@ -28,7 +28,7 @@ fun demo(source: List<Int>) {
 
 ## Getters 和 Setters
 
-若一个属性的getter/setter方法按照约定的规范(getter方法以`get`开头,不带参数/setter方法以`set`开头,带一个参数)进行命名，那么在Kotlin中可以直接对这个属性进行直接访问。如：
+若一个属性的getter/setter方法按照约定的规范进行命名(getter方法以`get`开头,不带参数/setter方法以`set`开头,带一个参数)，那么在Kotlin中可以直接对这个属性进行访问。如：
 
 ``` kotlin
 import java.util.Calendar
@@ -106,7 +106,7 @@ val notNull: String = item // 允许，运行时可能失败
 * `(Mutable)Collection<T>!` 表示 "`T`的java集合，可变的或不可变的，可空的或非空的"
 * `Array<(out) T>!` 表示 "`T`(或`T`的子类)的java数组，可空的或非空的"
 
-### 标识是否为空的注解
+### 空注解(标识是否可以为空)
 
 Java中被空注解符标注的类型，Kotlin会把它们当作nullable/non-null类型，而不是平台类型。目前，kotlin编译器支持[JetBrains风格的注解](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)(`@Nullable`和`@NotNull`的定义可以在`org.jetbrains.annotations`包中找到)。
 
@@ -281,7 +281,7 @@ javaObj.removeIndicesVarArg(*array)
 
 ## 操作符
 
-虽然Java不能自定义操作符重载，但Kotlin允许任意使用方法名合法的方法与标示符进行操作符重载，也可以自定义其它的约定（如`invoke()`等）。但调用Java代码的时候，使用中缀语法(`infix call syntax`)是不被允许的。
+虽然Java不能自定义操作符重载，但Kotlin允许任意使用方法名合法的方法与标示符进行操作符重载，也可以自定义其它约定（如`invoke()`等）。但调用Java代码的时候，使用中缀语法(`infix call syntax`)是不被允许的。
 
 
 ## 受检异常
@@ -411,7 +411,7 @@ Kotlin 接口的实现是没有必要的，也就没有支持了。
 
 ## 在Kotlin中使用JNI
 
-如果要声明一个使用本机代码(C 或者 C++)实现的方法，你需要给它加上`external`的标识符(等同于Java里的`native`)
+如果要声明一个使用本机代码(C 或者 C++)实现的方法，你需要给它加上`external`标识符(等同于Java里的`native`)
 
 ``` kotlin
 external fun foo(x: Int): Double
