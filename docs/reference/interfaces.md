@@ -36,9 +36,7 @@ class Child : MyInterface {
 
 ## 接口属性
 
-You can declare properties in interfaces. A property declared in an interface can either be abstract, or it can provide
-implementations for accessors. Properties declared in interfaces can't have backing fields, and therefore accessors
-declared in interfaces can't reference them.
+你可以在接口定义属性。在接口中声明的属性要么是抽象的，要么提供访问器的实现。在接口中声明的属性不能有后备字段，因此访问器不能引用他们。
 
 ``` kotlin
 interface MyInterface {
