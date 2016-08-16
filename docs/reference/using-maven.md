@@ -52,31 +52,36 @@ Kotlin 提供了大量的标准库以供开发使用，需要在 pom 文件中�
 在 &lt;build&gt; 标签中指定所要编译的 Kotlin 源码目录：
 
 ``` xml
-<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+<build>
+    <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+</build>
 ```
 
 Maven 中需要引用 Kotlin 插件用于编码源码：
 
 ``` xml
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>kotlin-maven-plugin</artifactId>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <version>${kotlin.version}</version>
 
-<plugin>
-    <artifactId>kotlin-maven-plugin</artifactId>
-    <groupId>org.jetbrains.kotlin</groupId>
-    <version>${kotlin.version}</version>
+            <executions>
+                <execution>
+                    <id>compile</id>
+                    <goals> <goal>compile</goal> </goals>
+                </execution>
 
-    <executions>
-        <execution>
-            <id>compile</id>
-            <goals> <goal>compile</goal> </goals>
-        </execution>
-
-        <execution>
-            <id>test-compile</id>
-            <goals> <goal>test-compile</goal> </goals>
-        </execution>
-    </executions>
-</plugin>
+                <execution>
+                    <id>test-compile</id>
+                    <goals> <goal>test-compile</goal> </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 ## 同时编译 Kotlin 与 Java 源码
@@ -87,25 +92,29 @@ Maven 中需要引用 Kotlin 插件用于编码源码：
 It could be done by moving Kotlin compilation to previous phase, process-sources（如果有更好的解决方案欢迎提出）：
 
 ``` xml
-<plugin>
-    <artifactId>kotlin-maven-plugin</artifactId>
-    <groupId>org.jetbrains.kotlin</groupId>
-    <version>${kotlin.version}</version>
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>kotlin-maven-plugin</artifactId>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <version>${kotlin.version}</version>
 
-    <executions>
-        <execution>
-            <id>compile</id>
-            <phase>process-sources</phase>
-            <goals> <goal>compile</goal> </goals>
-        </execution>
+            <executions>
+                <execution>
+                    <id>compile</id>
+                    <phase>process-sources</phase>
+                    <goals> <goal>compile</goal> </goals>
+                </execution>
 
-        <execution>
-            <id>test-compile</id>
-            <phase>process-test-sources</phase>
-            <goals> <goal>test-compile</goal> </goals>
-        </execution>
-    </executions>
-</plugin>
+                <execution>
+                    <id>test-compile</id>
+                    <phase>process-test-sources</phase>
+                    <goals> <goal>test-compile</goal> </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 ## OSGi

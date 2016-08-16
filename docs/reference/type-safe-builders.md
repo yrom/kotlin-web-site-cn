@@ -279,27 +279,3 @@ fun html(init: HTML.() -> Unit): HTML {
     return html
 }
 ```
-
-
-> ~~### 附录.让Java类更好~~
-> 
-> 上面的代码中有一段很好的：
-> 
-> ``` kotlin
->   class A() : BodyTag("a") {
->     var href: String
->       get() = attributes["href"]!!
->       set(value) { attributes["href"] = value }
->   }
-> ```
-> 
-> 我们访问映射(Map) `attributes`的方式，是把它当作 "关联数组" (associate array)来访问的：用`[]`操作符。
-> 依照编译器的[惯例](operator-overloading.html))它被翻译成`get(K)`和`set(K, V)`，正好。
-> 但是我们说过，`attributes`是一个*Java*`Map`，也就是说，它没有`set(K, V)`函数。(译注：Java的映射中的函数是`put(K, V)`)。
-> 在Kotlin中，这个问题很容易解决：
-> 
-> ``` kotlin
->   fun <K, V> Map<K, V>.set(key: K, value: V) = this.put(key, value)
-> ```
-> 
-> 所以我们只要给`Map`类添加一个[扩展函数](extensions.html)`set(K, V)`， 并委托`Map`类原有的`put(K, V)`函数，就可以让*Java*类使用Kotlin的操作符号了。

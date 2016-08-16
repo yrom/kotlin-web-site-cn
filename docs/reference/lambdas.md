@@ -98,14 +98,14 @@ strings filter {it.length == 5} sortBy {it} map {it.toUpperCase()}
 但却立即写为表达式。思考下面的例子：
 
 ``` kotlin
-max(strings, { a, b -> a.length() < b.length() })
+max(strings, { a, b -> a.length < b.length })
 ```
 
 `max`函数是一个高阶函数, 也就是说 他的第二个参数是一个函数.
 这个参数是一个表达式，但它本身也是一个函数, 也就是函数字面量.写成一个函数的话，它相当于
 
 ``` kotlin
-fun compare(a: String, b: String): Boolean = a.length() < b.length()
+fun compare(a: String, b: String): Boolean = a.length < b.length
 ```
 
 ### 函数类型

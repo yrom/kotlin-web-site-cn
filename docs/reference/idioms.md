@@ -9,7 +9,7 @@ title: "习惯用法"
 
 一些在 Kotlin 中广泛使用的语法习惯，如果你有更喜欢的语法习惯或者风格，建一个 pull request 贡献给我们吧！
 
-### 创建方便任务间传递的数据 DTO's (POJO's/POCO's)
+### 创建 DTOs（POJOs/POCOs）
 
 ``` kotlin
 data class Customer(val name: String, val email: String)
@@ -72,8 +72,11 @@ for ((k, v) in map) {
 ### 使用区间（range）
 
 ``` kotlin
-for (i in 1..100) { ... }
-for (x in 2..10) { ... }
+for (i in 1..100) { ... }  // closed range: includes 100
+for (i in 1 until 100) { ... } // half-open range: does not include 100
+for (x in 2..10 step 2) { ... }
+for (x in 10 downTo 1) { ... }
+if (x in 1..10) { ... }
 ```
 
 ### 只读 list
@@ -254,5 +257,27 @@ with(myTurtle) { //draw a 100 pix square
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))
 stream.buffered().reader().use { reader ->
     println(reader.readText())
+}
+```
+
+### Convenient form for a generic function that requires the generic type information
+
+``` kotlin
+//  public final class Gson {
+//     ...
+//     public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
+//     ...
+
+inline fun <reified T: Any> Gson.fromJson(json): T = this.fromJson(json, T::class.java)
+```
+
+### Consuming a nullable Boolean
+
+``` kotlin
+val b: Boolean? = ...
+if (b == true) {
+    ...
+} else {
+    // `b` is false or null
 }
 ```

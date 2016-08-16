@@ -1335,6 +1335,9 @@
   date: [2016-03-02, 2016-03-04]
   location: Riga, Latvia
   lang: en   
+  content:
+    slides: https://speakerdeck.com/svtk/you-can-do-better-with-kotlin
+    video: https://www.youtube.com/watch?v=RLXmOjoAnZY
   
 - title: DroidCon Italy 2016
   url: http://it.droidcon.com/2016/sessions/you-can-do-better-with-kotlin/
@@ -1342,7 +1345,10 @@
   speaker: Svetlana Isakova
   date: [2016-04-07, 2016-04-08]
   location: Turin, Italy
-  lang: en   
+  lang: en
+  content:
+    slides: https://speakerdeck.com/svtk/you-can-do-better-with-kotlin
+    video: https://www.youtube.com/watch?v=Es32UqHNza0
 
 - title: DroidCon Zagreb 2016
   url: http://droidcon.hr/en/
@@ -1350,7 +1356,9 @@
   speaker: Svetlana Isakova
   date: [2016-04-27, 2016-04-29]
   location: Zagreb, Croatia
-  lang: en   
+  lang: en
+  content:
+    slides: https://speakerdeck.com/svtk/you-can-do-better-with-kotlin
 
 - title: Voxxed Days Ticino 2016
   url: https://voxxeddays.com/ticino/
@@ -1359,6 +1367,9 @@
   date: 2016-04-30
   location: Lugano, Switzerland
   lang: en
+  content:
+    slides: https://speakerdeck.com/svtk/you-can-do-better-with-kotlin
+    video: https://www.youtube.com/watch?v=bVuhlusXdZ4
 
 - title: Sydney Mobile Developers MeetUp
   url: http://www.meetup.com/SydneyMobileDotNetDevelopers/events/228275331/
@@ -1432,6 +1443,16 @@
   date: 2016-04-05
   location: Belfast, United Kingdom
   lang: en
+  
+- title: "Luminis DevCon 2016"
+  url: "https://devcon.luminis.eu/methods-are-no-fun-an-introduction-to-kotlin/"
+  subject: "Methods are no fun - An introduction to Kotlin"
+  speaker: Gareth Fleming
+  date: 2016-04-19
+  location: Ede, Netherlands
+  lang: en
+  content:
+    video: https://youtu.be/sjuAhrDSdoI
   
 - title: "VI Codemotion Meetup"
   url: "http://www.meetup.com/es-ES/Codemotion-Meetups/events/229413565/"
@@ -1508,7 +1529,7 @@
   lang: ru
 
 - title: JET Conference
-  url: http://jetconf.by/#/program
+  url: "http://jetconf.by/#/dmitry_jemerov"
   subject: "Kotlin: Making JVM Development Fun Again; Caught in the Act: Kotlin Bytecode Generation and Runtime Performance"
   speaker: Dmitry Jemerov
   date: 2016-04-25
@@ -1595,4 +1616,348 @@
   speaker: Jim Baca
   date: 2016-04-14
   location: Austin, USA
+  lang: en
+
+- title: "DutchAUG Meetup"
+  url: http://www.meetup.com/dutch-aug/events/229816059/
+  subject: "Kotlin for Android"
+  speaker: Svetlana Isakova
+  date: 2016-04-25
+  location: Amsterdam, Netherlands
+  lang: en
+
+- title: "Android spring barcamp 2016"
+  url: http://lviv.gdg.org.ua/2016/04/11/android-spring-barcamp-2016/
+  subject: "Kotlin + Android"
+  speaker: Dmytro Danylyk
+  date: 2016-04-21
+  location: Lviv, Ukraine
+  lang: uk
+  content:
+    slides: https://speakerdeck.com/dmytrodanylyk/kotlin-plus-android
+  
+- title: JET Conference
+  url: "http://jetconf.by/#/nicolas_frankel"
+  subject: "Spring Boot and Kotlin, a match made in Heaven"
+  speaker: Nicolas Frankel
+  date: 2016-04-25
+  location: Minsk, Belarus
+  lang: en
+
+- title: JET Conference
+  url: "http://jetconf.by/#/anton_keks"
+  subject: "Kotlin in real projects: pragmatic opinion on pragmatic language"
+  speaker: Anton Keks
+  date: 2016-04-25
+  location: Minsk, Belarus
+  lang: en
+  content:
+    slides: https://docs.google.com/presentation/d/1rxHoxvBRHdIWS2N7pLaVWkdzVKnMn316MkYT9Q8BGuA
+
+- title: JET Conference
+  url: "http://jetconf.by/#/ruslan_ibragimov"
+  subject: "The Darkside of Kotlin"
+  speaker: Ruslan Ibragimov
+  date: 2016-04-25
+  location: Minsk, Belarus
+  lang: en
+
+- title: Kotlin Night in San Francisco
+  url: "http://info.jetbrains.com/Kotlin-Night-2016.html"
+  subject: "Where We Stand and What's Next"
+  speaker: Andrey Breslav
+  date: 2016-05-17
+  location: San Fransisco, CA, US
+  lang: en
+  
+- title: Kotlin Night in San Francisco
+  url: "http://info.jetbrains.com/Kotlin-Night-2016.html"
+  subject: "Instrumentation Testing Robots"
+  speaker: Jake Wharton
+  date: 2016-05-17
+  location: San Fransisco, CA, US
+  lang: en
+  
+- title: Kotlin Night in San Francisco
+  url: "http://info.jetbrains.com/Kotlin-Night-2016.html"
+  subject: "Kotlin Testing"
+  speaker: Laura Kogler and Rob Fletcher
+  date: 2016-05-17
+  location: San Fransisco, CA, US
+  lang: en
+  
+- title: Kotlin London Meetup
+  url: "http://www.meetup.com/kotlin-london/events/230517042/"
+  subject: "Kotlin’s Dark Corners"
+  speaker: Nat Pryce
+  date: 2016-05-11
+  location: London, UK
+  lang: en
+  
+- title: BSC Meetup
+  url: "https://www.eventbrite.co.uk/e/spa-300-introduction-to-the-kotlin-language-tickets-25313932654"
+  subject: "Introduction to the Kotlin language"
+  speaker: Nat Pryce
+  date: 2016-06-01
+  location: London, UK
+  lang: en
+  
+- title: mDevCamp 2016
+  url: "http://www.mdevcamp.cz/"
+  subject: "Firebase + Kotlin + RxJava + MVP"
+  speaker: David Vávra
+  date: 2016-06-17
+  location: Prague, Czechia
+  lang: en
+  content:
+    video: https://slideslive.com/38897392/firebase-kotlin-rxjava-practical-tips-en
+  
+- title: "GeeCON 2016"
+  url: http://2016.geecon.org/speakers/info.html?id=63
+  subject: "Supercharge your Android-Fu with Kotlin"
+  speaker: Nicolas Fränkel
+  date: [2016-05-11, 2016-05-13]
+  location: Kraków, Poland
+  lang: en
+  
+- title: "Java Forum Nord 2016"
+  url: "http://javaforumnord.de/site/2016/#programme"
+  subject: "Kotlin - der neue Stern am Java Himmel?"
+  speaker: Dirk Dittert
+  date: 2016-10-20
+  location: Hannover, Germany
+  lang: de
+
+- title: "GDG Chicago West Meetup"
+  url: "http://www.meetup.com/GDG-Chicago-West/events/231110079/"
+  subject: "Using Kotlin for Android Development"
+  speaker: Jay Ohms
+  date: 2016-06-08
+  location: Schaumburg, IL, US
+  lang: en
+  
+- title: "TriDroid - NC Triangle Android Meetup"
+  url: "http://www.meetup.com/TriDroid/events/230742949/"
+  subject: "Kotlin: Why Android Doesn't Need Java 8"
+  speaker: Chris Pierick
+  date: 2016-05-26
+  location: Raleigh, NC, US
+  lang: en
+  
+- title: "JUG Nürnberg Meetup"
+  url: "http://www.meetup.com/de-DE/JUG-Nurnberg/events/229659134/"
+  subject: "Kotlin - der neue Stern am Java Himmel?"
+  speaker: Dirk Dittert
+  date: 2016-05-25
+  location: Nürnberg, Germany
+  lang: de
+  
+- title: "JPrime 2016"
+  url: "http://jprime.io/nav/article/52"
+  subject: "Kotlin - Ready for production"
+  speaker: Hadi Hariri
+  date: 2016-05-26
+  location: Sofia, Bulgaria
+  lang: en
+
+- title: Java Day Minsk
+  url: http://javaday.by/
+  subject: Kotlin in examples
+  speaker: Boris Vanin
+  date: 2016-07-11
+  location: Minsk, Belorus
+  lang: ru
+  
+- title: "confitura 2016"
+  url: "http://2016.confitura.pl/"
+  subject: "Kotlin, why?"
+  speaker: Paweł Byszewski
+  date: 2016-07-02
+  location: Warsaw, Poland
+  lang: pl
+
+- title: Devoxx Poland 2016
+  url: http://devoxx.pl
+  subject: "You can do better with Kotlin"
+  speaker: Svetlana Isakova
+  date: [2016-06-22, 2016-06-25]
+  location: Krakow, Poland
+  lang: en   
+
+- title: Droidcon Vienna
+  url: https://droidcon.at/
+  subject: "You can do better with Kotlin"
+  speaker: Svetlana Isakova
+  date: [2016-09-16, 2016-09-17]
+  location: Vienna, Austria
+  lang: en   
+  
+- title: New York Android Developers Meetup
+  url: http://www.meetup.com/android-developers-nyc/events/230899062/
+  subject: "Kotlin 101"
+  speaker: Daniel Nizri
+  date: 2016-06-14
+  location: New York, NY, US
+  lang: en
+  content:
+    slides: https://docs.google.com/presentation/d/1RONjTABiAWTrDNcAOWB12GEKr1LbJy8PAqwGDhpJ8_Q
+    video: https://www.youtube.com/watch?v=ThSYQOVeoqg&authuser=1
+    examples: https://github.com/yodle/android-kotlin-demo
+
+- title: Droidcon Vienna
+  url: https://droidcon.at/
+  subject: "The Blessings of Kotlin for Android"
+  speaker: Daniel Niedermühlbichler
+  date: [2016-09-16, 2016-09-17]
+  location: Vienna, Austria
+  lang: en
+  
+- title: I CODE JAVA 2016
+  url: http://j-sa.co/sessions/kotlin-the-future-of-the-jvm/
+  subject: "Kotlin – The Future Of The JVM?"
+  speaker: Rory Preddy
+  date: [2016-07-21, 2016-07-22]
+  location: Johannesburg, South Africa
+  lang: en
+  content:
+    slides: http://www.slideshare.net/rorypreddy/kotlin-64276009
+  
+- title: Polyglot.Tech
+  url: https://eventil.com/events/java-vs-scala-vs-kotlin
+  subject: "Java vs Scala vs Kotlin"
+  date: 2016-09-08
+  location: Warszawa, Poland
+  lang: pl
+  
+- title: Big Android BBQ Europe 2016
+  url: http://www.babbq.nl/sessions/no-excuses-switch-to-kotlin/
+  subject: "No Excuses: Switch To Kotlin"
+  speaker: Thijs Suijten
+  date: [2016-08-14, 2016-08-16]
+  location: Amsterdam, Netherlands
+  lang: en
+
+- title: majug.de
+  url: http://www.majug.de/2016/10/27/kotlin-putting-the-fun-in-your-code/
+  subject: "hello.kt - putting the fun in your code"
+  speaker: Alexander Hanschke
+  date: 2016-10-27
+  location: Mannheim, Germany
+  lang: en
+
+- title: GDG Berlin Android Developer Meetup
+  url: https://www.meetup.com/GDG-Berlin-Android/events/230697455/?eventId=230697455
+  subject: "Kotlin brings the fun to Android"
+  speaker: Hendrik Kokocinski
+  date: 2016-07-27
+  location: Berlin, Germany
+  lang: en
+
+- title: GOTO London 2016
+  url: https://gotocon.com/london-2016/presentations/show_presentation.jsp?oid=7892
+  subject: "Hands-on with Kotlin"
+  speaker: Hadi Hariri
+  date: [2016-10-12, 2016-10-14]
+  location: London, UK
+  lang: en
+
+- title: Kotlin Rio Meetup
+  url: http://www.meetup.com/Kotlin-Rio/events/232059388/?eventId=232059388
+  subject: "Getting started with Kotlin and Android"
+  speaker: Lucas Albuquerque
+  date: 2016-07-27
+  location: Rio de Janeiro, Brazil
+  lang: en
+  content:
+    slides: https://speakerdeck.com/lalbuquerque/getting-started-with-kotlin-and-android
+    examples: https://github.com/lalbuquerque/getting-started-w-kotlin-android
+
+- title: devICT Meetup
+  url: http://www.meetup.com/devict/events/232814232/
+  subject: "Java Talks: Kotlin - How and Why"
+  speaker: Jacob Moore
+  date: 2016-08-16
+  location: Wichita, KS, US
+  lang: en
+  
+- title: GDG New Delhi Meetup
+  url: https://www.facebook.com/events/496598107201906/
+  subject: "Android App Using Kotlin"
+  speaker: Vatsal Bajpai
+  date: 2016-07-31
+  location: New Delhi, India
+  lang: en
+
+- title: Android Australia User Group
+  url: https://www.meetup.com/Android-Australia-User-Group-Sydney/events/232408253/
+  subject: "A Deeper Dive into Kotlin"
+  speaker: Hadi Hariri
+  date: 2016-08-04
+  location: Sydney, Australia
+  lang: en
+  
+- title: Android Australia User Group
+  url: https://www.meetup.com/Android-Australia-User-Group-Sydney/events/232408253/
+  subject: "Asynchronous Vert.x Applications in Kotlin"
+  speaker: Mike Gouline
+  date: 2016-08-04
+  location: Sydney, Australia
+  lang: en
+  
+- title: AnDevCon
+  url: "http://www.andevcon.com/boston2016/sessions#KotlinandAndroidBetterTogetherPartI"
+  subject: "Kotlin and Android: Better Together"
+  speaker: C.L. Kim
+  date: [2016-08-01, 2016-08-04]
+  location: Boston, MA, USA
+  lang: en
+  
+- title: JVM Language Summit
+  url: "JVM Language Summit"
+  subject: "Kotlin Coroutines"
+  speaker: Andrey Breslav
+  date: [2016-08-01, 2016-08-03]
+  location: Santa Clara, CA, USA
+  lang: en
+  content:
+    video: https://youtu.be/4W3ruTWUhpw
+
+- title: "SpringOne Platform"
+  url: "https://2016.event.springoneplatform.io/schedule/sessions/developing_a_geospatial_webservice_with_kotlin_and_spring_boot.html"
+  subject: "Developing a Geospatial Webservice with Kotlin and Spring Boot"
+  speaker: Sébastien Deleuze
+  date: [2016-08-01, 2016-08-04]
+  location: LAS VEGAS, CA, USA
+  lang: en
+
+- title: "GDG DevFest Ukraine 2016"
+  url: "https://devfest.gdg.org.ua/speakers/16"
+  subject: "Kotlin + Android"
+  speaker: Dmytro Danylyk
+  date: [2016-09-09, 2016-09-10]
+  location: Lviv, Ukraine
+  lang: en
+  
+- title: "GDG DevFest Ukraine 2016"
+  url: "https://devfest.gdg.org.ua/speakers/19"
+  subject: "Firebase + Kotlin + RxJava + MVP: Practical Tips"
+  speaker: David Vávra
+  date: [2016-09-09, 2016-09-10]
+  location: Lviv, Ukraine
+  lang: en
+
+- title: "YOW! Connected 2016"
+  url: "https://a.confui.com/public/conferences/57200a19f572215d1f000082/locations/57200a1af572215d1f000083/topics/57b0125135ea062b620001a4"
+  subject: "Kotlin, The Pragmatic Language For Android"
+  speaker: Mike Gouline
+  date: [2016-10-05, 2016-10-06]
+  location: Melbourne, Australia
+  lang: en
+
+- title: "YOW! Connected 2016"
+  url: "https://a.confui.com/public/conferences/57200a19f572215d1f000082/locations/57200a1af572215d1f000083/topics/57b0141988c80810a000015f"
+  subject: "Anko - The Ultimate Ninja of Kotlin Libraries?"
+  speaker: Kai Koenig
+  date: [2016-10-05, 2016-10-06]
+  location: Melbourne, Australia
   lang: en

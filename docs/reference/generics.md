@@ -256,7 +256,7 @@ fun <T> T.basicToString() : String {  // extension function
 }
 ```
 
-如果参数类型是从调用方显式传递而来，那么它要在函数名之后被声明：
+To call a generic function, specify the type arguments at the call site **after** the name of the function:
 
 ``` kotlin
 val l = singletonList<Int>(1)

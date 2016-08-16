@@ -38,7 +38,7 @@ open class A(x: Int) {
 
 interface B {...}
 
-val ab = object : A(1), B {
+val ab: A = object : A(1), B {
   override val y = 15
 }
 ```
@@ -161,7 +161,8 @@ class MyClass {
 
 这是一个在对象表达式与对象声明上重要的不同之处：
 
-* 当对象声明被第一次访问的时候,它会被**延迟（lazily）**初始化
 * 当对象表达式被用到的时候，它会被**立即**执行（并且初始化）
+* 当对象声明被第一次访问的时候,它会被**延迟（lazily）**初始化
+* a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer
 
 

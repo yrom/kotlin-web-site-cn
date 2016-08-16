@@ -86,6 +86,19 @@ fun C.foo() { println("extension") }
 
 如果我们调用`C`类型的`c`的`c.foo()`，它将打印"member"，而不是"extension".
 
+However, it's perfectly OK for extension functions to overload member functions which have the same name but a different signature:
+
+``` kotlin
+class C {
+    fun foo() { println("member") }
+}
+
+fun C.foo(i: Int) { println("extension") }
+```
+
+The call to `C().foo(1)` will print "extension".
+
+
 ## Nullable接收者
 
 注意扩展可被定义为可空的接收类型。这样的扩展可以被对象变量调用，

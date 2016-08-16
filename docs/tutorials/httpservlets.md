@@ -1,18 +1,19 @@
 ---
 type: tutorial
 layout: tutorial
-title:  "使用HttpServlet创建WEB应用"
-description: "本教程通过使用HttpServlet创建一个简单的控制器来显示 Hello World。"
-authors: biezhi
+title:  "使用 Http Servlet 创建 Web 应用"
+description: "本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。"
+authors: Hadi Hariri
 showAuthorInfo: true
-date: 2015-12-30
+date: 2015-11-01
 source: servlet-web-applications
 ---
-JavaEE的HttpServlet可以使用Kotlin，就像使用其他的Java库或者框架一样。我们将看到如何让一个简单的控制器返回 "Hello, World!"
+Kotlin 可以使用 JavaEE 的 Http Servlet，就像使用其他的 Java 库或者框架一样。我们将看到
+如何让一个简单的控制器返回 "Hello, World!"
 
 ### 定义项目和依赖关系
-
-在本教程中我们将使用Gradle进行构建，但同样可以实现使用IntelliJ IDEA项目结构或Maven的效果。关于如何使用Gradle配置Kotlin，请看[使用Gradle](http://tanfujun.com/docs/reference/using-gradle.html)。HTTP servlet必须依赖 JAVAEE API:
+{{ site.text_using_gradle }}
+The main dependency required for using HTTP servlets is the JavaEE API:
 
 ``` groovy
 dependencies {
@@ -63,3 +64,9 @@ gradle war
 一旦我们运行应用程序(使用之前的配置)，成功部署，应该能够使用浏览器打开URL看到如下的响应:
 
 ![Browser Run](http://kotlinlang.org/assets/images/tutorials/httpservlets/browser.png)
+
+
+
+
+
+

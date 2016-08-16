@@ -24,8 +24,6 @@ The main goal of the Kotlin team is to create a pragmatic and productive program
     * 参照 [类和接口](classes.html)
 * 自定义符号运算
     * 参照 [运算符重载](operator-overloading.html)
-* 嵌入式 XML
-    * 参照 [类型安全 Groovy风格 builders](type-safe-builders.html)
 * 结构类型
 * 值类型
     * We plan to support [Project Valhalla](http://openjdk.java.net/projects/valhalla/) once it is released as part of the JDK
@@ -42,4 +40,3 @@ The main goal of the Kotlin team is to create a pragmatic and productive program
 * [智能转换](typecasts.html)
 * [Kotlin的内联函数助力非局部跳跃](inline-functions.html#inline-functions)
 * [第一类 授权](delegation.html). Also implemented via 3rd party plugin: Autoproxy
-* [Member references](reflection.html#function-references) (also supported in Java 8).

@@ -143,6 +143,7 @@ val customer = Customer("Joe Smith")
 
 注意 Kotlin 并没有 *new*{: .keyword } 关键字。
 
+Creating instances of nested, inner and anonymous inner classes is described in [Nested classes](nested-classes.html).
 
 ### 类成员
 
@@ -222,6 +223,23 @@ open class AnotherDerived() : Base() {
   final override fun v() {}
 }
 ```
+
+Overriding properties works in a similar way to overriding methods.
+Note that you can use the `override` keyword as part of the property declaration in a primary constructor:
+
+``` kotlin
+open class Foo {
+    open val x: Int get { ... }
+}
+
+class Bar1(override val x: Int) : Foo() {
+
+}
+```
+
+You can also override a `val` property with a `var` property, but not vice versa.
+This is allowed because a `val` property essentially declares a getter method, and overriding it as a `var` additionally declares a setter method in the derived class.
+
 
 #### 等等！这样我怎么hack我的库？
 

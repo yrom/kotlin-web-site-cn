@@ -49,8 +49,22 @@ println(numbers.filter(::isOdd)) // prints [1, 3]
 
 这里 `::isOdd`是一个函数类型的值 `(Int) -> Boolean`.
 
-注意现在`::`不能被使用来重载函数. 将来, 我们计划
-提供一个语法明确参数类型这样就可以使用明确的重载函数了。
+`::` can be used with overloaded functions when the expected type is known from the context.
+For example:
+
+``` kotlin
+fun isOdd(x: Int) = x % 2 != 0
+fun isOdd(s: String) = s == "brillig" || s == "slithy" || s == "tove"
+
+val numbers = listOf(1, 2, 3)
+println(numbers.filter(::isOdd)) // refers to isOdd(x: Int)
+```
+
+Alternatively, you can provide the necessary context by storing the method reference in a variable with an explicitly specified type:
+
+``` kotlin
+val predicate: (String) -> Boolean = ::isOdd   // refers to isOdd(x: String)
+```
 
 如果我们需要使用类成员或者一个扩展方法，它必须是有权访问的,
 例如`String::toCharArray`带着一个`String`: `String.() -> CharArray`类型扩展函数.
@@ -70,7 +84,7 @@ fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
 
 
 ``` kotlin
-fun length(s: String) = s.size
+fun length(s: String) = s.length
 
 val oddLength = compose(::isOdd, ::length)
 val strings = listOf("a", "ab", "abc")
@@ -122,7 +136,7 @@ fun main(args: Array<String>) {
 
 ``` kotlin
 val String.lastChar: Char
-  get() = this[size - 1]
+  get() = this[length - 1]
 
 fun main(args: Array<String>) {
   println(String::lastChar.get("abc")) // prints "c"

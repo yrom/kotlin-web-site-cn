@@ -143,33 +143,12 @@ fun main(args: Array<String>) {
 <no name> -> first
 first -> second
 ```
+
 如果你想有能力来截取和“否决”它分派的事件，就使用 `vetoable()` 取代 `observable()`.
 被传递给 `vetoable` 的handler会在属性被赋新的值_之前_执行
 
-> ~~### 非空 Not-Null~~
->
-> 有时候我们有一个非空的值*var*{:.keyword}, 但是我们却没有合适的值去给构造器去初始化。
-> 例如，它必须被之后初始化。问题是在Kotlin中你不能有一个没有被初始化的非抽象属性：
->
-> ``` kotlin
-> class Foo {
->   var bar: Bar // ERROR: must be initialized
-> }
-> ```
->
-> 我们可以用*null*{: .keyword }去初始化它,但是我们不得不在每次使用前检查一下。
->
-> `Delegates.notNull()` 可以解决这个问题:
->
-> ``` kotlin
-> class Foo {
->   var bar: Bar by Delegates.notNull()
-> }
-> ```
->
-> 如果这个属性在首次写入前进行读取，它就会抛出一个异常，写入后就正常了。
+## 把属性储存在 Map 中
 
-### 把属性储存在map中
 一个参加的用例是在一个map里存储属性的值。
 这经常出现在解析JSON或者做其他的“动态”的事情应用里头。
 在这样的情况下，你需要使用map的实例本身作为代理用于代理属性

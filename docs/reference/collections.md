@@ -56,11 +56,13 @@ List 和 set 有很多有用的扩展方法值得熟悉：
 
 ``` kotlin
 val items = listOf(1, 2, 3, 4)
-items.first == 1
-items.last == 4
+items.first() == 1
+items.last() == 4
 items.filter { it % 2 == 0 }   // 返回 [2, 4]
-rwList.requireNoNulls()
-if (rwList.none { it > 6 }) println("No items above 6")
+
+val rwList = mutableListOf(1, 2, 3)
+rwList.requireNoNulls()        // returns [1, 2, 3]
+if (rwList.none { it > 6 }) println("No items above 6")  // prints "No items above 6"
 val item = rwList.firstOrNull()
 ```
 
@@ -70,6 +72,6 @@ Map 遵循同样模式。它们可以容易地实例化和访问，像这样：
 
 ``` kotlin
 val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
-println(map["foo"])
+println(readWriteMap["foo"])  // prints "1"
 val snapshot: Map<String, Int> = HashMap(readWriteMap)
 ```

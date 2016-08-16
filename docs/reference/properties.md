@@ -53,13 +53,6 @@ var allByDefault: Int? // error: explicit initializer required, default getter a
 var initialized = 1 // has type Int, default getter and setter
 ```
 
-> ~~注意公有的API(即**public**和**protected**)的属性，类型是不做推导的。~~
-> ~~这么设计是为了防止改变初始化器时不小心改变了公有API。比如：~~
->
-> ``` kotlin
-> public val example = 1 // error: a public property must have a type specified explicitly
-> ```
->
 一个只读属性的语法和一个可变的语法有两方面的不同：1、只读属性的用`val`开始代替`var` 2、只读属性不许setter
 
 ``` kotlin
@@ -112,7 +105,7 @@ var counter = 0 // the initializer value is written directly to the backing fiel
 
 `field`标识符只能用在属性的访问器内。
 
-编译器会查看访问器的内部， 如果他们使用了实际字段（或者访问器使用默认实现），那么将会生成一个实际字段，否则不会生成。
+A backing field will be generated for a property if it uses the default implementation of at least one of the accessors, or if a custom accessor references it through the `field` identifier.
 
 例如，下面的情况下， 就没有实际字段：
 

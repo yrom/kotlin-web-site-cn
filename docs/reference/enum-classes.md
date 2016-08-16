@@ -47,11 +47,15 @@ enum class ProtocolState {
 }
 ```
 
-注意如果枚举类定义了任何成员，你需要像JAVA一样把枚举实例的定义和成员定义用分号分开。
+with their corresponding methods, as well as overriding base methods. Note that if the enum class defines any
+members, you need to separate the enum constant definitions from the member definitions with a semicolon, just like
+in Java.
 
-## 枚举实例的用法
+## Working with Enum Constants
 
-像JAVA一样，枚举类在Kotlin中有合成方法。它允许列举枚举实例并且通过名称返回枚举实例。下面是应用实例 (假设枚举实例名称是`EnumClass`):
+Just like in Java, enum classes in Kotlin have synthetic methods allowing to list
+the defined enum constants and to get an enum constant by its name. The signatures
+of these methods are as follows (assuming the name of the enum class is `EnumClass`):
 
 ``` kotlin
 EnumClass.valueOf(value: String): EnumClass

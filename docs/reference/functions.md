@@ -76,6 +76,19 @@ fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
 
 默认值定义使用后* * = * *类型的值。
 
+Overriding methods always use the same default parameter values as the base method.
+When overriding a method with default parameters values, the default parameter values must be omitted from the signature:
+
+``` kotlin
+open class A {
+    open fun foo(i: Int = 10) { ... }
+}
+
+class B : A() {
+    override fun foo(i: Int) { ... }  // no default value allowed
+}
+```
+
 ### 命名参数
 
 可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这非常方便。

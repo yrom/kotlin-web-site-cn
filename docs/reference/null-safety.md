@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "Null 安全性"
+title: "空安全"
 ---
 
-# Null 安全性
+# 空安全
 
 ## 可空（Nullable）和不可空（Non-Null） 类型
 
@@ -89,6 +89,15 @@ bob?.department?.head?.name
 
 如果任意一个属性（环节）为空，这个链式调用就会返回 *null*{: .keyword }。
 
+To perform a certain operation only for non-null values, you can use the safe call operator together with [`let`](/api/latest/jvm/stdlib/kotlin/let.html):
+
+``` kotlin
+val listWithNulls: List<String?> = listOf("A", null)
+for (item in listWithNulls) {
+     item?.let { println(it) } // prints A and ignores null
+}
+```
+
 ## Elvis 操作符
 
 当我们有一个可以为空的变量 `r`，我们可以说 「如果 `r` 非空，我们使用它；否则使用某个非空的值：
@@ -121,7 +130,7 @@ fun foo(node: Node): String? {
 第三种操作的方式是给 NPE 爱好者的。我们可以写 `b!!` ，这样就会返回一个不可空的 `b` 的值（例如：在我们例子中的 `String`）或者如果 `b` 是空的，就会抛出 `NPE` 异常：
 
 ``` kotlin
-val l = b!!.length()
+val l = b!!.length
 ```
 
 因此，如果你想要一个 `NPE`，你可以使用它。but you have to ask for it explicitly, and it does not appear out of the blue.
@@ -135,3 +144,11 @@ val l = b!!.length()
 val aInt: Int? = a as? Int
 ```
 
+## Collections of Nullable Type
+
+If you have a collection of elements of a nullable type and want to filter non-null elements, you can do so by using `filterNotNull`.
+
+``` kotlin
+val nullableList: List<Int?> = listOf(1, 2, null, 4)
+val intList: List<Int> = nullableList.filterNotNull()
+```

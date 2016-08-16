@@ -15,7 +15,8 @@ Java可以轻松调用Kotlin代码。
 
 ## 包级别的函数
 
-`example.kt` 文件中 `org.foo.bar` 包内声明的所有的函数和属性，都会被放到一个叫`org.foo.bar.ExampleKt`的java类里。
+`example.kt` 文件中 `org.foo.bar` 包内声明的所有的函数和属性，都会被放到一个
+叫`org.foo.bar.ExampleKt`的java类里。
 
 ``` kotlin
 // example.kt

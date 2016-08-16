@@ -46,20 +46,8 @@ public annotation class Fancy
 }
 ```
 
-
-> ~~在很多情况下，`@ `这个标志不是强制性使用的。它只是在当注解表达式或者本地声明时需要：~~
->
-> ``` kotlin
-> fancy class Foo {
->   fancy fun baz(fancy foo: Int): Int {
->     @fancy fun bar() { ... }
->     return (@fancy 1)
->   }
-> }
-> ```
-
-
-如果你需要注解类的主构造方法，你需要给构造方法的声明添加*constructor*{: .keyword}这个关键字，还有在前面添加注解：
+如果你需要注解类的主构造方法，你需要给构造方法的声明添加*constructor*{: .keyword}这个关键字
+，还有在前面添加注解：
 
 
 ``` kotlin
@@ -108,9 +96,25 @@ public annotation class Deprecated(
 @Deprecated("This function is deprecated, use === instead", ReplaceWith("this === other"))
 ```
 
+If you need to specify a class as an argument of an annotation, use a Kotlin class
+([KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)). The Kotlin compiler will
+automatically convert it to a Java class, so that the Java code will be able to see the annotations and arguments
+normally.
+
+``` kotlin
+
+import kotlin.reflect.KClass
+
+annotation class Ann(val arg1: KClass<*>, val arg2: KClass<out Any?>)
+
+@Ann(String::class, Int::class) class MyClass
+```
+
 ### Lambdas
 
-注解也可以用在lambda表达式中。这将会应用到 lambda 生成的`invoke()`方法。这对[Quasar](http://www.paralleluniverse.co/quasar/)框架很有用，在这个框架中注解被用来并发控制
+注解也可以用在lambda表达式中。这将会应用到 lambda 生成的`invoke()`方法
+。这对[Quasar](http://www.paralleluniverse.co/quasar/)框架很有用，
+在这个框架中注解被用来并发控制
 
 ``` kotlin
 annotation class Suspendable
@@ -182,26 +186,19 @@ Java注解是百分百适用于Kotlin：
 ``` kotlin
 import org.junit.Test
 import org.junit.Assert.*
+import org.junit.Rule
+import org.junit.rules.*
 
 class Tests {
+  // apply @Rule annotation to property getter
+  @get:Rule val tempFolder = TemporaryFolder()
+
   @Test fun simple() {
+    val f = tempFolder.newFile()
     assertEquals(42, getTheAnswer())
   }
 }
 ```
-
-
-> ~~Java注解也可像用import修饰符重新命名：~~
->
-> ``` kotlin
-> import org.junit.Test as test
->
-> class Tests {
->   test fun simple() {
->     ...
->   }
-> }
-> ```
 
 因为在Java里，注释的参数顺序不是明确的，你不能使用常规的方法
 调用语法传递的参数。相反的，你需要使用指定的参数语法。
@@ -247,15 +244,18 @@ public @interface AnnWithArrayValue {
 @AnnWithArrayValue("abc", "foo", "bar") class C
 ```
 
-如果你需要像注解参数一样指定一个类，使用一个Kotlin的类吧([KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html))。Kotlin编译器会自动把它转换成Java类，使得Java代码能正常看到注解和参数。
+For other arguments that have an array type, you need to use `arrayOf` explicitly:
+
+``` java
+// Java
+public @interface AnnWithArrayMethod {
+    String[] names();
+}
+```
 
 ``` kotlin
-
-import kotlin.reflect.KClass
-
-annotation class Ann(val arg1: KClass<*>, val arg2: KClass<out Any?>)
-
-@Ann(String::class, Int::class) class MyClass
+// Kotlin
+@AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) class C
 ```
 
 注解实例的值被视为Kotlin的属性。

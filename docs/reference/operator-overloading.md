@@ -1,22 +1,22 @@
 ---
 type: doc
 layout: reference
-title: "运算符重载"
+title: "操作符符重载"
 category: "Syntax"
 ---
 
-# 运算符重载
+# 操作符符重载
 
-Kotlin允许我们实现一些我们自定义类型的运算符实现。这些运算符有固定的表示
-（像 `+` 或者 `*`），和固定的[优先级](grammar.html#precedence)。为实现这样的运算符，我们提供了固定名字的[成员函数](functions.html#member-functions)
-或[扩展函数](extensions.html)，比如二元运算符的左值和一元运算符的参数类型。
+Kotlin允许我们实现一些我们自定义类型的运算符实现。这些操作符有固定的表示
+（像 `+` 或者 `*`），和固定的[优先级](grammar.html#precedence)。为实现这样的操作符，我们提供了固定名字的[成员函数](functions.html#member-functions)
+或[扩展函数](extensions.html)，比如二元操作符的左值和一元操作符的参数类型。
 Functions that overload operators need to be marked with the `operator` modifier.
 
 ## 转换
 
-这里我们描述了一些常用运算符的重载。
+这里我们描述了一些常用操作符的重载。
 
-### 一元运算符
+### 一元操作符
 
 | 表达式 | 翻译为 |
 |------------|---------------|
@@ -59,7 +59,7 @@ Functions that overload operators need to be marked with the `operator` modifier
 
 a-- 的运算步骤也是一样的。
 
-对于前缀运算符`++a`和`--a`的解决方式也是一样的, 步骤是:
+对于前缀操作符`++a`和`--a`的解决方式也是一样的, 步骤是:
 
 * 把`a.inc()`作用于`a`,
 * 返回新值`a`作为表达式结果。
@@ -132,7 +132,7 @@ in 和 !in 的产生步骤是一样的，但参数顺序是相反的。
 
 *注意*: `===` 和 `!==` (实例检查)不能重载, 所以没有转换方式。
 
-The `==` 运算符有点特殊: 它被翻译成一个复杂的表达式，用于筛选`null`值，而且 `null == null` 是 `true`。
+The `==` 操作符有点特殊: 它被翻译成一个复杂的表达式，用于筛选`null`值，而且 `null == null` 是 `true`。
 
 | 符号 | 翻译为 |
 |--------|---------------|

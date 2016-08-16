@@ -19,7 +19,7 @@ title: "参考"
 > 心印：Koan，佛教用语，不建议译作“公案”——译者注
 
 ### 离线浏览
-下载离线文档 [PDF file](http://kotlinlang.org/docs/kotlin-docs.pdf).
+下载离线文档 [PDF 文件](https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf)。
 
 # 参考书
 

@@ -28,7 +28,8 @@ fun demo(source: List<Int>) {
 
 ## Getters 和 Setters
 
-若一个属性的getter/setter方法按照约定的规范进行命名(getter方法以`get`开头,不带参数/setter方法以`set`开头,带一个参数)，那么在Kotlin中可以直接对这个属性进行访问。如：
+若一个属性的getter/setter方法按照约定的规范进行命名(getter方法以`get`开头不带参数/setter方法以`set`开头
+带一个参数)，那么在Kotlin中可以直接对这个属性进行访问。如：
 
 ``` kotlin
 import java.util.Calendar
@@ -106,11 +107,22 @@ val notNull: String = item // 允许，运行时可能失败
 * `(Mutable)Collection<T>!` 表示 "`T`的java集合，可变的或不可变的，可空的或非空的"
 * `Array<(out) T>!` 表示 "`T`(或`T`的子类)的java数组，可空的或非空的"
 
-### 空注解(标识是否可以为空)
+### 可空性注解
 
-Java中被空注解符标注的类型，Kotlin会把它们当作nullable/non-null类型，而不是平台类型。目前，kotlin编译器支持[JetBrains风格的注解](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)(`@Nullable`和`@NotNull`的定义可以在`org.jetbrains.annotations`包中找到)。
+Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
+Kotlin types. The compiler supports several flavors of nullability annotations, including:
 
-## 映射类型
+  * [JetBrains](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
+(`@Nullable` and `@NotNull` from the `org.jetbrains.annotations` package)
+  * Android (`com.android.annotations` and `android.support.annotations`)
+  * JSR-305 (`javax.annotation`)
+  * FindBugs (`edu.umd.cs.findbugs.annotations`)
+  * Eclipse (`org.eclipse.jdt.annotation`)
+  * Lombok (`lombok.NonNull`).
+
+You can find the full list in the [Kotlin compiler source code](https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt).
+
+## 已映射类型
 
 Kotlin特殊处理一部分java类型。这些类型不是通过as或is来直接转换，而是_映射_到了指定的kotlin类型上。
 映射只发生在编译期间，运行时仍然是原来的类型。
@@ -168,7 +180,6 @@ Java数组的映射在这里提到过 [below](java-interop.html#java-arrays)：
 | `String[]`    | `kotlin.Array<(out) String>!` |
 {:.zebra}
 
-
 ## Kotlin中的Java泛型
 
 Kotlin的泛型和Java的有些不同（详见 [Generics](generics.html)）。当引入java类型的时候，我们作如下转换：
@@ -181,26 +192,15 @@ Kotlin的泛型和Java的有些不同（详见 [Generics](generics.html)）。�
   * `List` 转换成 `List<*>!`, 也就是 `List<out Any?>!`
 
 和Java一样，Kotlin在运行时不保留泛型，即对象不知道传递到他们构造器中的那些参数的的实际类型。
-~~Kotlin的范型就像Java一样不会在运行时保留信息，也就是对象不会携带传递到它们构造函数中的类型参数的信息。~~
-~~也就是说，运行时无法区分`ArrayList<Integer>()` 和 `ArrayList<Character>()`.~~
 也就是，`ArrayList<Integer>()` 和 `ArrayList<Character>()` 是区分不出来的。
 这意味着，不可能用 *is*{: .keyword }-来检测泛型。
-~~这就导致，无法使用*is*{: .keyword }-检测范型。~~
 Kotlin只允许用*is*{: .keyword }-来检测星号投射的泛型类型:
-~~Kotlin只允许用*is*{: .keyword }-检测星号投射的范型类型。~~
 
 ``` kotlin
 if (a is List<Int>) // 错误: 不能检测是否是一个Int的List
 // but
 if (a is List<*>) // 可以：不保证list里面的内容类型
 ```
-
-> ~~ ~~
-> ``` kotlin
-> if (a is List<Int>) // 错误: 无法检测是否是一个Int的List
-> // but
-> if (a is List<*>) // 可以: 不确保List里的内容
-> ```
 
 ### Java数组
 
@@ -281,7 +281,9 @@ javaObj.removeIndicesVarArg(*array)
 
 ## 操作符
 
-虽然Java不能自定义操作符重载，但Kotlin允许任意使用方法名合法的方法与标示符进行操作符重载，也可以自定义其它约定（如`invoke()`等）。但调用Java代码的时候，使用中缀语法(`infix call syntax`)是不被允许的。
+虽然Java不能自定义操作符重载，但Kotlin允许任意
+使用方法名合法的方法与标示符进行操作符重载，也可以自定义其它约定（如`invoke()`等）。
+但调用Java代码的时候，使用中缀语法(`infix call syntax`)是不被允许的。
 
 
 ## 受检异常
@@ -352,9 +354,9 @@ class C {
 }
 ```
 
-根据java的规则， `finalize()`不能为 *private*{: .keyword }。
+根据 Java 的规则， `finalize()`不能为 *private*{: .keyword }。
 
-## java类的继承
+## 从 Java类的继承
 
 在kotlin里，超类里最多只能有一个java类(java接口数目不限)。这个java类必须放在超类列表的最前面。
 

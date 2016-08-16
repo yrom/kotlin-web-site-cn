@@ -54,7 +54,7 @@ KDoc现在支持如下的块标签：
 
 #### `@param <name>`
 
-代表一个函数的参数值或者一个类的参数。
+代表一个函数的参数值或者一个类、属性或者函数的类型参数。
 为了更好的区分描述中的参数值，如果你喜欢，你可以在参数名
 括在方括号中，下面是两个符合条件的句法：
 
@@ -70,6 +70,10 @@ KDoc现在支持如下的块标签：
 #### `@constructor`
 
 类构造函数
+
+#### `@receiver`
+
+Documents the receiver of an extension function.
 
 #### `@property <name>`
 
@@ -141,3 +145,35 @@ Use [kotlin.reflect.KClass.properties] to enumerate the properties of the class.
 注意KDoc在链接中没有解决重载成员的任何语法。自从Kotlin文档生成
 工具把上所有的重载函数放在同一个页面之后，标识一个特定的重载函数
 不需要链接的方式。
+
+
+## Module and Package Documentation
+
+Documentation for a module as a whole, as well as packages in that module, is provided as a separate Markdown file,
+and the paths to that file is passed to Dokka using the `-include` command line parameter or the corresponding parameters
+in Ant, Maven and Gradle plugins.
+
+Inside the file, the documentation for the module as a whole and for individual packages is introduced by the corresponding first-level
+headings. The text of the heading must be "Module `<module name>`" for the module, and "Package `<package qualified name>`" for a package.
+
+Here's an example content of the file:
+
+```
+# Module kotlin-demo
+
+The module shows the Dokka syntax usage.
+
+# Package org.jetbrains.kotlin.demo
+
+Contains assorted useful stuff.
+
+## Level 2 heading
+
+Text after this heading is also part of documentation for `org.jetbrains.kotlin.demo`
+
+# Package org.jetbrains.kotlin.demo2
+
+Useful stuff in another package.
+```
+
+
