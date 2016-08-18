@@ -245,7 +245,7 @@ val text = """
 """
 ```
 
-You can remove leading whitespace with [`trimMargin()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/trim-margin.html) function:
+你可以通过 [`trimMargin()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/trim-margin.html) 函数去除前导空格：
 
 ``` kotlin
 val text = """
@@ -256,7 +256,7 @@ val text = """
     """.trimMargin()
 ```
 
-By default `|` is used as margin prefix, but you can choose another character and pass it as a parameter, like `trimMargin(">")`.
+默认 `|` 用作边界前缀，但你可以选择其他字符并作为参数传入，比如 `trimMargin(">")`。
 
 ### 字符串模板
 

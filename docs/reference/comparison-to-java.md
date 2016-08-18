@@ -30,7 +30,7 @@ Kotlin 修复了Java中一系列长期困扰我们的问题
 
 * [Lambda 表达式](lambdas.html) + [内联函数](inline-functions.html) = 高性能自定义结构
 * [扩展函数](extensions.html)
-* [Null 安全性](null-safety.html)
+* [空安全](null-safety.html)
 * [智能类型转换](typecasts.html)
 * [字符串模板](basic-types.html#strings)
 * [属性](properties.html)

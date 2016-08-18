@@ -260,7 +260,7 @@ stream.buffered().reader().use { reader ->
 }
 ```
 
-### Convenient form for a generic function that requires the generic type information
+### 对于需要泛型信息的泛型函数的适宜形式
 
 ``` kotlin
 //  public final class Gson {
@@ -271,13 +271,13 @@ stream.buffered().reader().use { reader ->
 inline fun <reified T: Any> Gson.fromJson(json): T = this.fromJson(json, T::class.java)
 ```
 
-### Consuming a nullable Boolean
+### 使用可空布尔
 
 ``` kotlin
 val b: Boolean? = ...
 if (b == true) {
     ...
 } else {
-    // `b` is false or null
+    // `b` 是 false 或者 null
 }
 ```
