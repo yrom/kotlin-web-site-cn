@@ -173,7 +173,7 @@ fun main(args: Array<String>) {
   print(x * y)
 ```
 
-参阅 [Null 安全性](null-safety.html).
+参阅 [空安全](null-safety.html).
 
 ## 使用类型检查及自动类型转换
 
@@ -216,7 +216,7 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-参阅 [类](classes.html) and [类型转换](typecasts.html).
+参阅 [类](classes.html) 和 [类型转换](typecasts.html)。
 
 ## 使用 `for` 循环
 

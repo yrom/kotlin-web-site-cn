@@ -50,14 +50,14 @@ fun foo() { // 省略了 ": Unit"
 }
 ```
 
-## Functions vs Properties
+## 函数还是属性
 
-In some cases functions with no arguments might be interchangeable with read-only properties. 
-Although the semantics are similar, there are some stylistic conventions on when to prefer one to another.
+很多场合无参的函数可与只读属性互换。
+尽管语义相近，也有一些取舍的风格约定。
 
-Prefer a property over a function when the underlying algorithm:
+底层算法优先使用属性而不是函数：
 
-* does not throw
-* has a `O(1)` complexity
-* is cheap to calculate (or caсhed on the first run)
-* returns the same result over invocations 
+* 不会抛异常
+* `O(1)` 复杂度
+* 计算廉价（或缓存第一次运行）
+* 不同调用返回相同结果 
