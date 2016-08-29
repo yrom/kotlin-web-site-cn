@@ -44,7 +44,7 @@ Logos can be downloaded [here](https://resources.jetbrains.com/assets/products/k
 
 ### 它兼容Java？
 
-兼容。编译器生成的是 Java 字节码。Kotlin 可以调用 Java 并且 Java 也可以调用 Kotlin。参见[与 Java 互通性](java-interop.html)。
+兼容。编译器生成的是 Java 字节码。Kotlin 可以调用 Java 并且 Java 也可以调用 Kotlin。参见[与 Java 互操作性](java-interop.html)。
 
 ### 运行Kotlin代码所需的最低Java版本是哪个？
 

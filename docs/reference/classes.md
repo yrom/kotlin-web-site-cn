@@ -22,7 +22,7 @@ class Invoice {
 
 类声明由类名、类头（指定其类型参数、主
 构造函数等）和由大括号包围的类体构成。类头和类体都是可选的；
-如果这个类没有类体，可以省略花括号。
+如果一个类没有类体，可以省略花括号。
 
 ``` kotlin
 class Empty
@@ -39,7 +39,7 @@ class Person constructor(firstName: String) {
 }
 ```
 
-如果这个主构造函数没有任何注解或者可见性修饰符，可以省略这个 *constructor*{: .keyword }
+如果主构造函数没有任何注解或者可见性修饰符，可以省略这个 *constructor*{: .keyword }
 关键字。
 
 ``` kotlin
@@ -47,7 +47,7 @@ class Person(firstName: String) {
 }
 ```
 
-这个主构造函数不能包含任何的代码。初始化的代码可以放
+主构造函数不能包含任何的代码。初始化的代码可以放
 到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中：
 
 ``` kotlin
@@ -165,7 +165,7 @@ class Example // 从 Any 隐式继承
 ```
 
 `Any` 不是 `java.lang.Object`；尤其是，它除了 `equals()`、`hashCode()`和`toString()`外没有任何成员。
-更多细节请查阅[Java互通性](java-interop.html#object-methods)部分。
+更多细节请查阅[Java互操作性](java-interop.html#object-methods)部分。
 
 要声明一个显式的超类型，我们把类型放到类头的冒号之后：
 
@@ -224,8 +224,8 @@ open class AnotherDerived() : Base() {
 }
 ```
 
-Overriding properties works in a similar way to overriding methods.
-Note that you can use the `override` keyword as part of the property declaration in a primary constructor:
+属性覆盖与方法覆盖类似。
+注：你可以用 `override` 关键字作为主构造函数属性声明的一部分：
 
 ``` kotlin
 open class Foo {
@@ -237,8 +237,8 @@ class Bar1(override val x: Int) : Foo() {
 }
 ```
 
-You can also override a `val` property with a `var` property, but not vice versa.
-This is allowed because a `val` property essentially declares a getter method, and overriding it as a `var` additionally declares a setter method in the derived class.
+你也可以用一个 `var` 属性覆盖一个 `val` 属性，但反之则不行。
+这是允许的，因为一个 `val` 属性本质上声明了一个 getter 方法，而将其覆盖为 `var` 只是在子类中额外声明一个 setter 方法。
 
 
 #### 等等！这样我怎么hack我的库？
