@@ -124,7 +124,7 @@ val <T> List<T>.lastIndex: Int
 ```
 
 注意：由于扩展没有实际的将成员插入类中，因此对扩展来说是无效的
-属性是有[backing field](properties.html#backing-fields).这就是为什么**初始化其不允许有
+属性是有[幕后字段](properties.html#幕后字段).这就是为什么**初始化其不允许有
 扩展属性**。他们的行为只能显式的使用 getters/setters.  
 
 例子:

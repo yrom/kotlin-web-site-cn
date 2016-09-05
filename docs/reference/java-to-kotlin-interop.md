@@ -89,7 +89,7 @@ demo.Utils.bar();
 
 ## 实例字段
 
-如果在 Java 需要像字段一样调用一个 Kotlin 的属性，你需要使用`@JvmField`注解。这个字段与属性具有相同的可见性。属性符合有实际字段(backing field)、非私有、没有`open`, `override` 或者 `const`修饰符、不是被委托的属性这些条件才可以使用`@JvmField`注解。
+如果在 Java 需要像字段一样调用一个 Kotlin 的属性，你需要使用`@JvmField`注解。这个字段与属性具有相同的可见性。属性符合有幕后字段（backing field）、非私有、没有`open`, `override` 或者 `const`修饰符、不是被委托的属性这些条件才可以使用`@JvmField`注解。
 
 
 ``` kotlin
@@ -112,7 +112,7 @@ class JavaClient {
 
 ## 静态字段
 
-在一个命名对象或者伴生对象中声明的Koltin属性会持有静态实际字段(backing fields)，这些字段存在于该命名对象或者伴生对象中的。
+在一个命名对象或者伴生对象中声明的Koltin属性会持有静态幕后字段（backing fields），这些字段存在于该命名对象或者伴生对象中的。
 
 通常，这些字段都是private的，但是他们可以通过以下方式暴露出来。
 

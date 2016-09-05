@@ -90,13 +90,13 @@ var setterWithAnnotation: Any? = null
   @Inject set // 用 Inject 注解此 setter
 ```
 
-### Backing 字段
+### 幕后字段
 
-Kotlin 中类不能有字段。然而，当使用自定义访问器时，有时有一个 backing 字段有时是必要的。为此 Kotlin 提供
-一个自动 backing 字段，它可通过使用 `field` 标识符访问。
+Kotlin 中类不能有字段。然而，当使用自定义访问器时，有时有一个幕后字段（backing field）有时是必要的。为此 Kotlin 提供
+一个自动幕后字段，它可通过使用 `field` 标识符访问。
 
 ``` kotlin
-var counter = 0 // 此初始器值直接写入到 backing 字段
+var counter = 0 // 此初始器值直接写入到幕后字段
   set(value) {
     if (value >= 0)
       field = value
@@ -105,18 +105,18 @@ var counter = 0 // 此初始器值直接写入到 backing 字段
 
 `field` 标识符只能用在属性的访问器内。
 
-如果属性至少一个访问器使用默认实现，或者自定义访问器通过 `field` 引用 backing 字段，将会为该属性生成一个 backing 字段。
+如果属性至少一个访问器使用默认实现，或者自定义访问器通过 `field` 引用幕后字段，将会为该属性生成一个幕后字段。
 
-例如，下面的情况下， 就没有 backing 字段：
+例如，下面的情况下， 就没有幕后字段：
 
 ``` kotlin
 val isEmpty: Boolean
   get() = this.size == 0
 ```
 
-### Backing 属性
+### 幕后属性
 
-如果你的需求不符合这套“隐式的 backing 字段”方案，那么总可以使用 *backing 属性*：
+如果你的需求不符合这套“隐式的幕后字段”方案，那么总可以使用 *幕后属性（backing property）*：
 
 ``` kotlin
 private var _table: Map<String, Int>? = null
@@ -185,7 +185,7 @@ public class MyTest {
 
 ## 委托属性
 
-最常见的一类属性就是简单地从  backing 字段中读取（以及可能的写入）。
+最常见的一类属性就是简单地从幕后字段中读取（以及可能的写入）。
 另一方面，使用自定义 getter 和 setter 可以实现属性的任何行为。
 介于两者之间，属性如何工作有一些常见的模式。一些例子：惰性值、
 通过键值从映射读取、访问数据库、访问时通知侦听器等等。
