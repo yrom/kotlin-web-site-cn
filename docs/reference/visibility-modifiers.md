@@ -7,55 +7,55 @@ title: "可见性修饰符"
 
 # 可见性修饰符  
 
-类，对象，接口，构造方法，和它们的setter方法都可以用_visibility modifiers_来做修饰。
-（getter 总与属性有着相同的可见性。）
-在Kotlin中有以下四个可见性修饰符：`private`、 `protected`、 `internal` 和 `public`。
-默认可见性如果没有显式指定修饰符的话是 `public`。
+类、对象、接口、构造函数、方法、属性和它们的 setter 都可以有_可见性修饰符_。
+（getter 总是与属性有着相同的可见性。）
+在 Kotlin 中有这四个可见性修饰符：`private`、 `protected`、 `internal` 和 `public`。
+如果没有显式指定修饰符的话，默认可见性是 `public`。
 
-下面将解释不同类型的声明范围。
+下面将根据声明范围的不同来解释。
 
 ## 包名
 
-函数，属性和类，对象和接口可以在顶层声明，即直接在包内：
+函数、属性和类、对象和接口可以在顶层声明，即直接在包内：
 
 ``` kotlin
-// file name: example.kt
+// 文件名：example.kt
 package foo
 
 fun baz() {}
 class Bar {}
 ```
 
-*  如果你不指定任何可见性修饰符，那么默认情况下使用`public`修饰，这意味着你们将声明
-随处可见;
-* 如果你声明`private`，只会在声明它的文件内可见；
-* 如果你声明`internal`，它会在相同模块内随处可见；
-* `protected`不适用于顶层声明。
+*  如果你不指定任何可见性修饰符，默认为 `public`，这意味着你的声明
+将随处可见；
+* 如果你声明为 `private`，它只会在声明它的文件内可见；
+* 如果你声明为 `internal`，它会在相同模块内随处可见；
+* `protected` 不适用于顶层声明。
 
-例子:
+例如:
 
 ``` kotlin
-// file name: example.kt
+// 文件名：example.kt
 package foo
 
-private fun foo() {} // visible inside example.kt
+private fun foo() {} // 在 example.kt 内可见
 
-public var bar: Int = 5 // property is visible everywhere
-    private set         // setter is visible only in example.kt
+public var bar: Int = 5 // 该属性随处可见
+    private set         // setter 只在 example.kt 内可见
     
-internal val baz = 6    // visible inside the same module
+internal val baz = 6    // 相同模块内可见
 ```
 
 ## 类和接口
 
-当一个类中声明：
+当一个类内部声明：
 
-* `private` 意味着这个类只在内部可见(包含所有成员).
-* `protected`--- 和`private`一样+在子类可见。
-* `internal` --- 任何客户端 *inside this module* 谁看到声明类，其`internal`成员在里面;
-* `public` ---  任何客户端看到声明类看到其`public`成员。
+* `private` 意味着只在这个类内部（包含其所有成员）可见；
+* `protected`—— 和 `private`一样 + 在子类中可见。
+* `internal` —— 能见到类声明的 *本模块内* 的任何客户端都可见其 `internal` 成员；
+* `public` ——  能见到类声明的任何客户端都可见其 `public` 成员。
 
-*注意* 对于Java用户:外部类不能访问Kotlin内部类的private成员。
+*注意* 对于Java用户：Kotlin 中外部类不能访问内部类的 private 成员。
 
 If you override a `protected` member and do not specify the visibility explicitly, the overriding member will also have `protected` visibility.
 
@@ -66,7 +66,7 @@ open class Outer {
     private val a = 1
     protected open val b = 2
     internal val c = 3
-    val d = 4  // public by default
+    val d = 4  // 默认 public
     
     protected class Nested {
         public val e: Int = 5
@@ -74,43 +74,43 @@ open class Outer {
 }
 
 class Subclass : Outer() {
-    // a is not visible
-    // b, c and d are visible
-    // Nested and e are visible
+    // a 不可见
+    // b、c、d 可见
+    // Nested 和 e 可见
 
-    override val b = 5   // 'b' is protected
+    override val b = 5   // 'b' 为 protected
 }
 
 class Unrelated(o: Outer) {
-    // o.a, o.b are not visible
-    // o.c and o.d are visible (same module)
-    // Outer.Nested is not visible, and Nested::e is not visible either 
+    // o.a、o.b 不可见
+    // o.c 和 o.d 可见（相同模块）
+    // Outer.Nested 不可见，Nested::e 也不可见
 }
 ```
 
 ### 构造函数
 
-指定一个类的可见性的主构造函数,使用以下语法(注意你需要添加一个
-显式 *构造函数* {:.keyword} keyword)：
+要指定一个类的的主构造函数的可见性，使用以下语法（注意你需要添加一个
+显式 *constructor* {:.keyword} 关键字）：
 
 ``` kotlin
 class C private constructor(a: Int) { ... }
 ```
 
-这里的构造函数是私有的。不像其他的声明，在默认情况下，所有构造函数是`public`，这实际上
-等于他们是随处可见，其中的类是可见(即内部类的构造函数是唯一
-可见在同一模块内).
+这里的构造函数是私有的。默认情况下，所有构造函数都是 `public`，这实际上
+等于类可见的地方它就可见（即 一个 `internal` 类的构造函数只能
+在相同模块内可见).
 
 ### 局部声明
 
-局部变量，函数和类不能有可见性修饰符。
+局部变量、函数和类不能有可见性修饰符。
 
 
-## Modules
+## 模块
 
-The `internal` visibility modifier means that the member is visible with the same module. More specifically,
-a module is a set of Kotlin files compiled together:
+可见性修饰符 `internal` 意味着该成员只在相同模块内可见。更具体地说，
+一个模块是编译在一起的一套 Kotlin 文件：
 
-  * an IntelliJ IDEA module;
-  * a Maven or Gradle project;
-  * a set of files compiled with one invocation of the <kotlinc> Ant task.
+  * 一个 IntelliJ IDEA 模块；
+  * 一个 Maven 或者 Gradle 项目；
+  * 一次 ＜kotlinc＞ Ant 任务执行所编译的一套文件。

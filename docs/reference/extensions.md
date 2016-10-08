@@ -7,49 +7,49 @@ title: "扩展"
 
 # 扩展
 
-Kotlin和c#、Gosu一样，能够扩展一个类的新功能，而无需继承类或使用任何类型的设计模式，如装饰者。
-这通过特殊的声明叫做_extensions_。Kotlin支持_extension functions_ 和 _extension properties_.
+Kotlin 同 c# 和 Gosu 类似，能够扩展一个类的新功能而无需继承该类或使用像装饰者这样的任何类型的设计模式。
+这通过叫做_扩展_的特殊声明完成。Kotlin 支持_扩展函数_ 和 _扩展属性_。
 
 ## 扩展函数
 
 声明一个扩展函数，我们需要用一个 _接收者类型_ 也就是被扩展的类型来作为他的前缀。
-下面是为`MutableList<Int>`添加一个`swap`方法：
+下面代码为 `MutableList<Int>` 添加一个`swap` 函数：
 
 ``` kotlin
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
-  val tmp = this[index1] // 'this' corresponds to the list
+  val tmp = this[index1] // 'this' 对应该列表
   this[index1] = this[index2]
   this[index2] = tmp
 }
 ```
 
-这个*this*{: .keyword }关键字在扩展方法内接受对应的对象（在点符号以前传过来的）
-现在，我们可以像一个其他方法一样调用`MutableList<Int>`:  
+这个 *this*{: .keyword } 关键字在扩展函数内部对应到接受者对象（传过来的在点符号前的对象）
+现在，我们对任意 `MutableList<Int>` 调用该函数了：
 
 ``` kotlin
 val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'l'
+l.swap(0, 2) // 'swap()' 内部的 'this' 得到 'l' 的值
 ```
 
-当然，这个方法像这样`MutableList<T>`，我们可以使用泛型：
+当然，这个函数对任何 `MutableList<T>` 起作用，我们可以泛化它：
 
 ``` kotlin
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
-  val tmp = this[index1] // 'this' corresponds to the list
+  val tmp = this[index1] // 'this' 对应该列表
   this[index1] = this[index2]
   this[index2] = tmp
 }
 ```
 
-在接收类型表达式中，我们要在方法名可用前声明泛型类型参数。
-参见[Generic functions](generics.html).
+为了在接受者类型表达式中使用泛型，我们要在函数名前声明泛型参数。
+参见[泛型函数](generics.html).
 
-## 扩展的静态解析
+## 扩展是静态解析的
 
-扩展不能真正的修改他们继承的类。通过定义一个扩展，你不能在类内插入新成员，
-仅仅是通过该类的实例用点表达式去调用这个新函数。
+扩展不能真正的修改他们锁扩展的类。通过定义一个扩展，你并没有在一个类中插入新成员，
+仅仅是可以通过该类的实例用点表达式去调用这个新函数。
 
-我们想强调下扩展方法是被静态分发的，即他们不是接收类型的虚方法。
+我们想强调的是扩展函数是静态分发的，即他们不是根据接受者类型的虚方法。
 This means that the extension function being called is determined by the type of the expression on which the function is invoked,
 not by the type of the result of evaluating that expression at runtime. For example:
 

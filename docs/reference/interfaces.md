@@ -9,15 +9,15 @@ title: "接口"
 
 Kotlin 的接口与 Java 8 类似，既包含抽象方法的声明，也包含
 实现。与抽象类不同的是，接口无法保存状态。它可以有
-属性但必须声明为 abstract或提供访问器实现。
+属性但必须声明为抽象或提供访问器实现。
 
-使用关键字 *interface*{: .keyword } 来定义接口。
+使用关键字 *interface*{: .keyword } 来定义接口
 
 ``` kotlin
 interface MyInterface {
     fun bar()
     fun foo() {
-      // optional body
+      // 可选的方法体
     }
 }
 ```
@@ -29,18 +29,20 @@ interface MyInterface {
 ``` kotlin
 class Child : MyInterface {
    override fun bar() {
-      // body
+      // 方法体
    }
 }
 ```
 
-## 接口属性
+## 接口中的属性
 
-你可以在接口定义属性。在接口中声明的属性要么是抽象的，要么提供访问器的实现。在接口中声明的属性不能有幕后字段（backing field），因此访问器不能引用他们。
+你可以在接口中定义属性。在接口中声明的属性要么是抽象的，要么提供
+访问器的实现。在接口中声明的属性不能有幕后字段（backing field），因此接口中声明的访问器
+不能引用它们。
 
 ``` kotlin
 interface MyInterface {
-    val property: Int // abstract
+    val property: Int // 抽象的
 
     val propertyWithImplementation: String
         get() = "foo"
@@ -55,9 +57,9 @@ class Child : MyInterface {
 }
 ```
 
-## 解决重写（Override）冲突
+## 解决覆盖冲突
 
-实现多个接口时，可能会遇到接口方法名同名的问题。
+实现多个接口时，可能会遇到同一方法继承多个实现的问题。例如
 
 ``` kotlin
 interface A {
@@ -82,7 +84,7 @@ class D : A, B {
 }
 ```
 
-上例中，接口 *A* 和 *B* 都定义了方法 *foo()* 和 *bar()*。 两者都实现了 *foo()*, 但是只有 *B* 实现了 *bar()* (*bar()* 在 *A* 中没有标记为 abstract，
-因为没有方法体时默认为 abstract）。因为 *C* 是一个实现了 *A* 的具体类，所以必须要重写 *bar()* 并
+上例中，接口 *A* 和 *B* 都定义了方法 *foo()* 和 *bar()*。 两者都实现了 *foo()*, 但是只有 *B* 实现了 *bar()* (*bar()* 在 *A* 中没有标记为抽象，
+因为没有方法体时默认为抽象）。因为 *C* 是一个实现了 *A* 的具体类，所以必须要重写 *bar()* 并
 实现这个抽象方法。*D* 可以不用重写 *bar()*，因为它实现了 *A* 和 *B*，因而可以自动继承 *B* 中 *bar()* 的实现，
 但是两个接口都定义了方法 *foo()*，为了告诉编译器 *D* 会继承谁的方法，必须在 *D* 中重写 *foo()*。
