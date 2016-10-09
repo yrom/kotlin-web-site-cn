@@ -57,7 +57,7 @@ internal val baz = 6    // 相同模块内可见
 
 *注意* 对于Java用户：Kotlin 中外部类不能访问内部类的 private 成员。
 
-If you override a `protected` member and do not specify the visibility explicitly, the overriding member will also have `protected` visibility.
+如果你覆盖一个 `protected` 成员并且没有显式指定其可见性，该成员还会是 `protected` 可见性。
 
 例子:
 
@@ -91,7 +91,7 @@ class Unrelated(o: Outer) {
 ### 构造函数
 
 要指定一个类的的主构造函数的可见性，使用以下语法（注意你需要添加一个
-显式 *constructor* {:.keyword} 关键字）：
+显式 *constructor*{:.keyword} 关键字）：
 
 ``` kotlin
 class C private constructor(a: Int) { ... }
