@@ -7,7 +7,7 @@ title: "This表达式"
 
 # This表达式
 
-为了记录下当前的接受者我们使用*this*{: .keyword }表达式:
+为了记录下当前的接收者我们使用*this*{: .keyword }表达式:
 
 * 在一个[类](classes.html#inheritance)成员中, *this*{: .keyword }指的是当前类对象。
 * 在一个[扩展函数](extensions.html)或者[带有接收者字面函数](lambdas.html#function-literals-with-receiver),
@@ -15,8 +15,8 @@ title: "This表达式"
 
 如果 *this*{: .keyword } 没有应用者，则指向的是最内层的闭合范围。为了在其它范围中返回 this ，需要使用标签：
 
-## *this*{: .keyword }使用范围
-{:#qualified}
+## *this*{: .keyword } 限定
+{:#限定}
 
 为了在范围外部访问*this*{: .keyword }(一个[类](classes.html), 或者[扩展函数](extensions.html),
 或者带标签的[带接收者的字面函数](lambdas.html#function-literals-with-receiver) 我们使用`this@label`作为[label](returns.html)：

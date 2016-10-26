@@ -42,7 +42,7 @@ Functions that overload operators need to be marked with the `operator` modifier
 这些操作符允许修改接收者和返回类型。
 
 > **`inc()/dec()` 不应该改变接收对象**.<br>
-> "修改接受者"你应该修改接收者变量而非对象。
+> "修改接收者"你应该修改接收者变量而非对象。
 {:.note}
 
 编译器是这样解决有*后缀*的操作符的比如`a++`:
