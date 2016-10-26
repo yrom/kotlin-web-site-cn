@@ -24,7 +24,7 @@ class Example {
 
 语法是： `val/var <属性名>: <类型> by <表达式>`。在 *by*{:.keyword} 后面的表达式是该 _委托_，
 因为属性对应的 `get()`（和 `set()`）会被委托给它的 `getValue()` 和 `setValue()` 方法。
-属性的委托不必实现任何的接口，但是需要提供一个 `getValue()` 函数（和 `setValue()` --- 对于 *var*{:.keyword}' 属性）。
+属性的委托不必实现任何的接口，但是需要提供一个 `getValue()` 函数（和 `setValue()`——对于 *var*{:.keyword} 属性）。
 例如:
 
 ``` kotlin
