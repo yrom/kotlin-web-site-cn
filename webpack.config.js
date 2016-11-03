@@ -37,6 +37,17 @@ var webpackConfig = {
   module: {
     loaders: [
       {
+        test: /\.monk$/,
+        loader: 'monkberry-loader'
+      },
+      {
+        test: /\.js$/,
+        loader: 'buble-loader',
+        include: [
+          './static/js'
+        ]
+      },
+      {
         test: /\.css$/,
         loader: WebpackExtractTextPlugin.extract([
           'css',
@@ -62,7 +73,7 @@ var webpackConfig = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
-        loader: 'advanced-url?limit=10000&name=[path][name].[ext]'
+        loader: 'url?limit=10000&name=[path][name].[ext]'
       }
     ]
   },

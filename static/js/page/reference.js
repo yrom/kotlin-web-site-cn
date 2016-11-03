@@ -1,4 +1,5 @@
 var NavTree = require('../com/nav-tree');
+var ExecutableCodeFragment = require('../com/executable-code');
 var $ = require('jquery');
 
 $(document).ready(function () {
@@ -11,6 +12,10 @@ $(document).ready(function () {
                 referenceElement.className = "anchor";
                 referenceElement.href = "#" + id;
                 element.appendChild(referenceElement)
+  });
+
+  $('.js-executable-code').each(function (ind, element) {
+    new ExecutableCodeFragment(element);
   });
 
   new NavTree(document.getElementById('reference-nav'));
