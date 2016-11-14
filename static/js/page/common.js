@@ -1,6 +1,5 @@
 require('../com/search');
 require('../com/cookie-banner');
-require('../com/colorize');
 
 var $ = require('jquery');
 

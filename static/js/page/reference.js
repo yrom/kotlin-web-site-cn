@@ -1,6 +1,8 @@
 var NavTree = require('../com/nav-tree');
 var ExecutableCodeFragment = require('../com/executable-code');
-var $ = require('jquery');
+const CodeMirror = require('../com/CodeMirror');
+
+const $ = require('jquery');
 
 $(document).ready(function () {
   $(':header').each(function (ind, element) {
@@ -14,9 +16,11 @@ $(document).ready(function () {
                 element.appendChild(referenceElement)
   });
 
-  $('.js-executable-code').each(function (ind, element) {
+  $('.sample').each(function (ind, element) {
     new ExecutableCodeFragment(element);
   });
+
+  CodeMirror.colorize($('.code._highlighted'));
 
   new NavTree(document.getElementById('reference-nav'));
 });
