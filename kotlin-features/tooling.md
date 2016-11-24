@@ -1,6 +1,6 @@
-### ¹¤¾ß»¯
+### å·¥å…·åŒ–
 
-Ò»ÃÅÓïÑÔĞèÒª¹¤¾ß»¯£¬¶øÔÚ JetBrains£¬ÕâÕıÊÇÎÒÃÇ×öµÃ×îºÃµÄµØ·½£¡
+ä¸€é—¨è¯­è¨€éœ€è¦å·¥å…·åŒ–ï¼Œè€Œåœ¨ JetBrainsï¼Œè¿™æ­£æ˜¯æˆ‘ä»¬åšå¾—æœ€å¥½çš„åœ°æ–¹ï¼
 
 ![Tooling]({{ url_for('asset', path='images/index/features/tooling/tooling1.png') }})
 {:.image-block}

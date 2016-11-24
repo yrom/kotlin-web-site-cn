@@ -1,19 +1,19 @@
-- title: ¼ò½à
-  description: ´ó·ù¶È¼õÉÙÄãĞèÒªĞ´µÄÖØ¸´´úÂë¡£
+- title: ç®€æ´
+  description: å¤§å¹…åº¦å‡å°‘ä½ éœ€è¦å†™çš„é‡å¤ä»£ç ã€‚
   content_file: concise.md
 
-- title: °²È«
-  description: ±ÜÃâÕû¸öÀàÖĞÀàËÆ¿ÕÖ¸ÕëÒì³£ÕâÑùµÄ´íÎó¡£
+- title: å®‰å…¨
+  description: é¿å…æ•´ä¸ªç±»ä¸­ç±»ä¼¼ç©ºæŒ‡é’ˆå¼‚å¸¸è¿™æ ·çš„é”™è¯¯ã€‚
   content_file: safe.md
 
-- title: Í¨ÓÃ
-  description: ¹¹½¨·şÎñÆ÷¶Ë³ÌĞò£¬Android³ÌĞò»òÕßÔËĞĞÔÚä¯ÀÀÆ÷ÀïµÄÇ°¶Ë³ÌĞò¡£
+- title: é€šç”¨
+  description: æ„å»ºæœåŠ¡å™¨ç«¯ç¨‹åºï¼ŒAndroidç¨‹åºæˆ–è€…è¿è¡Œåœ¨æµè§ˆå™¨é‡Œçš„å‰ç«¯ç¨‹åºã€‚
   content_file: versatile.html
 
-- title: »¥²Ù×÷ĞÔ
-  description: ÖØÓÃÒÑÓĞµÄJVMÆ½Ì¨¿ò¼Ü»ò¿â£¬ÓëJavaÎŞ·ì¼æÈİ¡£
+- title: äº’æ“ä½œæ€§
+  description: é‡ç”¨å·²æœ‰çš„JVMå¹³å°æ¡†æ¶æˆ–åº“ï¼Œä¸Javaæ— ç¼å…¼å®¹ã€‚
   content_file: interoperable.md
 
-- title: ¹¤¾ß»¯
-  description: ÃüÁîĞĞ±àÒëÆ÷»¹ÊÇÒ»Á÷µÄIDEÖ§³Ö£¬ËæÒâÑ¡¡£
+- title: å·¥å…·åŒ–
+  description: å‘½ä»¤è¡Œç¼–è¯‘å™¨è¿˜æ˜¯ä¸€æµçš„IDEæ”¯æŒï¼Œéšæ„é€‰ã€‚
   content_file: tooling.md
