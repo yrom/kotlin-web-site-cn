@@ -30,25 +30,7 @@ buildscript {
 }
 ```
 
-The correspondence between Kotlin releases and versions is displayed below:
-
-<table>
-<thead>
-<tr>
-  <th>里程碑</th>
-  <th>版本</th>
-</tr>
-</thead>
-<tbody>
-{% for entry in site.data.releases.list %}
-<tr>
-  <td>{{ entry.milestone }}</td>
-  <td>{{ entry.version }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
+## Targeting the JVM
 ## 应用于JVM
 
 为了在JVM中应用, Kotlin插件需要配置如下

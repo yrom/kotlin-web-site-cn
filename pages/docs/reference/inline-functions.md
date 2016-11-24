@@ -72,7 +72,7 @@ lambda中`return`单独出现时不允许的，因为一个lambda不可能让外
 ``` kotlin
 fun foo() {
     ordinaryFunction {
-     return // ERROR: can not make `foo` return here
+        return // ERROR: can not make `foo` return here
     }
 }
 ```

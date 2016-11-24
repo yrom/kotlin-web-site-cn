@@ -111,6 +111,14 @@ fun main(args: Array<String>) {
 }
 ```
 
+This example prints:
+
+```
+computed!
+Hello
+Hello
+```
+
 默认地，对于 lazy 属性的计算是**同步锁（synchronized）** 的：该值只在一个线程中计算，并且所有的线程
 会看到相同的值。如果初始化代理的同步锁不是必需的，这样于多个线程
 可以同时执行，那么将 `LazyThreadSafetyMode.PUBLICATION` 作为一个参数传递给 `lazy()` 函数。
