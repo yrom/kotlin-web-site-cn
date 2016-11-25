@@ -126,7 +126,7 @@ reference:
   - title: 参考
     description: API 和语法
     items:
-      - url: /api/latest/jvm/stdlib/index.html
+      - url: https://kotlinlang.org/api/latest/jvm/stdlib/index.html
         title: API 参考
       - url: /docs/reference/grammar.html
         title: 语法
