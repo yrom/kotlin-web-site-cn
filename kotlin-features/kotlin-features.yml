@@ -1,19 +1,19 @@
 - title: 简洁
-  description: 大幅度减少你需要写的重复代码。
+  description: 大大减少你需要写的样板代码的数量。
   content_file: concise.md
 
 - title: 安全
-  description: 避免整个类中类似空指针异常这样的错误。
+  description: 避免空指针异常等整个类的错误。
   content_file: safe.md
 
 - title: 通用
-  description: 构建服务器端程序，Android程序或者运行在浏览器里的前端程序。
+  description: 构建服务器端程序、Android 应用程序或者在浏览器中运行的前端程序。
   content_file: versatile.html
 
 - title: 互操作性
-  description: 重用已有的JVM平台框架或库，与Java无缝兼容。
+  description: 通过 100% Java 互操作性，利用 JVM 既有框架和库。
   content_file: interoperable.md
 
 - title: 工具化
-  description: 命令行编译器还是一流的IDE支持，随意选。
+  description: 命令行编译器还是一流的 IDE 支持，随意选。
   content_file: tooling.md
