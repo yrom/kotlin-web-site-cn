@@ -214,7 +214,7 @@ tutorials:
   - title: Web 开发
     items:
       - url: /docs/tutorials/httpservlets.html
-        title: 用 Http Servlets 缠绵 web 应用
+        title: 用 Http Servlets 创建 web 应用
       - url: /docs/tutorials/spring-boot-restful.html
         title: 用  Spring Boot 创建 RESTful Web 服务
 
