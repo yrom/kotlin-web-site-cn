@@ -101,7 +101,7 @@ reference:
       - url: /docs/reference/collections.html
         title: 集合
       - url: /docs/reference/ranges.html
-        title: 范围
+        title: 区间
       - url: /docs/reference/typecasts.html
         title: 类型检查与转换
       - url: /docs/reference/this-expressions.html
@@ -133,7 +133,7 @@ reference:
 
 
   - title: Java 互操作
-    description: 关于 Kotlin 和 Java 互操作你需要知道的。
+    description: 关于 Kotlin 和 Java 互操作性你需要知道的。
     items:
       - url: /docs/reference/java-interop.html
         title: Kotlin 调用 Java
