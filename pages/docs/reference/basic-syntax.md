@@ -21,7 +21,7 @@ import java.util.*
 
 目录与包的结构无需匹配：源代码可以在文件系统的任意位置。
 
-参见[包](packages.html).
+参见[包](packages.html)。
 
 ## 定义函数
 
@@ -55,7 +55,7 @@ fun printSum(a: Int, b: Int) {
 }
 ```
 
-参见[函数](functions.html).
+参见[函数](functions.html)。
 
 ## 定义局部变量
 
@@ -63,7 +63,7 @@ fun printSum(a: Int, b: Int) {
 
 ``` kotlin
 val a: Int = 1
-val b = 1  // `Int` 类型自动推断
+val b = 1  // 自动推断出 `Int` 类型
 val c: Int // 如果没有初始值类型不能省略
 c = 1      // 明确赋值
 ```
@@ -75,7 +75,7 @@ var x = 5 // `自动推断出 Int` 类型
 x += 1
 ```
 
-参见[属性和字段](properties.html).
+参见[属性和字段](properties.html)。
 
 
 ## 注释
@@ -103,7 +103,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见[字符串模板](basic-types.html#字符串模板).
+参见[字符串模板](basic-types.html#字符串模板)。
 
 ## 使用条件表达式
 
@@ -123,7 +123,7 @@ fun max(a: Int, b: Int): Int {
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
-参见[*if*{: .keyword } 表达式](control-flow.html#if表达式).
+参见[*if*{: .keyword } 表达式](control-flow.html#if表达式)。
 
 ## 使用可空值及 *null*{: .keyword } 检测
 
@@ -174,7 +174,7 @@ fun main(args: Array<String>) {
     print(x * y)
 ```
 
-参见[空安全](null-safety.html).
+参见[空安全](null-safety.html)。
 
 ## 使用类型检测及自动类型转换
 
@@ -237,7 +237,7 @@ for (i in args.indices) {
 } 
 ```
 
-参见[for循环](control-flow.html#for循环).
+参见[for循环](control-flow.html#for循环)。
 
 ## Using a `while` loop
 
@@ -250,7 +250,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见[while 循环](control-flow.html#while循环).
+参见[while 循环](control-flow.html#while循环)。
 
 ## 使用 `when` 表达式
 
@@ -266,7 +266,7 @@ fun cases(obj: Any) {
 }
 ```
 
-参见[when表达式](control-flow.html#when表达式).
+参见[when表达式](control-flow.html#when表达式)。
 
 ## 使用区间（range）
 
@@ -294,7 +294,7 @@ for (x in 1..5) {
 }
 ```
 
-参见[区间 Range](ranges.html).
+参见[区间](ranges.html)。
 
 ## 使用集合
 
@@ -324,4 +324,4 @@ names
         .forEach { print(it) }
 ```
 
-参见[高阶函数及Lambda表达式](lambdas.html).
+参见[高阶函数及Lambda表达式](lambdas.html)。
