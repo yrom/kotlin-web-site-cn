@@ -69,11 +69,11 @@ for ((k, v) in map) {
 
 `k`、`v` 可以改成任意名字。
 
-### 使用区间（range）
+### 使用区间
 
 ``` kotlin
-for (i in 1..100) { ... }  // closed range: includes 100
-for (i in 1 until 100) { ... } // half-open range: does not include 100
+for (i in 1..100) { ... }  // 闭区间：包含 100
+for (i in 1 until 100) { ... } // 半开区间：不包含 100
 for (x in 2..10 step 2) { ... }
 for (x in 10 downTo 1) { ... }
 if (x in 1..10) { ... }
@@ -102,7 +102,7 @@ map["key"] = value
 
 ``` kotlin
 val p: String by lazy {
-    // compute the string
+    // 计算该字符串
 }
 ```
 
@@ -178,7 +178,7 @@ fun test() {
         throw IllegalStateException(e)
     }
 
-    // Working with result
+    // 使用 result
 }
 ```
 
@@ -241,7 +241,7 @@ class Turtle {
 }
 
 val myTurtle = Turtle()
-with(myTurtle) { //draw a 100 pix square
+with(myTurtle) { // 画一个 100 像素的正方形
     penDown()
     for(i in 1..4) {
         forward(100.0)

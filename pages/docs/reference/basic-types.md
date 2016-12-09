@@ -61,10 +61,10 @@ print(boxedA === anotherBoxedA) // !!!输出 'false'!!!
 
 ``` kotlin
 val a: Int = 10000
-print(a == a) // Prints 'true'
+print(a == a) // 输出 'true'
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA == anotherBoxedA) // Prints 'true'
+print(boxedA == anotherBoxedA) // 输出 'true'
 ```
 
 ### 显式转换
@@ -124,9 +124,9 @@ val x = (1 shl 2) and 0x000FF000
 
 这是完整的位运算列表（只用于 `Int` 和 `Long`）：
 
-* `shl(bits)` – 有符号左移 (Java's `<<`)
-* `shr(bits)` – 有符号右移 (Java's `>>`)
-* `ushr(bits)` – 无符号右移 (Java's `>>>`)
+* `shl(bits)` – 有符号左移 (Java 的 `<<`)
+* `shr(bits)` – 有符号右移 (Java 的 `>>`)
+* `ushr(bits)` – 无符号右移 (Java 的 `>>>`)
 * `and(bits)` – 位与
 * `or(bits)` – 位或
 * `xor(bits)` – 位异或
@@ -144,7 +144,7 @@ fun check(c: Char) {
 }
 ```
 
-字符串字面值用单引号括起来: `'1'`。
+字符字面值用单引号括起来: `'1'`。
 特殊字符可以用反斜杠转义。
 支持这几个转义序列：`\t`、 `\b`、`\n`、`\r`、`\'`、`\"`、`\\` 和 `\$`。
 编码其他字符要用 Unicode 转义序列语法：`'\uFF00'`。
@@ -228,7 +228,7 @@ for (c in str) {
 
 ### 字符串字面值
 
-Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原生字符串白可以包含换行和任意文本。转义字符串很像 Java 字符串:
+Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原生字符串可以包含换行和任意文本。转义字符串很像 Java 字符串:
 
 ``` kotlin
 val s = "Hello, world!\n"
