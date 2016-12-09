@@ -9,9 +9,9 @@ title: "返回和跳转"
 
 Kotlin 有三种结构化跳转操作符
 
-* *return*{: .keyword }.默认从最直接包围它的函数或者[匿名函数](lambdas.html#匿名函数)返回。
-* *break*{: .keyword }.终止最直接包围它的循环。
-* *continue*{: .keyword }.继续下一次最直接包围它的循环。
+* *return*{: .keyword }。默认从最直接包围它的函数或者[匿名函数](lambdas.html#匿名函数)返回。
+* *break*{: .keyword }。终止最直接包围它的循环。
+* *continue*{: .keyword }。继续下一次最直接包围它的循环。
 
 ## Break和Continue标签
 

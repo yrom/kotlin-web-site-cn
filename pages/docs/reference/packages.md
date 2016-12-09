@@ -56,6 +56,6 @@ import bar.Bar as bBar // bBar 代表 'bar.Bar'
 
 与 Java 不同，Kotlin 没有单独的 "import static" 语法； 所有这些声明都用 `import` 关键字导入。
 
-## 顶层声明可见性
+## 顶层声明的可见性
 
 如果顶层声明是 *private*{: .keyword } 的，它是声明它的文件所私有的（参见 [可见性修饰符](visibility-modifiers.html)）。

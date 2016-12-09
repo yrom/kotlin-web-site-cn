@@ -143,7 +143,7 @@ val customer = Customer("Joe Smith")
 
 注意 Kotlin 并没有 *new*{: .keyword } 关键字。
 
-Creating instances of nested, inner and anonymous inner classes is described in [Nested classes](nested-classes.html).
+创建嵌套类、内部类和匿名内部类的类实例在[嵌套类](nested-classes.html)中有述。
 
 ### 类成员
 
@@ -179,7 +179,7 @@ class Derived(p: Int) : Base(p)
 用（基类型的）主构造函数参数就地初始化。
 
 如果类没有主构造函数，那么每个次构造函数必须
-使用 *super*{：.keyword} 关键字初始化其基类型，或委托给另一个构造函数做到这一点。
+使用 *super*{: .keyword} 关键字初始化其基类型，或委托给另一个构造函数做到这一点。
 注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：
 
 ``` kotlin
@@ -190,7 +190,7 @@ class MyView : View {
 }
 ```
 
-类上的 *open*{：.keyword} 标注与 Java 中 *final*{：.keyword} 相反，它允许其他类
+类上的 *open*{: .keyword} 标注与 Java 中 *final*{: .keyword} 相反，它允许其他类
 从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
 对应于 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html)书中的
 第 17 条：**要么为继承而设计，并提供文档说明，要么就禁止继承**。
@@ -214,7 +214,7 @@ Derived.v() 函数上必须加上 **override**标注。如果没写，编译器�
 如果函数没有标注 **open** 如 `Base.nv()`，则子类中不允许定义相同签名的函数，
 不论加不加 **override**。在一个 **final** 类中（没有用 **open** 标注的类），开放成员是禁止的。
 
-标记为 *override*{：.keyword} 的成员本身是开放的，也就是说，它可以在子类中覆盖。如果你想禁止再次覆盖，使用 *final*{：.keyword} 关键字：
+标记为 *override*{: .keyword} 的成员本身是开放的，也就是说，它可以在子类中覆盖。如果你想禁止再次覆盖，使用 *final*{: .keyword} 关键字：
 
 ``` kotlin
 open class AnotherDerived() : Base() {
@@ -270,7 +270,7 @@ class C() : A(), B {
 
 ## 抽象类
 
-类和其中的某些成员可以声明为 *abstract*{：.keyword}。
+类和其中的某些成员可以声明为 *abstract*{: .keyword}。
 抽象成员在本类中可以不用实现。
 需要注意的是，我们并不需要用 `open` 标注一个抽象类或者函数——因为这不言而喻。
 
