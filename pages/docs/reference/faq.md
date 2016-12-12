@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: FAQ
-title: "FAQ"
+title: FAQ
 ---
 
 # FAQ
@@ -23,12 +23,12 @@ Kotlin 是目标平台为 JVM 和 JavaScript 的静态类型语言。它是一�
 但我们相信社区会从这个新的静态类型 JVM 平台语言中受益，它没有
 遗留问题而有开发人员迫切想要特性。
 
-The core values behind the design of Kotlin make it
+Kotlin 这样设计背后的核心价值是使其
 
-* Interoperable: Kotlin can be freely mixed with Java,
-* Safe: statically check for common pitfalls (e.g., null pointer dereference) to catch errors at compile time,
-* Toolable: enable precise and performant tools such as IDEs and build systems,
-* "Democratic": make all parts of the langauge available to all developers (no policies are needed to restrict the use of some features to library writers or other groups of developers).
+* 可互操作：Kotlin 可以与 Java 自由混搭，
+* 安全：静态检查常见的陷阱（如：解引用空指针）来在编译期捕获错误，
+* 可工具化：启用像 IDE、构建系统这样精确而高效的工具，
+* “民主”：使语言的全部可供所有开发者使用（无需限制库的作者或者其他开发组使用一些功能的策略）。
 
 ### 如何授权？
 
@@ -36,9 +36,9 @@ Kotlin 是一种开源语言并在 Apache 2 开源软件许可下授权。它的
 
 它托管在 Github 上并且我们很乐意接受贡献者。
 
-### Where can I get an HD Kotlin logo?
+### 哪里可以获取 Kotlin 的高清徽标？
 
-Logos can be downloaded [here](https://resources.jetbrains.com/assets/products/kotlin/kotlin_logos.zip). Please follow simple rules in the `readme.txt` inside the archive.
+徽标可以在[这里](https://resources.jetbrains.com/assets/products/kotlin/kotlin_logos.zip)下载。请遵循压缩包内的`readme.txt`中的简单规则使用。
 
 
 ### 它兼容Java？
