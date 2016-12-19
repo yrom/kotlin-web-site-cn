@@ -1,6 +1,6 @@
 var NavTree = require('../com/nav-tree');
 var ExecutableCodeFragment = require('../com/executable-code');
-const CodeMirror = require('../com/CodeMirror');
+const CodeMirror = require('../com/codemirror/CodeMirror');
 
 const $ = require('jquery');
 

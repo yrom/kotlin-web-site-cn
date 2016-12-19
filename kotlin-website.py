@@ -217,4 +217,4 @@ if __name__ == '__main__':
         if not ignore_stdlib:
             generate_sitemap(urls)
     else:
-        app.run(host="0.0.0.0", debug=False, threaded=True)
+        app.run(host="0.0.0.0", threaded=True)

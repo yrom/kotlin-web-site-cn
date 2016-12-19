@@ -72,6 +72,13 @@ var webpackConfig = {
         loader: 'nunjucks-loader'
       },
       {
+        test: /\.svg\?fill=/,
+        loaders: [
+          'url',
+          'svg-fill?selector=polygon'
+        ]
+      },
+      {
         test: /\.(jpe?g|png|gif|svg)$/,
         loader: 'url?limit=10000&name=[path][name].[ext]'
       }
