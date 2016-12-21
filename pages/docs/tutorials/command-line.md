@@ -41,7 +41,7 @@ Alternatively, on OS X you can install the compiler via [Homebrew](http://brew.s
 
 1. Create a simple application in Kotlin that displays Hello, World!. Using our favorite editor, we create a new file called *hello.kt* with the following:
 
-   ``` kotlin-executable
+   ``` kotlin
    fun main(args: Array<String>) {
        println("Hello, World!")
    }
