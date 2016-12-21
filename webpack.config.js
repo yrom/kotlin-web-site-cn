@@ -59,7 +59,7 @@ var webpackConfig = {
         loader: WebpackExtractTextPlugin.extract([
           'css',
           'postcss',
-          'resolve-url',
+          'resolve-url?keepQuery',
           'sass?sourceMap'
         ].join('!'))
       },
@@ -75,7 +75,7 @@ var webpackConfig = {
         test: /\.svg\?fill=/,
         loaders: [
           'url',
-          'svg-fill?selector=polygon'
+          'svg-fill'
         ]
       },
       {
