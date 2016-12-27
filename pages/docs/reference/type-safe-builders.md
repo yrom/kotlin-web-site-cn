@@ -73,7 +73,7 @@ html {
 }
 ```
 
-`html`实际上是一个函数，其参数是一个[lambda 表达式](lambdas.html)
+`html`实际上是一个函数，其参数是一个[lambda 表达式](lambdas.html)。
 这个函数定义如下：
 
 ``` kotlin
@@ -216,7 +216,7 @@ abstract class Tag(val name: String) : Element {
         builder.append("$indent</$name>\n")
     }
 
-    private fun renderAttributes(): String? {
+    private fun renderAttributes(): String {
         val builder = StringBuilder()
         for (a in attributes.keys) {
             builder.append(" $a=\"${attributes[a]}\"")
