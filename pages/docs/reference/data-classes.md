@@ -7,31 +7,31 @@ title: "数据类"
 
 # 数据类
 
-我们经常创建一些只是处理数据的类。在这些类里的标准功能经常是
-衍生自数据。在Kotlin中，这叫做 _数据类_ 并标记为`data`：
+我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从
+数据机械推导而来的。在 Kotlin 中，这叫做 _数据类_ 并标记为 `data`：
 
 ``` kotlin
 data class User(val name: String, val age: Int)
 ```
 
-编译器自动从在主构造函数定义的全部特性中得到以下成员：
+编译器自动从主构造函数中声明的所有属性导出以下成员：
 
   * `equals()`/`hashCode()` 对，
   * `toString()` 格式是 `"User(name=John, age=42)"`，
-  * [`componentN()` functions](multi-declarations.html) 对应按声明顺序出现的所有属性，
-  * `copy()` 函数（见下面）。
+  * [`componentN()` 函数](multi-declarations.html) 按声明顺序对应于所有属性，
+  * `copy()` 函数（见下文）。
 
-如果有某个函数被明确地定义在类里或者被继承，编译器就不会生成这个函数。
+如果这些函数中的任何一个在类体中显式定义或继承自其基类型，则不会生成该函数。
 
-To ensure consistency and meaningful behavior of the generated code, data classes have to fulfil the following requirements:
+为了确保生成的代码的一致性和有意义的行为，数据类必须满足以下要求：
 
-  * The primary constructor needs to have at least one parameter;
-  * All primary constructor parameters need to be marked as `val` or `var`;
-  * Data classes cannot be abstract, open, sealed or inner;
-  * Data classes may not extend other classes (but may implement interfaces).
+  * 主构造函数需要至少有一个参数；
+  * 主构造函数的所有参数需要标记为 `val` 或 `var`；
+  * 数据类不能是抽象、开放、密封或者内部的；
+  * 数据类不能扩展其他类（但可以实现接口）。
 
-> 在JVM中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须有默认值。
-> (查看 [Constructors](classes.html#constructors)).
+> 在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
+> (参见[构造函数](classes.html#构造函数)).
 >
 > ``` kotlin
 > data class User(val name: String = "", val age: Int = 0)
@@ -39,31 +39,31 @@ To ensure consistency and meaningful behavior of the generated code, data classe
 
 ## 复制
 
-在很多情况下，我们我们需要对一些属性做修改而其他的不变。
-这就是`copy()`这个方法的来源。对于上文的`User`类，应该是这么实现这个方法的
+在很多情况下，我们需要复制一个对象改变它的一些属性，但其余部分保持不变。
+`copy()` 函数就是为此而生成。对于上文的 `User` 类，其实现会类似下面这样：
 
 ``` kotlin
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)     
-```     
+```
 
-也可以这么写
+这让我们可以写
 
 ``` kotlin
 val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 ```
 
-## 数据类和多重声明
+## 数据类和解构声明
 
-_成员方法_用于使数据类可以[多声明](multi-declarations.html)：
+为数据类生成的 _Component 函数_ 使它们可在[解构声明](multi-declarations.html)中使用：
 
 ``` kotlin
 val jane = User("Jane", 35)
 val (name, age) = jane
-println("$name, $age years of age") // prints "Jane, 35 years of age"
+println("$name, $age years of age") // 输出 "Jane, 35 years of age"
 ```
 
 ## 标准数据类
 
-在标准库提供了`Pair`和`Triple`。在很多情况下，即使命名数据类是一个更好的设计选择，
-因为这能让代码可读性更强。
+标准库提供了 `Pair` 和 `Triple`。尽管在很多情况下命名数据类是更好的设计选择，
+因为它们通过为属性提供有意义的名称使代码更具可读性。
