@@ -169,7 +169,7 @@ reference:
     description: 你想到的问题可能会在这里得到解答。
     items:
       - url: /docs/reference/faq.html
-        title: 常见问题
+        title: FAQ
       - url: /docs/reference/comparison-to-java.html
         title: 与 Java 比较
       - url: /docs/reference/comparison-to-scala.html
