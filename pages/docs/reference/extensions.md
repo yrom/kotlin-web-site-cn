@@ -116,7 +116,7 @@ fun Any?.toString(): String {
 
 ## 扩展属性
 
-和方法类似，Kotlin 支持扩展属性：
+和函数类似，Kotlin 支持扩展属性：
 
 ``` kotlin
 val <T> List<T>.lastIndex: Int
@@ -209,7 +209,7 @@ class C {
 ```
 
 对于分发接收者和扩展接收者的成员名字冲突的情况，扩展接收者
-优先。要引用分发接收者的成员你可以使用 [`this` 限定语法](this-expressions.html#限定).
+优先。要引用分发接收者的成员你可以使用 [`this` 限定语法](this-expressions.html#限定)。
 
 ``` kotlin
 class C {

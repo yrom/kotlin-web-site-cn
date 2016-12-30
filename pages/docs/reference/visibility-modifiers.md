@@ -5,7 +5,7 @@ category: "Classes and Objects"
 title: "可见性修饰符"
 ---
 
-# 可见性修饰符  
+# 可见性修饰符
 
 类、对象、接口、构造函数、方法、属性和它们的 setter 都可以有_可见性修饰符_。
 （getter 总是与属性有着相同的可见性。）
