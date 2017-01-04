@@ -56,7 +56,7 @@ Kotlin 生成的字节码兼容 Java 6 以及更新版本。这确保 Kotlin 可
 
 ### 有没有Eclipse支持？
 
-有。安装说明请参阅这个[教程](/docs/tutorials/getting-started-eclipse.html)。
+有。安装说明请参见这个[教程](/docs/tutorials/getting-started-eclipse.html)。
 
 ### 有独立的编译器吗？
 

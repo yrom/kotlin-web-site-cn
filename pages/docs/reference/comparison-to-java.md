@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: FAQ
-title: "对比 Java"
+title: "与 Java 比较"
 ---
 
-# 对比 Java
+# 与 Java 比较
 
 ## Kotlin 解决了一些 Java 中的问题
 
