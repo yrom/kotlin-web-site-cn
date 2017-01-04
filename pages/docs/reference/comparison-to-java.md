@@ -15,7 +15,7 @@ Kotlin 通过以下措施修复了 Java 中一系列长期困扰我们的问题
 * [无原始类型](java-interop.html)
 * Kotlin 中数组是[不协变的](basic-types.html#数组)
 * 相对于 Java 的 SAM-转换，Kotlin 有更合适的[函数类型](lambdas.html#函数类型)
-* 没有通配符的[使用处型变](generics.html#使用处型变：类型预测)
+* 没有通配符的[使用处型变](generics.html#使用处型变：类型投影)
 * Kotlin 没有受检[异常](exceptions.html)
 
 ## Java 有而 Kotlin 没有的东西
@@ -38,7 +38,7 @@ Kotlin 通过以下措施修复了 Java 中一系列长期困扰我们的问题
 * [一等公民的委托](delegation.html)
 * [变量和属性类型的类型推断](basic-types.html)
 * [单例](object-declarations.html)
-* [声明处型变 & 类型预测](generics.html)
+* [声明处型变 & 类型投影](generics.html)
 * [区间表达式](ranges.html)
 * [操作符重载](operator-overloading.html)
 * [伴生对象](classes.html#companion-objects)

@@ -203,7 +203,7 @@ val asc = Array(5, { i -> (i * i).toString() })
 
 注意: 与 Java 不同的是，Kotlin 中数组是不协变的（invariant）。这意味着 Kotlin 不让我们把 `Array<String>`
 赋值给 `Array<Any>`，以防止可能的运行时失败（但是你可以使用 `Array<out Any>`,
-参见[类型预测](generics.html#类型预测)）。
+参见[类型投影](generics.html#类型投影)）。
 
 Kotlin 也有无装箱开销的专门的类来表示原生类型数组: `ByteArray`、
 `ShortArray`、`IntArray` 等等。这些类和 `Array` 并没有继承关系，但是
