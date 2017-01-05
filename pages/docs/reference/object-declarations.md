@@ -7,13 +7,13 @@ title: "对象表达式和对象声明"
 
 # 对象表达式和对象声明
 
-有些时候我们需要创建一个对某些类做了轻微改变的一个对象，而不用为了它显式地定义一个新的子类。
-Java把这种情况处理为*匿名内部类*。
-在Kotlin稍微推广了这个概念，称它们为*对象表达式*和*对象声明*。
+有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。
+Java 用*匿名内部类* 处理这种情况。
+Kotlin 用*对象表达式*和*对象声明*对这个概念稍微概括了下。
 
 ## 对象表达式
 
-创建一个继承自某些类型的匿名类的对象，我们会这么写：
+要创建一个继承自某个（或某些）类型的匿名类的对象，我们会这么写：
 
 ``` kotlin
 window.addMouseListener(object : MouseAdapter() {
@@ -27,8 +27,8 @@ window.addMouseListener(object : MouseAdapter() {
 })
 ```
 
-如果父类型有一个构造函数，合适的构造函数参数必须传递给它。
-多个父类型用逗号隔开，跟在冒号后面：
+如果超类型有一个构造函数，则必须传递适当的构造函数参数给它。
+多个超类型可以由跟在冒号后面的逗号分隔的列表指定：
 
 
 ``` kotlin
@@ -43,7 +43,7 @@ val ab: A = object : A(1), B {
 }
 ```
 
-或许，我们需要的仅是无父类的一个对象，那么我们可以简单地写为：
+任何时候，如果我们只需要“一个对象而已”，并不需要特殊父类，那么我们可以简单地写：
 
 ``` kotlin
 val adHoc = object {
@@ -53,8 +53,8 @@ val adHoc = object {
 print(adHoc.x + adHoc.y)
 ```
 
-就像Java的匿名内部类，在对象表达式里代码可以访问封闭的作用域
-（但与Java不同的是，它能访问非final修饰的变量）
+就像 Java 匿名内部类一样，对象表达式中的代码可以访问来自包含它的作用域的变量。
+（与 Java 不同的是，这不仅限于 final 变量。）
 
 ``` kotlin
 fun countClicks(window: JComponent) {
@@ -76,7 +76,7 @@ fun countClicks(window: JComponent) {
 
 ## 对象声明
 
-[单例模式](http://en.wikipedia.org/wiki/Singleton_pattern)是一种非常有用的模式，而在Kotilin（在Scala之后）中很容易就能声明一个单例。
+[单例模式](http://en.wikipedia.org/wiki/Singleton_pattern)是一种非常有用的模式，而 Kotlin（继 Scala 之后）使单例声明变得很容易：
 
 ``` kotlin
 object DataProviderManager {
@@ -88,17 +88,17 @@ object DataProviderManager {
         get() = // ...
 }
 ```
--
-这被称为*对象声明*。如果有一个*object*{: .keyword }关键字在名字前面，这不能再被称为一个_表达式_。
-我们不能把这样的东西赋值给变量，但我们可以通过它的名字来引用它。这样的对象可以有父类型：
+——
+这称为*对象声明*。并且它总是在 *object*{: .keyword } 关键字后跟一个名称。
+就像变量声明一样，对象声明不是一个表达式，不能用在赋值语句的右边。
 
-To refer to the object, we use its name directly:
+要引用该对象，我们直接使用其名称即可：
 
 ``` kotlin
 DataProviderManager.registerDataProvider(...)
 ```
 
-Such objects can have supertypes:
+这些对象可以有超类型：
 
 ``` kotlin
 object DefaultListener : MouseAdapter() {
@@ -112,12 +112,12 @@ object DefaultListener : MouseAdapter() {
 }
 ```
 
-**NOTE**: 对象声明不能是本地的（即直接嵌套在函数里面），但它们可以被嵌套进另外的对象声明或者非内部类里。
+**注意**：对象声明不能在局部作用域（即直接嵌套在函数内部），但是它们可以嵌套到其他对象声明或非内部类中。
 
 
 ### 伴生对象
 
-一个对象声明在一个类里可以标志上*companion*{: .keyword }这个关键字：
+类内部的对象声明可以用 *companion*{: .keyword } 关键字标记：
 
 ``` kotlin
 class MyClass {
@@ -127,13 +127,13 @@ class MyClass {
 }
 ```
 
-伴生对象的成员可以使用类名称作为限定符来调用：
+该伴生对象的成员可通过只使用类名作为限定符来调用：
 
 ``` kotlin
 val instance = MyClass.create()
 ```
 
-使用`companion`关键字时候，伴生对象的名称可以省略：
+可以省略伴生对象的名称，在这种情况下将使用名称 `Companion`：
 
 ``` kotlin
 class MyClass {
@@ -144,8 +144,8 @@ class MyClass {
 val x = MyClass.Companion
 ```
 
-注意，虽然伴生对象的成员在其他语言中看起来像静态成员，但在运行时它们
-仍然是实体的实例成员，举例来说，我们能用它实现接口：
+请注意，即使伴生对象的成员看起来像其他语言的静态成员，在运行时他们
+仍然是真实对象的实例成员，而且，例如还可以实现接口：
 
 ``` kotlin
 interface Factory<T> {
@@ -160,16 +160,16 @@ class MyClass {
 }
 ```
 
-然而，在JVM中，如果你使用`@JvmStatic`注解，你可以让伴生对象的成员生成为实际存在的静态方法和域。
-可以从[Java interoperability](java-interop.html#static-methods-and-fields) 这里
-查看详情。
+当然，在 JVM 平台，如果使用 `@JvmStatic` 注解，你可以将伴生对象的成员生成为真正的
+静态方法和字段。更详细信息请参见[Java 互操作性](java-interop.html#static-methods-and-fields)一节
+。
 
 
-### 对象表达式与对象声明语义上的不同
+### 对象表达式和对象声明之间的语义差异
 
-这是一个在对象表达式与对象声明上重要的不同之处：
+对象表达式和对象声明之间有一个重要的语义差别：
 
-* 当对象表达式被用到的时候，它会被**立即**执行（并且初始化）
-* 当对象声明被第一次访问的时候,它会被**延迟（lazily）**初始化
-* a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer
+* 对象表达式是在使用他们的地方**立即**执行（及初始化）的
+* 对象声明是在第一次被访问到时**延迟**初始化的
+* 伴生对象的初始化是在相应的类被加载（解析）时，与 Java 静态初始化器的语义相匹配
 
