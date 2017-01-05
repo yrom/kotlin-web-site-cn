@@ -7,7 +7,7 @@ title: "枚举类"
 
 # 枚举类
 
-枚举类的最基本应用是实现类型安全的多项目集合。
+枚举类的最基本的用法是实现类型安全的枚举
 
 ``` kotlin
 enum class Direction {
@@ -15,11 +15,11 @@ enum class Direction {
 }
 ```
 
-其中每一个常量（NORTH，SOUTH……）都是一个对象。每一个常量用逗号 `,` 分隔。
+每个枚举常量都是一个对象。枚举常量用逗号分隔。
 
 ## 初始化
 
-因为每一条枚举（RED，GREEN……）都是枚举类的实例，所以他们可以被初始化。
+因为每一个枚举都是枚举类的实例，所以他们可以是初始化过的。
 
 ``` kotlin
 enum class Color(val rgb: Int) {
@@ -31,7 +31,7 @@ enum class Color(val rgb: Int) {
 
 ## 匿名类
 
-枚举实例也可以被声明为他们自己的匿名类，并同时包含他们相应原本的方法和覆盖基本方法。
+枚举常量也可以声明自己的匿名类
 
 ``` kotlin
 enum class ProtocolState {
@@ -47,28 +47,29 @@ enum class ProtocolState {
 }
 ```
 
-with their corresponding methods, as well as overriding base methods. Note that if the enum class defines any
-members, you need to separate the enum constant definitions from the member definitions with a semicolon, just like
-in Java.
+及相应的方法、以及覆盖基类的方法。注意，如果枚举类定义任何
+成员，要使用分号将成员定义中的枚举常量定义分隔开，就像
+在 Java 中一样。
 
-## Working with Enum Constants
+## 使用枚举常量
 
-Just like in Java, enum classes in Kotlin have synthetic methods allowing to list
-the defined enum constants and to get an enum constant by its name. The signatures
-of these methods are as follows (assuming the name of the enum class is `EnumClass`):
+就像在 Java 中一样，Kotlin 中的枚举类也有合成方法允许列出
+定义的枚举常量以及通过名称获取枚举常量。这些方法的
+签名如下（假设枚举类的名称是 `EnumClass`）：
 
 ``` kotlin
 EnumClass.valueOf(value: String): EnumClass
 EnumClass.values(): Array<EnumClass>
 ```
 
-如果特定的对象名无法对应任何一个定义在枚举类中的枚举常量， `valueOf()` 方法会抛出一个异常 `IllegalArgumentException`。
+如果指定的名称与类中定义的任何枚举常量均不匹配，`valueOf()` 方法将抛出 `IllegalArgumentException` 异常。
 
-每一个枚举常量在枚举类定义时都有一个属性去获得他们的名字和位置。
+每个枚举常量都具有在枚举类声明中获取其名称和位置的属性：
 
 ``` kotlin
 val name: String
 val ordinal: Int
 ```
 
-枚举常量也可以实现[Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html) 接口。他们会依照在枚举类中的定义先后以自然顺序排列。
+枚举常量还实现了[Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html)接口，
+其中自然顺序是它们在枚举类中定义的顺序。
