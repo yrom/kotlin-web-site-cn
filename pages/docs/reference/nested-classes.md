@@ -7,7 +7,7 @@ title: "嵌套类"
 
 # 嵌套类
 
-在类的内部可以嵌套其他的类
+类可以嵌套在其他类中
 
 ``` kotlin
 class Outer {
@@ -22,7 +22,7 @@ val demo = Outer.Nested().foo() // == 2
 
 ## 内部类
 
-为了能被外部类访问一个类可以被标记为内部类（“inner” 关键词）。内部类会带有一个来自外部类的对象的引用：  
+类可以标记为 *inner*{: .keyword } 以便能够访问外部类的成员。内部类会带有一个对外部类的对象的引用：  
 
 ``` kotlin
 class Outer {
@@ -35,11 +35,11 @@ class Outer {
 val demo = Outer().Inner().foo() // == 1
 ```
 
-参见[this-expressions.html](this-expressions.html)中“this”关键词用法来学习在内部类中如何消除“this”关键词的歧义。
+参见[限定的 *this*{: .keyword } 表达式](this-expressions.html)以了解内部类中的 *this*{: .keyword } 的消歧义用法。
 
-## Anonymous inner classes
+## 匿名内部类
 
-Anonymous inner class instances are created using an [object expression](object-declarations.html#object-expressions):
+使用[对象表达式](object-declarations.html#对象表达式)创建匿名内部类实例：
                                                       
 ``` kotlin
 window.addMouseListener(object: MouseAdapter() {
@@ -53,8 +53,8 @@ window.addMouseListener(object: MouseAdapter() {
 })
 ```
 
-If the object is an instance of a functional Java interface (i.e. a Java interface with a single abstract method),
-you can create it using a lambda expression prefixed with the type of the interface:
+如果对象是函数式 Java 接口（即具有单个抽象方法的 Java 接口）的实例，
+你可以使用带接口类型前缀的lambda表达式创建它：
 
 ``` kotlin
 val listener = ActionListener { println("clicked") }
