@@ -10,7 +10,7 @@ title: "委托"
 ## 类委托
 
 [委托模式](https://zh.wikipedia.org/wiki/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F)已经证明是实现继承的一个很好的替代方式，
-而 Kotlin 零样板代码原生支持它。
+而 Kotlin 可以零样板代码地原生支持它。
 类 `Derived` 可以继承一个接口 `Base`，并将其所有共有的方法委托给一个指定的对象：
 
 ``` kotlin
