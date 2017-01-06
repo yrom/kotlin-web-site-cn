@@ -9,14 +9,14 @@ title: "函数"
 
 ## 函数声明
 
-在Kotlin中，函数声明使用关键字 *fun*{: .keyword }
+Kotlin 中的函数使用 *fun*{: .keyword } 关键字声明
 
 ``` kotlin
 fun double(x: Int): Int {
 }
 ```
 
-## 函数用途
+## 函数用法
 
 调用函数使用传统的方法
 
@@ -25,38 +25,38 @@ val result = double(2)
 ```
 
 
-调用成员函数使用点表达式
+调用成员函数使用点表示法
 
 ``` kotlin
-Sample().foo() // create instance of class Sample and calls foo
+Sample().foo() // 创建类 Sample 实例并调用 foo
 ```
 
 ### 中缀表示法
 
-函数还可以用中缀表示法，当
+函数还可以用中缀表示法调用，当
 
-* 他们是成员函数 或者 [扩展函数](extensions.html)
+* 他们是成员函数或[扩展函数](extensions.html)
 * 他们只有一个参数
-* They are marked with the `infix` keyword
+* 他们用 `infix` 关键字标注
 
 ``` kotlin
-// Define extension to Int
+// 给 Int 定义扩展
 infix fun Int.shl(x: Int): Int {
-...
+……
 }
 
-// call extension function using infix notation
+// 用中缀表示法调用扩展函数
 
 1 shl 2
 
-// is the same as
+// 等同于这样
 
 1.shl(2)
 ```
 
 ### 参数
 
-函数参数是使用Pascal表达式，即 *name*: *type*。参数用逗号隔开。每个参数必须有显式类型。
+函数参数使用 Pascal 表示法定义，即 *name*: *type*。参数用逗号隔开。每个参数必须有显式类型。
 
 ``` kotlin
 fun powerOf(number: Int, exponent: Int) {
@@ -64,9 +64,10 @@ fun powerOf(number: Int, exponent: Int) {
 }
 ```
 
-### 默认参数(缺省参数)
+### 默认参数
 
-函数参数有默认值,当对应的参数是省略。与其他语言相比可以减少数量的过载。
+函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少
+重载数量。
 
 ``` kotlin
 fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
@@ -74,10 +75,10 @@ fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
 }
 ```
 
-默认值定义使用后* * = * *类型的值。
+默认值通过类型后面的 **=** 及给出的值来定义。
 
-Overriding methods always use the same default parameter values as the base method.
-When overriding a method with default parameters values, the default parameter values must be omitted from the signature:
+覆盖方法总是使用与基类型方法相同的默认参数值。
+当覆盖一个带有默认参数值的方法时，必须从签名中省略默认参数值：
 
 ``` kotlin
 open class A {
@@ -85,15 +86,15 @@ open class A {
 }
 
 class B : A() {
-    override fun foo(i: Int) { ... }  // no default value allowed
+    override fun foo(i: Int) { ... }  // 不能有默认值
 }
 ```
 
 ### 命名参数
 
-可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这非常方便。
+可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这会非常方便。
 
-给出下面的函数:
+给定以下函数
 
 ``` kotlin
 fun reformat(str: String,
@@ -105,13 +106,13 @@ fun reformat(str: String,
 }
 ```
 
-我们可以使用默认参数来调用这个
+我们可以使用默认参数来调用它
 
 ``` kotlin
 reformat(str)
 ```
 
-然而，调用非默认时，调用类似于
+然而，当使用非默认参数调用它时，该调用看起来就像
 
 ``` kotlin
 reformat(str, true, true, false, '_')
@@ -128,20 +129,20 @@ reformat(str,
 )
 ```
 
-如果我们不需要所有的参数
+并且如果我们不需要所有的参数
 
 ``` kotlin
 reformat(str, wordSeparator = '_')
 ```
 
-Note that the named argument syntax cannot be used when calling Java functions, because Java bytecode does not
-always preserve names of function parameters.
+请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不
+总是保留函数参数的名称。
 
 
-### 返回Unit的函数
+### 返回 Unit 的函数
 
-如果一个函数不返回任何有用的值，它的返回类型是`Unit`。Unit`是一种只有一个值 - `Unit`。这个
-值不需要显式地返回
+如果一个函数不返回任何有用的值，它的返回类型是 `Unit`。`Unit` 是一种只有一个值——`Unit` 的类型。这个
+值不需要显式返回
 
 ``` kotlin
 fun printHello(name: String?): Unit {
@@ -149,42 +150,42 @@ fun printHello(name: String?): Unit {
         println("Hello ${name}")
     else
         println("Hi there!")
-    // `return Unit` or `return` is optional
+    // `return Unit` 或者 `return` 是可选的
 }
 ```
 
-`Unit`返回类型声明也是可选的。上面的代码等同于
+`Unit` 返回类型声明也是可选的。上面的代码等同于
 
 ``` kotlin
 fun printHello(name: String?) {
-    ...
+    ……
 }
 ```
 
-### 单个表达式函数
+### 单表达式函数
 
-当一个函数返回单个表达式，花括号可以省略并且主体由** =**符号之后指定
+当函数返回单个表达式时，可以省略花括号并且在 **=** 符号之后指定代码体即可
 
 ``` kotlin
 fun double(x: Int): Int = x * 2
 ```
 
-显式地声明返回类型[可选](# explicit-return-types)时,这可以由编译器推断
+当返回值类型可由编译器推断时，显式声明返回类型是[可选](#显式返回类型)的
 
 ``` kotlin
 fun double(x: Int) = x * 2
 ```
 
-### 显式地返回类型
+### 显式返回类型
 
-函数模块体必须显式地指定返回类型，除非是用于返回`Unit`， [在这种情况下](#unit-returning-functions)，它是可选的。
-Kotlin不推断返回类型与函数在模块体的功能，因为这些功能可能在模块体有复杂的控制流程，
-对于阅读者（有时甚至编译器）来说返回类型将不明显。
+具有块代码体的函数必须始终显式指定返回类型，除非他们旨在返回 `Unit`，[在这种情况下它是可选的](#返回-unit-的函数)。
+Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函数在代码体中可能有复杂的控制流，并且返回
+类型对于读者（有时甚至对于编译器）是不明显的。
 
 
-### 数量可变的参数(可变参数)
+### 可变数量的参数（Varargs）
 
-函数的（通常最后一个）参数可以使用'vararg`修饰：
+函数的参数（通常是最后一个）可以用 `vararg` 修饰符标记：
 
 ``` kotlin
 fun <T> asList(vararg ts: T): List<T> {
@@ -195,34 +196,34 @@ fun <T> asList(vararg ts: T): List<T> {
 }
 ```
 
-允许可变参数传递给函数:
+允许将可变数量的参数传递给函数：
 
 ``` kotlin
 val list = asList(1, 2, 3)
 ```
 
-内部函数`vararg`类型`T`是可见的array`T`,即上面的例子中的`ts`变量是`Array<out T>`类型。
+在函数内部，类型 `T` 的 `vararg` 参数的可见方式是作为 `T` 数组，即上例中的 `ts` 变量具有类型 `Array <out T>`。
 
-只有一个参数可以标注为 `vararg`.If a `vararg` parameter is not the last one in the list, values for the
-following parameters can be passed using the named argument syntax, or, if the parameter has a function type, by passing
-a lambda outside parentheses.
+只有一个参数可以标注为 `vararg`。如果 `vararg` 参数不是列表中的最后一个参数， 可以使用
+命名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部
+传一个 lambda。
 
-当我们调用`vararg`函数，我们可以一个接一个传递参数，例如 `asList(1, 2, 3)`或者，如果我们已经有了一个数组
-并希望将其内容传递给函数，我们使用**spread** 操作符（在数组前面加`*`）：
+当我们调用 `vararg`-函数时，我们可以一个接一个地传参，例如 `asList(1, 2, 3)`，或者，如果我们已经有一个数组
+并希望将其内容传给该函数，我们使用**伸展（spread）**操作符（在数组前面加 `*`）：
 
 ```kotlin
 val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
 ```
 
-## 函数作用域(函数范围)
+## 函数作用域
 
-在Kotlin中函数可以在文件顶级声明，这意味着您不需要像一些语言如Java、C#或Scala那样创建一个类来持有一个函数。此外
-除了顶级函数功能，Kotlin函数也可以在局部声明，作为成员函数和扩展函数.
+在 Kotlin 中函数可以在文件顶层声明，这意味着你不需要像一些语言如 Java、C# 或 Scala 那样创建一个类来保存一个函数。此外
+除了顶层函数，Kotlin 中函数也可以声明在局部作用域、作为成员函数以及扩展函数。
 
 ### 局部函数
 
-Kotlin提供局部函数,即一个函数在另一个函数中
+Kotlin 支持局部函数，即一个函数在另一个函数内部
 
 ``` kotlin
 fun dfs(graph: Graph) {
@@ -236,7 +237,7 @@ fun dfs(graph: Graph) {
 }
 ```
 
-局部函数可以访问外部函数的局部变量（即闭包），所以在上面的例子，the *visited*是局部变量.
+局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，*visited* 可以是局部变量。
 
 ``` kotlin
 fun dfs(graph: Graph) {
@@ -251,10 +252,9 @@ fun dfs(graph: Graph) {
 }
 ```
 
-### Member Functions
 ### 成员函数
 
-成员函数是一个函数,定义在一个类或对象里
+成员函数是在类或对象内部定义的函数
 
 ``` kotlin
 class Sample() {
@@ -262,17 +262,17 @@ class Sample() {
 }
 ```
 
-成员函数调用点符号
+成员函数以点表示法调用
 
 ``` kotlin
-Sample().foo() // creates instance of class Sample and calls foo
+Sample().foo() // 创建类 Sample 实例并调用 foo
 ```
 
-有关类信息和主要成员查看[Classes](classes.html) 和 [Inheritance](classes.html#inheritance)
+关于类和覆盖成员的更多信息参见[类](classes.html)和[继承](classes.html#继承)
 
-### 重载函数
+## 泛型函数
 
-函数可以有泛型参数，通过在函数前使用尖括号指定。
+函数可以有泛型参数，通过在函数名前使用尖括号指定。
 
 ``` kotlin
 fun <T> singletonList(item: T): List<T> {
@@ -280,32 +280,32 @@ fun <T> singletonList(item: T): List<T> {
 }
 ```
 
-有关重载函数更多信息请查看 [Generics](generics.html)
+关于泛型函数的更多信息参见[泛型](generics.html)
 
-### 内联函数
+## 内联函数
 
-内联函数解释 [here](inline-functions.html)
+内联函数在[这里](inline-functions.html)讲述
 
-### 扩展函数
+## 扩展函数
 
-扩展函数解释 [their own section](extensions.html)
+扩展函数在[其自有章节](extensions.html)讲述
 
-### 高阶函数和Lambdas表达式
+## 高阶函数和 Lambda 表达式
 
-高阶函数和Lambdas表达式中有详细解释 [their own section](lambdas.html)
+高阶函数和 Lambda 表达式在[其自有章节](lambdas.html)讲述
 
-## Tail recursive functions
+## 尾递归函数
 
-Kotlin supports a style of functional programming known as [tail recursion](https://en.wikipedia.org/wiki/Tail_call).
-This allows some algorithms that would normally be written using loops to instead be written using a recursive function, but without the risk of stack overflow.
-When a function is marked with the `tailrec` modifier and meets the required form the compiler optimises out the recursion, leaving behind a fast and efficient loop based version instead.
+Kotlin 支持一种称为[尾递归](https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8)的函数式编程风格。
+这允许一些通常用循环写的算法改用递归函数来写，而无堆栈溢出的风险。
+当一个函数用 `tailrec` 修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本。
 
 ``` kotlin
 tailrec fun findFixPoint(x: Double = 1.0): Double
         = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 ```
 
-This code calculates the fixpoint of cosine, which is a mathematical constant. It simply calls Math.cos repeatedly starting at 1.0 until the result doesn't change any more, yielding a result of 0.7390851332151607. The resulting code is equivalent to this more traditional style:
+这段代码计算余弦的不动点（fixpoint of cosine），这是一个数学常数。 它只是重复地从 1.0 开始调用 Math.cos，直到结果不再改变，产生0.7390851332151607的结果。最终代码相当于这种更传统风格的代码：
 
 ``` kotlin
 private fun findFixPoint(): Double {
@@ -318,5 +318,5 @@ private fun findFixPoint(): Double {
 }
 ```
 
-To be eligible for the `tailrec` modifier, a function must call itself as the last operation it performs. You cannot use tail recursion when there is more code after the recursive call, and you cannot use it within try/catch/finally blocks. Currently tail recursion is only supported in the JVM backend.
+要符合 `tailrec` 修饰符的条件的话，函数必须将其自身调用作为它执行的最后一个操作。在递归调用后有更多代码时，不能使用尾递归，并且不能用在 try/catch/finally 块中。目前尾部递归只在 JVM 后端中支持。
 
