@@ -2,15 +2,15 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "高阶函数和lambda表达式"
+title: "高阶函数和 lambda 表达式"
 ---
 
-# 高阶函数和lambda表达式
+# 高阶函数和 lambda 表达式
 
 ## 高阶函数
 
-高阶函数是一种能用函数作为参数或者返回值为函数的一种函数。
-`lock()`是高阶函数中一个比较好的例子，它接受一个lock对象和一个函数，获得锁，运行传入的函数，并释放锁：
+高阶函数是将函数用作参数或返回值的函数。
+这种函数的一个很好的例子是 `lock()`，它接受一个锁对象和一个函数，获取锁，运行函数并释放锁：
 
 ``` kotlin
 fun <T> lock(lock: Lock, body: () -> T): T {
@@ -24,11 +24,11 @@ fun <T> lock(lock: Lock, body: () -> T): T {
 }
 ```
 
-我们分析一下上面的代码：函数`body`拥有[函数类型](#function-types):`() -> T`
-所以body应该是一个不带参数并且返回`T`类型的值的函数。
-它在*try*{: .keyword }代码块中调用，被`lock`保护的，当`lock()`函数被调用时返回他的值。
+让我们来检查上面的代码：`body` 拥有[函数类型](#函数类型)：`() -> T`，
+所以它应该是一个不带参数并且返回 `T` 类型值的函数。
+它在 *try*{: .keyword }-代码块内部调用、被 `lock` 保护，其结果由`lock（）`函数返回。
 
-如果我们想调用`lock()`函数，我们可以把另一个函数传递给它作为参数(详见 [函数引用](reflection.html#function-references)):
+如果我们想调用 `lock()` 函数，我们可以把另一个函数传给它作为参数（参见[函数引用](reflection.html#函数引用)）：
 
 ``` kotlin
 fun toBeSynchronized() = sharedResource.operation()
@@ -36,19 +36,19 @@ fun toBeSynchronized() = sharedResource.operation()
 val result = lock(lock, ::toBeSynchronized)
 ```
 
-另外一种更为便捷的方式是传入一个 [lambda 字面量](#lambda-expressions-and-anonymous-functions):
+通常会更方便的另一种方式是传一个 [lambda 表达式](#lambda-表达式和匿名函数)：
 
 ``` kotlin
 val result = lock(lock, { sharedResource.operation() })
 ```
 
-lambda 表达式 [这里](#lambda-expressions-and-anonymous-functions)有更详细的描述, 但是为了继续这一段，让我们看到一个简短的概述：
+Lambda 表达式在[下文会有更详细的](#lambda-表达式和匿名函数)描述，但为了继续这一段，让我们看一个简短的概述：
 
-* 一个 lambda 表达式总是被大括号包围着。
-* 其参数（如果有的话）被声明在`->`之前（参数类型可以省略）
-* 函数体在 `->` 后面 (如果存在的话).
+* lambda 表达式总是被大括号括着，
+* 其参数（如果有的话）在 `->` 之前声明（参数类型可以省略），
+* 函数体（如果存在的话）在 `->` 后面。
 
-在Kotlin中, 如果函数的最后一个参数是一个函数，那么该参数可以在括号外指定：
+在 Kotlin 中有一个约定，如果函数的最后一个参数是一个函数，那么该参数可以在圆括号之外指定：
 
 ``` kotlin
 lock (lock) {
@@ -56,7 +56,7 @@ lock (lock) {
 }
 ```
 
-另一个高阶函数的例子是 `map()` ( [MapReduce](http://en.wikipedia.org/wiki/MapReduce)):
+高阶函数的另一个例子是 `map()`：
 
 ``` kotlin
 fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
@@ -67,22 +67,24 @@ fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
 }
 ```
 
-这个函数可以如下调用:
+该函数可以如下调用:
 
 ``` kotlin
 val doubled = ints.map { it -> it * 2 }
 ```
 
-Note that the parentheses in a call can be omitted entirely if the lambda is the only argument to that call.
+请注意，如果 lambda 是该调用的唯一参数，则调用中的圆括号可以完全省略。
 
-还有一个有用的公约是：如果函数字面量有一个参数，
-那它的声明可以省略（连同 `->`），用 `it` 表示。
+### `it`：单个参数的隐式名称
+
+另一个有用的约定是，如果函数字面值只有一个参数，
+那么它的声明可以省略（连同 `->`），其名称是 `it`。
 
 ``` kotlin
 ints.map { it * 2 }
 ```
 
-这些约定可以写成 [LINQ-风格](http://msdn.microsoft.com/en-us/library/bb308959.aspx) 的代码:
+这些约定可以写[LINQ-风格](http://msdn.microsoft.com/en-us/library/bb308959.aspx)的代码:
 
 ``` kotlin
 strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
@@ -94,15 +96,15 @@ strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
 
 ## Lambda 表达式和匿名函数
 
-一个 lambda 表达式货匿名函数是一个“函数字面值”, 即 一个未声明的函数，
-但却立即写为表达式。思考下面的例子：
+一个 lambda 表达式或匿名函数是一个“函数字面值”，即一个未声明的函数，
+但立即做为表达式传递。考虑下面的例子：
 
 ``` kotlin
 max(strings, { a, b -> a.length < b.length })
 ```
 
-`max`函数是一个高阶函数, 也就是说 他的第二个参数是一个函数.
-这个参数是一个表达式，但它本身也是一个函数, 也就是函数字面量.写成一个函数的话，它相当于
+函数 `max` 是一个高阶函数，换句话说它接受一个函数作为第二个参数。
+其第二个参数是一个表达式，它本身是一个函数，即函数字面值。写成函数的话，它相当于
 
 ``` kotlin
 fun compare(a: String, b: String): Boolean = a.length < b.length
@@ -110,8 +112,8 @@ fun compare(a: String, b: String): Boolean = a.length < b.length
 
 ### 函数类型
 
-对于一个接受一个函数作为参数的函数，我们必须为该参数指定一个函数类型。
-譬如上述`max`函数定义如下：
+对于接受另一个函数作为参数的函数，我们必须为该参数指定函数类型。
+例如上述函数 `max` 定义如下：
 
 ``` kotlin
 fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
@@ -123,58 +125,58 @@ fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
 }
 ```
 
-参数 `less` 是一个 `(T, T) -> Boolean`类型的函数, 也就是说`less`函数接收两个`T`类型的参数并返回一个`Boolean`值:
-如果第一个比第二个小就返回`True`.
+参数 `less` 的类型是 `(T, T) -> Boolean`，即一个接受两个类型`T`的参数并返回一个布尔值的函数：
+如果第一个参数小于第二个那么该函数返回 true。
 
-在第四行代码里, `less` 被用作为一个函数: 它传入两个`T`类型的参数.
+在上面第 4 行代码中，`less` 作为一个函数使用：通过传入两个 `T` 类型的参数来调用。
 
-如上所写的是就函数类型, 或者还有命名参数, 如果你想文档化每个参数的含义。
+如上所写的是就函数类型，或者可以有命名参数，如果你想文档化每个参数的含义的话。
 
 ``` kotlin
 val compare: (x: T, y: T) -> Int = ...
 ```
 
-### Lambda表达式语法
+### Lambda 表达式语法
 
-Lambda 表达式的全部语法形式, 也就是函数类型的字面量, 譬如下面的代码:
+Lambda 表达式的完整语法形式，即函数类型的字面值如下：
 
 ``` kotlin
 val sum = { x: Int, y: Int -> x + y }
 ```
 
-一个函Lambda表达式总是被大括号包围着，
-在括号内有全部语法形式中的参数声明并且有可选的类型注解，
-函数体后面有一个 `->` 符号。
-如果我们把所有的可选注解都留了出来，那剩下的是什么样子的：
+lambda 表达式总是被大括号括着，
+完整语法形式的参数声明放在括号内，并有可选的类型标注，
+函数体跟在一个 `->` 符号之后。
+如果我们把所有可选标注都留下，看起来如下：
 
 ``` kotlin
 val sum: (Int, Int) -> Int = { x, y -> x + y }
 ```
 
-这是非常常见的，一个 lambda 表达式只有一个参数。
-如果Kotlin能自己计算出自己的数字签名，我们就可以不去声明这个唯一的参数。并且用
-`it`进行隐式声明。
+一个 lambda 表达式只有一个参数是很常见的。
+如果 Kotlin 可以自己计算出签名，它允许我们不声明唯一的参数，并且将隐含地
+为我们声明其名称为 `it`：
 
 ``` kotlin
-ints.filter { it > 0 } // this literal is of type '(it: Int) -> Boolean'
+ints.filter { it > 0 } // 这个字面值是“(it: Int) -> Boolean”类型的
 ```
 
-请注意，如果函数取另一个函数作为最后一个参数，该 lambda 表达式参数可以放在
-括号外的参数列表。
-语法细则详见 [callSuffix](grammar.html#call-suffix).
+请注意，如果一个函数接受另一个函数作为最后一个参数，lambda 表达式参数可以在
+圆括号参数列表之外传递。
+参见 [callSuffix](grammar.html#call-suffix) 的语法。
 
 ### 匿名函数
 
-上述 lambda 表达式的语法还少了一个东西： 能够指定函数的返回
-类型。在大多数情况下, 这是不必要的。因为返回类型可以被自动推断出来.
-然而，如果你需要要明确的指定。你需要一个替代语法:_匿名函数_.
+上面提供的 lambda 表达式语法缺少的一个东西是指定函数的返回类型的
+能力。在大多数情况下，这是不必要的。因为返回类型可以自动推断出来。然而，如果
+确实需要显式指定，可以使用另一种语法： _匿名函数_ 。
 
 ``` kotlin
 fun(x: Int, y: Int): Int = x + y
 ```
 
-匿名函数看起来很像一个普通函数声明, 只是名字被省略了。内容
-也是一个表达式（如上面的代码）或者代码块:
+匿名函数看起来非常像一个常规函数声明，除了其名称省略了。其函数体
+可以是表达式（如上所示）或代码块：
 
 ``` kotlin
 fun(x: Int, y: Int): Int {
@@ -182,27 +184,30 @@ fun(x: Int, y: Int): Int {
 }
 ```
 
-指定的参数和返回类型与指定一个普通函数方式相同，只是如果参数
-类型能沟通过上下文推断出来，那么该参数类型是可以省略的:
+参数和返回类型的指定方式与常规函数相同，除了
+能够从上下文推断出的参数类型可以省略：
 
 ``` kotlin
 ints.filter(fun(item) = item > 0)
 ```
 
-匿名函数的返回类型推断法只适用于常规函数：具有表达式体并且必须明确指定函数体有代码（或者假定`Unit`）块的返回类型能够被自动推断出来。
+匿名函数的返回类型推断机制与正常函数一样：对于具有表达式函数体的匿名函数将自动
+推断返回类型，而具有代码块函数体的返回类型必须显式
+指定（或者已假定为 `Unit`）。
 
-请注意，匿名函数参数始终在圆括号内传递。允许在
-函数括号外使用的速记语法只针对于 lambda 函数。
+请注意，匿名函数参数总是在括号内传递。 允许将函数
+留在圆括号外的简写语法仅适用于 lambda 表达式。
 
-另一个 lambda 表达式和匿名函数区别是
-[non-local    returns](inline-functions.html#non-local-returns)的行为。一个不带标签的*return*{：. keyword} 语句
-总是在用*fun*{: .keyword } 关键词声明的函数中返回。这意味着 lambda 表达式中的return*{: .keyword }
-将在函数闭包中返回 。然而匿名函数*return*{: .keyword}的就是在匿名函数自身中返回。
+Lambda表达式和匿名函数之间的另一个区别是
+[非局部返回](inline-functions.html#非局部返回)的行为。一个不带标签的 *return*{: .keyword } 语句
+总是在用 *fun*{: .keyword } 关键字声明的函数中返回。这意味着 lambda 表达式中的 *return*{: .keyword }
+将从包含它的函数返回，而匿名函数中的 *return*{: .keyword }
+将从匿名函数自身返回。
 
 ### 闭包
 
-一个 lambda 表达式或者匿名函数（以及一个[本地函数](functions.html#local-functions)本地函数和一个 [对象表达式](object-declarations.html#object-expressions)）
-可以访问他的_闭包_,即声明在外范围内的变量。与java不同，在闭包中捕获的变量可以被修改：
+Lambda 表达式或者匿名函数（以及[局部函数](functions.html#局部函数)和[对象表达式](object-declarations.html#对象表达式)）
+可以访问其 _闭包_ ，即在外部作用域中声明的变量。 与 Java 不同的是可以修改闭包中捕获的变量：
 
 ``` kotlin
 var sum = 0
@@ -213,33 +218,33 @@ print(sum)
 ```
 
 
-### 带接收者得函数字面值
+### 带接收者的函数字面值
 
-kotlin提供了使用一个特定的 _receiver对象_ 来调用一个函数的能力.
-在函数体内部，你可以调用 接收者对象 的方法而不需要任何额外的限定符。
-这和 扩展函数 有点类似，它允你在函数体内访问接收器对象的成员。
+Kotlin 提供了使用指定的 _接收者对象_ 调用函数字面值的功能。
+在函数字面值的函数体中，可以调用该接收者对象上的方法而无需任何额外的限定符。
+这类似于扩展函数，它允你在函数体内访问接收者对象的成员。
+其用法的最重要的示例之一是[类型安全的 Groovy-风格构建器](type-safe-builders.html)。
 
-他们的一个最重要的例子是[Type-safe Groovy-style builders](type-safe-builders.html)的使用。
-
-这样的函数字面量的类型是一个带receiver的函数类型
+这样的函数字面值的类型是一个带有接收者的函数类型：
 
 ``` kotlin
 sum : Int.(other: Int) -> Int
 ```
-如果函数是一个在receiver对象上的方法，那么这个函数可以被调用
+
+该函数字面值可以这样调用，就像它是接收者对象上的一个方法一样：
 
 ``` kotlin
 1.sum(2)
 ```
 
-匿名函数的语法允许你直接指定函数的receiver的类型
-如果你需要用一个receiver声明一个函数类型的变量，并且在后面用到它，那么这个语法就很有用
+匿名函数语法允许你直接指定函数字面值的接收者类型
+如果你需要使用带接收者的函数类型声明一个变量，并在之后使用它，这将非常有用。
 
 ``` kotlin
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
-当receiver类型能够被从上下文推断的时候，Lamda表达式能够被用于带receiver的函数字面量
+当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。
 
 ``` kotlin
 class HTML {
@@ -247,13 +252,13 @@ class HTML {
 }
 
 fun html(init: HTML.() -> Unit): HTML {
-    val html = HTML()  // create the receiver object
-    html.init()        // pass the receiver object to the lambda
+    val html = HTML()  // 创建接收者对象
+    html.init()        // 将该接收者对象传给该 lambda
     return html
 }
 
 
-html {       // lambda with receiver begins here
-    body()   // calling a method on the receiver object
+html {       // 带接收者的 lambda 由此开始
+    body()   // 调用该接收者对象的一个方法
 }
 ```
