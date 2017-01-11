@@ -7,80 +7,80 @@ title: "解构声明"
 
 # 解构声明
 
-有时把一个对象_解构_成很多变量很比较方便，比如:
+有时把一个对象 _解构_ 成很多变量会很方便，例如:
 
 ``` kotlin
 val (name, age) = person
 ```
 
-这种语法叫做_解构声明_。一个解构声明同时创造多个变量。
-我们申明了两个新变量：`name` 和 `age`,并且可以独立使用他们。
+这种语法称为 _解构声明_ 。一个解构声明同时创建多个变量。
+我们已经声明了两个新变量：`name` 和 `age`，并且可以独立使用它们：
 
 ``` kotlin
 println(name)
 println(age)
 ```
 
-一个解构声明会被向下编译成下面的代码：
+一个解构声明会被编译成以下代码：
 
 ``` kotlin
 val name = person.component1()
 val age = person.component2()
 ```
 
-`component1()` 和 `component2()` 函数是 _principle of conventions_ widely 在Kotlin 中的另一个例子。
-(参考运算符如 `+` ， `*`, *for*{: .keyword }-loops 等)
-任何可以被放在解构声明右边的和组件函数的需求数字都可以调用它。
-当然，这里可以有更多的如 `component3()` 和 `component4()`.
+其中的 `component1()` 和 `component2()` 函数是在 Kotlin 中广泛使用的 _约定原则_ 的另一个例子。
+（参见像 `+` 和 `*`、*for*{: .keyword }-循环等操作符）。
+任何表达式都可以出现在解构声明的右侧，只要可以对它调用所需数量的 component 函数即可。
+当然，可以有 `component3()` 和 `component4()` 等等。
 
-解构声明对 *for*{: .keyword }-loops有效：
+请注意，`componentN()` 函数需要用 `operator` 关键字标记，以允许在解构声明中使用它们。
 
-Destructuring declarations also work in *for*{: .keyword }-loops: when you say
+解构声明也可以用在 *for*{: .keyword }-循环中：当你写
 
 ``` kotlin
 for ((a, b) in collection) { ... }
 ```
 
-变量 `a` 和 `b` 从调用从 `component1()` 和 `component2()` 返回的集合collection中的对象。
+变量 `a` 和 `b` 的值取自对集合中的元素上调用 `component1()` 和 `component2()` 的返回值。
 
 ## 例：从函数中返回两个变量
 
-让我们从一个函数中返回两个变量。例如，一个结果对象和一些排序的状态。
-在Kotlin中一个简单的实现方式是申明一个[_data class_](data-classes.html)并且返回他的实例：
+让我们假设我们需要从一个函数返回两个东西。例如，一个结果对象和一个某种状态。
+在 Kotlin 中一个简洁的实现方式是声明一个[_数据类_](data-classes.html)并返回其实例：
 
 ``` kotlin
 data class Result(val result: Int, val status: Status)
 fun function(...): Result {
-    // computations
+    // 各种计算
 
     return Result(result, status)
 }
 
-// Now, to use this function:
+// 现在，使用该函数：
 val (result, status) = function(...)
 ```
 
-既然数据类自动申明 `componentN()` 函数，解构声明在这里也有效。
+因为数据类自动声明 `componentN()` 函数，所以这里可以用解构声明。
 
-**NOTE**: 我们也可用标准类 `Pair` 并且让 `function()` 返回 `Pair<Int, Status>`,
-但是如果让数据合理命名通常还是更好。  
+**注意**：我们也可以使用标准类 `Pair` 并且让 `function()` 返回 `Pair<Int, Status>`，
+但是让数据合理命名通常更好。
 
-## 例: 解构和映射。
+## 例：解构声明和映射
 
-可能最好的遍历一个映射的方式就是这样：
+可能遍历一个映射（map）最好的方式就是这样：
 
 ``` kotlin
 for ((key, value) in map) {
-   // do something with the key and the value
+   // 使用该 key、value 做些事情
 }
 ```
 
-为了实现这个，我们需要
+为使其能用，我们应该
 
-* 通过提供一个 `iterator()`迭代函数来表示一系列有序值来表示映射。
-* 把每个元素标识为一对函数 `component1()` 和 `component2()`.
+* 通过提供一个 `iterator()` 函数将映射表示为一个值的序列，
+* 通过提供函数 `component1()` 和 `component2()` 来将每个元素呈现为一对。
 
-当然，标准库中提供了这一扩展:
+当然事实上，标准库提供了这样的扩展：
 
 ``` kotlin
 operator fun <K, V> Map<K, V>.iterator(): Iterator<Map.Entry<K, V>> = entrySet().iterator()
@@ -89,4 +89,4 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 
 ```  
 
-于是你可以自由的使用解构声明 *for*{: .keyword }-loops 来操作映射(也可以用在数据类实例的集合等)。
+因此你可以在 *for*{: .keyword }-循环中对映射（以及数据类实例的集合等）自由使用解构声明。
