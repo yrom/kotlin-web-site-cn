@@ -61,8 +61,8 @@ items.last() == 4
 items.filter { it % 2 == 0 }   // 返回 [2, 4]
 
 val rwList = mutableListOf(1, 2, 3)
-rwList.requireNoNulls()        // returns [1, 2, 3]
-if (rwList.none { it > 6 }) println("No items above 6")  // prints "No items above 6"
+rwList.requireNoNulls()        // 返回 [1, 2, 3]
+if (rwList.none { it > 6 }) println("No items above 6")  // 输出“No items above 6”
 val item = rwList.firstOrNull()
 ```
 
@@ -72,6 +72,6 @@ Map 遵循同样模式。它们可以容易地实例化和访问，像这样：
 
 ``` kotlin
 val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
-println(readWriteMap["foo"])  // prints "1"
+println(readWriteMap["foo"])  // 输出“1”
 val snapshot: Map<String, Int> = HashMap(readWriteMap)
 ```
