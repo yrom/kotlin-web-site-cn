@@ -195,7 +195,7 @@ class MyView : View {
 对应于 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html)书中的
 第 17 条：**要么为继承而设计，并提供文档说明，要么就禁止继承**。
 
-### 覆盖成员
+### 覆盖方法
 
 我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式
 标注可覆盖的成员（我们称之为*开放*）和覆盖后的成员：
@@ -222,21 +222,35 @@ open class AnotherDerived() : Base() {
 }
 ```
 
-属性覆盖与方法覆盖类似。
-注：你可以用 `override` 关键字作为主构造函数属性声明的一部分：
+### 覆盖属性
+
+属性覆盖与方法覆盖类似；properties declared on a superclass that are then redeclared on a derived class must be prefaced with *override*{: .keyword }, and they must have a compatible type. Each declared property can be overridden by a property with an initializer or by a property with a getter method.
 
 ``` kotlin
 open class Foo {
     open val x: Int get { ... }
 }
 
-class Bar1(override val x: Int) : Foo() {
-
+class Bar1 : Foo() {
+    override val x: Int = ...
 }
 ```
 
-你也可以用一个 `var` 属性覆盖一个 `val` 属性，但反之则不行。
-这是允许的，因为一个 `val` 属性本质上声明了一个 getter 方法，而将其覆盖为 `var` 只是在子类中额外声明一个 setter 方法。
+你也可以用一个 `var` 属性覆盖一个 `val` 属性，但反之则不行。这是允许的，因为一个 `val` 属性本质上声明了一个 getter 方法，而将其覆盖为 `var` 只是在子类中额外声明一个 setter 方法。
+
+Note that you can use the *override*{: .keyword } keyword as part of the property declaration in a primary constructor.
+
+``` kotlin 
+interface Foo {
+    val count: Int
+}
+
+class Bar1(override val count: Int) : Foo
+
+class Bar2 : Foo {
+    override var count: Int = 0
+}
+```
 
 ### 覆盖规则
 

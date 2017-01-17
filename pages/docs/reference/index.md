@@ -45,3 +45,10 @@ title: "参考"
   <a href="https://leanpub.com/modern-web-development-with-kotlin"><img src="{{ site.baseurl }}/assets/images/mwdwk.jpg" style="float: left; margin-right: 10px; margin-bottom: 10px;"></a>
 
 [Modern Web Development with Kotlin](https://leanpub.com/modern-web-development-with-kotlin) 是一本由Denis Kalinin撰写的关于 Kotlin Web 开发的书。它涵盖了刚好足够入门的基础知识，但主要集中于语言的使用实践方面。特别是，它指引你使用流行的后端与前端技术完成构建一个技术聚焦的 Web 应用程序的过程。
+
+
+<h2 style="clear: left">Programming Kotlin</h2>
+
+  <a href="https://www.packtpub.com/application-development/programming-kotlin"><img src="{{ site.baseurl }}/assets/images/programming-kotlin.png" style="float: left; margin-right: 10px; margin-bottom: 10px;"></a>
+
+[Programming Kotlin](https://www.packtpub.com/application-development/programming-kotlin) is a book by Stephen Samuel and Stefan Bocutiu about using Kotlin on the JVM. It covers all aspects of the language with particular focus on server side development. In is aimed at Java developers who want to learn Kotlin and especially where it improves on Java.

@@ -182,7 +182,7 @@ public class MyTest {
 
 ## 覆盖属性
 
-参见 [覆盖成员](classes.html#覆盖成员)
+参见[覆盖属性](classes.html#覆盖属性)
 
 ## 委托属性
 
