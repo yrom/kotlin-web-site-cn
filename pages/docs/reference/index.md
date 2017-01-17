@@ -51,4 +51,4 @@ title: "参考"
 
   <a href="https://www.packtpub.com/application-development/programming-kotlin"><img src="{{ site.baseurl }}/assets/images/programming-kotlin.png" style="float: left; margin-right: 10px; margin-bottom: 10px;"></a>
 
-[Programming Kotlin](https://www.packtpub.com/application-development/programming-kotlin) is a book by Stephen Samuel and Stefan Bocutiu about using Kotlin on the JVM. It covers all aspects of the language with particular focus on server side development. In is aimed at Java developers who want to learn Kotlin and especially where it improves on Java.
+[Programming Kotlin](https://www.packtpub.com/application-development/programming-kotlin) 是由 Stephen Samuel 和 Stefan Bocutiu 合著的关于在 JVM 上使用 Kotlin 的一本书。它涵盖了语言的方方面面，尤其侧重于服务器端开发。它面向想要学习 Kotlin 特别是它相对于 Java 改进的地方的 Java 开发人员。
