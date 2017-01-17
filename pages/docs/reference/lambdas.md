@@ -48,7 +48,7 @@ Lambda 表达式在[下文会有更详细的](#lambda-表达式和匿名函数)�
 * 其参数（如果有的话）在 `->` 之前声明（参数类型可以省略），
 * 函数体（如果存在的话）在 `->` 后面。
 
-在 Kotlin 中有一个约定，如果函数的最后一个参数是一个函数， and you're passing a lambda expression as the corresponding argument, you can specify it outside of parentheses:
+在 Kotlin 中有一个约定，如果函数的最后一个参数是一个函数，并且你传递一个 lambda 表达式作为相应的参数，你可以在圆括号之外指定它：
 
 ``` kotlin
 lock (lock) {
@@ -146,7 +146,7 @@ val sum = { x: Int, y: Int -> x + y }
 
 lambda 表达式总是被大括号括着，
 完整语法形式的参数声明放在括号内，并有可选的类型标注，
-函数体跟在一个 `->` 符号之后。 If the inferred return type of the lambda is not `Unit`, the last (or possibly single) expression inside the lambda body is treated as the return value.
+函数体跟在一个 `->` 符号之后。如果推断出的该 lambda 的返回类型不是 `Unit`，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。
 
 如果我们把所有可选标注都留下，看起来如下：
 
@@ -163,7 +163,7 @@ val sum: (Int, Int) -> Int = { x, y -> x + y }
 ints.filter { it > 0 } // 这个字面值是“(it: Int) -> Boolean”类型的
 ```
 
-We can explicitly return a value from the lambda using the [qualified return](returns.html#return-at-labels) syntax. Otherwise, the value of the last expression is implictly returned. Therefore, the two following snippets are equivalent:
+我们可以使用[限定的返回](returns.html#标签处返回)语法从 lambda 显式返回一个值。否则，将隐式返回最后一个表达式的值。因此，以下两个片段是等价的：
 
 ``` kotlin
 ints.filter {
