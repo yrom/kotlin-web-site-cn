@@ -7,17 +7,16 @@ title: "类型的检查与转换"
 
 # 类型的检查与转换
 
-## `is` 和 `!is`运算符
+## `is` 和 `!is` 操作符
 
-
-我们可以使用`is` 或者它的否定`!is`运算符检查一个对象在运行中是否符合所给出的类型：
+我们可以在运行时通过使用 `is` 操作符或其否定形式 `!is` 来检查对象是否符合给定类型：
 
 ``` kotlin
 if (obj is String) {
     print(obj.length)
 }
 
-if (obj !is String) { // same as !(obj is String)
+if (obj !is String) { // 与 !(obj is String) 相同
     print("Not a String")
 }
 else {
@@ -27,41 +26,39 @@ else {
 
 ## 智能转换
 
-
-在很多情况下，在Kotlin有时不用使用明确的转换运算符，因为编译器会在需要的时候自动为了不变的值和输入（安全）而使用`is`进行监测：
+在许多情况下，不需要在 Kotlin 中使用显式转换操作符，因为编译器跟踪
+不可变值的 `is`-检查，并在需要时自动插入（安全的）转换：
 
 ``` kotlin
 fun demo(x: Any) {
     if (x is String) {
-        print(x.length) // x is automatically cast to String
+        print(x.length) // x 自动转换为字符串
     }
 }
 ```
 
-
-如果错误的检查导致返回，编译器会清楚地转换为一个正确的：
+编译器足够聪明，能够知道如果反向检查导致返回那么该转换是安全的：
 
 ``` kotlin
     if (x !is String) return
-    print(x.length) // x is automatically cast to String
+    print(x.length) // x 自动转换为字符串
 ```
 
-
-或者在右边是`&&` 和 `||`：
+或者在 `&&` 和 `||` 的右侧：
 
 ``` kotlin
-    // x is automatically cast to string on the right-hand side of `||`
+    // `||` 右侧的 x 自动转换为字符串
     if (x !is String || x.length == 0) return
 
-    // x is automatically cast to string on the right-hand side of `&&`
+    // `&&` 右侧的 x 自动转换为字符串
     if (x is String && x.length > 0) {
-        print(x.length) // x is automatically cast to String
+        print(x.length) // x 自动转换为字符串
     }
 ```
 
 
-这些智能转换在 [*when*{: .keyword }-expressions](control-flow.html#when-expressions)
-和 [*while*{: .keyword }-loops](control-flow.html#while-loops) 也一样：
+这些 _智能转换_ 用于 [*when*{: .keyword }-表达式](control-flow.html#when表达式)
+和 [*while*{: .keyword }-循环 ](control-flow.html#while循环) 也一样：
 
 ``` kotlin
 when (x) {
@@ -71,39 +68,38 @@ when (x) {
 }
 ```
 
-Note that smart casts do not work when the compiler cannot guarantee that the variable cannot change between the check and the usage.
-More specifically, smart casts are applicable according to the following rules:
+请注意，当编译器不能保证变量在检查和使用之间不可改变时，智能转换不能用。
+更具体地，智能转换能否适用根据以下规则：
 
-  * *val*{: .keyword } local variables - always;
-  * *val*{: .keyword } properties - if the property is private or internal or the check is performed in the same module where the property is declared. Smart casts aren't applicable to open properties or properties that have custom getters;
-  * *var*{: .keyword } local variables - if the variable is not modified between the check and the usage and is not captured in a lambda that modifies it;
-  * *var*{: .keyword } properties - never (because the variable can be modified at any time by other code).
+  * *val*{: .keyword } 局部变量——总是可以；
+  * *val*{: .keyword } 属性——如果属性是 private 或 internal，或者该检查在声明属性的同一模块中执行。智能转换不适用于 open 的属性或者具有自定义 getter 的属性；
+  * *var*{: .keyword } 局部变量——如果变量在检查和使用之间没有修改、并且没有在会修改它的 lambda 中捕获；
+  * *var*{: .keyword } 属性——决不可能（因为该变量可以随时被其他代码修改）。
 
 
-## “不安全”的转换运算符
+## “不安全的”转换操作符
 
-通常，如果转换是不可能的，转换运算符会抛出一个异常。于是，我们称之为*不安全的*。在Kotlin这种不安全的转换会出现在插入运算符*as*{: .keyword } (see [operator precedence](grammar.html#operator-precedence))：
+通常，如果转换是不可能的，转换操作符会抛出一个异常。因此，我们称之为*不安全的*。
+Kotlin 中的不安全转换由中缀操作符 *as*{: .keyword }（参见[operator precedence](grammar.html#operator-precedence)）完成：
 
 ``` kotlin
 val x: String = y as String
 ```
 
-
-记住*null*{: .keyword }不能被转换为[不可为空的](null-safety.html)`String`。例如，如果`y`是空，则这段代码会抛出异常。为了匹配Jave的转换语义，我们不得不在右边拥有可空的类型，就像：
+请注意，*null*{: .keyword } 不能转换为 `String` 因该类型不是[可空的](null-safety.html)，
+即如果 `y` 为空，上面的代码会抛出一个异常。
+为了匹配 Java 转换语义，我们必须在转换右边有可空类型，就像：
 
 ``` kotlin
 val x: String? = y as String?
 ```
 
-## “安全的”（可为空的）转换运算符
+## “安全的”（可空）转换操作符
 
-
-为了避免异常的抛出，一个可以使用*安全的*转换运算符——*as?*{: .keyword } ，它可以在失败时返回一个*null*{: .keyword }：
+为了避免抛出异常，可以使用*安全*转换操作符 *as?*{: .keyword }，它可以在失败时返回 *null*{: .keyword }：
 
 ``` kotlin
 val x: String? = y as? String
 ```
 
-
-记住尽管事实是右边的*as?*{: .keyword }可使一个不为空的`String`类型的转换结果为可空的。
-
+请注意，尽管事实上 *as?*{: .keyword } 的右边是一个非空类型的 `String`，但是其转换的结果是可空的。
