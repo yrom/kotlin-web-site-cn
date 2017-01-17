@@ -2,65 +2,65 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "范围"
+title: "区间"
 ---
 
-# 范围
+# 区间
 
-范围表达式是由“rangeTo”函数组成的，操作符的形式是`..`由*in*{: .keyword }和*!in*{: .keyword }补充。
-范围被定义为任何可比类型,但是用于原生类型有更优化的实现。下面是使用范围的例子
+区间表达式由具有操作符形式 `..` 的 `rangeTo` 函数辅以 *in*{: .keyword } 和 *!in*{: .keyword } 形成。
+区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例
 
 ``` kotlin
-if (i in 1..10) { // equivalent of 1 <= i && i <= 10
+if (i in 1..10) { // 等同于 1 <= i && i <= 10
     println(i)
 }
 ```
 
-整型范围（`IntRange`, `LongRange`, `CharRange`）有一个额外的功能:他们可以遍历。
-编译者需要关心的转换是简单模拟Java的索引*for*{: .keyword }循环,不用担心越界。例如：
+整型区间（`IntRange`、 `LongRange`、 `CharRange`）有一个额外的特性：它们可以迭代。
+编译器负责将其转换为类似 Java 的基于索引的 *for*{: .keyword }-循环而无额外开销。
 
 ``` kotlin
-for (i in 1..4) print(i) // prints "1234"
+for (i in 1..4) print(i) // 输出“1234”
 
-for (i in 4..1) print(i) // prints nothing
+for (i in 4..1) print(i) // 什么都不输出
 ```
 
-你想要遍历数字颠倒顺序吗?这很简单。您可以使用标准库里面的`downTo()`函数
+如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 `downTo()` 函数
 
 ``` kotlin
-for (i in 4 downTo 1) print(i) // prints "4321"
+for (i in 4 downTo 1) print(i) // 输出“4321”
 ```
 
-是否可以任意进行数量的迭代,而不必每次的变化都是1呢?当然, `step()`函数可以实现
+能否以不等于 1 的任意步长迭代数字？ 当然没问题， `step()` 函数有助于此
 
 ``` kotlin
-for (i in 1..4 step 2) print(i) // prints "13"
+for (i in 1..4 step 2) print(i) // 输出“13”
 
-for (i in 4 downTo 1 step 2) print(i) // prints "42"
+for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 ```
 
-To create a range which does not include its end element, you can use the `until` function:
+要创建一个不包括其结束元素的区间，可以使用 `until` 函数：
 
 ``` kotlin
-for (i in 1 until 10) { // i in [1, 10), 10 is excluded
+for (i in 1 until 10) {   // i in [1, 10) 排除了 10
      println(i)
 }
 ```
 
 ## 它是如何工作的
 
-Ranges implement a common interface in the library: `ClosedRange<T>`.
+区间实现了该库中的一个公共接口：`ClosedRange<T>`。
 
-`ClosedRange<T>` 在数学意义上表示一个间隔,是对比较类型的定义。
-它有两个端点:‘start’和‘endInclusive’,这是包含在范围内。
-主要的操作是`contains`,通常用*in*{: .keyword } /*!in* {: .keyword }操作符内。
+`ClosedRange<T>` 在数学意义上表示一个闭区间，它是为可比较类型定义的。
+它有两个端点：`start` 和 `endInclusive` 他们都包含在区间内。
+其主要操作是 `contains`，通常以 *in*{: .keyword }/*!in*{: .keyword } 操作符形式使用。
 
-Integral type progressions (`IntProgression`, `LongProgression`, `CharProgression`) denote an arithmetic progression.
-Progressions are defined by the `first` element, the `last` element and a non-zero `increment`.
-The first element is `first`, subsequent elements are the previous element plus `increment`. The `last` element is always hit by iteration unless the progression is empty.
+整型数列（`IntProgression`、 `LongProgression`、 `CharProgression`）表示等差数列。
+数列由 `first` 元素、`last` 元素和非零的 `increment` 定义。
+第一个元素是 `first`，后续元素是前一个元素加上 `increment`。 `last` 元素总会被迭代命中，除非该数列是空的。
 
-A progression is a subtype of `Iterable<N>`, where `N` is `Int`, `Long` or `Char` respectively, so it can be used in *for*{: .keyword }-loops and functions like `map`, `filter`, etc.
-迭代`Progression`与Java/JavaScript的基于索引的*for*{: .keyword }循环等价:
+数列是 `Iterable<N>` 的子类型，其中 `N` 分别为 `Int`、 `Long` 或者 `Char`，所以它可用于 *for*{: .keyword }-循环以及像 `map`、`filter` 等函数中。
+对 `Progression` 迭代相当于 Java/JavaScript 的基于索引的 *for*{: .keyword }-循环：
 
 ``` java
 for (int i = first; i != last; i += increment) {
@@ -68,17 +68,17 @@ for (int i = first; i != last; i += increment) {
 }
 ```
 
-对于整型, `..`操作符创建一个对象既实现了`ClosedRange`也实现了`Progression`。
-For example, `IntRange` implements `ClosedRange<Int>` and extends `IntProgression`, thus all operations defined for `IntProgression` are available for `IntRange` as well.
-`downTo()`和 `step()`函数的结果一直是`Progression`。
+对于整型类型，`..` 操作符创建一个同时实现 `ClosedRange<T>` 和 `*Progression` 的对象。
+例如，`IntRange` 实现了 `ClosedRange<Int>` 并扩展自 `IntProgression`，因此为 `IntProgression` 定义的所有操作也可用于 `IntRange`。
+`downTo()` 和 `step()` 函数的结果总是一个 `*Progression`。
 
-Progressions are constructed with the `fromClosedRange` function defined in their companion objects:
+数列由在其伴生对象中定义的 `fromClosedRange` 函数构造：
 
 ``` kotlin
     IntProgression.fromClosedRange(start, end, increment)
 ```
 
-The `last` element of the progression is calculated to find maximum value not greater than the `end` value for positive `increment` or minimum value not less than the `end` value for negative `increment` such that `(last - first) % increment == 0`.
+数列的 `last` 元素这样计算：对于正的 `increment` 找到不大于 `end` 值的最大值、或者对于负的 `increment` 找到不小于 `end` 值的最小值，使得 `(last - first) % increment == 0`。
 
 
 
@@ -86,29 +86,29 @@ The `last` element of the progression is calculated to find maximum value not gr
 
 ### `rangeTo()`
 
-整型得`rangeTo()`运算符只要简单地调用构造函数`*Range`类,例如:
+整型类型的 `rangeTo()` 操作符只是调用 `*Range` 类的构造函数，例如：
 
 ``` kotlin
 class Int {
-    //...
+    //……
     operator fun rangeTo(other: Long): LongRange = LongRange(this, other)
-    //...
+    //……
     operator fun rangeTo(other: Int): IntRange = IntRange(this, other)
-    //...
+    //……
 }
 ```
 
-Floating point numbers (`Double`, `Float`) do not define their `rangeTo` operator, and the one provided by the standard library for generic `Comparable` types is used instead:
+浮点数（`Double`、 `Float`）未定义它们的 `rangeTo` 操作符，而使用标准库提供的泛型 `Comparable` 类型的操作符：
 
 ``` kotlin
     public operator fun <T: Comparable<T>> T.rangeTo(that: T): ClosedRange<T>
 ```
 
-The range returned by this function cannot be used for iteration.
+该函数返回的区间不能用于迭代。
 
 ### `downTo()`
 
-`downTo()`的扩展函数可以为任何数字整型对定义,这里有两个例子:
+扩展函数 `downTo()` 是为任何整型类型对定义的，这里有两个例子：
 
 ``` kotlin
 fun Long.downTo(other: Int): LongProgression {
@@ -122,7 +122,7 @@ fun Byte.downTo(other: Int): IntProgression {
 
 ### `reversed()`
 
-定义`reversed()`扩展函数是为了每个 `*Progression` 类定义的,它们返回反向的级数。
+扩展函数 `reversed()` 是为每个 `*Progression` 类定义的，并且所有这些函数返回反转后的数列。
 
 ``` kotlin
 fun IntProgression.reversed(): IntProgression {
@@ -132,9 +132,9 @@ fun IntProgression.reversed(): IntProgression {
 
 ### `step()`
 
-`step()`扩展函数是为每个 `*Progression` 类定义的,
-他们返回级数与都修改了`step`值(函数参数)。
-注意,step值必需总是正的，因此这个函数从不改变的迭代方向。
+扩展函数 `step()` 是为每个 `*Progression` 类定义的，
+所有这些函数都返回带有修改了 `step` 值（函数参数）的数列。
+步长（step）值必须始终为正，因此该函数不会更改迭代的方向。
 
 ``` kotlin
 fun IntProgression.step(step: Int): IntProgression {
@@ -148,10 +148,10 @@ fun CharProgression.step(step: Int): CharProgression {
 }
 ```
 
-Note that the `last` value of the returned progression may become different from the `last` value of the original progression in order to preserve the invariant `(last - first) % increment == 0`. Here is an example:
+请注意，返回数列的 `last` 值可能与原始数列的 `last` 值不同，以便保持不变式 `(last - first) % increment == 0` 成立。这里是一个例子：
 
 ``` kotlin
-    (1..12 step 2).last == 11  // progression with values [1, 3, 5, 7, 9, 11]
-    (1..12 step 3).last == 10  // progression with values [1, 4, 7, 10]
-    (1..12 step 4).last == 9   // progression with values [1, 5, 9]
+    (1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
+    (1..12 step 3).last == 10  // 值为 [1, 4, 7, 10] 的数列
+    (1..12 step 4).last == 9   // 值为 [1, 5, 9] 的数列
 ```
