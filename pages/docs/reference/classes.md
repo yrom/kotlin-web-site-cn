@@ -224,7 +224,7 @@ open class AnotherDerived() : Base() {
 
 ### 覆盖属性
 
-属性覆盖与方法覆盖类似；properties declared on a superclass that are then redeclared on a derived class must be prefaced with *override*{: .keyword }, and they must have a compatible type. Each declared property can be overridden by a property with an initializer or by a property with a getter method.
+属性覆盖与方法覆盖类似；在超类中声明然后在派生类中重新声明的属性必须以 *override*{: .keyword } 开头，并且它们必须具有兼容的类型。每个声明的属性可以由具有初始化器的属性或者具有 getter 方法的属性覆盖。
 
 ``` kotlin
 open class Foo {
@@ -238,7 +238,7 @@ class Bar1 : Foo() {
 
 你也可以用一个 `var` 属性覆盖一个 `val` 属性，但反之则不行。这是允许的，因为一个 `val` 属性本质上声明了一个 getter 方法，而将其覆盖为 `var` 只是在子类中额外声明一个 setter 方法。
 
-Note that you can use the *override*{: .keyword } keyword as part of the property declaration in a primary constructor.
+请注意，你可以在主构造函数中使用 *override*{: .keyword } 关键字作为属性声明的一部分。
 
 ``` kotlin 
 interface Foo {
