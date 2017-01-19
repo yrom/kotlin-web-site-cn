@@ -42,6 +42,8 @@ reference:
         title: 习惯用法
       - url: /docs/reference/coding-conventions.html
         title: 编码习惯
+      - url: /docs/reference/whatsnew11.html
+        title: What's New in 1.1
 
   - title: 基础
     description: 基础内容
