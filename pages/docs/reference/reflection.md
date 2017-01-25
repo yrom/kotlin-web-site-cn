@@ -7,71 +7,71 @@ title: "反射"
 
 # 反射
 
-反射是一系列语言和库的特性，允许在运行时获取你代码结构。
-把函数和属性作为语言的一等公民，反射它们（如获名称或者属性类型或者
-方法）和使用函数式编程或反应是编程风格很像。
+反射是这样的一组语言和库功能，它允许在运行时自省你的程序的结构。
+Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即在运行时获悉
+一个名称或者一个属性或函数的类型）与简单地使用函数式或响应式风格紧密相关。
 
-> 在Java平台，使用反射特性所需的运行时组件作为一个单独的
-Jar 文件(`kotlin-reflect.jar`).这样做减小了不使用反射的应用程序库的大小.
-如果你确实要使用反射,请确保该文件被添加到了项目路径.
+> 在 Java 平台上，使用反射功能所需的运行时组件作为单独的
+JAR 文件（`kotlin-reflect.jar`）分发。这样做是为了减少不使用反射功能的应用程序所需的
+运行时库的大小。如果你需要使用反射，请确保该 .jar文件添加到项目的
+classpath 中。
 {:.note}
 
 ## 类引用
 
-最基本的反射特性就是得到运行时的类引用。要获取引
-用并使之成为静态类可以使用字面类语法:
+最基本的反射功能是获取 Kotlin 类的运行时引用。要获取对
+静态已知的 Kotlin 类的引用，可以使用 _类字面值_ 语法：
 
 ``` kotlin
 val c = MyClass::class
 ```
 
-引用是[KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)类型.~~你可以使用`KClass.properties`
-和`KClass.extensionProperties`来获得类和父类所有[属性引用](#property-references)的列表。~~
+该引用是 [KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html) 类型的值。
 
-注意Kotlin类引用不完全与Java类引用一致.查看[Java interop section](java-interop.html#object-methods)
-详细信息。
+请注意，Kotlin 类引用与 Java 类引用不同。要获得 Java 类引用，
+请在 `KClass` 实例上使用 `.java` 属性。
 
 ## 函数引用
 
-我们有一个像下面这样的函数声明:
+当我们有一个命名函数声明如下：
 
 ``` kotlin
 fun isOdd(x: Int) = x % 2 != 0
 ```
 
-我们可以直接调用(`isOdd(5)`), 也可以把它作为一个值传给其他函数.
-我们使用`::`操作符实现:  
+我们可以很容易地直接调用它（`isOdd(5)`），但是我们也可以把它作为一个值传递。例如传给另一个函数。
+为此，我们使用 `::` 操作符：
 
 ``` kotlin
 val numbers = listOf(1, 2, 3)
-println(numbers.filter(::isOdd)) // prints [1, 3]
+println(numbers.filter(::isOdd)) // 输出 [1, 3]
 ```
 
-这里 `::isOdd`是一个函数类型的值 `(Int) -> Boolean`.
+这里 `::isOdd` 是函数类型 `(Int) -> Boolean` 的一个值。
 
-`::` can be used with overloaded functions when the expected type is known from the context.
-For example:
+当上下文中已知函数期望的类型时，`::` 可以用于重载函数。
+例如：
 
 ``` kotlin
 fun isOdd(x: Int) = x % 2 != 0
 fun isOdd(s: String) = s == "brillig" || s == "slithy" || s == "tove"
 
 val numbers = listOf(1, 2, 3)
-println(numbers.filter(::isOdd)) // refers to isOdd(x: Int)
+println(numbers.filter(::isOdd)) // 引用到 isOdd(x: Int)
 ```
 
-Alternatively, you can provide the necessary context by storing the method reference in a variable with an explicitly specified type:
+或者，你可以通过将方法引用存储在具有显式指定类型的变量中来提供必要的上下文：
 
 ``` kotlin
-val predicate: (String) -> Boolean = ::isOdd   // refers to isOdd(x: String)
+val predicate: (String) -> Boolean = ::isOdd   // 引用到 isOdd(x: String)
 ```
 
-如果我们需要使用类成员或者一个扩展方法，它必须是有权访问的,
-例如`String::toCharArray`带着一个`String`: `String.() -> CharArray`类型扩展函数.
+如果我们需要使用类的成员函数或扩展函数，它需要是限定的。
+例如 `String::toCharArray` 为类型 `String` 提供了一个扩展函数：`String.() -> CharArray`。
 
-### 例子: 函数组合
+### 示例：函数组合
 
-考量以下方法：
+考虑以下函数：
 
 ``` kotlin
 fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
@@ -79,8 +79,8 @@ fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
 }
 ```
 
-它返回一个由俩个传递进去的函数的组合。
-现在你可以把它用在可调用的引用上了：
+它返回一个传给它的两个函数的组合：`compose(f, g) = f(g(*))`。
+现在，你可以将其应用于可调用引用：
 
 
 ``` kotlin
@@ -89,49 +89,49 @@ fun length(s: String) = s.length
 val oddLength = compose(::isOdd, ::length)
 val strings = listOf("a", "ab", "abc")
 
-println(strings.filter(oddLength)) // Prints "[a, abc]"
+println(strings.filter(oddLength)) // 输出 "[a, abc]"
 ```
 
 ## 属性引用
 
-我们同样可以用`::`操作符来访问Kotlin中的顶级类的属性：
+要把属性作为 Kotlin中 的一等对象来访问，我们也可以使用 `::` 运算符：
 
 ``` kotlin
 var x = 1
 
 fun main(args: Array<String>) {
-    println(::x.get()) // prints "1"
+    println(::x.get()) // 输出 "1"
     ::x.set(2)
-    println(x)         // prints "2"
+    println(x)         // 输出 "2"
 }
 ```
 
-表达式`::x`推断为`KProperty<Int>`类型的属性对象,它允许我们
-使用`get()`函数来读它的值或者使用`name`属性来得到它的值。更多请
-查看[docs on the `KProperty` class](/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html).
+表达式 `::x` 求值为 `KProperty<Int>` 类型的属性对象，它允许我们使用
+`get()` 读取它的值，或者使用 `name` 属性来获取属性名。更多信息请参见
+[关于 `KProperty` 类的文档](/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)。
 
-对于可变属性,例如`var y = 1`, `::y`返回值类型是[`KMutableProperty<Int>`](/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html),
-它有一个`set()`方法.
+对于可变属性，例如 `var y = 1`，`::y` 返回 [`KMutableProperty<Int>`](/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 类型的一个值，
+该类型有一个 `set()` 方法。
 
-A property reference can be used where a function with no parameters is expected:
+属性引用可以用在不需要参数的函数处：
 
 ``` kotlin
 val strs = listOf("a", "bc", "def")
-println(strs.map(String::length)) // prints [1, 2, 3]
+println(strs.map(String::length)) // 输出 [1, 2, 3]
 ```
 
-To access a property that is a member of a class, we qualify it:
+要访问属于类的成员的属性，我们这样限定它：
 
 ``` kotlin
 class A(val p: Int)
 
 fun main(args: Array<String>) {
     val prop = A::p
-    println(prop.get(A(1))) // prints "1"
+    println(prop.get(A(1))) // 输出 "1"
 }
 ```
 
-对于扩展属性:
+对于扩展属性：
 
 
 ``` kotlin
@@ -139,16 +139,15 @@ val String.lastChar: Char
     get() = this[length - 1]
 
 fun main(args: Array<String>) {
-    println(String::lastChar.get("abc")) // prints "c"
+    println(String::lastChar.get("abc")) // 输出 "c"
 }
 ```
 
-### 与Java反射调用
+### 与 Java 反射的互操作性
 
-
-在 java 平台上，标准库包括反射类的扩展，提供了到 java 反射
-对象的映射(参看 `kotlin.reflect.jvm`包)。
-比如，想找到一个备用字段或者 java getter 方法，你可以这样写：
+在Java平台上，标准库包含反射类的扩展，它提供了与 Java
+反射对象之间映射（参见 `kotlin.reflect.jvm` 包）。
+例如，要查找一个用作 Kotlin 属性 getter 的 幕后字段或 Java方法，可以这样写：
 
 
 ``` kotlin
@@ -157,12 +156,12 @@ import kotlin.reflect.jvm.*
 class A(val p: Int)
 
 fun main(args: Array<String>) {
-    println(A::p.javaGetter) // prints "public final int A.getP()"
-    println(A::p.javaField)  // prints "private final int A.p"
+    println(A::p.javaGetter) // 输出 "public final int A.getP()"
+    println(A::p.javaField)  // 输出 "private final int A.p"
 }
 ```
 
-To get the Kotlin class corresponding to a Java class, use the `.kotlin` extension property:
+要获得对应于 Java 类的 Kotlin 类，请使用 `.kotlin` 扩展属性：
 
 ``` kotlin
 fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
@@ -170,10 +169,10 @@ fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 
 ## 构造函数引用
 
-构造函数可以像属性和方法那样引用. 它们可以使用在任何一个函数类型的对象的地方，
-期望得到相同参数的构造函数，并返回一个适当类型的对象.
-构造函数使用`::`操作符加类名引用.考虑如下函数，
-需要一个无参数函数返回类型是`Foo`:
+构造函数可以像方法和属性那样引用。他们可以用于期待这样的函数类型对象的任何
+地方：它与该构造函数接受相同参数并且返回相应类型的对象。
+通过使用 `::` 操作符并添加类名来引用构造函数。考虑下面的函数，
+它期待一个无参并返回 `Foo` 类型的函数参数：
 
 ``` kotlin
 class Foo
@@ -183,7 +182,7 @@ fun function(factory : () -> Foo) {
 }
 ```
 
-Using `::Foo`, the zero-argument constructor of the class Foo, 我们可以简单的这样使用:
+使用 `::Foo`，类 Foo 的零参数构造函数，我们可以这样简单地调用它：
 
 ``` kotlin
 function(::Foo)
