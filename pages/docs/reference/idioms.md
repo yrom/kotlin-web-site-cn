@@ -22,7 +22,7 @@ data class Customer(val name: String, val email: String)
 * `hashCode()`
 * `toString()`
 * `copy()`
-* 所有属性的 `component1()`, `component2()`, ... 等等 (参阅[数据类](data-classes.html))
+* 所有属性的 `component1()`、 `component2()`……等等（参见[数据类](data-classes.html)）
 
 
 ### 函数的默认参数
