@@ -338,7 +338,7 @@ fun Block.copy() = Block().also { it.content = this.content }
 
 `takeIf` 就像单个值的 `filter`。它检查接收者是否满足该谓词，并
 在满足时返回该接收者否则不满足时返回 `null`。
-结合鹅-操作符和及早返回，它允许编写如下结构：
+结合 elvis-操作符和及早返回，它允许编写如下结构：
 
 ```kotlin
 val outDirFile = File(outputDir.path).takeIf { it.exists() } ?: return false
