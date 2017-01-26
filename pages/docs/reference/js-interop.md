@@ -70,7 +70,7 @@ title: "JavaScript 互操作性"
 
 ### 注意事项
 
-我们将 `kotlin.js` 标准库作为一个单独的文件，它本身编译为一个 UMD 模块，所以
+我们将 `kotlin.js` 标准库作为一个单独的文件，它本身编译为一个 UMD 模块，所以
 你可以与上述任何模块系统一起使用。
 
 虽然现在我们没有直接支持 WebPack 和 Browserify，但是我们测试了由 Kotlin 编译器生成的 `.js` 文件
@@ -80,7 +80,7 @@ title: "JavaScript 互操作性"
 ## @JsName 注解
 
 在某些情况下（例如，为了支持重载），Kotlin编译器会修饰（mangle）
-JavaScript 代码中生成的函数和属性的名称。如果要控制生成的名称，可以使用 `@JsName` 注解：
+JavaScript 代码中生成的函数和属性的名称。如果要控制生成的名称，可以使用 `@JsName` 注解：
 
 ``` kotlin
 // 模块 'kjs'
@@ -105,5 +105,5 @@ person.hello();                          // 输出 "Hello Dmitry!"
 person.helloWithGreeting("Servus");      // 输出 "Servus Dmitry!"
 ```
 
-如果我们没有指定 `@JsName` 注解，相应函数的名称将包含
+如果我们没有指定 `@JsName` 注解，相应函数的名称将包含
 从函数签名计算而来的后缀，例如 `hello_61zpoe$`。

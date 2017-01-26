@@ -229,7 +229,7 @@ public @interface AnnWithValue {
 @AnnWithValue("abc") class C
 ```
 
-如果 Java 中的 `value` 参数具有数组类型，它会成为 Kotlin 中的一个 `vararg` 参数：
+如果 Java 中的 `value` 参数具有数组类型，它会成为 Kotlin 中的一个 `vararg` 参数：
 
 ``` java
 // Java

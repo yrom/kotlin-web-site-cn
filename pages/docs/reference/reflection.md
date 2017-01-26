@@ -67,7 +67,7 @@ val predicate: (String) -> Boolean = ::isOdd   // 引用到 isOdd(x: String)
 ```
 
 如果我们需要使用类的成员函数或扩展函数，它需要是限定的。
-例如 `String::toCharArray` 为类型 `String` 提供了一个扩展函数：`String.() -> CharArray`。
+例如 `String::toCharArray` 为类型 `String` 提供了一个扩展函数：`String.() -> CharArray`。
 
 ### 示例：函数组合
 
@@ -110,7 +110,7 @@ fun main(args: Array<String>) {
 `get()` 读取它的值，或者使用 `name` 属性来获取属性名。更多信息请参见
 [关于 `KProperty` 类的文档](/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)。
 
-对于可变属性，例如 `var y = 1`，`::y` 返回 [`KMutableProperty<Int>`](/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 类型的一个值，
+对于可变属性，例如 `var y = 1`，`::y` 返回 [`KMutableProperty<Int>`](/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 类型的一个值，
 该类型有一个 `set()` 方法。
 
 属性引用可以用在不需要参数的函数处：
@@ -182,7 +182,7 @@ fun function(factory : () -> Foo) {
 }
 ```
 
-使用 `::Foo`，类 Foo 的零参数构造函数，我们可以这样简单地调用它：
+使用 `::Foo`，类 Foo 的零参数构造函数，我们可以这样简单地调用它：
 
 ``` kotlin
 function(::Foo)

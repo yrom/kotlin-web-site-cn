@@ -125,7 +125,7 @@ fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
 }
 ```
 
-参数 `less` 的类型是 `(T, T) -> Boolean`，即一个接受两个类型`T`的参数并返回一个布尔值的函数：
+参数 `less` 的类型是 `(T, T) -> Boolean`，即一个接受两个类型`T`的参数并返回一个布尔值的函数：
 如果第一个参数小于第二个那么该函数返回 true。
 
 在上面第 4 行代码中，`less` 作为一个函数使用：通过传入两个 `T` 类型的参数来调用。

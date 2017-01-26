@@ -2,21 +2,21 @@
 type: doc
 layout: reference
 category: "JavaScript"
-title: "JavaScript Reflection"
+title: "JavaScript 反射"
 ---
 
-# JavaScript Reflection
+# JavaScript 反射
 
-In Kotlin compiled to JavaScript, there's a property available
-on any object called `jsClass` which returns a `JsClass` instance. `JsClass` currently can do nothing more than providing
-a (non-qualified) name of the class. However, the `JsClass` instance itself is a reference to the constructor function.
-This can be used to interoperate with JS functions that expect a reference to a constructor.
+在 Kotlin 编译成的 JavaScript 中，有一个属性
+可用于任何对象，名为 `jsClass`，它返回一个 `JsClass` 实例。`JsClass` 目前只能提供
+（无限定的）类的名称。然而，`JsClass` 实例本身是一个对构造函数的引用。
+这可以用于与期待构造函数的引用的 JS 函数互操作。
 
-To get a reference to a class, you can use the `::class` syntax. Full reflection API is currently not supported
-in Kotlin for JavaScript; the only available properties are `.simpleName` which returns the name of the class
-and `.js` which returns the corresponding `JsClass`.
+要获得对类的引用，可以使用 `::class` 语法。Kotlin for JavaScript 目前不支持完整的反射 API；
+唯一可用的属性是 `.simpleName` 返回类的名称
+以及 `.js` 返回相应的`JsClass`。
 
-Examples:
+示例：
 
 ``` kotlin
 class A
@@ -27,8 +27,8 @@ inline fun <reified T> foo() {
     println(jsClass<T>().name)
 }
 
-println(A().jsClass.name)     // prints "A"
-println(B::class.simpleName)  // prints "B"
-println(B::class.js.name)     // prints "B"
-foo<C>()                      // prints "C"
+println(A().jsClass.name)     // 输出“A”
+println(B::class.simpleName)  // 输出“B”
+println(B::class.js.name)     // 输出“B”
+foo<C>()                      // 输出“C”
 ```
