@@ -19,7 +19,7 @@ Groovy 自身的动态类型实现更具吸引力。
 
 ## 一个类型安全的构建器示例
 
-考虑下面的代码：~~这段代码是从[这里](http://groovy.codehaus.org/Builders)摘出来并稍作修改的~~
+考虑下面的代码：
 
 ``` kotlin
 import com.example.html.* // 参见下文声明
