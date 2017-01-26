@@ -26,7 +26,7 @@ classpath 中。
 val c = MyClass::class
 ```
 
-该引用是 [KClass](/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html) 类型的值。
+该引用是 [KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html) 类型的值。
 
 请注意，Kotlin 类引用与 Java 类引用不同。要获得 Java 类引用，
 请在 `KClass` 实例上使用 `.java` 属性。
