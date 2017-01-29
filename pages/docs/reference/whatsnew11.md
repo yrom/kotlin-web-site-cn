@@ -6,7 +6,7 @@ title: "Kotlin 1.1 的新特性"
 
 # Kotlin 1.1 的新特性
 
-Kotlin 1.1 目前提供测试版。在这里你可以找到该版本中提供的新功能列表。
+Kotlin 1.1 目前[提供测试版](https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-beta-is-here/)。在这里你可以找到该版本中提供的新功能列表。
 请注意，任何新功能都可能会在 Kotlin 1.1 发布之前更改。
 
 ## JavaScript
