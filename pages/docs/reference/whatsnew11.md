@@ -21,9 +21,7 @@ Kotlin 1.1 的关键新特性是*协程*，它带来了 `future`/`await`、 `yie
 支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，
 而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。
 
-协程实际上是可以挂起和稍后恢复的函数。例如，用 `future` /`await`，
-当使用 `await` 时，在等待的操作执行时暂停该函数的执行，并
-在等待的操作完成时恢复（可能在不同的线程上）。
+A coroutine is effectively a light-weight thread that can be suspended and resumed later. A coroutine is started with a coroutine builder function and is suspended with special suspending functions. For example, `future` starts a coroutine and, when you use `await`, the execution of the coroutine is suspended while the operation being awaited is executed, and is resumed (possibly on a different thread) when the operation being awaited completes.
 
 标准库通过 `yield` 和 `yieldAll` 函数使用协程来支持*惰性生成序列*。
 在这样的序列中，在取回每个元素之后暂停返回序列元素的代码块，
