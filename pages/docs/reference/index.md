@@ -27,14 +27,14 @@ title: "参考"
 
    <a href="https://manning.com/books/kotlin-in-action"><img src="{{ site.baseurl }}/assets/images/kotlin-in-action.png" style="float: left; margin-right: 10px; margin-bottom: 10px;"></a>
 
-[Kotlin in Action](https://manning.com/books/kotlin-in-action) teaches you to use the Kotlin language for
-production-quality applications. Written for experienced Java developers, this example-rich book goes further than
-most language books, covering interesting topics like building DSLs with natural language syntax.
+[Kotlin in Action](https://manning.com/books/kotlin-in-action) 教你将 Kotlin 语言用于
+生产级应用。写给有经验的 Java 开发者的示例丰富的这本书比大多数语言书籍更深入
+，其中涵盖了一些有趣的话题，例如使用自然语言的语法构建 DSL。
 
-The book is written by Dmitry Jemerov and Svetlana Isakova, developers on the Kotlin team.
+这本书是由 Kotlin 团队的开发者 Dmitry Jemerov 和 Svetlana Isakova 合著的。
 
-Chapter 6, covering the Kotlin type system, and chapter 11, covering DSLs, are available as a free preview on the
-<a href="https://www.manning.com/books/kotlin-in-action#downloads">publisher Web site</a>.
+涵盖了 Kotlin 类型系统的第 6 章、涵盖了 DSL 的第 11 章可作为
+[出版社网站](https://www.manning.com/books/kotlin-in-action#downloads)上的免费样章取得。
 
 <h2 style="clear: left">Kotlin for Android Developers</h2>
 
