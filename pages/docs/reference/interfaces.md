@@ -42,18 +42,18 @@ class Child : MyInterface {
 
 ``` kotlin
 interface MyInterface {
-    val property: Int // 抽象的
+    val prop: Int // 抽象的
 
     val propertyWithImplementation: String
         get() = "foo"
 
     fun foo() {
-        print(property)
+        print(prop)
     }
 }
 
 class Child : MyInterface {
-    override val property: Int = 29
+    override val prop: Int = 29
 }
 ```
 
