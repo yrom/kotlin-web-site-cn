@@ -11,25 +11,13 @@ description: "This tutorials walks you through different scenarios when using Ma
 
 *kotlin-maven-plugin* 用于编译 Kotlin 源码与模块，当前只支持 Marven V3
 
-通过 *kotlin.version* 指定所要使用的 Kotlin 版本，The correspondence between Kotlin releases and versions is displayed below:
+Define the version of Kotlin you want to use via a *kotlin.version* property:
 
-<table>
-<thead>
-<tr>
-  <th>Milestone</th>
-  <th>Version</th>
-</tr>
-</thead>
-<tbody>
-{% for entry in site.data.releases.list %}
-<tr>
-  <td>{{ entry.milestone }}</td>
-  <td>{{ entry.version }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
+``` xml
+<properties>
+    <kotlin.version>{{ site.data.releases.latest.version }}</kotlin.version>
+</properties>
+```
 
 ## 依赖
 
