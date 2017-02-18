@@ -406,7 +406,7 @@ Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 `-jvm-target 
 
 现在有支持在 Java 7 和 8 中新添加的 JDK API 的标准库的独立版本。
 如果你需要访问新的 API，请使用 `kotlin-stdlib-jre7` 和 `kotlin-stdlib-jre8` maven artifacts，而不是标准的 `kotlin-stdlib`。
-这些工件是在 `kotlin-stdlib` 之上的微小扩展，它们将它作为传递依赖项带到项目中。
+这些构件是在 `kotlin-stdlib` 之上的微小扩展，它们将它作为传递依赖项带到项目中。
 
 
 ### 字节码中的参数名
