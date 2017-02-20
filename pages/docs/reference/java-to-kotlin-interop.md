@@ -107,7 +107,7 @@ class JavaClient {
 }
 ```
 
-[延迟初始化](properties.html#late-initialized-properties) 的属性（在Java中）也可以被作为字段调用，字段的可见性和　`lateinit`　属性的　setter　相同。
+[延迟初始化](properties.html#惰性初始化属性) 的属性（在Java中）也可以被作为字段调用，字段的可见性和　`lateinit`　属性的　setter　相同。
 
 
 ## 静态字段
@@ -137,7 +137,7 @@ Key.COMPARATOR.compare(key1, key2);
 // public static final field in Key class
 ```
 
-在命名对象或者伴生对象中的一个[延迟初始化](properties.html#late-initialized-properties) 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。
+在命名对象或者伴生对象中的一个[延迟初始化](properties.html#惰性初始化属性) 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。
 
 
 ``` kotlin
@@ -280,7 +280,7 @@ void f(String a) { }
 构造函数，静态函数等也能用这个标记。但他不能用在抽象方法上，包括
 接口中的方法。
 
-注意一下，[Secondary Constructors](classes.html#secondary-constructors) 描述过，如果一个类的所有构造函数参数都有默认
+注意一下，[次构造函数](classes.html#次构造函数) 描述过，如果一个类的所有构造函数参数都有默认
 值，会生成一个公开的无参构造函数。这就算
 没有@JvmOverloads 注解也有效。
 
@@ -331,7 +331,7 @@ fun foo() {
 ## 可变泛型
 
 
-当Kotlin 的类使用了 [declaration-site variance](generics.html#declaration-site-variance)，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。
+当Kotlin 的类使用了 [declaration-site variance](generics.html#声明处型变)，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。
 
 
 ``` kotlin
@@ -359,7 +359,7 @@ Base unboxBase(Box<Base> box) { ... }
 Base unboxBase(Box<? extends Base> box) { ... }  
 ```  
 
-我们在这里通过使用 Java 的 *通配符类型* (`? extends Base`) 去模拟[declaration-site variance](generics.html#declaration-site-variance)，因为在 Java   中只能这么做。
+我们在这里通过使用 Java 的 *通配符类型* (`? extends Base`) 去模拟[declaration-site variance](generics.html#声明处型变)，因为在 Java   中只能这么做。
 
 当作为参数的时候，为了让 Kotlin 的 API 工作，针对`Box` 我们将Koltin 中的 `Box<Super>` 在 Java 中生成为 `Box<? extends Super>`(`Foo`将生成为 `Foo<? super Bar>`) 。当作为返回值的时候，我们不需要生成通配符类型，因为如果生成通配符在 Java 中还需要做其他操作来转换(这是常见的 Java 代码风格)。因此上面例子中的函数实际上会被转换成下面的代码：
 

@@ -266,7 +266,7 @@ fun cases(obj: Any) {
 }
 ```
 
-参见[when表达式](control-flow.html#when表达式)。
+参见[when表达式](control-flow.html#when-表达式)。
 
 ## 使用区间（range）
 

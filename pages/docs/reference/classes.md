@@ -165,7 +165,7 @@ class Example // 从 Any 隐式继承
 ```
 
 `Any` 不是 `java.lang.Object`；尤其是，它除了 `equals()`、`hashCode()`和`toString()`外没有任何成员。
-更多细节请查阅[Java互操作性](java-interop.html#object-methods)部分。
+更多细节请查阅[Java互操作性](java-interop.html#对象方法)部分。
 
 要声明一个显式的超类型，我们把类型放到类头的冒号之后：
 
@@ -309,7 +309,7 @@ abstract class Derived : Base() {
 函数（例如，工厂方法），你可以把它写成该类内[对象声明](object-declarations.html)
 中的一员。
 
-更具体地讲，如果在你的类内声明了一个[伴生对象](object-declarations.html#companion-objects)，
+更具体地讲，如果在你的类内声明了一个[伴生对象](object-declarations.html#伴生对象)，
 你就可以使用像在 Java/C# 中调用静态方法相同的语法来调用其成员，只使用类名
 作为限定符。
 
@@ -335,7 +335,7 @@ sealed class Expr {
 值得注意的是一个密封类的子类的继承者（间接继承）可以在任何地方声明，不一定要在
 这个密封类声明内部。
 
-使用密封类的关键好处在于使用[`when` 表达式](control-flow.html#when-expression) 的时候，如果能够
+使用密封类的关键好处在于使用[`when` 表达式](control-flow.html#when-表达式) 的时候，如果能够
 验证语句覆盖了所有情况，就不需要为该语句再添加一个 `else` 子句了。
 
 ``` kotlin

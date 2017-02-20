@@ -29,7 +29,7 @@ assert(strings.size == 3)
 
 Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如
 `listOf()`、 `mutableListOf()`、 `setOf()`、 `mutableSetOf()`。
-在非性能关键代码中创建 map 可以用一个简单的[惯用法](idioms.html#read-only-map)来完成：`mapOf(a to b, c to d)`
+在非性能关键代码中创建 map 可以用一个简单的[惯用法](idioms.html#只读-map)来完成：`mapOf(a to b, c to d)`
 
 
 注意上面的 `readOnlyView` 变量（译者注：与对应可变集合变量 `numbers`）指向相同的底层 list 并会随之改变。 如果一个 list 只存在只读引用，我们可以考虑该集合完全不可变。创建一个这样的集合的一个简单方式如下：
@@ -40,7 +40,7 @@ val items = listOf(1, 2, 3)
 
 目前 `listOf` 方法是使用 array list 实现的，但是未来可以利用它们知道自己不能变的事实，返回更节约内存的完全不可变的集合类型。
 
-注意这些类型是[协变的](generics.html#variance)。这意味着，你可以把一个 `List<Rectangle>` 赋值给 `List<Shape>` 假定 Rectangle 继承自 Shape。对于可变集合类型这是不允许的，因为这将导致运行时故障。
+注意这些类型是[协变的](generics.html#型变)。这意味着，你可以把一个 `List<Rectangle>` 赋值给 `List<Shape>` 假定 Rectangle 继承自 Shape。对于可变集合类型这是不允许的，因为这将导致运行时故障。
 
 有时你想给调用者返回一个集合在某个特定时间的一个快照, 一个保证不会变的：
 

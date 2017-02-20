@@ -16,7 +16,7 @@ title: "This 表达式"
 如果 *this*{: .keyword } 没有限定符，它指的是最内层的包含它的作用域。要引用其他作用域中的 *this*{: .keyword }，请使用 _标签限定符_：
 
 ## 限定的 *this*{: .keyword }
-{:#限定}
+
 
 要访问来自外部作用域的*this*{: .keyword }（一个[类](classes.html) 或者[扩展函数](extensions.html)，
 或者带标签的[带接收者的函数字面值](lambdas.html#带接收者的函数字面值)）我们使用`this@label`，其中 `@label` 是一个

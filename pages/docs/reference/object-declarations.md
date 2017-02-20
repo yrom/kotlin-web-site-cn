@@ -161,7 +161,7 @@ class MyClass {
 ```
 
 当然，在 JVM 平台，如果使用 `@JvmStatic` 注解，你可以将伴生对象的成员生成为真正的
-静态方法和字段。更详细信息请参见[Java 互操作性](java-interop.html#static-methods-and-fields)一节
+静态方法和字段。更详细信息请参见[Java 互操作性](java-to-kotlin-interop.html#静态字段)一节
 。
 
 

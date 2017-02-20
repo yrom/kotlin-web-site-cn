@@ -12,7 +12,7 @@ Kotlin 1.1 目前[提供测试版](https://blog.jetbrains.com/kotlin/2017/01/kot
 ## JavaScript
 
 从 Kotlin 1.1 开始，JavaScript 目标平台不再当是实验性的。所有语言功能都支持，
-并且有许多新的工具用于与前端开发环境集成。更详细改动列表，请参见[下文](#javascript-backend)
+并且有许多新的工具用于与前端开发环境集成。更详细改动列表，请参见[下文](#javascript-后端)
 。
 
 ## 协程（实验性的）
@@ -98,7 +98,7 @@ typealias MouseEventHandler = (Any, MouseEvent) -> Unit
 
 ### 已绑定的可调用引用
 
-现在可以使用 `::` 操作符来获取指向特定对象实例的方法或属性的[成员引用](reflection.html#function-references)。
+现在可以使用 `::` 操作符来获取指向特定对象实例的方法或属性的[成员引用](reflection.html#函数引用)。
 以前这只能用 lambda 表达式表示。
 这里有一个例子：
 

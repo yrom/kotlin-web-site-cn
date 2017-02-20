@@ -6,7 +6,7 @@ title: "使用 Gradle"
 
 # 使用 Gradle
 
-In order to build Kotlin with Gradle you should [set up the *kotlin-gradle* plugin](#plugin-and-versions), [apply it](#targeting-the-jvm) to your project and [add *kotlin-stdlib* dependencies](#configuring-dependencies). Those actions may also be performed automatically in IntelliJ IDEA by invoking the Tools \| Kotlin \| Configure Kotlin in Project action.
+In order to build Kotlin with Gradle you should [set up the *kotlin-gradle* plugin](#插件和版本), [apply it](#targeting-the-jvm) to your project and [add *kotlin-stdlib* dependencies](#配置依赖). Those actions may also be performed automatically in IntelliJ IDEA by invoking the Tools \| Kotlin \| Configure Kotlin in Project action.
 
 You can also enable [incremental compilation](#incremental-compilation) to make your builds faster. 
 

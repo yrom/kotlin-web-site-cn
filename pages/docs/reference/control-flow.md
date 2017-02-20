@@ -46,7 +46,7 @@ val max = if (a > b) {
 
 参见 [*if*{: .keyword } 语法](grammar.html#if)。
 
-## When表达式
+## When 表达式
 
 *when*{: .keyword } 取代了类 C 语言的 switch 操作符。其最简单的形式如下：
 
@@ -100,7 +100,7 @@ when (x) {
 ```
 
 另一种可能性是检测一个值是（*is*{: .keyword }）或者不是（*!is*{: .keyword }）一个特定类型的值。注意：
-由于[智能转换](typecasts.html#smart-casts)，你可以访问该类型的方法和属性而无需
+由于[智能转换](typecasts.html#智能转换)，你可以访问该类型的方法和属性而无需
 任何额外的检测。
 
 ```kotlin

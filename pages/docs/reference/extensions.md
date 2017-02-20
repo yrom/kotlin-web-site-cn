@@ -209,7 +209,7 @@ class C {
 ```
 
 对于分发接收者和扩展接收者的成员名字冲突的情况，扩展接收者
-优先。要引用分发接收者的成员你可以使用 [限定的 `this` 语法](this-expressions.html#限定)。
+优先。要引用分发接收者的成员你可以使用 [限定的 `this` 语法](this-expressions.html#限定的-this)。
 
 ``` kotlin
 class C {
