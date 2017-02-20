@@ -179,7 +179,7 @@ ints.filter {
 
 请注意，如果一个函数接受另一个函数作为最后一个参数，lambda 表达式参数可以在
 圆括号参数列表之外传递。
-参见 [callSuffix](grammar.html#call-suffix) 的语法。
+参见 [callSuffix](grammar.html#callSuffix) 的语法。
 
 ### 匿名函数
 
