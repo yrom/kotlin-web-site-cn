@@ -180,7 +180,7 @@ reference:
         - url: /docs/reference/using-gradle.html
           title: 使用 Gradle
         - url: /docs/reference/kotlin-osgi.html
-          title: Kotlin 和 OSGi
+          title: Kotlin 与 OSGi
 
     - title: 常见问题
       description: 你想到的问题可能会在这里得到解答。
