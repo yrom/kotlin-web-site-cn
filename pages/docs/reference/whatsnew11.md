@@ -311,8 +311,12 @@ fun Tag.td(init: TD.() -> Unit) {
 在 String 类中有一些新的扩展，用来将它转换为数字，而不会在无效数字上抛出异常：
 `String.toIntOrNull(): Int?`、 `String.toDoubleOrNull(): Double?` 等。
 
+```
+val port = System.getenv("PORT")?.toIntOrNull() ?: 80
+```
+
 还有整数转换函数，如 `Int.toString()`、 `String.toInt()`、 `String.toIntOrNull()`，
-每个都有一个带有 `radix` 参数的重载，它允许指定转换的基数。
+每个都有一个带有 `radix` 参数的重载，它允许指定转换的基数（2 到 36）。
 
 ### onEach()
 
@@ -321,9 +325,16 @@ fun Tag.td(init: TD.() -> Unit) {
 对于迭代其行为像 `forEach` 但是也进一步返回可迭代实例。 对于序列它返回一个
 包装序列，它在元素迭代时延迟应用给定的动作。
 
-### takeIf() 和 also()
+```
+inputDir.walk()
+        .filter { it.isFile && it.name.endsWith(".txt") }
+        .onEach { println("Moving $it to $outputDir") }
+        .forEach { moveFile(it, File(outputDir, it.toRelativeString(inputDir))) }
+```
 
-这俩是适用于任何接收者的两个通用扩展函数。
+### takeIf()、takeUnless() 和 also()
+
+这仨是适用于任何接收者的两个通用扩展函数。
  
 `also` 就像 `apply`：它接受接收者、做一些动作、并返回该接收者。
 二者区别是在 `apply` 内部的代码块中接收者是 `this`，
@@ -346,6 +357,17 @@ val index = input.indexOf(keyword).takeIf { it >= 0 } ?: error("keyword not foun
 // 对输入字符串中的关键字索引做些事情，假定它找到
 ```
 
+`takeUnless` is the same as `takeIf`, but it takes the inverted predicate. It returns the receiver when it _doesn't_ meet the predicate and `null` otherwise. So one of the examples above could be rewritten with `takeUnless` as following:
+
+```
+val index = input.indexOf(keyword).takeUnless { it < 0 } ?: error("keyword not found")
+```
+
+It is also convenient to use when you have a callable reference instead of the lambda:
+
+```
+val notEmptyString = string.takeUnless(String::isEmpty)
+```
 
 ### groupingBy()
 
@@ -366,9 +388,26 @@ class ImmutablePropertyBag(map: Map<String, Any>) {
 }
 ```
 
+### Map.minus(key)
+
+The operator `plus` provides a way to add key-value pair(s) to a read-only map producing a new map, however there was not a simple way to do the opposite: to remove a key from the map you have to resort to less straightforward ways to like Map.filter() or Map.filterKeys().
+Now the operator `minus` fills this gap. There are 4 overloads available: for removing a single key, a collection of keys, a sequence of keys and an array of keys.
+
+```
+val map = mapOf("key" to 42)
+val emptyMap = map - "key"
+```
+
 ### minOf() 和 maxOf()
 
-这俩函数可用于查找两个给定数字的最小值和最大值。
+These functions can be used to find the lowest and greatest of two or three given values, where values are primitive numbers or `Comparable` objects. There is also an overload of each function that take an additional `Comparator` instance, if you want to compare objects that are not comparable themselves.
+
+```
+val list1 = listOf("a", "b")
+val list2 = listOf("x", "y", "z")
+val minSize = minOf(list1.size, list2.size)
+val longestList = maxOf(list1, list2, compareBy { it.size })
+```
 
 ### 类似数组的列表实例化函数
 
@@ -382,9 +421,20 @@ MutableList(size) { index -> element }
 
 ### Map.getValue()
 
-`Map` 上的这个方法返回一个与给定键相对应的现有值，或者抛出一个异常，提示找不到该键。
-如果该映射是用 `withDefault` 生成的，这个方法将返回默认值，而不是抛异常。
+`Map` 上的这个扩展函数返回一个与给定键相对应的现有值，或者抛出一个异常，提示找不到该键。
+如果该映射是用 `withDefault` 生成的，这个函数将返回默认值，而不是抛异常。
 
+```
+val map = mapOf("key" to 42)
+// returns non-nullable Int value 42
+val value: Int = map.getValue("key")
+// throws NoSuchElementException
+map.getValue("key2")
+
+val mapWithDefault = map.withDefault { k -> k.length }
+// returns 4
+val value2 = mapWithDefault.getValue("key2")
+```
 
 ### 抽象集合
 
