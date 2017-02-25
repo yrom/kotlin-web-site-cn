@@ -205,7 +205,7 @@ if (a is List<*>) // OK：不保证列表的内容
 
 ### Java 数组
 
-与 Java 不同，Kotlin 中的数组是不协变的。这意味着 Kotlin 不允许我们把一个 `Array<String>` 赋值给一个 `Array<Any>`，
+与 Java 不同，Kotlin 中的数组是不型变的。这意味着 Kotlin 不允许我们把一个 `Array<String>` 赋值给一个 `Array<Any>`，
 从而避免了可能的运行时故障。Kotlin 也禁止我们把一个子类的数组当做超类的数组传递给 Kotlin 的方法，
 但是对于 Java 方法，这是允许的（通过 `Array<(out) String>!` 这种形式的[平台类型](#空安全和平台类型)）。
 

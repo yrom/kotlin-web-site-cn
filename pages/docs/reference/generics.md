@@ -33,8 +33,8 @@ Java 类型系统中最棘手的部分之一是通配符类型（参见 [Java Ge
 而 Kotlin 中没有。 相反，它有两个其他的东西：声明处型变（declaration-site variance）与类型投影（type projections）。
 
 首先，让我们思考为什么 Java 需要那些神秘的通配符。在 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html) 解释了该问题——第28条：*利用有限制通配符来提升 API 的灵活性*。
-首先，Java 中的泛型是**不协变的**，这意味着 `List<String>` 并**不是** `List<Object>` 的子类型。
-为什么这样？ 如果 List 不是**不协变的**，它就没
+首先，Java 中的泛型是**不型变的**，这意味着 `List<String>` 并**不是** `List<Object>` 的子类型。
+为什么这样？ 如果 List 不是**不型变的**，它就没
 比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：
 
 ``` java
@@ -196,7 +196,7 @@ val any = Array<Any>(3)
 copy(ints, any) // 错误：期望 (Array<Any>, Array<Any>)
 ```
 
-这里我们遇到同样熟悉的问题：`Array <T>` 在 `T` 上是**不协变的**，因此 `Array <Int>` 和 `Array <Any>` 都不是
+这里我们遇到同样熟悉的问题：`Array <T>` 在 `T` 上是**不型变的**，因此 `Array <Int>` 和 `Array <Any>` 都不是
 另一个的子类型。为什么？ 再次重复，因为 copy **可能**做坏事，也就是说，例如它可能尝试**写**一个 String 到 `from`，
 并且如果我们实际上传递一个 `Int` 的数组，一段时间后将会抛出一个 `ClassCastException` 异常。
 
@@ -231,7 +231,7 @@ Kotlin 为此提供了所谓的**星投影**语法：
 
  - 对于 `Foo <out T>`，其中 `T` 是一个具有上界 `TUpper` 的协变类型参数，`Foo <*>` 等价于 `Foo <out TUpper>`。 这意味着当 `T` 未知时，你可以安全地从 `Foo <*>` *读取* `TUpper` 的值。
  - 对于 `Foo <in T>`，其中 `T` 是一个逆变类型参数，`Foo <*>` 等价于 `Foo <in Nothing>`。 这意味着当 `T` 未知时，没有什么可以以安全的方式*写入* `Foo <*>`。
- - 对于 `Foo <T>`，其中 `T` 是一个具有上界 `TUpper` 的不协变类型参数，`Foo<*>` 对于读取值时等价于 `Foo<out TUpper>` 而对于写值时等价于 `Foo<in Nothing>`。
+ - 对于 `Foo <T>`，其中 `T` 是一个具有上界 `TUpper` 的不型变类型参数，`Foo<*>` 对于读取值时等价于 `Foo<out TUpper>` 而对于写值时等价于 `Foo<in Nothing>`。
 
 如果泛型类型具有多个类型参数，则每个类型参数都可以单独投影。
 例如，如果类型被声明为 `interface Function <in T, out U>`，我们可以想象以下星投影：

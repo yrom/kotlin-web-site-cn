@@ -13,7 +13,7 @@ Kotlin 通过以下措施修复了 Java 中一系列长期困扰我们的问题
 
 * 空引用由[类型系统控制](null-safety.html)。
 * [无原始类型](java-interop.html)
-* Kotlin 中数组是[不协变的](basic-types.html#数组)
+* Kotlin 中数组是[不型变的](basic-types.html#数组)
 * 相对于 Java 的 SAM-转换，Kotlin 有更合适的[函数类型](lambdas.html#函数类型)
 * 没有通配符的[使用处型变](generics.html#使用处型变：类型投影)
 * Kotlin 没有受检[异常](exceptions.html)

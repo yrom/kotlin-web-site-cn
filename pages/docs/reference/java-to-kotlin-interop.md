@@ -341,7 +341,7 @@ fun foo() {
 这就是为什么 Kotlin 给所有期望非空参数的公有函数生成运行时检测。
 这样我们就能在 Java 代码里立即得到 `NullPointerException`。
 
-## 可变泛型
+## 型变的泛型
 
 当 Kotlin 的类使用了[声明处型变](generics.html#声明处型变)，有两种选择
 可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：
@@ -364,7 +364,7 @@ Base unboxBase(Box<Base> box) { ... }
 ``` 
 
 问题是，在 Kotlin 中我们可以这样写 `unboxBase(boxDerived("s"))`，但是在 Java 中是行不通的，因为在 Java 中
-类 `Box` 在其泛型参数 `T` 上是*不协变的*，于是 `Box<Derived>` 并不是 `Box<Base>` 的子类。
+类 `Box` 在其泛型参数 `T` 上是*不型变的*，于是 `Box<Derived>` 并不是 `Box<Base>` 的子类。
 要使其在 Java 中工作，我们按以下这样定义 `unboxBase`：
   
 ``` java
