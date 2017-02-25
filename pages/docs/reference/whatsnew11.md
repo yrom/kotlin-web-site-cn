@@ -334,7 +334,7 @@ inputDir.walk()
 
 ### takeIf()、takeUnless() 和 also()
 
-这仨是适用于任何接收者的两个通用扩展函数。
+这些是适用于任何接收者的三个通用扩展函数。
  
 `also` 就像 `apply`：它接受接收者、做一些动作、并返回该接收者。
 二者区别是在 `apply` 内部的代码块中接收者是 `this`，
@@ -357,13 +357,13 @@ val index = input.indexOf(keyword).takeIf { it >= 0 } ?: error("keyword not foun
 // 对输入字符串中的关键字索引做些事情，假定它找到
 ```
 
-`takeUnless` is the same as `takeIf`, but it takes the inverted predicate. It returns the receiver when it _doesn't_ meet the predicate and `null` otherwise. So one of the examples above could be rewritten with `takeUnless` as following:
+`takeUnless` 与 `takeIf` 相同，只是它采用了反向谓词。当它 _不_ 满足谓词时返回接收者，否则返回 `null`。因此，上面的示例之一可以用 `takeUnless` 重写如下：
 
 ```
 val index = input.indexOf(keyword).takeUnless { it < 0 } ?: error("keyword not found")
 ```
 
-It is also convenient to use when you have a callable reference instead of the lambda:
+当你有一个可调用的引用而不是 lambda 时，使用也很方便：
 
 ```
 val notEmptyString = string.takeUnless(String::isEmpty)
@@ -390,8 +390,8 @@ class ImmutablePropertyBag(map: Map<String, Any>) {
 
 ### Map.minus(key)
 
-The operator `plus` provides a way to add key-value pair(s) to a read-only map producing a new map, however there was not a simple way to do the opposite: to remove a key from the map you have to resort to less straightforward ways to like Map.filter() or Map.filterKeys().
-Now the operator `minus` fills this gap. There are 4 overloads available: for removing a single key, a collection of keys, a sequence of keys and an array of keys.
+运算符 `plus` 提供了一种将键值对添加到只读映射中以生成新映射的方法，但是没有一种简单的方法来做相反的操作：从映射中删除一个键采用不那么直接的方式如 Map.filter() 或 Map.filterKeys()。
+现在运算符 `minus` 填补了这个空白。有 4 个可用的重载：用于删除单个键、键的集合、键的序列和键的数组。
 
 ```
 val map = mapOf("key" to 42)
@@ -400,7 +400,7 @@ val emptyMap = map - "key"
 
 ### minOf() 和 maxOf()
 
-These functions can be used to find the lowest and greatest of two or three given values, where values are primitive numbers or `Comparable` objects. There is also an overload of each function that take an additional `Comparator` instance, if you want to compare objects that are not comparable themselves.
+这些函数可用于查找两个或三个给定值中的最小和最大值，其中值是原生数字或 `Comparable` 对象。每个函数还有一个重载，它接受一个额外的 `Comparator` 实例，如果你想比较自身不可比的对象的话。
 
 ```
 val list1 = listOf("a", "b")
@@ -426,13 +426,13 @@ MutableList(size) { index -> element }
 
 ```
 val map = mapOf("key" to 42)
-// returns non-nullable Int value 42
+// 返回不可空 Int 值 42
 val value: Int = map.getValue("key")
-// throws NoSuchElementException
+// 抛出 NoSuchElementException
 map.getValue("key2")
 
 val mapWithDefault = map.withDefault { k -> k.length }
-// returns 4
+// 返回 4
 val value2 = mapWithDefault.getValue("key2")
 ```
 
