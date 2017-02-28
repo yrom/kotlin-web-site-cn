@@ -527,17 +527,15 @@ external class Node {
 例如，以下是将 JQuery 导入 Kotlin 模块的方法：
 
 ``` kotlin
-@JsNonModule
-@JsName("$")
-external abstract class JQuery {
-    fun toggle(duration: Int = 0): JQuery
+external interface JQuery {
+    fun toggle(duration: Int = definedExternally): JQuery
     fun click(handler: (Event) -> Unit): JQuery
 }
 
 @JsModule("jquery")
 @JsNonModule
 @JsName("$")
-external fun JQuery(selector: String): JQuery
+external fun jquery(selector: String): JQuery
 ```
 
 在这种情况下，JQuery 将作为名为 `jquery` 的模块导入。或者，它可以用作 $-对象，
@@ -547,8 +545,8 @@ external fun JQuery(selector: String): JQuery
 
 ``` kotlin
 fun main(args: Array<String>) {
-    JQuery(".toggle-button").click {
-        JQuery(".toggle-panel").toggle(300)
+    jquery(".toggle-button").click {
+        jquery(".toggle-panel").toggle(300)
     }
 }
 ```
