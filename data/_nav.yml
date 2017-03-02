@@ -172,7 +172,7 @@ reference:
       items:
   #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
         - url: /docs/reference/kotlin-doc.html
-          title: 生成 Kotlin 代码文档
+          title: 编写 Kotlin 代码文档
         - url: /docs/reference/using-maven.html
           title: 使用 Maven
         - url: /docs/reference/using-ant.html
