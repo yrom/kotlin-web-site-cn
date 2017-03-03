@@ -177,3 +177,27 @@ fun main(s: Array<String>) {
 不能用作具体化的类型参数的实参。
 
 相关底层描述，请参见[规范文档](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md)。
+
+## Inline properties (since 1.1)
+
+The `inline` modifier can be used on accessors of properties that don't have a backing field.
+You can annotate individual property accessors:
+
+``` kotlin
+val foo: Foo
+    inline get() = Foo()
+
+var bar: Bar
+    get() = ...
+    inline set(v) { ... }
+```
+
+You can also annotate an entire property, which marks both of its accessors as inline:
+
+``` kotlin
+inline var bar: Bar
+    get() = ...
+    set(v) { ... }
+```
+
+At the call site, inline accessors are inlined as regular inline functions.

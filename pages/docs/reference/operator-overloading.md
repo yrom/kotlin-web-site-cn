@@ -72,10 +72,13 @@ Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现�
 | `a - b` | `a.minus(b)` |
 | `a * b` | `a.times(b)` |
 | `a / b` | `a.div(b)` |
-| `a % b` | `a.mod(b)` |
+| `a % b` | `a.rem(b)`, `a.mod(b)` (deprecated) |
 | `a..b ` | `a.rangeTo(b)` |
 
 对于此表中的操作，编译器只是解析成*翻译为*列中的表达式。
+
+Note that the `rem` operator is supported since Kotlin 1.1. Kotlin 1.0 uses the `mod` operator, which is deprecated
+in Kotlin 1.1.
 
 | Expression | Translated to |
 | -----------|-------------- |

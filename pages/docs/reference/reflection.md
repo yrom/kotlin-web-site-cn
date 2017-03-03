@@ -31,6 +31,17 @@ val c = MyClass::class
 请注意，Kotlin 类引用与 Java 类引用不同。要获得 Java 类引用，
 请在 `KClass` 实例上使用 `.java` 属性。
 
+## Bound Class References (since 1.1)
+
+You can get the reference to a class of a specific object with the same `::class` syntax by using the object as a receiver:
+
+``` kotlin
+val widget: Widget = ...
+assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
+```
+
+You obtain the reference to an exact class of an object, for instance `GoodWidget` or `BadWidget`, despite the type of the receiver expression (`Widget`).  
+
 ## 函数引用
 
 当我们有一个命名函数声明如下：
@@ -186,4 +197,41 @@ fun function(factory : () -> Foo) {
 
 ``` kotlin
 function(::Foo)
+```
+
+## Bound Function and Property References (since 1.1)
+
+You can refer to an instance method of a particular object.
+
+``` kotlin 
+val numberRegex = "\\d+".toRegex()
+println(numberRegex.matches("29")) // prints "true"
+ 
+val isNumber = numberRegex::matches
+println(isNumber("29")) // prints "true"
+```
+
+Instead of calling the method `matches` directly we are storing a reference to it.
+Such reference is bound to its receiver.
+It can be called directly (like in the example above) or used whenever an expression of function type is expected:
+
+``` kotlin
+val strings = listOf("abc", "124", "a70")
+println(strings.filter(numberRegex::matches)) // prints "[124]"
+```
+
+Compare the types of bound and the corresponding unbound references.
+Bound callable reference has its receiver "attached" to it, so the type of the receiver is no longer a parameter:
+
+``` kotlin
+val isNumber: (CharSequence) -> Boolean = numberRegex::matches
+
+val matches: (Regex, CharSequence) -> Boolean = Regex::matches
+```
+
+Property reference can be bound as well:
+
+``` kotlin
+val prop = "abc"::length
+println(prop.get())   // prints "3"
 ```

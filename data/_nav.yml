@@ -87,6 +87,8 @@ reference:
           title: 扩展
         - url: /docs/reference/data-classes.html
           title: 数据类
+        - url: /docs/reference/sealed-classes.html
+          title: Sealed Classes
         - url: /docs/reference/generics.html
           title: 泛型
         - url: /docs/reference/nested-classes.html
@@ -109,6 +111,8 @@ reference:
           title: Lambda 表达式
         - url: /docs/reference/inline-functions.html
           title: 内联函数
+        - url: /docs/reference/coroutines.html
+          title: Coroutines
 
     - title: 其他
       description: 各种知识点
@@ -137,6 +141,8 @@ reference:
           title: 反射
         - url: /docs/reference/type-safe-builders.html
           title: 类型安全的构建器
+        - url: /docs/reference/type-aliases.html
+          title: Type Aliases
 
 
 
@@ -147,6 +153,8 @@ reference:
           title: API 参考
         - url: /docs/reference/grammar.html
           title: 语法
+        - url: /docs/reference/compatibility.html
+          title: Compatibility
 
 
     - title: Java 互操作
@@ -160,10 +168,16 @@ reference:
     - title: JavaScript
       description: Kotlin 与 JavaScript 合用
       items:
+       - url: /docs/reference/js-overview.html
+         title: JavaScript Overview
        - url: /docs/reference/dynamic-type.html
          title: 动态类型
        - url: /docs/reference/js-interop.html
-         title: JavaScript 互操作性
+         title: Calling JavaScript from Kotlin
+       - url: /docs/reference/js-to-kotlin-interop.html
+         title: Calling Kotlin from JavaScript
+       - url: /docs/reference/js-modules.html
+         title: JavaScript Modules
        - url: /docs/reference/js-reflection.html
          title: JavaScript 反射
 
@@ -173,12 +187,12 @@ reference:
   #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
         - url: /docs/reference/kotlin-doc.html
           title: 编写 Kotlin 代码文档
+        - url: /docs/reference/using-gradle.html
+          title: 使用 Gradle
         - url: /docs/reference/using-maven.html
           title: 使用 Maven
         - url: /docs/reference/using-ant.html
           title: 使用 Ant
-        - url: /docs/reference/using-gradle.html
-          title: 使用 Gradle
         - url: /docs/reference/kotlin-osgi.html
           title: Kotlin 与 OSGi
 
@@ -218,18 +232,25 @@ tutorials:
       items:
         - url: /docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html
           title: Kotlin 转 JavaScript
+        - url: /docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html
+          title: Getting Started with Gradle
         - url: /docs/tutorials/javascript/getting-started-idea/getting-started-with-intellij-idea.html
-          title: 从 IntelliJ IDEA 开始 Kotlin 与 Javascript 入门
+          title: Getting Started with IntelliJ IDEA
+        - url: /docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html
+          title: Getting Started with Maven
+        - url: /docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html
+          title: Creating a Kotlin JavaScript library with the Command Line Compiler
         - url: /docs/tutorials/javascript/working-with-modules/working-with-modules.html
           title: Kotlin 与 JavaScript 模块使用
-        - url: /docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html
-          title: 用命令行编译器创建 Kotlin JavaScript 库
-        - url: /docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html
-          title: 从 Maven 开始 Kotlin 与 JavaScript 入门
-        - url: /docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html
-          title: 从 Gradle 开始 Kotlin 与 JavaScript 入门
+        - url: /docs/tutorials/javascript/working-with-javascript.html
+          title: Working with JavaScript
 
-    - title: Web 开发
+    - title: Coroutines
+      items:
+        - url: /docs/tutorials/coroutines-basic-jvm.html
+          title: Introduction to Kotlin Coroutines on the JVM
+
+    - title: Web Development
       items:
         - url: /docs/tutorials/httpservlets.html
           title: 用 Http Servlets 创建 web 应用

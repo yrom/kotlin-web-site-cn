@@ -124,7 +124,7 @@ when {
 参见 [*when*{: .keyword } 语法](grammar.html#when)。
 
 
-## For循环
+## For 循环
 
 *for*{: .keyword } 循环可以对任何提供迭代器（iterator）的对象进行遍历，语法如下:
 
@@ -170,7 +170,7 @@ for ((index, value) in array.withIndex()) {
 
 参见[*for*{: .keyword } 语法](grammar.html#for)。
 
-## While循环
+## While 循环
 
 *while*{: .keyword } 和 *do*{: .keyword }..*while*{: .keyword } 照常使用
 

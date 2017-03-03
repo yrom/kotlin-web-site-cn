@@ -41,6 +41,20 @@ Kotlin 同样支持浮点数的常规表示方法:
 
 * 默认 double：`123.5`、`123.5e10`
 * Float 用 `f` 或者 `F` 标记: `123.5f`
+ 
+### Underscores in numeric literals (since 1.1)
+ 
+You can use underscores to make number constants more readable:
+
+``` kotlin
+val oneMillion = 1_000_000
+val creditCardNumber = 1234_5678_9012_3456L
+val socialSecurityNumber = 999_99_9999L
+val hexBytes = 0xFF_EC_DE_5E
+val bytes = 0b11010010_01101001_10010100_10010010
+```
+
+### Representation
 
 ### 表示方式
 
@@ -180,10 +194,10 @@ fun decimalDigitValue(c: Char): Int {
 ``` kotlin
 class Array<T> private constructor() {
     val size: Int
-    fun get(index: Int): T
-    fun set(index: Int, value: T): Unit
+    operator fun get(index: Int): T
+    operator fun set(index: Int, value: T): Unit
 
-    fun iterator(): Iterator<T>
+    operator fun iterator(): Iterator<T>
     // ...
 }
 ```

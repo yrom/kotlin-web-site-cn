@@ -90,6 +90,18 @@ ints.map { it * 2 }
 strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
 ```
 
+### Underscore for unused variables (since 1.1)
+
+If the lambda parameter is unused, you can place an underscore instead of its name:
+
+``` kotlin
+map.forEach { _, value -> println("$value!") }
+```
+
+### Destructuring in Lambdas (since 1.1)
+
+Destructuring in lambdas is described as a part of [destructuring declarations](multi-declarations.html#destructuring-in-lambdas-since-11). 
+
 ## 内联函数
 
 使用[内联函数](inline-functions.html)有时能提高高阶函数的性能。

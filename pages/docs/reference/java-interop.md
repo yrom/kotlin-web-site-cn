@@ -320,17 +320,16 @@ fun render(list: List<*>, to: Appendable) {
 
 ### getClass()
 
-获取一个对象的类型信息，我们可以用 javaClass 这个扩展属性。
+To retrieve the Java class of an object, use the `java` extension property on a [class reference](reflection.html#class-references).
+
+``` kotlin
+val fooClass = foo::class.java
+```
+
+The code above uses a [bound class reference](reflection.html#bound-class-references-since-11), which is supported since Kotlin 1.1. You can also use the `javaClass` extension property.
 
 ``` kotlin
 val fooClass = foo.javaClass
-```
-
-使用 Foo::class.java 而不是 Java 的写法 `Foo.class`。
-
-
-``` kotlin
-val fooClass = Foo::class.java
 ```
 
 ### clone()
@@ -377,8 +376,8 @@ if (Character.isLetter(a)) {
 
 ## Java 反射
 
-Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 `instance.javaClass` 或者
-`ClassName::class.java` 通过 `java.lang.Class` 来进入 Java 反射。
+Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 `instance::class.java`,
+`ClassName::class.java` 或者 `instance.javaClass` 通过 `java.lang.Class` 来进入 Java 反射。
 
 其他支持的情况包括为一个 Kotlin 属性获取一个 Java 的 getter/setter 方法或者幕后字段、为一个 Java 字段获取一个 `KProperty`、为一个 `KFunction` 获取一个 Java 方法或者构造函数，反之亦然。
 

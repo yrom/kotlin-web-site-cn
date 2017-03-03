@@ -64,6 +64,19 @@ EnumClass.values(): Array<EnumClass>
 
 如果指定的名称与类中定义的任何枚举常量均不匹配，`valueOf()` 方法将抛出 `IllegalArgumentException` 异常。
 
+Since Kotlin 1.1, it's possible to access the constants in an enum class in a generic way, using
+the `enumValues<T>()` and `enumValueOf<T>()` functions:
+
+``` kotlin
+enum class RGB { RED, GREEN, BLUE }
+
+inline fun <reified T : Enum<T>> printAllValues() {
+    print(enumValues<T>().joinToString { it.name })
+}
+
+printAllValues<RGB>() // prints RED, GREEN, BLUE
+```
+
 每个枚举常量都具有在枚举类声明中获取其名称和位置的属性：
 
 ``` kotlin
