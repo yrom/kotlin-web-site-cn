@@ -58,7 +58,7 @@ fun demo(x: Any) {
 
 
 这些 _智能转换_ 用于 [*when*{: .keyword }-表达式](control-flow.html#when-表达式)
-和 [*while*{: .keyword }-循环 ](control-flow.html#while循环) 也一样：
+和 [*while*{: .keyword }-循环 ](control-flow.html#while-循环) 也一样：
 
 ``` kotlin
 when (x) {

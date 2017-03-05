@@ -30,7 +30,7 @@ data class User(val name: String, val age: Int)
   * 数据类不能是抽象、开放、密封或者内部的；
   * (before 1.1) Data classes may only implement interfaces.
   
-Since 1.1, data classes may extend other classes (see [Sealed classes](sealed-classes.html#sealed-classes-and-data-classes) for examples).
+Since 1.1, data classes may extend other classes (see [Sealed classes](sealed-classes.html#密封类与数据类) for examples).
 
 在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
 （参见[构造函数](classes.html#构造函数)）。

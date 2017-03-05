@@ -320,7 +320,7 @@ fun render(list: List<*>, to: Appendable) {
 
 ### getClass()
 
-To retrieve the Java class of an object, use the `java` extension property on a [class reference](reflection.html#class-references).
+To retrieve the Java class of an object, use the `java` extension property on a [class reference](reflection.html#类引用).
 
 ``` kotlin
 val fooClass = foo::class.java

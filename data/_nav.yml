@@ -88,7 +88,7 @@ reference:
         - url: /docs/reference/data-classes.html
           title: 数据类
         - url: /docs/reference/sealed-classes.html
-          title: Sealed Classes
+          title: 密封类
         - url: /docs/reference/generics.html
           title: 泛型
         - url: /docs/reference/nested-classes.html

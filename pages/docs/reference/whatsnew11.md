@@ -8,11 +8,11 @@ title: "Kotlin 1.1 的新特性"
 
 ## Table of Contents
 
-* [Coroutines](#coroutines-experimental)
-* [Other language features](#other-language-features)
-* [Standard library](#standard-library)
-* [JVM backend](#jvm-backend)
-* [JavaScript backend](#javascript-backend)
+* [协程](#协程（实验性的）)
+* [其他语言功能](#其他语言功能)
+* [标准库](#标准库)
+* [JVM 后端](#jvm-后端)
+* [JavaScript 后端](#javascript-后端)
 
 ## JavaScript
 
@@ -187,7 +187,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更多详细信息请参阅 the [documentation](sealed-classes.html#relaxed-rules-for-sealed-classes-since-11) or 
+更多详细信息请参阅 the [documentation](sealed-classes.html#密封类的放宽规则（自-11-起）) or 
 [密封类](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md) 及
 [数据类](https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md)的 KEEP。
 

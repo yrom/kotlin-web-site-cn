@@ -2,18 +2,18 @@
 type: doc
 layout: reference
 category: "Classes and Objects"
-title: "Sealed Classes"
+title: "密封类"
 ---
 
-# Sealed Classes
+# 密封类
 
-Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a
-limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values
-for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass
-of a sealed class can have multiple instances which can contain state.
+密封类用来表示受限的类继承结构：当一个值为有限集中的
+类型、而不能有任何其他类型时。在某种意义上，他们是枚举类的扩展：枚举类型的值集合
+也是受限的，但每个枚举常量只存在一个实例，而密封类
+的一个子类可以有可包含状态的多个实例。
 
-To declare a sealed class, you put the `sealed` modifier before the name of the class. A sealed class can have
-subclasses, but all of them must be nested inside the declaration of the sealed class itself.
+要声明一个密封类，需要在类名前面添加 `sealed` 修饰符。虽然密封类也可以
+有子类，但是所有子类声明都必须嵌套在这个密封类声明内部。
 
 ``` kotlin
 sealed class Expr {
@@ -23,32 +23,32 @@ sealed class Expr {
 }
 ```
 
-Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily inside
-the declaration of the sealed class.
+值得注意的是一个密封类的子类的继承者（间接继承）可以在任何地方声明，不一定要在
+这个密封类声明内部。
 
-The key benefit of using sealed classes comes into play when you use them in a [`when` expression](control-flow.html#when-expression). If it's possible
-to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.
+使用密封类的关键好处在于使用 [`when` 表达式](control-flow.html#when-表达式) 的时候，如果能够
+验证语句覆盖了所有情况，就不需要为该语句再添加一个 `else` 子句了。
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {
     is Expr.Const -> expr.number
     is Expr.Sum -> eval(expr.e1) + eval(expr.e2)
     Expr.NotANumber -> Double.NaN
-    // the `else` clause is not required because we've covered all the cases
+    // 不再需要 `else` 子句，因为我们已经覆盖了所有的情况
 }
 ```
 
-## Relaxed Rules for Sealed Classes (since 1.1)
+## 密封类的放宽规则（自 1.1 起）
 
-### Subclasses in the Same File
+### 同一文件中的子类
 
-Since 1.1 you can declare the subclasses of the `sealed` class on the top-level, with only restriction that they should be located in the same file as the parent class. 
+从 1.1 开始，你可以在顶层声明 `sealed` 类的子类，唯一的限制是它们应该和父类在同一个文件中。
 
-### Sealed Classes and Data Classes
+### 密封类与数据类
 
-Data classes can extend other classes, including `sealed` classes, which makes the hierarchy more usable.
+数据类可以扩展其他类，包括 `sealed` 类，这使得继承结构更有用。
 
-With all the newly supported features, you can rewrite the `Expr` class hierarchy in the following way:
+使用所有新支持的功能，你可以通过以下方式重写 `Expr` 类的继承结构：
 
 ``` kotlin
 sealed class Expr
