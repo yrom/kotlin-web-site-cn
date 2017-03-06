@@ -112,7 +112,7 @@ reference:
         - url: /docs/reference/inline-functions.html
           title: 内联函数
         - url: /docs/reference/coroutines.html
-          title: Coroutines
+          title: 协程
 
     - title: 其他
       description: 各种知识点
@@ -142,7 +142,7 @@ reference:
         - url: /docs/reference/type-safe-builders.html
           title: 类型安全的构建器
         - url: /docs/reference/type-aliases.html
-          title: Type Aliases
+          title: 类型别名
 
 
 
@@ -154,30 +154,30 @@ reference:
         - url: /docs/reference/grammar.html
           title: 语法
         - url: /docs/reference/compatibility.html
-          title: Compatibility
+          title: 兼容性
 
 
     - title: Java 互操作
       description: 关于 Kotlin 和 Java 互操作性你需要知道的。
       items:
         - url: /docs/reference/java-interop.html
-          title: Kotlin 调用 Java
+          title: Kotlin 中调用 Java
         - url: /docs/reference/java-to-kotlin-interop.html
-          title: Java 调用 Kotlin
+          title: Java 中调用 Kotlin
 
     - title: JavaScript
       description: Kotlin 与 JavaScript 合用
       items:
        - url: /docs/reference/js-overview.html
-         title: JavaScript Overview
+         title: JavaScript 概述
        - url: /docs/reference/dynamic-type.html
          title: 动态类型
        - url: /docs/reference/js-interop.html
-         title: Calling JavaScript from Kotlin
+         title: Kotlin 中调用 JavaScript
        - url: /docs/reference/js-to-kotlin-interop.html
-         title: Calling Kotlin from JavaScript
+         title: JavaScript 中调用 Kotlin
        - url: /docs/reference/js-modules.html
-         title: JavaScript Modules
+         title: JavaScript 模块
        - url: /docs/reference/js-reflection.html
          title: JavaScript 反射
 
@@ -196,7 +196,7 @@ reference:
         - url: /docs/reference/kotlin-osgi.html
           title: Kotlin 与 OSGi
         - url: /docs/reference/compiler-plugins.html
-          title: Compiler plugins
+          title: 编译器插件
 
     - title: 常见问题
       description: 你想到的问题可能会在这里得到解答。
@@ -235,24 +235,24 @@ tutorials:
         - url: /docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html
           title: Kotlin 转 JavaScript
         - url: /docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html
-          title: Getting Started with Gradle
+          title: 以 Gradle 入门
         - url: /docs/tutorials/javascript/getting-started-idea/getting-started-with-intellij-idea.html
-          title: Getting Started with IntelliJ IDEA
+          title: 以 IntelliJ IDEA 入门
         - url: /docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html
-          title: Getting Started with Maven
+          title: 以 Maven 入门
         - url: /docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html
-          title: Creating a Kotlin JavaScript library with the Command Line Compiler
+          title: 使用命令行编译器创建 Kotlin JavaScript 库
         - url: /docs/tutorials/javascript/working-with-modules/working-with-modules.html
           title: Kotlin 与 JavaScript 模块使用
         - url: /docs/tutorials/javascript/working-with-javascript.html
-          title: Working with JavaScript
+          title: 与 JavaScript 合用
 
-    - title: Coroutines
+    - title: 协程
       items:
         - url: /docs/tutorials/coroutines-basic-jvm.html
-          title: Introduction to Kotlin Coroutines on the JVM
+          title: JVM 平台的 Kotlin 协程简介
 
-    - title: Web Development
+    - title: Web 开发
       items:
         - url: /docs/tutorials/httpservlets.html
           title: 用 Http Servlets 创建 web 应用
@@ -265,7 +265,7 @@ tutorials:
           title: Android 开发入门
         - url: /docs/tutorials/android-plugin.html
           title: Kotlin Android 扩展
-    - title: Tools
+    - title: 工具
       items:
         - url: /docs/tutorials/kotlin-and-ci.html
           title: TeamCity 配置 Kotlin

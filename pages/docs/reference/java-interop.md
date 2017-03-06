@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Interop"
-title: "Kotlin 调用 Java"
+title: "Kotlin 中调用 Java"
 ---
 
 # 在 Kotlin 中调用 Java 代码

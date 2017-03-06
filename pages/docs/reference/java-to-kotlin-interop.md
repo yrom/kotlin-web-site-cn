@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Interop"
-title: "Java 调用 Kotlin"
+title: "Java 中调用 Kotlin"
 ---
 
-# Java 调用 Kotlin
+# Java 中调用 Kotlin
 
 Java 可以轻松调用 Kotlin 代码。
 
