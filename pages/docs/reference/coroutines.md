@@ -14,7 +14,7 @@ title: "协程"
 
 协程通过将复杂性放入库来简化异步编程。程序的逻辑可以在协程中*顺序*地表达，而底层库会为我们解决其异步性。该库可以将用户代码的相关部分包装为回调、订阅相关事件、在不同线程（甚至不同机器！）上调度执行，而代码则保持如同顺序执行一样简单。
 
-许多在其他语言中可用的异步机制可以使用 Kotlin 协程实现为库。这包括源于 C# 和 ECMAScript 的 [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions)、源于 Go 的 [管道](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) 和 [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) 以及源于 C# 和 Python [生成器/`yield`](##generators-api-in-kotlincoroutines)。关于提供这些结构的库请参见其[下文](http://localhost:5000/docs/reference/coroutines.html#standard-apis)描述。
+许多在其他语言中可用的异步机制可以使用 Kotlin 协程实现为库。这包括源于 C# 和 ECMAScript 的 [`async`/`await`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions)、源于 Go 的 [管道](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channels) 和 [`select`](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#select-expression) 以及源于 C# 和 Python [生成器/`yield`](#kotlincoroutines-中的生成器-api)。关于提供这些结构的库请参见其[下文](coroutines.html#标准-api)描述。
 
 ## 阻塞 vs 挂起
 
@@ -34,7 +34,7 @@ suspend fun doSomething(foo: Foo): Bar {
 }
 ```
 
-这样的函数称为*挂起函数*，因为调用它们可能挂起协程（如果相关调用的结果已经可用，库可以决定继续进行而不挂起）。挂起函数能够以与普通函数相同的方式获取参数和返回值，但它们只能从协程和其他挂起函数中调用。事实上，要启动协程，必须至少有一个挂起函数，它通常是匿名的（即它是一个挂起 lambda 表达式）。让我们来看一个例子，一个简化的 `async()` 函数（源自 [`kotlinx.coroutines`](#generators-api-in-kotlincoroutines) 库）：
+这样的函数称为*挂起函数*，因为调用它们可能挂起协程（如果相关调用的结果已经可用，库可以决定继续进行而不挂起）。挂起函数能够以与普通函数相同的方式获取参数和返回值，但它们只能从协程和其他挂起函数中调用。事实上，要启动协程，必须至少有一个挂起函数，它通常是匿名的（即它是一个挂起 lambda 表达式）。让我们来看一个例子，一个简化的 `async()` 函数（源自 [`kotlinx.coroutines`](#kotlincoroutines-中的生成器-api) 库）：
     
 ``` kotlin
 fun <T> async(block: suspend () -> T)
@@ -87,7 +87,7 @@ class Derived: Base {
 
 为了实现这一点，可以使用 [`@RestrictsSuspension`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html) 注解。当接收者类/接口 `R` 用它标注时，所有挂起扩展都需要委托给 `R` 的成员或其它委托给它的扩展。由于扩展不能无限相互委托（程序不会终止），这保证所有挂起都通过调用 `R` 的成员发生，库的作者就可以完全控制了。
 
-这在*少数*情况是需要的，当每次挂起在库中以特殊方式处理时。例如，当通过 [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) 函数实现[下文](#high-level-api-in-kotlincoroutines)所述的生成器时，我们需要确保在协程中的任何挂起调用最终调用 `yield()` 或 `yieldAll()` 而不是任何其他函数。这就是为什么 [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) 用 `@RestrictsSuspension` 注解：
+这在*少数*情况是需要的，当每次挂起在库中以特殊方式处理时。例如，当通过 [`buildSequence()`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html) 函数实现[下文](#kotlincoroutines-中的生成器-api)所述的生成器时，我们需要确保在协程中的任何挂起调用最终调用 `yield()` 或 `yieldAll()` 而不是任何其他函数。这就是为什么 [`SequenceBuilder`](/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html) 用 `@RestrictsSuspension` 注解：
 
 ``` kotlin
 @RestrictsSuspension
