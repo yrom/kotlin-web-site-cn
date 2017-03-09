@@ -81,7 +81,31 @@ Bruce Eckel 在[《Java 是否需要受检的异常？》（Does Java need Check
 * [《Java 的受检异常是一个错误》（Java's checked exceptions were a mistake）](http://radio-weblogs.com/0122027/stories/2003/04/01/JavasCheckedExceptionsWereAMistake.html)（Rod Waldhoff）
 * [《受检异常的烦恼》（The Trouble with Checked Exceptions）](http://www.artima.com/intv/handcuffs.html)（Anders Hejlsberg）
 
+## The Nothing type
+
+`throw` is an expression in Kotlin, so you can use it, for example, as part of an Elvis expression:
+
+``` kotlin
+val s = person.name ?: throw IllegalArgumentException("Name required")
+```
+
+The type of the `throw` expression is the special type `Nothing`.
+The type has no values and is used to mark code locations that can never be reached.
+In your own code, you can use `Nothing` to mark a function that never returns:
+
+``` kotlin
+fun fail(message: String): Nothing {
+    throw IllegalArgumentException(message)
+}
+```
+
+When you call this function, the compiler will know that the execution doesn't continue beyond the call:
+
+``` kotlin
+val s = person.name ?: fail("Name required")
+println(s)     // 's' is known to be initialized at this point
+```
+
 ## Java 互操作性
 
 与 Java 互操作性相关的信息，请参见 [Java 互操作性章节](java-interop.html)中的异常部分。
-

@@ -7,13 +7,21 @@ title: "返回和跳转"
 
 # 返回和跳转
 
-Kotlin 有三种结构化跳转操作符
+Kotlin 有三种结构化跳转表达式：
 
 * *return*{: .keyword }。默认从最直接包围它的函数或者[匿名函数](lambdas.html#匿名函数)返回。
 * *break*{: .keyword }。终止最直接包围它的循环。
 * *continue*{: .keyword }。继续下一次最直接包围它的循环。
 
-## Break和Continue标签
+All of these expressions can be used as part of larger expressions:
+
+``` kotlin
+val s = person.name ?: return
+```
+
+The type of these expressions is the [Nothing type](exceptions.html#the-nothing-type).
+
+## Break 和 Continue 标签
 
 在 Kotlin 中任何表达式都可以用标签（*label*{: .keyword }）来标记。
 标签的格式为标识符后跟 `@` 符号，例如：`abc@`、`fooBar@`都是有效的标签（参见[语法](grammar.html#labelReference)）。

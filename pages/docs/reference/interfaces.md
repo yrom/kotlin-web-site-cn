@@ -81,10 +81,17 @@ class D : A, B {
         super<A>.foo()
         super<B>.foo()
     }
+
+    override fun bar() {
+        super<B>.bar()
+    }
 }
 ```
 
 上例中，接口 *A* 和 *B* 都定义了方法 *foo()* 和 *bar()*。 两者都实现了 *foo()*, 但是只有 *B* 实现了 *bar()* (*bar()* 在 *A* 中没有标记为抽象，
 因为没有方法体时默认为抽象）。因为 *C* 是一个实现了 *A* 的具体类，所以必须要重写 *bar()* 并
-实现这个抽象方法。*D* 可以不用重写 *bar()*，因为它实现了 *A* 和 *B*，因而可以自动继承 *B* 中 *bar()* 的实现，
-但是两个接口都定义了方法 *foo()*，为了告诉编译器 *D* 会继承谁的方法，必须在 *D* 中重写 *foo()*。
+实现这个抽象方法。
+
+However, if we derive *D* from *A* and *B*, we need to implement all the methods which we have
+inherited from multiple interfaces, and to specify how exactly *D* should implement them. This rule applies
+both to methods for which we've inherited a single implementation (*bar()*) and multiple implementations (*foo()*).

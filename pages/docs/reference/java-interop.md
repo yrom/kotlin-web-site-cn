@@ -151,15 +151,31 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住[平台类型](#
 | `java.lang.Enum`         | `kotlin.Enum!`    |
 | `java.lang.Annotation`   | `kotlin.Annotation!`    |
 | `java.lang.Deprecated`   | `kotlin.Deprecated!`    |
-| `java.lang.Void`         | `kotlin.Nothing!`    |
 | `java.lang.CharSequence` | `kotlin.CharSequence!`   |
 | `java.lang.String`       | `kotlin.String!`   |
 | `java.lang.Number`       | `kotlin.Number!`     |
 | `java.lang.Throwable`    | `kotlin.Throwable!`    |
 {:.zebra}
 
+Java's boxed primitive types are mapped to nullable Kotlin types:
+
+| **Java type**       | **Kotlin type**  |
+|---------------------|------------------|
+| `java.lang.Byte`    | `kotlin.Byte?`   |
+| `java.lang.Short`   | `kotlin.Short?`  |
+| `java.lang.Integer` | `kotlin.Int?`    |
+| `java.lang.Long`    | `kotlin.Long?`   |
+| `java.lang.Char`    | `kotlin.Char?`   |
+| `java.lang.Float`   | `kotlin.Float?`  |
+| `java.lang.Double`  | `kotlin.Double?  |
+| `java.lang.Boolean` | `kotlin.Boolean?` |
+{:.zebra}
+
+Note that a boxed primitive type used as a type parameter is mapped to a platform type:
+for example, `List<java.lang.Integer>` becomes a `List<Int!>` in Kotlin.
+
 集合类型在 Kotlin 中可以是只读的或可变的，因此 Java 集合类型作如下映射：
-（下表中的所有 Kotlin 类型都驻留在 `kotlin` 包中）
+（下表中的所有 Kotlin 类型都驻留在 `kotlin.collections`包中）:
 
 | **Java 类型** | **Kotlin 只读类型**  | **Kotlin 可变类型** | **加载的平台类型** |
 |---------------|------------------|----|----|

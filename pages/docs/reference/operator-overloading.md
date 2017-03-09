@@ -38,18 +38,14 @@ Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现�
 | `a++` | `a.inc()` + 见下文 |
 | `a--` | `a.dec()` + 见下文 |
 
-
-这些操作应该改变它们的接收者并且（可选地）返回一个值。
-
-> **`inc()/dec()` 不应该改变接收者对象**.<br>
-> “改变接收者”我们的指的是 _该接收者变量值_ 而不是接收者对象指向。
-{:.note}
+The `inc()` and `dec()` functions must return a value, which will be assigned to the variable on which the
+`++` or `--` operation was used. They shouldn't mutate the object on which the `inc` or `dec` was invoked.
 
 编译器执行以下步骤来解析*后缀*形式的操作符，例如 `a++`：
 
 * 确定 `a` 的类型，令其为 `T`。
 * 查找一个适用于类型为 `T` 的接收者的、带有 `operator` 修饰符的无参数函数 `inc()`。
-* 如果该函数返回类型 `R`，那么 `R` 必须是 `T` 的子类型。
+* Checks that the return type of the function is a subtype of `T`.
 
 计算表达式的步骤是：
 
@@ -88,7 +84,7 @@ in Kotlin 1.1.
 对于 `in` 和 `!in`，过程是相同的，但是参数的顺序是相反的。
 {:#in}
 
-| 符号 | 翻译为 |
+| 表达式 | 翻译为 |
 | -------|-------------- |
 | `a[i]`  | `a.get(i)` |
 | `a[i, j]`  | `a.get(i, j)` |
@@ -99,7 +95,7 @@ in Kotlin 1.1.
 
 方括号转换为调用带有适当数量参数的 `get` 和 `set`。
 
-| 符号 | 翻译为 |
+| 表达式 | 翻译为 |
 |--------|---------------|
 | `a()`  | `a.invoke()` |
 | `a(i)`  | `a.invoke(i)` |
@@ -135,9 +131,10 @@ in Kotlin 1.1.
 
 *注意*：`===` 和 `!==`（同一性检查）不可重载，因此不存在对他们的约定
 
-这个 `==` 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 `null` 值，而 `null == null` 是 `true`。
+这个 `==` 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 `null` 值。
+`null == null` is always true, and `x == null` for a non-null `x` is always false and won't invoke `x.equals()`.
 
-| 符号 | 翻译为 |
+| 表达式 | 翻译为 |
 |--------|---------------|
 | `a > b`  | `a.compareTo(b) > 0` |
 | `a < b`  | `a.compareTo(b) < 0` |

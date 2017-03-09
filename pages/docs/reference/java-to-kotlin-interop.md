@@ -11,7 +11,30 @@ Java 可以轻松调用 Kotlin 代码。
 
 ## 属性
 
-属性的 getter 会转换成 *get*-方法、setter 会转换成 *set*-方法。
+A Kotlin property is compiled to the following Java elements:
+
+ * A getter method, with the name calculated by prepending the `get` suffix;
+ * A setter method, with the name calculated by prepending the `set` suffix (only for `var` properties);
+ * A private field, with the same name as the property name (only for properties with backing fields).
+
+For example, `var firstName: String` gets compiled to the following Java declarations:
+
+``` java
+private String firstName;
+
+public String getFirstName() {
+    return firstName;
+}
+
+public void setFirstName(String firstName) {
+    this.firstName = firstName;
+}
+```
+
+If the name of the property starts with `is`, a different name mapping rule is used: the name of the getter will be
+the same as the property name, and the name of the setter will be obtained by replacing `is` with `set`.
+For example, for a property `isOpen`, the getter will be called `isOpen()` and the setter will be called `setOpen()`.
+This rule applies for properties of any type, not just `Boolean`.
 
 ## 包级函数
 
@@ -224,6 +247,19 @@ Obj.INSTANCE.foo(); // 也没问题
 `@JvmStatic`　注解也可以应用于对象或伴生对象的属性，
 使其 getter 和 setter 方法在该对象或包含该伴生对象的类中是静态成员。
 
+## Visibility
+
+The Kotlin visibilities are mapped to Java in the following way:
+
+* `private` members are compiled to `private` members;
+* `private` top-level declarations are compiled to package-local declarations;
+* `protected` remains `protected` (note that Java allows accessing protected members from other classes in the same package
+and Kotlin doesn't, so Java classes will have broader access to the code);
+* `internal` declarations become `public` in Java. Members of `internal` classes go through name mangling, to make
+it harder to accidentally use them from Java and to allow overloading for members with the same signature that don't see
+each other according to Kotlin rules;
+* `public` remains `public`.
+
 ## KClass
 
 有时你需要调用有 `KClass` 类型参数的 Kotlin 方法。
@@ -400,7 +436,6 @@ fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 
 另一方面，如果我们根本不需要默认的通配符转换，我们可以使用`@JvmSuppressWildcards`
 
-
 ``` kotlin
 fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 // 会翻译成
@@ -412,8 +447,8 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 
 ### Nothing 类型翻译
  
-`Nothing` 是一种特殊的类型，因为它在 Java 中没有自然对应。事实上，每个 Java 的引用类型，包括
-`java.lang.Void` 都可以接受 `null` 值，但是 Nothing 不行。因此，这种类型不能在Java世界中
+The type [`Nothing`](exceptions.html#the-nothing-type) is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
+`java.lang.Void` 都可以接受 `null` 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中
 准确表示。这就是为什么在使用 `Nothing` 参数的地方 Kotlin 生成一个原始类型：
 
 ``` kotlin
