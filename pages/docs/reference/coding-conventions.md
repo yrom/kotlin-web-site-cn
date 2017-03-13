@@ -40,6 +40,43 @@ list.filter { it > 10 }.map { element -> element * 2 }
 在非嵌套的短lambda表达式中，最好使用约定俗成的默认参数 `it` 来替代显式声明参数名
 。在嵌套的有参数的lambda表达式中，参数应该总是显式声明。
 
+## Class header formatting
+
+Classes with a few arguments can be written in a single line:
+
+```kotlin 
+class Person(id: Int, name: String)
+```
+
+Classes with longer headers should be formatted the way, that each primary constructor argument is in a separate line with indentation.
+Also, the closing parenthesis should be on a new line. If we use inheritance, then the superclass constructor call or list of implemented interfaces
+should be located on the same line as the parenthesis:
+
+```kotlin 
+class Person(
+    id: Int, 
+    name: String,
+    surname: String
+) : Human(id, name) {
+    // ...
+}
+```
+
+For multiple interfaces, the superclass constructor call should be located first and then each interface should be located in a different line:
+
+```kotlin 
+class Person(
+    id: Int, 
+    name: String,
+    surname: String
+) : Human(id, name),
+    KotlinMaker {
+    // ...
+}
+```
+
+Constructor parameters can use either the regular indent or the continuation indent (double the regular indent).
+
 ## Unit
 
 如果函数返回 Unit 类型，该返回类型应该省略：

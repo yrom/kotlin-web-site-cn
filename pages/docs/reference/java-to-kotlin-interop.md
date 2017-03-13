@@ -38,8 +38,8 @@ This rule applies for properties of any type, not just `Boolean`.
 
 ## 包级函数
 
-在 `org.foo.bar` 包内的 `example.kt` 文件中声明的所有的函数和属性，都会被放到一个
-名为 `org.foo.bar.ExampleKt` 的java类中。
+在 `org.foo.bar` 包内的 `example.kt` 文件中声明的所有的函数和属性，including extension functions,
+are compiled into static methods of a Java class named `org.foo.bar.ExampleKt`.
 
 ``` kotlin
 // example.kt
@@ -206,8 +206,9 @@ int v = C.VERSION;
 
 ## 静态方法
 
-如上所述，Kotlin 会为包级函数生成静态方法。
+如上所述，Kotlin represents package-level functions as static methods.
 Kotlin 还可以为命名对象或伴生对象中定义的函数生成静态方法，如果你将这些函数标注为 `@JvmStatic` 的话。
+If you use this annotation, the compiler will generate both a static method in the enclosing class of the object and an instance method in the object itself.
 例如：
 
 ``` kotlin
@@ -224,6 +225,8 @@ class C {
 ``` java
 C.foo(); // 没问题
 C.bar(); // 错误：不是一个静态方法
+C.Companion.foo(); // instance method remains
+C.Companion.bar(); // the only way it works
 ```
 
 对于命名对象也同样：

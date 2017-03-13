@@ -56,14 +56,14 @@ for (i in 1 until 10) {   // i in [1, 10) 排除了 10
 其主要操作是 `contains`，通常以 *in*{: .keyword }/*!in*{: .keyword } 操作符形式使用。
 
 整型数列（`IntProgression`、 `LongProgression`、 `CharProgression`）表示等差数列。
-数列由 `first` 元素、`last` 元素和非零的 `increment` 定义。
-第一个元素是 `first`，后续元素是前一个元素加上 `increment`。 `last` 元素总会被迭代命中，除非该数列是空的。
+数列由 `first` 元素、`last` 元素和非零的 `step` 定义。
+第一个元素是 `first`，后续元素是前一个元素加上 `step`。 `last` 元素总会被迭代命中，除非该数列是空的。
 
 数列是 `Iterable<N>` 的子类型，其中 `N` 分别为 `Int`、 `Long` 或者 `Char`，所以它可用于 *for*{: .keyword }-循环以及像 `map`、`filter` 等函数中。
 对 `Progression` 迭代相当于 Java/JavaScript 的基于索引的 *for*{: .keyword }-循环：
 
 ``` java
-for (int i = first; i != last; i += increment) {
+for (int i = first; i != last; i += step) {
   // ...
 }
 ```
@@ -75,10 +75,10 @@ for (int i = first; i != last; i += increment) {
 数列由在其伴生对象中定义的 `fromClosedRange` 函数构造：
 
 ``` kotlin
-    IntProgression.fromClosedRange(start, end, increment)
+IntProgression.fromClosedRange(start, end, step)
 ```
 
-数列的 `last` 元素这样计算：对于正的 `increment` 找到不大于 `end` 值的最大值、或者对于负的 `increment` 找到不小于 `end` 值的最小值，使得 `(last - first) % increment == 0`。
+数列的 `last` 元素这样计算：对于正的 `step` 找到不大于 `end` 值的最大值、或者对于负的 `step` 找到不小于 `end` 值的最小值，使得 `(last - first) % increment == 0`。
 
 
 
@@ -112,11 +112,11 @@ class Int {
 
 ``` kotlin
 fun Long.downTo(other: Int): LongProgression {
-    return LongProgression.fromClosedRange(this, other, -1.0)
+    return LongProgression.fromClosedRange(this, other.toLong(), -1L)
 }
 
 fun Byte.downTo(other: Int): IntProgression {
-    return IntProgression.fromClosedRange(this, other, -1)
+    return IntProgression.fromClosedRange(this.toInt(), other, -1)
 }
 ```
 
@@ -126,7 +126,7 @@ fun Byte.downTo(other: Int): IntProgression {
 
 ``` kotlin
 fun IntProgression.reversed(): IntProgression {
-    return IntProgression.fromClosedRange(last, first, -increment)
+    return IntProgression.fromClosedRange(last, first, -step)
 }
 ```
 
@@ -139,19 +139,19 @@ fun IntProgression.reversed(): IntProgression {
 ``` kotlin
 fun IntProgression.step(step: Int): IntProgression {
     if (step <= 0) throw IllegalArgumentException("Step must be positive, was: $step")
-    return IntProgression.fromClosedRange(first, last, if (increment > 0) step else -step)
+    return IntProgression.fromClosedRange(first, last, if (this.step > 0) step else -step)
 }
 
 fun CharProgression.step(step: Int): CharProgression {
     if (step <= 0) throw IllegalArgumentException("Step must be positive, was: $step")
-    return CharProgression.fromClosedRange(first, last, step)
+    return CharProgression.fromClosedRange(first, last, if (this.step > 0) step else -step)
 }
 ```
 
-请注意，返回数列的 `last` 值可能与原始数列的 `last` 值不同，以便保持不变式 `(last - first) % increment == 0` 成立。这里是一个例子：
+请注意，返回数列的 `last` 值可能与原始数列的 `last` 值不同，以便保持不变式 `(last - first) % step == 0` 成立。这里是一个例子：
 
 ``` kotlin
-    (1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
-    (1..12 step 3).last == 10  // 值为 [1, 4, 7, 10] 的数列
-    (1..12 step 4).last == 9   // 值为 [1, 5, 9] 的数列
+(1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
+(1..12 step 3).last == 10  // 值为 [1, 4, 7, 10] 的数列
+(1..12 step 4).last == 9   // 值为 [1, 5, 9] 的数列
 ```
