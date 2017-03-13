@@ -1,25 +1,25 @@
 ---
 type: doc
 layout: reference
-title: "Compiler Plugins"
+title: "编译器插件"
 ---
 
-# Compiler Plugins
+# 编译器插件
 
-## All-open compiler plugin
+## 全开放编译器插件
 
-Kotlin has classes and their members `final` by default, which makes it inconvenient to use frameworks and libraries such as Spring AOP that require classes to be `open`. 
-The `all-open` compiler plugin adapts Kotlin to the requirements of those frameworks and makes classes annotated with a specific annotation and their members open without the explicit `open` keyword.
-For instance, when you use Spring, you don't need all the classes to be open, but only classes annotated with specific annotations like
-`@Configuration` or `@Service`.
-The `all-open` plugin allows to specify these annotations.
+Kotlin 有类及其默认为 `final` 的成员，这使得像 Spring AOP 这样需要类为 `open` 的框架和库用起来很不方便。
+这个 `all-open` 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 `open` 关键字打开。
+例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如
+`@Configuration` 或 `@Service`。
+`all-open` 插件允许指定这些注解。
 
-We provide all-open plugin support both for Gradle and Maven, as well as the IDE integration.
-For Spring you can use the `kotlin-spring` compiler plugin ([see below](compiler-plugins.html#kotlin-spring-compiler-plugin)).
+我们为全开放插件提供 Gradle 和 Maven 以及 IDE 集成的支持。
+对于 Spring，你可以使用 `kotlin-spring` 编译器插件（[见下文](compiler-plugins.html#kotlin-spring-编译器插件)）。
 
-### How to use all-open plugin
+### 如何使用全开放插件
 
-You add the plugin in `build.gradle` and specify the annotations that will make the class open: 
+在 `build.gradle` 中添加插件，并指定会打开类的注解：
 
 ``` groovy
 buildscript {
@@ -35,21 +35,21 @@ allOpen {
 }
 ```
 
-If the class (or any of its superclasses) is annotated with `com.my.Annotation`, the class itself and all its members will become open. 
+如果类（或任何其超类）标有 `com.my.Annotation` 注解，类本身及其所有成员会变为开放。
 
-It also works with meta-annotations:
+它也适用于元注解：
 
 ``` kotlin
 @com.my.Annotation
 annotation class MyFrameworkAnnotation
 
 @MyFrameworkAnnotation
-class MyClass // will be all-open
+class MyClass // 将会全开放
 ```
 
-`MyFrameworkAnnotation` is also the annotation that makes the class open, because it's annotated with `com.my.Annotation`. 
+`MyFrameworkAnnotation` 也是使类打开的注解，因为它标有 `com.my.Annotation` 注解。
 
-Here's how to use all-open with Maven:
+下面是全开放与 Maven 一起使用的用法：
 
 ``` xml
 <plugin>
@@ -59,12 +59,12 @@ Here's how to use all-open with Maven:
 
     <configuration>
         <compilerPlugins>
-            <!-- Or "spring" for the Spring support -->
+            <!-- 或者 "spring" 对于 Spring 支持 -->
             <plugin>all-open</plugin>
         </compilerPlugins>
 
         <pluginOptions>
-            <!-- Each annotation is placed on its own line -->
+            <!-- 每个注解都放在其自己的行上 -->
             <option>all-open:annotation=com.my.Annotation</option>
             <option>all-open:annotation=com.their.AnotherAnnotation</option>
         </pluginOptions>
@@ -81,9 +81,9 @@ Here's how to use all-open with Maven:
 ```
 
 
-### Kotlin-spring compiler plugin
+### Kotlin-spring 编译器插件
  
-You don't need to specify Spring annotations by hand, you can use the `kotlin-spring` plugin, which automatically configures the all-open plugin according to the requirements of Spring. 
+你无需手动指定 Spring 注解，你可以使用 `kotlin-spring` 插件，它根据 Spring 的要求自动配置全开放插件。
 
 ``` groovy
 buildscript {
@@ -95,31 +95,31 @@ buildscript {
 apply plugin: "kotlin-spring"
 ```
 
-The Maven example is similar to the one above.
+其 Maven 示例与上面的类似。
 
-The plugin specifies the following annotations: 
-[`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html), 
-[`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html), 
-[`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html), 
-[`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html).
-Thanks to meta-annotations support classes annotated with `@Configuration`, `@Controller`, `@RestController`, `@Service` or `@Repository` are automatically opened since these annotations are meta-annotated with `@Component`.
+该插件指定了以下注解：
+[`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html)、 
+[`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html)、 
+[`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html)、 
+[`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html)。
+由于元注解的支持，标注有 `@Configuration`、 `@Controller`、 `@RestController`、 `@Service` 或者 `@Repository` 的类会自动打开，因为这些注解标注有元注解 `@Component`。
  
-Of course, you can use both `kotlin-allopen` and `kotlin-spring` in the same project.
-Note that if you use [start.spring.io](http://start.spring.io/#!language=kotlin) the `kotlin-spring` plugin will be enabled by default.
+当然，你可以在同一个项目中同时使用 `kotlin-allopen` 和 `kotlin-spring`。
+请注意，如果你使用 [start.spring.io](http://start.spring.io/#!language=kotlin)，`kotlin-spring` 插件将默认启用。
 
 
-## No-arg compiler plugin
+## 无参编译器插件
 
-The no-arg compiler plugin generates an additional zero-argument constructor for classes with a specific annotation. 
-The generated constructor is synthetic so it can’t be directly called from Java or Kotlin, but it can be called using reflection. 
-This allows the Java Persistence API (JPA) to instantiate the `data` class although it doesn't have the no-arg constructor from Kotlin or Java point of view (see the description of `kotlin-jpa` plugin [below](compiler-plugins.html#kotlin-jpa-compiler-plugin)).
+无参（no-arg）编译器插件为具有特定注解的类生成一个额外的零参数构造函数。
+这个生成的构造函数是合成的，因此不能从 Java 或 Kotlin 中直接调用，但可以使用反射调用。
+这允许 Java Persistence API（JPA）实例化 `data` 类，虽然它从 Kotlin 或 Java 的角度看没有无参构造函数（参见[下面](compiler-plugins.html#kotlin-jpa-编译器插件)的 `kotlin-jpa` 插件的描述）。
  
-### How to use no-arg plugin
+### 如何使用无参插件
 
-The usage is pretty similar to all-open.
-You add the plugin and specify the list of annotations that must lead to generating a no-arg constructor for the annotated classes.
+其用法非常类似于全开放插件。
+添加该插件并指定注解的列表，这些注解一定会导致被标注的类生成无参构造函数。
 
-How to use no-arg in Gradle:
+在 Gradle 中使用无参插件方法：
 
 ``` groovy
 buildscript {
@@ -135,7 +135,7 @@ noArg {
 }
 ```
 
-How to use no-arg in Maven:
+在 Maven 中使用无参插件方法：
 
 ``` xml
 <plugin>
@@ -145,7 +145,7 @@ How to use no-arg in Maven:
 
     <configuration>
         <compilerPlugins>
-            <!-- Or "jpa" for JPA support -->
+            <!-- 或者 "jpa" 对于 JPA 支持 -->
             <plugin>no-arg</plugin>
         </compilerPlugins>
 
@@ -164,13 +164,13 @@ How to use no-arg in Maven:
 </plugin>
 ```
 
-### Kotlin-jpa compiler plugin
+### Kotlin-jpa 编译器插件
 
-The plugin specifies 
+该插件指定
 [`@Entity`](http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html) 
-and [`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html) 
-annotations as markers that no-arg constructor should be generated for a class.
-That's how you add the plugin in Gradle: 
+和 [`@Embeddable`](http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html) 
+注解作为应该为一个类生成无参构造函数的标记。
+这就是如何在 Gradle 中添加该插件的方法：
 
 ``` groovy
 buildscript {
@@ -182,4 +182,4 @@ buildscript {
 apply plugin: "kotlin-jpa"
 ```
 
-The Maven example is similar to the one above.
+其 Maven 示例与上面的类似。
