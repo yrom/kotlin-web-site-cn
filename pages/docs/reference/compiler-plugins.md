@@ -19,7 +19,7 @@ Kotlin 有类及其默认为 `final` 的成员，这使得像 Spring AOP 这样�
 
 ### 如何使用全开放插件
 
-在 `build.gradle` 中添加插件，并指定会打开类的注解：
+Add the plugin in `build.gradle`: 
 
 ``` groovy
 buildscript {
@@ -29,7 +29,18 @@ buildscript {
 }
 
 apply plugin: "kotlin-allopen"
+```
+Or, if you use the Gradle plugins DSL, add it to the `plugins` block:
 
+```groovy
+plugins {
+  id "org.jetbrains.kotlin.plugin.allopen" version "<version to use>"
+}
+```
+
+Then specify the annotations that will make the class open:
+
+```groovy
 allOpen {
     annotation("com.my.Annotation")
 }
@@ -95,6 +106,14 @@ buildscript {
 apply plugin: "kotlin-spring"
 ```
 
+Or using the Gradle plugins DSL:
+
+```groovy
+plugins {
+  id "org.jetbrains.kotlin.plugin.spring" version "<version to use>"
+}
+```
+
 其 Maven 示例与上面的类似。
 
 该插件指定了以下注解：
@@ -129,7 +148,19 @@ buildscript {
 }
 
 apply plugin: "kotlin-noarg"
+```
 
+Or using the Gradle plugins DSL:
+
+```groovy
+plugins {
+  id "org.jetbrains.kotlin.plugin.noarg" version "<version to use>"
+}
+```
+
+Then specify the annotation types:
+
+```groovy
 noArg {
     annotation("com.my.Annotation")
 }
@@ -180,6 +211,14 @@ buildscript {
 }
 
 apply plugin: "kotlin-jpa"
+```
+
+Or using the Gradle plugins DSL:
+
+```groovy
+plugins {
+  id "org.jetbrains.kotlin.plugin.jpa" version "<version to use>"
+}
 ```
 
 其 Maven 示例与上面的类似。
