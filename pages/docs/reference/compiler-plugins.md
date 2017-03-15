@@ -19,7 +19,7 @@ Kotlin 有类及其默认为 `final` 的成员，这使得像 Spring AOP 这样�
 
 ### 如何使用全开放插件
 
-Add the plugin in `build.gradle`: 
+在 `build.gradle` 中添加插件：
 
 ``` groovy
 buildscript {
@@ -30,15 +30,15 @@ buildscript {
 
 apply plugin: "kotlin-allopen"
 ```
-Or, if you use the Gradle plugins DSL, add it to the `plugins` block:
+或者，如果你使用 Gradle 插件 DSL，将其添加到 `plugins` 块：
 
 ```groovy
 plugins {
-  id "org.jetbrains.kotlin.plugin.allopen" version "<version to use>"
+  id "org.jetbrains.kotlin.plugin.allopen" version "＜使用的版本＞"
 }
 ```
 
-Then specify the annotations that will make the class open:
+然后指定会打开该类的注解：
 
 ```groovy
 allOpen {
@@ -106,11 +106,11 @@ buildscript {
 apply plugin: "kotlin-spring"
 ```
 
-Or using the Gradle plugins DSL:
+或者使用 Gradle 插件 DSL：
 
 ```groovy
 plugins {
-  id "org.jetbrains.kotlin.plugin.spring" version "<version to use>"
+  id "org.jetbrains.kotlin.plugin.spring" version "＜使用的版本＞"
 }
 ```
 
@@ -150,15 +150,15 @@ buildscript {
 apply plugin: "kotlin-noarg"
 ```
 
-Or using the Gradle plugins DSL:
+或者使用 Gradle 插件 DSL：
 
 ```groovy
 plugins {
-  id "org.jetbrains.kotlin.plugin.noarg" version "<version to use>"
+  id "org.jetbrains.kotlin.plugin.noarg" version "＜使用的版本＞"
 }
 ```
 
-Then specify the annotation types:
+然后指定注解类型：
 
 ```groovy
 noArg {
@@ -213,11 +213,11 @@ buildscript {
 apply plugin: "kotlin-jpa"
 ```
 
-Or using the Gradle plugins DSL:
+或者使用 Gradle 插件 DSL：
 
 ```groovy
 plugins {
-  id "org.jetbrains.kotlin.plugin.jpa" version "<version to use>"
+  id "org.jetbrains.kotlin.plugin.jpa" version "＜使用的版本＞"
 }
 ```
 
