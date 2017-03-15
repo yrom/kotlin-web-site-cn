@@ -2,16 +2,16 @@
 type: doc
 layout: reference
 category: "Other"
-title: "Type aliases (since 1.1)"
+title: "类型别名（自 1.1 起）"
 ---
 
-## Type aliases
+## 类型别名
 
-Type aliases provide alternative names for existing types.
-If the type name is too long you can introduce a different shorter name and use the new one instead.
+类型别名为现有类型提供替代名称。
+如果类型名称太长，你可以另外引入较短的名称，并使用新的名称替代原类型名。
  
-It's useful to shorten long generic types.
-For instance, it's often tempting to shrink collection types:
+它有助于缩短较长的泛型类型。
+例如，通常缩减集合类型是很有吸引力的：
 
 ``` kotlin
 typealias NodeSet = Set<Network.Node>
@@ -19,7 +19,7 @@ typealias NodeSet = Set<Network.Node>
 typealias FileTable<K> = MutableMap<K, MutableList<File>>
 ```
 
-You can provide different aliases for function types:
+你可以为函数类型提供另外的别名：
 
 ``` kotlin
 typealias MyHandler = (Int, String, Any) -> Unit
@@ -27,7 +27,7 @@ typealias MyHandler = (Int, String, Any) -> Unit
 typealias Predicate<T> = (T) -> Boolean
 ```
 
-You can have new names for inner and nested classes:
+你可以为内部类和嵌套类创建新名称：
 
 ``` kotlin
 class A {
@@ -41,10 +41,10 @@ typealias AInner = A.Inner
 typealias BInner = B.Inner
 ```
 
-Type aliases do not introduce new types. 
-They are equivalent to the corresponding underlying types.
-When you add `typealias Predicate<T>` and use `Predicate<Int>` in your code, the Kotlin compiler always expand it to `(Int) -> Boolean`. 
-Thus you can pass a variable of your type whenever a general function type is required and vice versa:
+类型别名不会引入新类型。
+它们等效于相应的底层类型。
+当你在代码中添加 `typealias Predicate<T>` 并使用 `Predicate<Int>` 时，Kotlin 编译器总是把它扩展为 `(Int) -> Boolean`。
+因此，当你需要泛型函数类型时，你可以传递该类型的变量，反之亦然：
  
 ``` kotlin
 typealias Predicate<T> = (T) -> Boolean
@@ -53,9 +53,9 @@ fun foo(p: Predicate<Int>) = p(42)
 
 fun main(args: Array<String>) {
     val f: (Int) -> Boolean = { it > 0 }
-    println(foo(f)) // prints "true"
+    println(foo(f)) // 输出 "true"
 
     val p: Predicate<Int> = { it > 0 }
-    println(listOf(1, -2).filter(p)) // prints "[1]"
+    println(listOf(1, -2).filter(p)) // 输出 "[1]"
 }
 ```
