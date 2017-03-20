@@ -2,46 +2,46 @@
 type: doc
 layout: reference
 category: "JavaScript"
-title: "Kotlin JavaScript Overview"
+title: "Kotlin JavaScript 概述"
 ---
 
-# Kotlin JavaScript Overview
+# Kotlin JavaScript 概述
 
-Kotlin provides the ability to target JavaScript. It does so by transpiling Kotlin to JavaScript. The current implementation targets ECMAScript 5.1 but there are plans to eventually
- target ECMAScript 2015 also.
+Kotlin 提供了 JavaScript 作为目标平台的能力。它通过将 Kotlin 转换为 JavaScript 来实现。目前的实现目标是 ECMAScript 5.1，但也有
+最终目标为 ECMAScript 2015 的计划。
 
-When you choose the JavaScript target, any Kotlin code that is part of the project as well as the standard library that ships with Kotlin is transpiled to JavaScript.
-However, this excludes the JDK and any JVM or Java framework or library used. Any file that is not Kotlin will be ignored during compilation.
+当你选择 JavaScript 目标时，作为项目一部分的任何 Kotlin 代码以及 Kotlin 附带的标准库都会转换为 JavaScript。
+但是，这不包括使用的 JDK 和任何 JVM 或 Java 框架或库。任何不是 Kotlin 的文件会在编译期间忽略掉。
 
-The Kotlin compiler tries to comply with the following goals:
+Kotlin 编译器努力遵循以下目标：
 
-* Provide output that is optimal in size
-* Provide output that is readable JavaScript
-* Provide interoperability with existing module systems
-* Provide the same functionality in the standard library whether targeting JavaScript or the JVM (to the largest possible degree).
+* 提供最佳大小的输出
+* 提供可读的 JavaScript 输出
+* 提供与现有模块系统的互操作性
+* 在标准库中提供相同的功能，无论是 JavaScript 还是 JVM 目标（尽最大可能程度）。
 
-## How can it be used
+## 如何使用
 
-You may want to compile Kotlin to JavaScript in the following scenarios:
+你可能希望在以下情景中将 Kotlin 编译为 JavaScript：
 
-* Creating Kotlin code that targets client-side JavaScript
+* 创建面向客户端 JavaScript 的 Kotlin 代码
 
-    * **Interacting with DOM elements**. Kotlin provides a series of statically typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements.
+    * **与 DOM 元素交互**。Kotlin 提供了一系列静态类型的接口来与文档对象模型（Document Object Model）交互，允许创建和更新 DOM 元素。
 
-    * **Interacting with graphics such as WebGL**. You can use Kotlin to create graphical elements on a web page using WebGL.
+    * **与图形如 WebGL 交互**。你可以使用 Kotlin 在网页上用 WebGL 创建图形元素。
 
-* Creating Kotlin code that targets server-side JavaScript
+* 创建面向服务器端 JavaScript 的 Kotlin 代码
 
-    * **Working with server-side technology**. You can use Kotlin to interact with server-side JavaScript such as node.js
+    * **使用服务器端技术**。你可以使用 Kotlin 与服务器端 JavaScript（如 node.js）进行交互
 
-Kotlin can be used together with existing third-party libraries and frameworks, such as JQuery or ReactJS. To access third-party frameworks
-with a strongly-typed API, you can convert TypeScript definitions from the [Definitely Typed](http://definitelytyped.org/)
-type definitions repository to Kotlin using the [ts2kt](https://github.com/kotlin/ts2kt) tool. Alternatively, you can use
-the [dynamic type](dynamic-type.html) to access any framework without strong typing.
+Kotlin 可以与现有的第三方库和框架（如 JQuery 或 ReactJS）一起使用。要使用强类型
+API 访问第三方框架，可以使用 [ts2kt](https://github.com/kotlin/ts2kt) 工具将 TypeScript 定义从 [Definitely Typed](http://definitelytyped.org/)
+类型定义仓库转换为 Kotlin。或者，你可以使用
+[动态类型](dynamic-type.html)访问任何框架，而无需强类型。
 
-Kotlin is also compatible with CommonJS, AMD and UMD, [making interaction with different](/docs/tutorials/javascript/working-with-modules/working-with-modules.html) module systems straightforward.
+Kotlin 还兼容 CommonJS、AMD 和 UMD，直截了当[与不同的模块系统交互](/docs/tutorials/javascript/working-with-modules/working-with-modules.html)。
 
 
-## Getting Started with Kotlin to JavaScript
+## Kotlin 转 JavaScript 入门
 
-To find out how to start using Kotlin for JavaScript, please refer to the [tutorials](/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html).
+要了解如何开始使用 JavaScript 平台的 Kotlin，请参考其[教程](/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html)。
