@@ -5,7 +5,7 @@ title: "参考"
 
 # 参考
 
-提供关于 Kotlin 语言的完整参考以及[标准库](/api/latest/jvm/stdlib/index.html)。
+提供关于 Kotlin 语言的完整参考以及[标准库](https://kotlinlang.org/api/latest/jvm/stdlib/index.html)。
 
 
 ### 从哪开始

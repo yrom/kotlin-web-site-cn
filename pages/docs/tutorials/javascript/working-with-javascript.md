@@ -202,7 +202,7 @@ myObject.callAnything()
 The above code compiles. However, it will produce a runtime error if the object is not properly initialised before use or if ```callAnything()``` is not
  defined at runtime.
  
-The standard library defines a function named [`asDynamic()`](/api/latest/jvm/stdlib/kotlin.js/as-dynamic.html) which casts a value to the dynamic type.
+The standard library defines a function named [`asDynamic()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/as-dynamic.html) which casts a value to the dynamic type.
 Given our previous example where we used jQuery to work with DOM elements, we can now combine this with `asDynamic()` to then invoke `dataTable()` on the result:
 
 ```kotlin

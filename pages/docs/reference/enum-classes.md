@@ -84,5 +84,5 @@ val name: String
 val ordinal: Int
 ```
 
-枚举常量还实现了[Comparable](/api/latest/jvm/stdlib/kotlin/-comparable/index.html)接口，
+枚举常量还实现了[Comparable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html)接口，
 其中自然顺序是它们在枚举类中定义的顺序。
