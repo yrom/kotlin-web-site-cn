@@ -2,43 +2,43 @@
 type: doc
 layout: reference
 category: "JavaScript"
-title: "Calling Kotlin from JavaScript"
+title: "JavaScript 中调用 Kotlin"
 ---
 
-# Calling Kotlin from JavaScript
+# JavaScript 中调用 Kotlin
 
-Kotlin compiler generates normal JavaScript classes, functions and properties you can freely use from
-JavaScript code. Nevertheless, there are some subtle things you should remember.
+Kotlin 编译器生成正常的 JavaScript 类，可以在 JavaScript 代码中自由地使用的函数和属性
+。不过，你应该记住一些微妙的事情。
 
-## Isolating declarations in a separate JavaScript object
+## 用独立的 JavaScript 隔离声明
 
-To prevent spoiling the global object, Kotlin creates an object that contains all Kotlin declarations
-from the current module. So if you name your module as `myModule`, all declarations are available to JavaScript
-via `myModule` object. For example:
+为了防止损坏全局对象，Kotlin 创建一个包含当前模块中所有 Kotlin 声明的对象
+。所以如果你把模块命名为 `myModule`，那么所有的声明都可以
+通过 `myModule` 对象在 JavaScript 中可用。例如：
 
 ``` kotlin
 fun foo() = "Hello"
 ```
 
-Can be called from JavaScript like this:
+可以在 JavaScript 中这样调用：
 
 ``` javascript
 alert(myModule.foo());
 ```
 
-This is not applicable when you compile your Kotlin module to JavaScript module (see [JavaScript Modules](js-modules.html) for more information on this).
-In this case there won't be a wrapper object, instead, declarations will be exposed as a JavaScript module of a corresponding kind. For example,
-in case of CommonJS you should write:
+这不适用于当你将 Kotlin 模块编译为 JavaScript 模块时（关于这点的详细信息请参见 [JavaScript 模块](js-modules.html)）。
+在这种情况下，不会有一个包装对象，而是将声明作为相应类型的 JavaScript 模块对外暴露。例如，
+对于 CommonJS 的场景，你应该写：
 
 ``` javascript
 alert(require('myModule').foo());
 ```
 
 
-## Package structure
+## 包结构
 
-Kotlin exposes its package structure to JavaScript, so unless you define your declarations in the root package,
-you have to use fully-qualified names in JavaScript. For example:
+Kotlin 将其包结构暴露给 JavaScript，因此除非你在根包中定义声明，
+否则必须在 JavaScript 中使用完整限定的名称。例如：
 
 ``` kotlin
 package my.qualified.packagename
@@ -46,20 +46,20 @@ package my.qualified.packagename
 fun foo() = "Hello"
 ```
 
-Can be called from JavaScript like this:
+可以在 JavaScript 中这样调用：
 
 ``` javascript
 alert(myModule.my.qualified.packagename.foo());
 ```
 
 
-### `@JsName` annotation
+### `@JsName` 注解
 
-In some cases (for example, to support overloads), Kotlin compiler mangles names of generated functions and attributes
-in JavaScript code. To control the generated names, you can use the `@JsName` annotation:
+在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性
+的名称。要控制生成的名称，可以使用 `@JsName` 注解：
 
 ``` kotlin
-// Module 'kjs'
+// 模块 'kjs'
 class Person(val name: String) {
     fun hello() {
         println("Hello $name!")
@@ -72,36 +72,36 @@ class Person(val name: String) {
 }
 ```
 
-Now you can use this class from JavaScript in the following way:
+现在，你可以通过以下方式在 JavaScript 中使用这个类：
 
 ``` javascript
-var person = new kjs.Person("Dmitry");   // refers to module 'kjs'
-person.hello();                          // prints "Hello Dmitry!"
-person.helloWithGreeting("Servus");      // prints "Servus Dmitry!"
+var person = new kjs.Person("Dmitry");   // 引用到模块 'kjs'
+person.hello();                          // 输出“Hello Dmitry!”
+person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
 ```
 
-If we didn't specify the `@JsName` annotation, the name of the corresponding function would contain a suffix
-calculated from the function signature, for example `hello_61zpoe$`.
+如果我们没有指定 `@JsName` 注解，相应函数的名称会包含
+从函数签名计算而来的后缀，例如 `hello_61zpoe$`。
 
-Note that Kotlin compiler does not apply such mangling to `external` declarations, so you don't have to
-use `@JsName` on them. Another case worth noticing is inheriting non-external classes from external classes.
-In this case any overridden functions won't be mangled as well.
+请注意，Kotlin 编译器不会对 `external` 声明应用这种修饰，因此你不必在其上
+使用 `@JsName`。 值得注意的另一个例子是从外部类继承的非外部类。
+在这种情况下，任何被覆盖的函数也不会被修饰。
 
-The parameter of `@JsName` is required to be a constant string literal which is a valid identifier.
-The compiler will report an error on any attempt to pass non-identifier string to `@JsName`.
-The following example produces a compile-time error:
+`@JsName` 的参数需要是一个常量字符串字面值，该字面值是一个有效的标识符。
+任何尝试将非标识符字符串传递给 `@JsName` 时，编译器都会报错。
+以下示例会产生编译期错误：
 
 ``` kotlin
-@JsName("new C()")   // error here
+@JsName("new C()")   // 此处出错
 external fun newC()
 ```
 
 
-## Representing Kotlin types in JavaScript
+## 在 JavaScript 中表示 Kotlin 类型
 
-* Kotlin numeric types, except for `kotlin.Long` are mapped to JavaScript Number.
-* `kotlin.Char` is mapped to JavaScript Number representing character code.
-* Kotlin can't distinguish between numeric types at run time (except for `kotlin.Long`), i.e. the following code works:
+* 除了 `kotlin.Long` 的 Kotlin 数字类型映射到 JavaScript Number。
+* `kotlin.Char` 映射到 JavaScript Number 来表示字符代码。
+* Kotlin 在运行时无法区分数字类型（`kotlin.Long` 除外），即以下代码能够工作：
 
   ``` kotlin
   fun f() {
@@ -111,14 +111,14 @@ external fun newC()
   }
   ```
 
-* Kotlin preserves overflow semantics for `kotlin.Int`, `kotlin.Byte`, `kotlin.Short`, `kotlin.Char` and `kotlin.Long`.
-* There's no 64 bit integer number in JavaScript, so `kotlin.Long` is not mapped to any JavaScript object,
-  it's emulated by a Kotlin class.
-* `kotlin.String` is mapped to JavaScript String.
-* `kotlin.Any` is mapped to JavaScript Object (i.e. `new Object()`, `{}`, etc).
-* `kotlin.Array` is mapped to JavaScript Array.
-* Kotlin collections (i.e. `List`, `Set`, `Map`, etc) are not mapped to any specific JavaScript type.
-* `kotlin.Throwable` is mapped to JavaScript Error.
-* Kotlin preserves lazy object initialization in JavaScript.
-* Kotlin does not implement lazy initialization of top-level properties in JavaScript.
+* Kotlin 保留了 `kotlin.Int`、 `kotlin.Byte`、 `kotlin.Short`、 `kotlin.Char` 和 `kotlin.Long` 的溢出语义。
+* JavaScript 中没有 64 位整数，所以 `kotlin.Long` 没有映射到任何 JavaScript 对象，
+  它是由一个 Kotlin 类模拟的。
+* `kotlin.String` 映射到 JavaScript String。
+* `kotlin.Any` 映射到 JavaScript Object（即 `new Object()`、 `{}` 等）。
+* `kotlin.Array` 映射到 JavaScript Array。
+* Kotlin 集合（即 `List`、 `Set`、 `Map` 等）没有映射到任何特定的 JavaScript 类型。
+* `kotlin.Throwable` 映射到 JavaScript Error。
+* Kotlin 在 JavaScript 中保留了惰性对象初始化。
+* Kotlin 不会在 JavaScript 中实现顶层属性的惰性初始化。
 
