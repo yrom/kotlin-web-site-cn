@@ -83,8 +83,8 @@ annotation class Special(val why: String)
  * 其他注解；
  * 上面已列类型的数组。
 
-Annotation parameters cannot have nullable types, because the JVM does not support storing `null` as a value
-of an annotation attribute.
+注解参数不能有可空类型，因为 JVM 不支持将 `null` 作为
+注解属性的值存储。
 
 如果注解用作另一个注解的参数，则其名称不以 @ 字符为前缀：
 

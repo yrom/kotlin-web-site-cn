@@ -42,9 +42,9 @@ Kotlin 同样支持浮点数的常规表示方法:
 * 默认 double：`123.5`、`123.5e10`
 * Float 用 `f` 或者 `F` 标记: `123.5f`
  
-### Underscores in numeric literals (since 1.1)
+### 数字字面值中的下划线（自 1.1 起）
  
-You can use underscores to make number constants more readable:
+你可以使用下划线使数字常量更易读：
 
 ``` kotlin
 val oneMillion = 1_000_000
@@ -53,8 +53,6 @@ val socialSecurityNumber = 999_99_9999L
 val hexBytes = 0xFF_EC_DE_5E
 val bytes = 0b11010010_01101001_10010100_10010010
 ```
-
-### Representation
 
 ### 表示方式
 

@@ -28,9 +28,9 @@ data class User(val name: String, val age: Int)
   * 主构造函数需要至少有一个参数；
   * 主构造函数的所有参数需要标记为 `val` 或 `var`；
   * 数据类不能是抽象、开放、密封或者内部的；
-  * (before 1.1) Data classes may only implement interfaces.
+  * （在1.1之前）数据类只能实现接口。
   
-Since 1.1, data classes may extend other classes (see [Sealed classes](sealed-classes.html#密封类与数据类) for examples).
+自 1.1 起，数据类可以扩展其他类（示例请参见[密封类](sealed-classes.html#密封类与数据类)）。
 
 在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
 （参见[构造函数](classes.html#构造函数)）。

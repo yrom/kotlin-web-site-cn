@@ -27,8 +27,8 @@ Kotlin 团队的主要目标是创建一种务实且高效的编程语言，而�
 * 结构类型
 * 值类型
     * 我们计划支持[Project Valhalla](http://openjdk.java.net/projects/valhalla/)当它作为 JDK 一部分发布时。
-* Yield operator and actors
-    * See [Coroutines](coroutines.html)
+* yield 操作符和 actor
+    * 参见[协程](coroutines.html)
 * 并行集合
     * Kotlin 支持 Java 8 streams，它提供了类似的功能
 

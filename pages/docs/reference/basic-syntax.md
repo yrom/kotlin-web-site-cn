@@ -103,7 +103,7 @@ fun main(args: Array<String>) {
 ``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
-    val a: Int = 1  // immediate assignment
+    val a: Int = 1  // 立即赋值
     val b = 2   // 自动推断出 `Int` 类型
     val c: Int  // 如果没有初始值类型不能省略
     c = 3       // 明确赋值
@@ -154,11 +154,11 @@ fun main(args: Array<String>) {
 fun main(args: Array<String>) {
 //sampleStart
     var a = 1
-    // simple name in template:
+    // 模板中的简单名称：
     val s1 = "a is $a" 
     
     a = 2
-    // arbitrary expression in template:
+    // 模板中的任意表达式：
     val s2 = "${s1.replace("is", "was")}, but now is $a"
 //sampleEnd
     println(s2)
@@ -419,7 +419,7 @@ fun main(args: Array<String>) {
 
 参见 [for 循环](control-flow.html#for-循环)。
 
-## Using a `while` loop
+## 使用 `while` 循环
 
 <div class="sample" markdown="1">
 
