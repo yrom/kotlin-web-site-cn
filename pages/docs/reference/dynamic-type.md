@@ -34,9 +34,9 @@ dyn.whatever(*arrayOf(1, 2, 3))
 在 JavaScript 平台上，该代码将按照原样编译：在生成的 JavaScript 代码中，Kotlin中的 `dyn.whatever(1)` 变为 `dyn.whatever(1)`
 。
 
-When calling functions written in Kotlin on values of `dynamic` type, keep in mind the name mangling performed by the
-Kotlin to JavaScript compiler. You may need to use the [@JsName annotation](js-to-kotlin-interop.html#jsname-注解)
-to assign well-defined names to the functions that you need to call.
+当在 `dynamic` 类型的值上调用 Kotlin 写的函数时，请记住由
+Kotlin 到 JavaScript 编译器执行的名字修饰。你可能需要使用 [@JsName 注解](js-to-kotlin-interop.html#jsname-注解)
+为要调用的函数分配明确的名称。
 
 动态调用总是返回 `dynamic` 作为结果，所以我们可以自由地这样链接调用：
 
@@ -52,19 +52,19 @@ dyn.foo {
 }
 ```
 
-Expressions using values of `dynamic` type are translated to JavaScript "as is", and do not use the Kotlin operator conventions.
-The following operators are supported:
+使用 `dynamic` 类型值的表达式会按照原样转换为 JavaScript，并且不使用 Kotlin 运算符约定。
+支持以下运算符：
 
-* binary: `+`, `-`, `*`, `/`, `%`, `>`, `<` `>=`, `<=`, `==`, `!=`, `===`, `!==`, `&&`, `||`
-* unary
-    * prefix: `-`, `+`, `!`
-    * prefix and postfix: `++`, `--`
-* assignments: `+=`, `-=`, `*=`, `/=`, `%=`
-* indexed access:
-    * read: `d[a]`, more than one argument is an error
-    * write: `d[a1] = a2`, more than one argument in `[]` is an error
+* 二元：`+`、 `-`、 `*`、 `/`、 `%`、 `>`、 `<`、 `>=`、 `<=`、 `==`、 `!=`、 `===`、 `!==`、 `&&`、 `||`
+* 一元
+    * 前置：`-`、 `+`、 `!`
+    * 前置及后置：`++`、 `--`
+* 赋值：`+=`、 `-=`、 `*=`、 `/=`、 `%=`
+* 索引访问：
+    * 读：`d[a]`，多于一个参数会出错
+    * 写：`d[a1] = a2`，`[]` 中有多于一个参数会出错
 
-`in`, `!in` and `..` operations with values of type `dynamic` are forbidden.
+`in`、 `!in` 以及 `..` 操作对于 `dynamic` 类型的值是禁用的。
 
 更多技术说明请参见[规范文档](https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md)。
 

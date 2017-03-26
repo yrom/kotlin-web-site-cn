@@ -450,7 +450,7 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 
 ### Nothing 类型翻译
  
-The type [`Nothing`](exceptions.html#the-nothing-type) is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
+The type [`Nothing`](exceptions.html#nothing-类型) is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
 `java.lang.Void` 都可以接受 `null` 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中
 准确表示。这就是为什么在使用 `Nothing` 参数的地方 Kotlin 生成一个原始类型：
 

@@ -92,6 +92,6 @@ class D : A, B {
 因为没有方法体时默认为抽象）。因为 *C* 是一个实现了 *A* 的具体类，所以必须要重写 *bar()* 并
 实现这个抽象方法。
 
-However, if we derive *D* from *A* and *B*, we need to implement all the methods which we have
-inherited from multiple interfaces, and to specify how exactly *D* should implement them. This rule applies
-both to methods for which we've inherited a single implementation (*bar()*) and multiple implementations (*foo()*).
+然而，如果我们从 *A* 和 *B* 派生 *D*，我们需要实现
+我们从多个接口继承的所有方法，并指明 *D* 应该如何实现它们。这一规则
+既适用于继承单个实现（*bar()*）的方法也适用于继承多个实现（*foo()*）的方法。

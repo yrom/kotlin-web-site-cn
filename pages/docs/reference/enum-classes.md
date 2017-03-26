@@ -64,8 +64,8 @@ EnumClass.values(): Array<EnumClass>
 
 如果指定的名称与类中定义的任何枚举常量均不匹配，`valueOf()` 方法将抛出 `IllegalArgumentException` 异常。
 
-Since Kotlin 1.1, it's possible to access the constants in an enum class in a generic way, using
-the `enumValues<T>()` and `enumValueOf<T>()` functions:
+自 Kotlin 1.1 起，可以使用 `enumValues<T>()` 和 `enumValueOf<T>()` 函数以泛型的方式访问枚举类中的常量
+：
 
 ``` kotlin
 enum class RGB { RED, GREEN, BLUE }
@@ -74,7 +74,7 @@ inline fun <reified T : Enum<T>> printAllValues() {
     print(enumValues<T>().joinToString { it.name })
 }
 
-printAllValues<RGB>() // prints RED, GREEN, BLUE
+printAllValues<RGB>() // 输出 RED, GREEN, BLUE
 ```
 
 每个枚举常量都具有在枚举类声明中获取其名称和位置的属性：
@@ -84,5 +84,5 @@ val name: String
 val ordinal: Int
 ```
 
-枚举常量还实现了[Comparable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html)接口，
+枚举常量还实现了 [Comparable](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html) 接口，
 其中自然顺序是它们在枚举类中定义的顺序。

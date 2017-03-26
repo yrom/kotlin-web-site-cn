@@ -178,26 +178,26 @@ fun main(s: Array<String>) {
 
 相关底层描述，请参见[规范文档](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md)。
 
-## Inline properties (since 1.1)
+## 内联属性（自 1.1 起）
 
-The `inline` modifier can be used on accessors of properties that don't have a backing field.
-You can annotate individual property accessors:
+`inline` 修饰符可用于没有幕后字段的属性的访问器。
+你可以标注独立的属性访问器：
 
 ``` kotlin
 val foo: Foo
     inline get() = Foo()
 
 var bar: Bar
-    get() = ...
-    inline set(v) { ... }
+    get() = ……
+    inline set(v) { …… }
 ```
 
-You can also annotate an entire property, which marks both of its accessors as inline:
+你也可以标注整个属性，将它的两个访问器都标记为内联：
 
 ``` kotlin
 inline var bar: Bar
-    get() = ...
-    set(v) { ... }
+    get() = ……
+    set(v) { …… }
 ```
 
-At the call site, inline accessors are inlined as regular inline functions.
+在调用处，内联访问器如同内联函数一样内联。

@@ -19,7 +19,7 @@ All of these expressions can be used as part of larger expressions:
 val s = person.name ?: return
 ```
 
-The type of these expressions is the [Nothing type](exceptions.html#the-nothing-type).
+The type of these expressions is the [Nothing type](exceptions.html#nothing-类型).
 
 ## Break 和 Continue 标签
 

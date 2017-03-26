@@ -157,7 +157,7 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住[平台类型](#
 | `java.lang.Throwable`    | `kotlin.Throwable!`    |
 {:.zebra}
 
-Java's boxed primitive types are mapped to nullable Kotlin types:
+Java 的装箱原始类型映射到可空的 Kotlin 类型：
 
 | **Java type**       | **Kotlin type**  |
 |---------------------|------------------|
@@ -171,8 +171,8 @@ Java's boxed primitive types are mapped to nullable Kotlin types:
 | `java.lang.Boolean` | `kotlin.Boolean?` |
 {:.zebra}
 
-Note that a boxed primitive type used as a type parameter is mapped to a platform type:
-for example, `List<java.lang.Integer>` becomes a `List<Int!>` in Kotlin.
+请注意，用作类型参数的装箱原始类型映射到平台类型：
+例如，`List<java.lang.Integer>` 在 Kotlin 中会成为 `List<Int!>`。
 
 集合类型在 Kotlin 中可以是只读的或可变的，因此 Java 集合类型作如下映射：
 （下表中的所有 Kotlin 类型都驻留在 `kotlin.collections`包中）:
@@ -336,13 +336,13 @@ fun render(list: List<*>, to: Appendable) {
 
 ### getClass()
 
-To retrieve the Java class of an object, use the `java` extension property on a [class reference](reflection.html#类引用).
+要取得对象的 Java 类，请在[类引用](reflection.html#类引用)上使用 `java` 扩展属性。
 
 ``` kotlin
 val fooClass = foo::class.java
 ```
 
-The code above uses a [bound class reference](reflection.html#bound-class-references-since-11), which is supported since Kotlin 1.1. You can also use the `javaClass` extension property.
+上面的代码使用了自 Kotlin 1.1 起支持的[绑定的类引用](reflection.html#bound-class-references-since-11)。你也可以使用 `javaClass` 扩展属性。
 
 ``` kotlin
 val fooClass = foo.javaClass

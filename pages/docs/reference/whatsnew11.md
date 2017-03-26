@@ -323,7 +323,7 @@ fun main(args: Array<String>) {
 
 You can also mark the entire property as `inline` - then the modifier is applied to both accessors.
 
-更多详细信息请参阅 the [documentation](inline-functions.html#inline-properties-since-11) 及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
+更多详细信息请参阅 the [documentation](inline-functions.html#内联属性（自-11-起）) 及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
 
 
 ### 局部委托属性
