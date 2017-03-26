@@ -35,7 +35,7 @@ dyn.whatever(*arrayOf(1, 2, 3))
 。
 
 When calling functions written in Kotlin on values of `dynamic` type, keep in mind the name mangling performed by the
-Kotlin to JavaScript compiler. You may need to use the [@JsName annotation](js-to-kotlin-interop.html#jsname-annotation)
+Kotlin to JavaScript compiler. You may need to use the [@JsName annotation](js-to-kotlin-interop.html#jsname-注解)
 to assign well-defined names to the functions that you need to call.
 
 动态调用总是返回 `dynamic` 作为结果，所以我们可以自由地这样链接调用：
