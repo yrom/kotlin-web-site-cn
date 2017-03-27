@@ -11,13 +11,13 @@ Java 可以轻松调用 Kotlin 代码。
 
 ## 属性
 
-A Kotlin property is compiled to the following Java elements:
+Kotlin 属性会编译成以下 Java 元素：
 
- * A getter method, with the name calculated by prepending the `get` suffix;
- * A setter method, with the name calculated by prepending the `set` suffix (only for `var` properties);
- * A private field, with the same name as the property name (only for properties with backing fields).
+ * 一个 getter 方法，名称通过加前缀 `get` 算出；
+ * 一个 setter 方法，名称通过加前缀 `set` 算出（只适用于 `var` 属性）；
+ * 一个私有字段，与属性名称相同（仅适用于具有幕后字段的属性）。
 
-For example, `var firstName: String` gets compiled to the following Java declarations:
+例如，`var firstName: String` 编译成以下 Java 声明：
 
 ``` java
 private String firstName;
@@ -31,15 +31,15 @@ public void setFirstName(String firstName) {
 }
 ```
 
-If the name of the property starts with `is`, a different name mapping rule is used: the name of the getter will be
-the same as the property name, and the name of the setter will be obtained by replacing `is` with `set`.
-For example, for a property `isOpen`, the getter will be called `isOpen()` and the setter will be called `setOpen()`.
-This rule applies for properties of any type, not just `Boolean`.
+如果属性的名称以 `is` 开头，则使用不同的名称映射规则：getter 的名称
+与属性名称相同，并且 setter 的名称是通过将 `is` 替换为 `set` 获得。
+例如，对于属性 `isOpen`，其 getter 会称做 `isOpen()`，而其 setter 会称做 `setOpen()`。
+这一规则适用于任何类型的属性，并不仅限于 `Boolean`。
 
 ## 包级函数
 
-在 `org.foo.bar` 包内的 `example.kt` 文件中声明的所有的函数和属性，including extension functions,
-are compiled into static methods of a Java class named `org.foo.bar.ExampleKt`.
+在 `org.foo.bar` 包内的 `example.kt` 文件中声明的所有的函数和属性，包括扩展函数，
+都编译成一个名为 `org.foo.bar.ExampleKt` 的 Java 类的静态方法。
 
 ``` kotlin
 // example.kt
@@ -206,9 +206,9 @@ int v = C.VERSION;
 
 ## 静态方法
 
-如上所述，Kotlin represents package-level functions as static methods.
+如上所述，Kotlin 将包级函数表示为静态方法。
 Kotlin 还可以为命名对象或伴生对象中定义的函数生成静态方法，如果你将这些函数标注为 `@JvmStatic` 的话。
-If you use this annotation, the compiler will generate both a static method in the enclosing class of the object and an instance method in the object itself.
+如果你使用该注解，编译器既会在相应对象的类中生成静态方法，也会在对象自身中生成实例方法。
 例如：
 
 ``` kotlin
@@ -225,8 +225,8 @@ class C {
 ``` java
 C.foo(); // 没问题
 C.bar(); // 错误：不是一个静态方法
-C.Companion.foo(); // instance method remains
-C.Companion.bar(); // the only way it works
+C.Companion.foo(); // 保留实例方法
+C.Companion.bar(); // 唯一的工作方式
 ```
 
 对于命名对象也同样：
@@ -250,18 +250,18 @@ Obj.INSTANCE.foo(); // 也没问题
 `@JvmStatic`　注解也可以应用于对象或伴生对象的属性，
 使其 getter 和 setter 方法在该对象或包含该伴生对象的类中是静态成员。
 
-## Visibility
+## 可见性
 
-The Kotlin visibilities are mapped to Java in the following way:
+Kotlin 的可见性以下列方式映射到 Java：
 
-* `private` members are compiled to `private` members;
-* `private` top-level declarations are compiled to package-local declarations;
-* `protected` remains `protected` (note that Java allows accessing protected members from other classes in the same package
-and Kotlin doesn't, so Java classes will have broader access to the code);
-* `internal` declarations become `public` in Java. Members of `internal` classes go through name mangling, to make
-it harder to accidentally use them from Java and to allow overloading for members with the same signature that don't see
-each other according to Kotlin rules;
-* `public` remains `public`.
+* `private` 成员编译成 `private` 成员；
+* `private` 的顶层声明编译成包级局部声明；
+* `protected` 保持 `protected`（注意 Java 允许访问同一个包中其他类的受保护成员，
+而 Kotlin 不能，所以 Java 类会访问更广泛的代码）；
+* `internal` 声明会成为 Java 中的 `public`。`internal` 类的成员会通过名字修饰，使其
+更难以在 Java 中意外使用到，并且根据 Kotlin 规则使其允许重载相同签名的成员
+而互不可见；
+* `public` 保持 `public`。
 
 ## KClass
 
@@ -450,7 +450,7 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 
 ### Nothing 类型翻译
  
-The type [`Nothing`](exceptions.html#nothing-类型) is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
+类型 [`Nothing`](exceptions.html#nothing-类型) 是特殊的，因为它在 Java 中没有自然的对应。确实，每个 Java 引用类型，包括
 `java.lang.Void` 都可以接受 `null` 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中
 准确表示。这就是为什么在使用 `Nothing` 参数的地方 Kotlin 生成一个原始类型：
 
