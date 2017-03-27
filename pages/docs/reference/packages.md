@@ -24,20 +24,20 @@ class Goo {}
 
 如果没有指明包，该文件的内容属于无名字的默认包。
 
-## Default Imports
+## 默认导入
 
-A number of packages are imported into every Kotlin file by default:
+有多个包会默认导入到每个 Kotlin 文件中：
 
 - kotlin.*
 - kotlin.annotation.*
 - kotlin.collections.*
-- kotlin.comparisons.*  (since 1.1)
+- kotlin.comparisons.*  （自 1.1 起）
 - kotlin.io.*
 - kotlin.ranges.*
 - kotlin.sequences.*
 - kotlin.text.*
 
-Additional packages are imported depending on the target platform:
+根据目标平台还会导入额外的包：
 
 - JVM:
   - java.lang.*

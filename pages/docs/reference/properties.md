@@ -44,7 +44,8 @@ var <propertyName>[: <PropertyType>] [= <property_initializer>]
     [<setter>]
 ```
 
-其初始器（initializer）、getter 和 setter 都是可选的。属性类型如果可以从初始器（or from the getter return type, as shown below）中推断出来，也可以省略。
+其初始器（initializer）、getter 和 setter 都是可选的。属性类型如果可以从初始器
+（或者从其 getter 返回值，如下文所示）中推断出来，也可以省略。
 
 例如:
 
@@ -79,10 +80,10 @@ var stringRepresentation: String
 
 按照惯例，setter 参数的名称是 `value`，但是如果你喜欢你可以选择一个不同的名称。
 
-Since Kotlin 1.1, you can omit the property type if it can be inferred from the getter:
+自 Kotlin 1.1 起，如果可以从 getter 推断出属性类型，则可以省略它：
 
 ``` kotlin
-val isEmpty get() = this.size == 0  // has type Boolean
+val isEmpty get() = this.size == 0  // 具有类型 Boolean
 ```
 
 如果你需要改变一个访问器的可见性或者对其注解，但是不需要改变默认的实现，

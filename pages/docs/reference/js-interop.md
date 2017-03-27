@@ -16,7 +16,7 @@ Kotlin 中自由地与 JavaScript 交流，但是如果你想要 Kotlin 类型�
 
 ## 内联 JavaScript
 
-您可以使用 [js("...")](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html) 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。
+你可以使用 [js("...")](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html) 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。
 例如：
 
 ``` kotlin
@@ -108,7 +108,7 @@ external fun myFunWithOptionalArgs(x: Int,
 
 ### 扩展 JavaScript 类
 
-您可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 `external` 类并用
+你可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 `external` 类并用
 非 `external` 类扩展它。例如：
 
 ``` kotlin

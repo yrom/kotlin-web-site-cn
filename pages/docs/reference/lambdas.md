@@ -90,17 +90,17 @@ ints.map { it * 2 }
 strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
 ```
 
-### Underscore for unused variables (since 1.1)
+### 下划线用于未使用的变量（自 1.1 起）
 
-If the lambda parameter is unused, you can place an underscore instead of its name:
+如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：
 
 ``` kotlin
 map.forEach { _, value -> println("$value!") }
 ```
 
-### Destructuring in Lambdas (since 1.1)
+### 在 lambda 表达式中解构（自 1.1 起）
 
-Destructuring in lambdas is described as a part of [destructuring declarations](multi-declarations.html#destructuring-in-lambdas-since-11). 
+在 lambda 表达式中解构是作为[解构声明](multi-declarations.html#在-lambda-表达式中解构（自-11-起）)的一部分描述的。
 
 ## 内联函数
 

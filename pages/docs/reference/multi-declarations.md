@@ -91,40 +91,40 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 
 因此你可以在 *for*{: .keyword }-循环中对映射（以及数据类实例的集合等）自由使用解构声明。
 
-## Underscore for unused variables (since 1.1)
+## 下划线用于未使用的变量（自 1.1 起）
 
-If you don't need a variable in the destructuring declaration, you can place an underscore instead of its name:
+如果在解构声明中你不需要某个变量，那么可以用下划线取代其名称：
 
 ``` kotlin
 val (_, status) = getResult()
 ```
 
-## Destructuring in Lambdas (since 1.1)
+## 在 lambda 表达式中解构（自 1.1 起）
 
-You can use the destructuring declarations syntax for lambda parameters.
-If a lambda has a parameter of the `Pair` type (or `Map.Entry`, or any other type that has the appropriate `componentN` functions), you can introduce several new parameters instead of one by putting them in parentheses:   
+你可以对 lambda 表达式参数使用解构声明语法。
+如果 lambda 表达式具有 `Pair` 类型（或者 `Map.Entry` 或任何其他具有相应 `componentN` 函数的类型）的参数，那么可以通过将它们放在括号中来引入多个新参数来取代单个新参数：
 
 ``` kotlin
 map.mapValues { entry -> "${entry.value}!" }
 map.mapValues { (key, value) -> "$value!" }
 ```
 
-Note the difference between declaring two parameters and declaring a destructuring pair instead of a parameter:  
+注意声明两个参数和声明一个解构对来取代单个参数之间的区别：
 
 ``` kotlin
-{ a -> ... } // one parameter
-{ a, b -> ... } // two parameters
-{ (a, b) -> ... } // a destructured pair
-{ (a, b), c -> ... } // a destructured pair and another parameter
+{ a -> ... } // 一个参数
+{ a, b -> ... } // 两个参数
+{ (a, b) -> ... } // 一个解构对
+{ (a, b), c -> ... } // 一个解构对以及其他参数
 ```
 
-If a component of the destructured parameter is unused, you can replace it with the underscore to avoid inventing its name:
+如果解构的参数中的一个组件未使用，那么可以将其替换为下划线，以避免编造其名称：
 
 ``` kotlin
 map.mapValues { (_, value) -> "$value!" }
 ```
 
-You can specify the type for the whole destructured parameter or for a specific component separately:
+你可以指定整个解构的参数的类型或者分别指定特定组件的类型：
 
 ``` kotlin
 map.mapValues { (_, value): Map.Entry<Int, String> -> "$value!" }

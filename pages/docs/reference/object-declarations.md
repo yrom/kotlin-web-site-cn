@@ -18,11 +18,11 @@ Kotlin 用*对象表达式*和*对象声明*对这个概念稍微概括了下。
 ``` kotlin
 window.addMouseListener(object : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
-        // ...
+        // ……
     }
 
     override fun mouseEntered(e: MouseEvent) {
-        // ...
+        // ……
     }
 })
 ```
@@ -36,7 +36,7 @@ open class A(x: Int) {
     public open val y: Int = x
 }
 
-interface B {...}
+interface B {……}
 
 val ab: A = object : A(1), B {
     override val y = 15
@@ -55,26 +55,26 @@ fun foo() {
 }
 ```
 
-Note that anonymous objects can be used as types only in local and private declarations. If you use an anonymous object as a
-return type of a public function or the type of a public property, the actual type of that function or property
-will be the declared supertype of the anonymous object, or `Any` if you didn't declare any supertype. Members added
-in the anonymous object will not be accessible.
+请注意，匿名对象可以用作只在本地和私有作用域中声明的类型。如果你使用匿名对象作为公有函数的
+返回类型或者用作公有属性的类型，那么该函数或属性的实际类型
+会是匿名对象声明的超类型，如果你没有声明任何超类型，就会是 `Any`。在匿名对象
+中添加的成员将无法访问。
 
 ``` kotlin
 class C {
-    // Private function, so the return type is the anonymous object type
+    // 私有函数，所以其返回类型是匿名对象类型
     private fun foo() = object {
         val x: String = "x"
     }
 
-    // Public function, so the return type is Any
+    // 公有函数，所以其返回类型是 Any
     fun publicFoo() = object {
         val x: String = "x"
     }
 
     fun bar() {
-        val x1 = foo().x        // Works
-        val x2 = publicFoo().x  // ERROR: Unresolved reference 'x'
+        val x1 = foo().x        // 没问题
+        val x2 = publicFoo().x  // 错误：未能解析的引用“x”
     }
 }
 ```
@@ -96,7 +96,7 @@ fun countClicks(window: JComponent) {
             enterCount++
         }
     })
-    // ...
+    // ……
 }
 ```
 
@@ -107,11 +107,11 @@ fun countClicks(window: JComponent) {
 ``` kotlin
 object DataProviderManager {
     fun registerDataProvider(provider: DataProvider) {
-        // ...
+        // ……
     }
 
     val allDataProviders: Collection<DataProvider>
-        get() = // ...
+        get() = // ……
 }
 ```
 ——
@@ -129,11 +129,11 @@ DataProviderManager.registerDataProvider(...)
 ``` kotlin
 object DefaultListener : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
-        // ...
+        // ……
     }
 
     override fun mouseEntered(e: MouseEvent) {
-        // ...
+        // ……
     }
 }
 ```

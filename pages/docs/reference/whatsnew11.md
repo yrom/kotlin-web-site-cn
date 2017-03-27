@@ -215,7 +215,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更多详细信息请参阅 the [documentation](multi-declarations.html#destructuring-in-lambdas-since-11) 及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
+更多详细信息请参阅 the [documentation](multi-declarations.html#在-lambda-表达式中解构（自-11-起）) 及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
 
 
 ### 下划线用于未使用参数

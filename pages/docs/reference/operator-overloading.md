@@ -38,14 +38,15 @@ Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现�
 | `a++` | `a.inc()` + 见下文 |
 | `a--` | `a.dec()` + 见下文 |
 
-The `inc()` and `dec()` functions must return a value, which will be assigned to the variable on which the
-`++` or `--` operation was used. They shouldn't mutate the object on which the `inc` or `dec` was invoked.
+`inc()` 和 `dec()` 函数必须返回一个值，它用于赋值给使用
+`++` 或 `--` 操作的变量。它们不应该改变在其上调用 `inc()` 或 `dec()` 的对象。
+
 
 编译器执行以下步骤来解析*后缀*形式的操作符，例如 `a++`：
 
 * 确定 `a` 的类型，令其为 `T`。
 * 查找一个适用于类型为 `T` 的接收者的、带有 `operator` 修饰符的无参数函数 `inc()`。
-* Checks that the return type of the function is a subtype of `T`.
+* 检查函数的返回类型是 `T` 的子类型。
 
 计算表达式的步骤是：
 
@@ -68,15 +69,15 @@ The `inc()` and `dec()` functions must return a value, which will be assigned to
 | `a - b` | `a.minus(b)` |
 | `a * b` | `a.times(b)` |
 | `a / b` | `a.div(b)` |
-| `a % b` | `a.rem(b)`, `a.mod(b)` (deprecated) |
+| `a % b` | `a.rem(b)`、 `a.mod(b)` （已弃用） |
 | `a..b ` | `a.rangeTo(b)` |
 
 对于此表中的操作，编译器只是解析成*翻译为*列中的表达式。
 
-Note that the `rem` operator is supported since Kotlin 1.1. Kotlin 1.0 uses the `mod` operator, which is deprecated
-in Kotlin 1.1.
+请注意，自 Kotlin 1.1 起支持 `rem` 运算符。Kotlin 1.0 使用 `mod` 运算符，它在
+Kotlin 1.1 中被弃用。
 
-| Expression | Translated to |
+| 表达式 | 翻译为 |
 | -----------|-------------- |
 | `a in b` | `b.contains(a)` |
 | `a !in b` | `!b.contains(a)` |
@@ -132,7 +133,7 @@ in Kotlin 1.1.
 *注意*：`===` 和 `!==`（同一性检查）不可重载，因此不存在对他们的约定
 
 这个 `==` 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 `null` 值。
-`null == null` is always true, and `x == null` for a non-null `x` is always false and won't invoke `x.equals()`.
+`null == null`  总是 true，对于非空的 `x`，`x == null` 总是 false 而不会调用 `x.equals()`。
 
 | 表达式 | 翻译为 |
 |--------|---------------|
