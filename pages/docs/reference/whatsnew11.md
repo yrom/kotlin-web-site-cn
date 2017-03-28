@@ -6,7 +6,7 @@ title: "Kotlin 1.1 的新特性"
 
 # Kotlin 1.1 的新特性
 
-## Table of Contents
+## 目录
 
 * [协程](#协程（实验性的）)
 * [其他语言功能](#其他语言功能)
@@ -26,30 +26,30 @@ Kotlin 1.1 的关键新特性是*协程*，它带来了 `future`/`await`、 `yie
 支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，
 而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。
 
-协程实际上是一个轻量级的线程，可以暂停并稍后恢复。Coroutines are supported through [*suspending functions*](coroutines.html#挂起函数): a call to such a function can potentially suspend a coroutine, and to start a new coroutine we usually use an anonymous suspending functions (i.e. suspending lambdas).
+协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过[*挂起函数*](coroutines.html#挂起函数)支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使用匿名挂起函数（即挂起 lambda 表达式）。
 
-Let's look at `async`/`await` which is implemented in an external library, [kotlinx.coroutines](https://github.com/kotlin/kotlinx.coroutines): 
+我们来看看在外部库 [kotlinx.coroutines](https://github.com/kotlin/kotlinx.coroutines) 中实现的 `async`/`await`：
 
 ``` kotlin
-// runs the code in the background thread pool
+// 在后台线程池中运行该代码
 fun asyncOverlay() = async(CommonPool) {
-    // start two async operations
+    // 启动两个异步操作
     val original = asyncLoadImage("original")
     val overlay = asyncLoadImage("overlay")
-    // and then apply overlay to both results
+    // 然后应用叠加到两个结果
     applyOverlay(original.await(), overlay.await())
 }
 
-// launches new coroutine in UI context
+// 在 UI 上下文中启动新的协程
 launch(UI) {
-    // wait for async overlay to complete
+    // 等待异步叠加完成
     val image = asyncOverlay().await()
-    // and then show it in UI
+    // 然后在 UI 中显示
     showImage(image)
 }
 ```
 
-Here, `async { ... }` starts a coroutine and, when we use `await()`, the execution of the coroutine is suspended while the operation being awaited is executed, and is resumed (possibly on a different thread) when the operation being awaited completes.
+这里，`async { …… }` 启动一个协程，当我们使用 `await()` 时，挂起协程的执行，而执行正在等待的操作，并且在等待的操作完成时恢复（可能在不同的线程上） 。
 
 标准库通过 `yield` 和 `yieldAll` 函数使用协程来支持*惰性生成序列*。
 在这样的序列中，在取回每个元素之后暂停返回序列元素的代码块，
@@ -64,14 +64,14 @@ fun main(args: Array<String>) {
 //sampleStart
   val seq = buildSequence {
       for (i in 1..5) {
-          // yield a square of i
+          // 产生一个 i 的平方
           yield(i * i)
       }
-      // yield a range
+      // 产生一个区间
       yieldAll(26..28)
   }
   
-  // print the sequence
+  // 输出该序列
   println(seq.toList())
 //sampleEnd
 }
@@ -80,9 +80,9 @@ fun main(args: Array<String>) {
 </div>
 
 
-Run the code above to see the result. Feel free to edit it and run again!
+运行上面的代码以查看结果。随意编辑它并再次运行！
 
-For more information, please refer to the [coroutine documentation](/docs/reference/coroutines.html) and [tutorial](/docs/tutorials/coroutines-basic-jvm.html).
+更多信息请参见[协程文档](coroutines.html)及[教程](/docs/tutorials/coroutines-basic-jvm.html)。
 
 请注意，协程目前还是一个**实验性的功能**，这意味着 Kotlin 团队不承诺
 在最终的 1.1 版本时保持该功能的向后兼容性。
@@ -105,7 +105,7 @@ typealias OscarWinners = Map<String, String>
 fun countLaLaLand(oscarWinners: OscarWinners) =
         oscarWinners.count { it.value.contains("La La Land") }
 
-// Note that the type names (initial and the type alias) are interchangeable:
+// 请注意，类型名称（初始名和类型别名）是可互换的：
 fun checkLaLaLandIsTheBestMovie(oscarWinners: Map<String, String>) =
         oscarWinners["Best picture"] == "La La Land"
 //sampleEnd
@@ -114,7 +114,7 @@ fun oscarWinners(): OscarWinners {
     return mapOf(
             "Best song" to "City of Stars (La La Land)",
             "Best actress" to "Emma Stone (La La Land)",
-            "Best picture" to "Moonlight" /* ... */)
+            "Best picture" to "Moonlight" /* …… */)
 }
 
 fun main(args: Array<String>) {
@@ -129,7 +129,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更多详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md)。
+更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md)。
 
 
 ### 已绑定的可调用引用
@@ -153,7 +153,7 @@ fun main(args: Array<String>) {
 </div>
 
 
-更多详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md)。
+更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md)。
 
 
 ### 密封类和数据类
@@ -187,7 +187,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更多详细信息请参阅 the [documentation](sealed-classes.html#密封类的放宽规则（自-11-起）) or 
+更详细信息请参阅其[文档](sealed-classes.html#密封类的放宽规则（自-11-起）)或者
 [密封类](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md) 及
 [数据类](https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md)的 KEEP。
 
@@ -203,19 +203,19 @@ fun main(args: Array<String>) {
 fun main(args: Array<String>) {
 //sampleStart
     val map = mapOf(1 to "one", 2 to "two")
-    // before
+    // 之前
     println(map.mapValues { entry ->
         val (key, value) = entry
         "$key -> $value!"
     })
-    // now
+    // 现在
     println(map.mapValues { (key, value) -> "$key -> $value!" })
 //sampleEnd    
 }
 ```
 </div>
 
-更多详细信息请参阅 the [documentation](multi-declarations.html#在-lambda-表达式中解构（自-11-起）) 及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
+更详细信息请参阅其[文档](multi-declarations.html#在-lambda-表达式中解构（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
 
 
 ### 下划线用于未使用参数
@@ -253,7 +253,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更多详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/underscore-for-unused-parameters.md)。
+更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/underscore-for-unused-parameters.md)。
 
 
 ### 数字字面值中的下划线
@@ -277,7 +277,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更多详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/underscores-in-numeric-literals.md)。
+更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/underscores-in-numeric-literals.md)。
 
 
 ### 对于属性的更短语法
@@ -289,7 +289,7 @@ fun main(args: Array<String>) {
 ``` kotlin
 //sampleStart
 data class Person(val name: String, val age: Int) {
-    val isAdult get() = age >= 20 // Property type inferred to be 'Boolean'
+    val isAdult get() = age >= 20 // // 属性类型推断为 “Boolean”
 }
 //sampleEnd
 
@@ -315,15 +315,15 @@ public val <T> List<T>.lastIndex: Int
 
 fun main(args: Array<String>) {
     val list = listOf('a', 'b')
-    // the getter will be inlined
+    // 其 getter 会内联
     println("Last index of $list is ${list.lastIndex}")
 }
 ```
 </div>
 
-You can also mark the entire property as `inline` - then the modifier is applied to both accessors.
+你也可以将整个属性标记为 `inline`——这样修饰符应用于两个访问器。
 
-更多详细信息请参阅 the [documentation](inline-functions.html#内联属性（自-11-起）) 及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
+更详细信息请参阅其[文档](inline-functions.html#内联属性（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
 
 
 ### 局部委托属性
@@ -344,8 +344,8 @@ fun main(args: Array<String>) {
         println("Calculating the answer...")
         42
     }
-    if (needAnswer()) {                     // returns the random value
-        println("The answer is $answer.")   // answer is calculated at this point
+    if (needAnswer()) {                     // 返回随机值
+        println("The answer is $answer.")   // 此时计算出答案
     }
     else {
         println("Sometimes no answer is the answer...")
@@ -355,7 +355,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更多详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/local-delegated-properties.md)。
+更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/local-delegated-properties.md)。
 
 
 ### 委托属性绑定的拦截
@@ -385,7 +385,7 @@ class MyUI {
 `provideDelegate` 方法在创建 `MyUI` 实例期间将会为每个属性调用，并且可以立即执行
 必要的验证。
 
-Read the [documentation](delegated-properties.html#提供委托（自-11-起）) for more details.
+更详细信息请参阅其[文档](delegated-properties.html#提供委托（自-11-起）)。
 
 
 ### 泛型枚举值访问
@@ -430,7 +430,7 @@ table {
 会在传给 `td` 的 lambda 表达式中可用。你可以通过定义标记有 `@DslMarker` 元注解的注解
 并将其应用于标记类的基类：
 
-更多详细信息请参阅 the [documentation](type-safe-builders.html#scope-control-dslmarker-since-11) 及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
+更详细信息请参阅其[文档](type-safe-builders.html#scope-control-dslmarker-since-11)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
 
 
 ### `rem` 操作符
@@ -487,7 +487,7 @@ fun Block.copy() = Block().also {
 }
 //sampleEnd
 
-// using 'apply' instead
+// 使用“apply”代替
 fun Block.copy1() = Block().apply {
     this.content = this@copy1.content
 }
@@ -570,8 +570,8 @@ fun main(args: Array<String>) {
 //sampleEnd
     println("Counting first letters: $frequencies.")
 
-    // The alternative way that uses 'groupBy' and 'mapValues' creates an intermediate map, 
-    // while 'groupingBy' way counts on the fly.
+    // 另一种方式是使用“groupBy”和“mapValues”创建一个中间的映射，
+    // 而“groupingBy”的方式会即时计数。
     val groupBy = words.groupBy { it.first() }.mapValues { (_, list) -> list.size }
     println("Comparing the result with using 'groupBy': ${groupBy == frequencies}.")
 }
@@ -684,13 +684,13 @@ fun main(args: Array<String>) {
 而对于可变集合，有 `AbstractMutableCollection`、 `AbstractMutableList`、 `AbstractMutableSet` 和 `AbstractMutableMap`。
 在 JVM 上，这些抽象可变集合从 JDK 的抽象集合继承了大部分的功能。
 
-### Array manipulation functions
+### 数组处理函数
 
-The standard library now provides a set of functions for element-by-element operations on arrays: comparison
-(`contentEquals` and `contentDeepEquals`), hash code calculation (`contentHashCode` and `contentDeepHashCode`),
-and conversion to a string (`contentToString` and `contentDeepToString`). They're supported both for the JVM
-(where they act as aliases for the corresponding functions in `java.util.Arrays`) and for JS (where the implementation
-is provided in the Kotlin standard library).
+标准库现在提供了一组用于逐个元素操作数组的函数：比较
+（`contentEquals` 和 `contentDeepEquals`），哈希码计算（`contentHashCode` 和 `contentDeepHashCode`），
+以及转换成一个字符串（`contentToString` 和 `contentDeepToString`）。它们都支持 JVM
+（它们作为 `java.util.Arrays` 中的相应函数的别名）和 JS（在
+Kotlin 标准库中提供实现）。
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -698,8 +698,8 @@ is provided in the Kotlin standard library).
 fun main(args: Array<String>) {
 //sampleStart
     val array = arrayOf("a", "b", "c")
-    println(array.toString())  // JVM implementation: type-and-hash gibberish
-    println(array.contentToString())  // nicely formatted as list
+    println(array.toString())  // JVM 实现：类型及哈希乱码
+    println(array.contentToString())  // 良好格式化为列表
 //sampleEnd
 }
 ```
@@ -741,12 +741,12 @@ Kotlin 现在支持在字节码中存储参数名。这可以使用命令行选�
 ### javax.scripting 支持
 
 Kotlin 现在与[javax.script API](https://docs.oracle.com/javase/8/docs/api/javax/script/package-summary.html)（JSR-223）集成。
-The API allows to evaluate snippets of code at runtime:
+其 API 允许在运行时求值代码段：
 
 ``` kotlin
 val engine = ScriptEngineManager().getEngineByExtension("kts")!!
 engine.eval("val x = 3")
-println(engine.eval("x + 2"))  // Prints out 5
+println(engine.eval("x + 2"))  // 输出 5
 ```
 
 关于使用 API 的示例项目参见[这里](https://github.com/JetBrains/kotlin/tree/master/libraries/examples/kotlin-jsr223-local-example)
@@ -755,10 +755,10 @@ println(engine.eval("x + 2"))  // Prints out 5
 
 ### kotlin.reflect.full
 
-To [prepare for Java 9 support](https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/), the extension functions and properties in the `kotlin-reflect.jar` library have been moved
-to the package `kotlin.reflect.full`. The names in the old package (`kotlin.reflect`) are deprecated and will be removed in
-Kotlin 1.2. Note that the core reflection interfaces (such as `KClass`) are part of the Kotlin standard library,
-not `kotlin-reflect`, and are not affected by the move.
+[为 Java 9 支持准备](https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/)，在 `kotlin-reflect.jar` 库中的扩展函数和属性已移动
+到 `kotlin.reflect.full` 包中。旧包（`kotlin.reflect`）中的名称已弃用，将在
+Kotlin 1.2 中删除。请注意，核心反射接口（如 `KClass`）是 Kotlin 标准库
+（而不是 `kotlin-reflect`）的一部分，不受移动影响。
 
 
 ## JavaScript 后端

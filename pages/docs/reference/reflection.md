@@ -31,16 +31,16 @@ val c = MyClass::class
 请注意，Kotlin 类引用与 Java 类引用不同。要获得 Java 类引用，
 请在 `KClass` 实例上使用 `.java` 属性。
 
-## Bound Class References (since 1.1)
+## 绑定的类引用（自 1.1 起）
 
-You can get the reference to a class of a specific object with the same `::class` syntax by using the object as a receiver:
+通过使用对象作为接收者，可以用相同的 `::class` 语法获取指定对象的类的引用：
 
 ``` kotlin
-val widget: Widget = ...
+val widget: Widget = ……
 assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 ```
 
-You obtain the reference to an exact class of an object, for instance `GoodWidget` or `BadWidget`, despite the type of the receiver expression (`Widget`).  
+你可以获取对象的精确类的引用，例如 `GoodWidget` 或 `BadWidget`，尽管接收者表达式的类型是 `Widget`。
 
 ## 函数引用
 
@@ -199,29 +199,29 @@ fun function(factory : () -> Foo) {
 function(::Foo)
 ```
 
-## Bound Function and Property References (since 1.1)
+## 绑定的函数与属性引用（自 1.1 起）
 
-You can refer to an instance method of a particular object.
+你可以引用特定对象的实例方法。
 
 ``` kotlin 
 val numberRegex = "\\d+".toRegex()
-println(numberRegex.matches("29")) // prints "true"
+println(numberRegex.matches("29")) // 输出“true”
  
 val isNumber = numberRegex::matches
-println(isNumber("29")) // prints "true"
+println(isNumber("29")) // 输出“true”
 ```
 
-Instead of calling the method `matches` directly we are storing a reference to it.
-Such reference is bound to its receiver.
-It can be called directly (like in the example above) or used whenever an expression of function type is expected:
+取代直接调用方法 `matches` 的是我们存储其引用。
+这样的引用会绑定到其接收者上。
+它可以直接调用（如上例所示）或者用于任何期待一个函数类型表达式的时候：
 
 ``` kotlin
 val strings = listOf("abc", "124", "a70")
-println(strings.filter(numberRegex::matches)) // prints "[124]"
+println(strings.filter(numberRegex::matches)) // 输出“[124]”
 ```
 
-Compare the types of bound and the corresponding unbound references.
-Bound callable reference has its receiver "attached" to it, so the type of the receiver is no longer a parameter:
+比较绑定的类型和相应的未绑定类型的引用。
+绑定的可调用引用有其接收者“附加”到其上，因此接收者的类型不再是参数：
 
 ``` kotlin
 val isNumber: (CharSequence) -> Boolean = numberRegex::matches
@@ -229,9 +229,9 @@ val isNumber: (CharSequence) -> Boolean = numberRegex::matches
 val matches: (Regex, CharSequence) -> Boolean = Regex::matches
 ```
 
-Property reference can be bound as well:
+属性引用也可以绑定：
 
 ``` kotlin
 val prop = "abc"::length
-println(prop.get())   // prints "3"
+println(prop.get())   // 输出“3”
 ```

@@ -181,68 +181,68 @@ fun String.unaryPlus() {
 所有这些都在上面构建器示例顶部导入的包 `com.example.html` 中定义。
 在最后一节中，你可以阅读这个包的完整定义。
 
-## Scope control: @DslMarker (since 1.1)
+## 作用域控制：@DslMarker（自 1.1 起）
 
-When using DSLs, one might have come across the problem that too many functions can be called in the context. 
-We can call methods of every available implicit receiver inside a lambda and therefore get an inconsistent result, like the tag `head` inside another `head`: 
+使用 DSL 时，可能会遇到上下文中可以调用太多函数的问题。
+我们可以调用 lambda 表达式内部每个可用的隐式接收者的方法，因此得到一个不一致的结果，就像在另一个 `head` 内部的 `head` 标记那样：
 
 ``` kotlin
 html {
     head {
-        head {} // should be forbidden
+        head {} // 应该禁止
     }
-    // ...
+    // ……
 }
 ```
 
-In this example only members of the nearest implicit receiver `this@head` must be available; `head()` is a member of the outer receiver `this@html`, so it must be illegal to call it.
+在这个例子中，必须只有最近层的隐式接收者 `this@head` 的成员可用；`head()` 是外部接收者 `this@html` 的成员，所以调用它一定是非法的。
 
-To address this problem, in Kotlin 1.1 a special mechanism to control receiver scope was introduced.
+为了解决这个问题，在 Kotlin 1.1 中引入了一种控制接收者作用域的特殊机制。
 
-To make the compiler start controlling scopes we only have to annotate the types of all receivers used in the DSL with the same marker annotation.
-For instance, for HTML Builders we declare an annotation `@HTMLTagMarker`:
+为了使编译器开始控制标记，我们只是必须用相同的标记注解来标注在 DSL 中使用的所有接收者的类型。
+例如，对于 HTML 构建器，我们声明一个注解 `@HTMLTagMarker`：
  
 ``` kotlin
 @DslMarker
 annotation class HtmlTagMarker
 ```
 
-An annotation class is called a DSL marker if it is annotated with the `@DslMarker` annotation.
+如果一个注解类使用 `@DslMarker` 注解标注，那么该注解类称为 DSL 标记。
 
-In our DSL all the tag classes extend the same superclass `Tag`.
-It's enough to annotate only the superclass with `@HtmlTagMarker` and after that the Kotlin compiler will treat all the inherited classes as annotated:
+在我们的 DSL 中，所有标签类都扩展了相同的超类 `Tag`。
+只需使用 `@HtmlTagMarker` 来标注超类就足够了，之后，Kotlin 编译器会将所有继承的类视为已标注：
 
 ``` kotlin
 @HtmlTagMarker
-abstract class Tag(val name: String) { ... }
+abstract class Tag(val name: String) { …… }
 ```
 
-We don't have to annotate the `HTML` or `Head` classes with `@HtmlTagMarker` because their superclass is already annotated:
+我们不必用 `@HtmlTagMarker` 标注 `HTML` 或 `Head` 类，因为它们的超类已标注过：
 
 ```
-class HTML() : Tag("html") { ... }
-class Head() : Tag("head") { ... }
+class HTML() : Tag("html") { …… }
+class Head() : Tag("head") { …… }
 ```
 
-After we've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only: 
+在添加了这个注解之后，Kotlin 编译器就知道哪些隐式接收者是同一个 DSL 的一部分，并且只允许调用最近层的接收者的成员：
 
 ``` kotlin
 html {
     head {
-        head { } // error: a member of outer receiver
+        head { } // 错误：外部接收者的成员
     }
-    // ...
+    // ……
 }
 ```
 
-Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:
+请注意，仍然可以调用外部接收者的成员，但是要做到这一点，你必须明确指定这个接收者：
 
 ``` kotlin
 html {
     head {
-        this@html.head { } // possible
+        this@html.head { } // 可能
     }
-    // ...
+    // ……
 }
 ```
 
@@ -252,7 +252,7 @@ html {
 它构建一个 HTML 树。代码中大量使用了[扩展函数](extensions.html)和
 [带接收者的 lambda 表达式](lambdas.html#带接收者的函数字面值)。
 
-Note that the `@DslMarker` annotation is available only since Kotlin 1.1.
+请注意，`@DslMarker` 注解在 Kotlin 1.1 起才可用。
 
 <a name='declarations'></a>
 

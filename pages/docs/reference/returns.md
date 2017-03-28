@@ -13,13 +13,13 @@ Kotlin 有三种结构化跳转表达式：
 * *break*{: .keyword }。终止最直接包围它的循环。
 * *continue*{: .keyword }。继续下一次最直接包围它的循环。
 
-All of these expressions can be used as part of larger expressions:
+所有这些表达式都可以用作更大表达式的一部分：
 
 ``` kotlin
 val s = person.name ?: return
 ```
 
-The type of these expressions is the [Nothing type](exceptions.html#nothing-类型).
+这些表达式的类型是 [Nothing 类型](exceptions.html#nothing-类型)。
 
 ## Break 和 Continue 标签
 
