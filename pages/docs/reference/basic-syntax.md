@@ -470,7 +470,7 @@ fun main(args: Array<String>) {
 ```
 
 
-区间内迭代:
+区间迭代:
 
 
 ``` kotlin
@@ -483,7 +483,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-or over a progression:
+或数列迭代：
 
 
 ``` kotlin
