@@ -510,7 +510,7 @@ fun main(args: Array<String>) {
 </div>
 
 
-区间内迭代:
+区间迭代:
 
 <div class="sample" markdown="1">
 
@@ -525,7 +525,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-or over a progression:
+或数列迭代：
 
 <div class="sample" markdown="1">
 
