@@ -52,7 +52,7 @@ launch(UI) {
 这里，`async { …… }` 启动一个协程，当我们使用 `await()` 时，挂起协程的执行，而执行正在等待的操作，并且在等待的操作完成时恢复（可能在不同的线程上） 。
 
 标准库通过 `yield` 和 `yieldAll` 函数使用协程来支持*惰性生成序列*。
-在这样的序列中，在取回每个元素之后暂停返回序列元素的代码块，
+在这样的序列中，在取回每个元素之后挂起返回序列元素的代码块，
 并在请求下一个元素时恢复。这里有一个例子：
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1"> 
@@ -218,7 +218,7 @@ fun main(args: Array<String>) {
 更详细信息请参阅其[文档](multi-declarations.html#在-lambda-表达式中解构（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
 
 
-### 下划线用于未使用参数
+### 下划线用于未使用的参数
 
 对于具有多个参数的 lambda 表达式，可以使用 `_` 字符替换不使用的参数的名称：
 
@@ -289,7 +289,7 @@ fun main(args: Array<String>) {
 ``` kotlin
 //sampleStart
 data class Person(val name: String, val age: Int) {
-    val isAdult get() = age >= 20 // // 属性类型推断为 “Boolean”
+    val isAdult get() = age >= 20 // 属性类型推断为 “Boolean”
 }
 //sampleEnd
 
@@ -360,7 +360,7 @@ fun main(args: Array<String>) {
 
 ### 委托属性绑定的拦截
 
-对于[委托属性](delegated-properties.html)，现在可以使用 `provideDelegate` 操作符拦截委托到属性的绑定
+对于[委托属性](delegated-properties.html)，现在可以使用 `provideDelegate` 操作符拦截委托到属性之间的绑定
 。
 例如，如果我们想要在绑定之前检查属性名称，我们可以这样写：
 
@@ -390,7 +390,7 @@ class MyUI {
 
 ### 泛型枚举值访问
 
-现在可以用泛型的方式来枚举枚举类的值：
+现在可以用泛型的方式来对枚举类的值进行枚举：
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -428,7 +428,7 @@ table {
 
 在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 `td` 的隐式接收者上定义的方法
 会在传给 `td` 的 lambda 表达式中可用。你可以通过定义标记有 `@DslMarker` 元注解的注解
-并将其应用于标记类的基类：
+并将其应用于标记类的基类。
 
 更详细信息请参阅其[文档](type-safe-builders.html#scope-control-dslmarker-since-11)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
 
@@ -519,7 +519,7 @@ fun main(args: Array<String>) {
 
 //sampleStart
     val index = input.indexOf(keyword).takeIf { it >= 0 } ?: error("keyword not found")
-    // 对输入字符串中的关键字索引做些事情，假定它找到
+    // 对输入字符串中的关键字索引做些事情，鉴于它已找到
 //sampleEnd
     
     println("'$keyword' was found in '$input'")
@@ -717,7 +717,7 @@ Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 `-jvm-target 
 ### Java 8 标准库支持
 
 现在有支持在 Java 7 和 8 中新添加的 JDK API 的标准库的独立版本。
-如果你需要访问新的 API，请使用 `kotlin-stdlib-jre7` 和 `kotlin-stdlib-jre8` maven artifacts，而不是标准的 `kotlin-stdlib`。
+如果你需要访问新的 API，请使用 `kotlin-stdlib-jre7` 和 `kotlin-stdlib-jre8` maven 构件，而不是标准的 `kotlin-stdlib`。
 这些构件是在 `kotlin-stdlib` 之上的微小扩展，它们将它作为传递依赖项带到项目中。
 
 
@@ -777,9 +777,9 @@ minifiers、 optimisers、 linters 等）更加友好。
 
 ### `external` 修饰符
 
-如果你需要以类型安全的方式从 Kotlin 访问 JavaScript 实现的类，
+如果你需要以类型安全的方式在 Kotlin 中访问 JavaScript 实现的类，
 你可以使用 `external` 修饰符写一个 Kotlin 声明。（在 Kotlin 1.0 中，使用了 `@native` 注解。）
-与 JVM 目标平台不同，JS 平台允许对类和属性使用外部修饰符。
+与 JVM 目标平台不同，JS 平台允许对类和属性使用 external 修饰符。
 例如，可以按以下方式声明 DOM `Node` 类：
 
 ``` kotlin
@@ -797,9 +797,9 @@ external class Node {
 ### 改进的导入处理
 
 现在可以更精确地描述应该从 JavaScript 模块导入的声明。
-如果在外部声明上添加 `@JsModule("<module-name>")` 注解，它会在编译期间正确导入
+如果在外部声明上添加 `@JsModule("＜模块名＞")` 注解，它会在编译期间正确导入
 到模块系统（CommonJS或AMD）。例如，使用 CommonJS，该声明会
-通过 `require(...)` 函数导入。
+通过 `require(……)` 函数导入。
 此外，如果要将声明作为模块或全局 JavaScript 对象导入，
 可以使用 `@JsNonModule` 注解。
 
