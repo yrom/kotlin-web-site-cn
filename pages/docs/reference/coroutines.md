@@ -146,7 +146,6 @@ public abstract class SequenceBuilder<in T> {
 
 这些包含在 `kotlin-stdlib` 中因为他们与序列相关。这些函数（我们可以仅限于这里的 `buildSequence()`）实现了 _生成器_ ，即提供一种廉价构建惰性序列的方法：
  
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -174,13 +173,11 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>
   
 这通过创建一个协程生成一个惰性的、潜在无限的斐波那契数列，该协程通过调用 `yield()` 函数来产生连续的斐波纳契数。当在这样的序列的迭代器上迭代每一步，都会执行生成下一个数的协程的另一部分。因此，我们可以从该序列中取出任何有限的数字列表，例如 `fibonacciSeq.take(8).toList()` 结果是 `[1, 1, 2, 3, 5, 8, 13, 21]`。协程足够廉价使这很实用。
    
 为了演示这样一个序列的真正惰性，让我们在调用 `buildSequence()` 内部输出一些调试信息：
   
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -202,13 +199,11 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>  
 
 运行上面的代码看，是不是我们输出前三个元素的数字与生成循环的 `STEP` 有交叉。这意味着计算确实是惰性的。要输出 `1`，我们只执行到第一个 `yield(i)`，并且过程中会输出 `START`。然后，输出 `2`，我们需要继续下一个 `yield(i)`，并会输出 `STEP`。`3` 也一样。永远不会输出再下一个 `STEP`（以及`END`），因为我们再也没有请求序列的后续元素。
 
 为了一次产生值的集合（或序列），可以使用 `yieldAll()` 函数：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -225,13 +220,11 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>  
 
 `buildIterator()` 的工作方式类似于 `buildSequence()`，但返回一个惰性迭代器。
 
 可以通过为 `SequenceBuilder` 类写挂起扩展（带有[上文](#restrictssuspension-注解)描述的 `@RestrictsSuspension` 注解）来为 `buildSequence()` 添加自定义生产逻辑（custom yielding logic）：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -251,7 +244,6 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>  
   
 ### 其他高级 API：`kotlinx.coroutines`
 

@@ -55,7 +55,6 @@ launch(UI) {
 在这样的序列中，在取回每个元素之后挂起返回序列元素的代码块，
 并在请求下一个元素时恢复。这里有一个例子：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1"> 
 
 ``` kotlin
 import kotlin.coroutines.experimental.*
@@ -77,7 +76,6 @@ fun main(args: Array<String>) {
 }
 ```
 
-</div>
 
 
 运行上面的代码以查看结果。随意编辑它并再次运行！
@@ -96,7 +94,6 @@ fun main(args: Array<String>) {
 这对于泛型类型（如集合）以及函数类型最有用。
 这里有几个例子：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
@@ -127,7 +124,6 @@ fun main(args: Array<String>) {
     println("LaLaLandIsTheBestMovie = $laLaLandIsTheBestMovie")
 }
 ```
-</div>
 
 更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md)。
 
@@ -138,7 +134,6 @@ fun main(args: Array<String>) {
 以前这只能用 lambda 表达式表示。
 这里有一个例子：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
@@ -150,7 +145,6 @@ fun main(args: Array<String>) {
     println("Result is $numbers")
 }
 ```
-</div>
 
 
 更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md)。
@@ -163,7 +157,6 @@ Kotlin 1.1 删除了一些对 Kotlin 1.0 中已存在的密封类和数据类的
 数据类现在可以扩展其他类。
 这可以用来友好且清晰地定义一个表达式类的层次结构：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
@@ -185,7 +178,6 @@ fun main(args: Array<String>) {
     println("e is $e") // 3.0
 }
 ```
-</div>
 
 更详细信息请参阅其[文档](sealed-classes.html#密封类的放宽规则（自-11-起）)或者
 [密封类](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md) 及
@@ -197,7 +189,6 @@ fun main(args: Array<String>) {
 现在可以使用[解构声明](multi-declarations.html)语法来解开传递给 lambda 表达式的参数。
 这里有一个例子：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -213,7 +204,6 @@ fun main(args: Array<String>) {
 //sampleEnd    
 }
 ```
-</div>
 
 更详细信息请参阅其[文档](multi-declarations.html#在-lambda-表达式中解构（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
 
@@ -222,7 +212,6 @@ fun main(args: Array<String>) {
 
 对于具有多个参数的 lambda 表达式，可以使用 `_` 字符替换不使用的参数的名称：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -233,11 +222,9 @@ fun main(args: Array<String>) {
 //sampleEnd    
 }
 ```
-</div>
 
 这也适用于[解构声明](multi-declarations.html)：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 data class Result(val value: Any, val status: String)
@@ -251,7 +238,6 @@ fun main(args: Array<String>) {
     println("status is '$status'")
 }
 ```
-</div>
 
 更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/underscore-for-unused-parameters.md)。
 
@@ -260,7 +246,6 @@ fun main(args: Array<String>) {
 
 正如在 Java 8 中一样，Kotlin 现在允许在数字字面值中使用下划线来分隔数字分组：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
@@ -275,7 +260,6 @@ fun main(args: Array<String>) {
     println(bytes.toString(2))
 }
 ```
-</div>
 
 更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/underscores-in-numeric-literals.md)。
 
@@ -284,7 +268,6 @@ fun main(args: Array<String>) {
 
 对于没有自定义访问器、或者将 getter 定义为表达式主体的属性，现在可以省略属性的类型：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
@@ -298,14 +281,12 @@ fun main(args: Array<String>) {
     println("$akari.isAdult = ${akari.isAdult}")
 }
 ```
-</div>
 
 ### 内联属性访问器
 
 如果属性没有幕后字段，现在可以使用 `inline` 修饰符来标记该属性访问器。
 这些访问器的编译方式与[内联函数](inline-functions.html)相同。
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
@@ -319,7 +300,6 @@ fun main(args: Array<String>) {
     println("Last index of $list is ${list.lastIndex}")
 }
 ```
-</div>
 
 你也可以将整个属性标记为 `inline`——这样修饰符应用于两个访问器。
 
@@ -331,7 +311,6 @@ fun main(args: Array<String>) {
 现在可以对局部变量使用[委托属性](delegated-properties.html)语法。
 一个可能的用途是定义一个延迟求值的局部变量：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 import java.util.Random
@@ -353,7 +332,6 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 更详细信息请参阅其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/local-delegated-properties.md)。
 
@@ -392,7 +370,6 @@ class MyUI {
 
 现在可以用泛型的方式来对枚举类的值进行枚举：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 //sampleStart
@@ -407,7 +384,6 @@ fun main(args: Array<String>) {
     printAllValues<RGB>() // 输出 RED, GREEN, BLUE
 }
 ```
-</div>
 
 ### 对于 DSL 中隐式接收者的作用域控制
 
@@ -474,7 +450,6 @@ inputDir.walk()
 而在 `also` 内部的代码块中是 `it`（并且如果你想的话，你可以给它另一个名字）。
 当你不想掩盖来自外部作用域的 `this` 时这很方便：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 class Block {
@@ -499,7 +474,6 @@ fun main(args: Array<String>) {
     println(block.content == copy.content)
 }
 ```
-</div>
 
 `takeIf` 就像单个值的 `filter`。它检查接收者是否满足该谓词，并
 在满足时返回该接收者否则不满足时返回 `null`。
@@ -510,7 +484,6 @@ val outDirFile = File(outputDir.path).takeIf { it.exists() } ?: return false
 // 对现有的 outDirFile 做些事情
 ```
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -527,7 +500,6 @@ fun main(args: Array<String>) {
     println(" ".repeat(index) + "^")
 }
 ```
-</div>
 
 `takeUnless` 与 `takeIf` 相同，只是它采用了反向谓词。当它 _不_ 满足谓词时返回接收者，否则返回 `null`。因此，上面的示例之一可以用 `takeUnless` 重写如下：
 
@@ -537,7 +509,6 @@ val index = input.indexOf(keyword).takeUnless { it < 0 } ?: error("keyword not f
 
 当你有一个可调用的引用而不是 lambda 时，使用也很方便：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 private fun testTakeUnless(string: String) {
@@ -553,14 +524,12 @@ fun main(args: Array<String>) {
     testTakeUnless("abc")
 }
 ```
-</div>
 
 ### groupingBy()
 
 此 API 可以用于按照键对集合进行分组，并同时折叠每个组。 例如，它可以用于
 计算文本中字符的频率：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -576,7 +545,6 @@ fun main(args: Array<String>) {
     println("Comparing the result with using 'groupBy': ${groupBy == frequencies}.")
 }
 ```
-</div>
 
 ### Map.toMap() 和 Map.toMutableMap()
 
@@ -593,7 +561,6 @@ class ImmutablePropertyBag(map: Map<String, Any>) {
 运算符 `plus` 提供了一种将键值对添加到只读映射中以生成新映射的方法，但是没有一种简单的方法来做相反的操作：从映射中删除一个键采用不那么直接的方式如 Map.filter() 或 Map.filterKeys()。
 现在运算符 `minus` 填补了这个空白。有 4 个可用的重载：用于删除单个键、键的集合、键的序列和键的数组。
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -606,13 +573,11 @@ fun main(args: Array<String>) {
     println("emptyMap: $emptyMap")
 }
 ```
-</div>
 
 ### minOf() 和 maxOf()
 
 这些函数可用于查找两个或三个给定值中的最小和最大值，其中值是原生数字或 `Comparable` 对象。每个函数还有一个重载，它接受一个额外的 `Comparator` 实例，如果你想比较自身不可比的对象的话。
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -627,14 +592,12 @@ fun main(args: Array<String>) {
     println("longestList = $longestList")
 }
 ```
-</div>
 
 ### 类似数组的列表实例化函数
 
 类似于 `Array` 构造函数，现在有创建 `List` 和 `MutableList` 实例的函数，并通过
 调用 lambda 表达式来初始化每个元素：
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -647,14 +610,12 @@ fun main(args: Array<String>) {
     println("mutable: $mutable")
 }
 ```
-</div>
 
 ### Map.getValue()
 
 `Map` 上的这个扩展函数返回一个与给定键相对应的现有值，或者抛出一个异常，提示找不到该键。
 如果该映射是用 `withDefault` 生成的，这个函数将返回默认值，而不是抛异常。
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -675,7 +636,6 @@ fun main(args: Array<String>) {
     println("value2 is $value2")
 }
 ```
-</div>
 
 ### 抽象集合
 
@@ -692,7 +652,6 @@ fun main(args: Array<String>) {
 （它们作为 `java.util.Arrays` 中的相应函数的别名）和 JS（在
 Kotlin 标准库中提供实现）。
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -703,7 +662,6 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 ## JVM 后端
 

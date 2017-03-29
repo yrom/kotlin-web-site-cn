@@ -27,7 +27,6 @@ import java.util.*
 
 带有两个 `Int` 参数、返回 `Int` 的函数：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -41,11 +40,9 @@ fun main(args: Array<String>) {
     println(sum(3, 5))
 }
 ```
-</div>
 
 将表达式作为函数体、返回值类型自动推断的函数：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -56,11 +53,9 @@ fun main(args: Array<String>) {
     println("sum of 19 and 23 is ${sum(19, 23)}")
 }
 ```
-</div>
 
 函数返回无意义的值：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -73,11 +68,9 @@ fun main(args: Array<String>) {
     printSum(-1, 8)
 }
 ```
-</div>
 
 `Unit` 返回类型可以省略：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -90,7 +83,6 @@ fun main(args: Array<String>) {
     printSum(-1, 8)
 }
 ```
-</div>
 
 参见[函数](functions.html)。
 
@@ -98,7 +90,6 @@ fun main(args: Array<String>) {
 
 一次赋值（只读）的局部变量:
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -111,11 +102,9 @@ fun main(args: Array<String>) {
     println("a = $a, b = $b, c = $c")
 }
 ```
-</div>
 
 可变变量：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -126,7 +115,6 @@ fun main(args: Array<String>) {
     println("x = $x")
 }
 ```
-</div>
 
 参见[属性和字段](properties.html)。
 
@@ -148,7 +136,6 @@ fun main(args: Array<String>) {
 
 ## 使用字符串模板
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -164,14 +151,12 @@ fun main(args: Array<String>) {
     println(s2)
 }
 ```
-</div>
 
 参见[字符串模板](basic-types.html#字符串模板)。
 
 ## 使用条件表达式
 
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -188,12 +173,10 @@ fun main(args: Array<String>) {
     println("max of 0 and 42 is ${maxOf(0, 42)}")
 }
 ```
-</div>
 
 
 使用 *if*{: .keyword } 作为表达式:
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -204,7 +187,6 @@ fun main(args: Array<String>) {
     println("max of 0 and 42 is ${maxOf(0, 42)}")
 }
 ```
-</div>
 
 参见[*if*{: .keyword } 表达式](control-flow.html#if表达式)。
 
@@ -223,7 +205,6 @@ fun parseInt(str: String): Int? {
 使用返回可空值的函数:
 
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun parseInt(str: String): Int? {
@@ -253,12 +234,10 @@ fun main(args: Array<String>) {
     printProduct("a", "b")
 }
 ```
-</div>
 
 或者
 
 
-<div class="sample" markdown="1" data-min-compiler-version="1.1">
 
 ``` kotlin
 fun parseInt(str: String): Int? {
@@ -291,7 +270,6 @@ fun main(args: Array<String>) {
     printProduct("99", "b")
 }
 ```
-</div>
 
 参见[空安全](null-safety.html)。
 
@@ -301,7 +279,6 @@ fun main(args: Array<String>) {
 如果一个不可变的局部变量或属性已经判断出为某类型，那么检测后的分支中可以直接当作该类型使用，无需显式转换：
 
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -326,11 +303,9 @@ fun main(args: Array<String>) {
     printLength(listOf(Any()))
 }
 ```
-</div>
 
 或者
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -352,11 +327,9 @@ fun main(args: Array<String>) {
     printLength(listOf(Any()))
 }
 ```
-</div>
 
 甚至
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -380,13 +353,11 @@ fun main(args: Array<String>) {
     printLength(1000)
 }
 ```
-</div>
 
 参见[类](classes.html) 和 [类型转换](typecasts.html)。
 
 ## 使用 `for` 循环
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -398,11 +369,9 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 或者
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -414,14 +383,12 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 
 参见 [for 循环](control-flow.html#for-循环)。
 
 ## 使用 `while` 循环
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -435,14 +402,12 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 
 参见 [while 循环](control-flow.html#while-循环)。
 
 ## 使用 `when` 表达式
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -464,7 +429,6 @@ fun main(args: Array<String>) {
     println(describe("other"))
 }
 ```
-</div>
 
 
 参见 [when 表达式](control-flow.html#when-表达式)。
@@ -473,7 +437,6 @@ fun main(args: Array<String>) {
 
 使用 *in*{: .keyword } 运算符来检测某个数字是否在指定区间内：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -486,12 +449,10 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 
 检测某个数字是否在指定区间外:
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -507,12 +468,10 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 
 区间内迭代:
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -523,11 +482,9 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 or over a progression:
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -541,7 +498,6 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 参见[区间](ranges.html)。
 
@@ -549,7 +505,6 @@ fun main(args: Array<String>) {
 
 对集合进行迭代:
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -561,12 +516,10 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 
 使用 *in*{: .keyword } 运算符来判断集合内是否包含某实例：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -579,13 +532,11 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 
 使用 lambda 表达式来过滤（filter）和映射（map）集合：
 
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -599,6 +550,5 @@ fun main(args: Array<String>) {
 //sampleEnd
 }
 ```
-</div>
 
 参见[高阶函数及Lambda表达式](lambdas.html)。
