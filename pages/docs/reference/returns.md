@@ -29,7 +29,7 @@ val s = person.name ?: return
 
 ``` kotlin
 loop@ for (i in 1..100) {
-    // ...
+    // ……
 }
 ```
 
@@ -38,7 +38,7 @@ loop@ for (i in 1..100) {
 ``` kotlin
 loop@ for (i in 1..100) {
     for (j in 1..100) {
-        if (...) break@loop
+        if (……) break@loop
     }
 }
 ```

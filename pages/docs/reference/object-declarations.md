@@ -121,7 +121,7 @@ object DataProviderManager {
 要引用该对象，我们直接使用其名称即可：
 
 ``` kotlin
-DataProviderManager.registerDataProvider(...)
+DataProviderManager.registerDataProvider(……)
 ```
 
 这些对象可以有超类型：

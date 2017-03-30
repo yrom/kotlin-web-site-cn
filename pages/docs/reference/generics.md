@@ -49,7 +49,7 @@ String s = strs.get(0); // ！！！ ClassCastException：无法将整数转换�
 
 ``` java
 // Java
-interface Collection<E> ... {
+interface Collection<E> …… {
   void addAll(Collection<E> items);
 }
 ```
@@ -71,7 +71,7 @@ void copyAll(Collection<Object> to, Collection<String> from) {
 
 ``` java
 // Java
-interface Collection<E> ... {
+interface Collection<E> …… {
   void addAll(Collection<? extends E> items);
 }
 ```
@@ -115,7 +115,7 @@ interface Source<T> {
 // Java
 void demo(Source<String> strs) {
   Source<Object> objects = strs; // ！！！在 Java 中不允许
-  // ...
+  // ……
 }
 ```
 
@@ -173,8 +173,8 @@ fun demo(x: Comparable<Number>) {
 
 ``` kotlin
 class Array<T>(val size: Int) {
-    fun get(index: Int): T { /* ... */ }
-    fun set(index: Int, value: T) { /* ... */ }
+    fun get(index: Int): T { ///* …… */ }
+    fun set(index: Int, value: T) { ///* …… */ }
 }
 ```
 
@@ -204,7 +204,7 @@ copy(ints, any) // 错误：期望 (Array<Any>, Array<Any>)
 
 ``` kotlin
 fun copy(from: Array<out Any>, to: Array<Any>) {
- // ...
+ // ……
 }
 ```
 
@@ -216,7 +216,7 @@ fun copy(from: Array<out Any>, to: Array<Any>) {
 
 ``` kotlin
 fun fill(dest: Array<in String>, value: String) {
-    // ...
+    // ……
 }
 ```
 
@@ -248,11 +248,11 @@ Kotlin 为此提供了所谓的**星投影**语法：
 
 ``` kotlin
 fun <T> singletonList(item: T): List<T> {
-    // ...
+    // ……
 }
 
 fun <T> T.basicToString() : String {  // 扩展函数
-    // ...
+    // ……
 }
 ```
 
@@ -272,7 +272,7 @@ val l = singletonList<Int>(1)
 
 ``` kotlin
 fun <T : Comparable<T>> sort(list: List<T>) {
-    // ...
+    // ……
 }
 ```
 

@@ -103,7 +103,7 @@ Android的 Gradle模型和传统的Gradle有些不同, 因此如果我们想要�
 
 ``` groovy
 buildscript {
-    ...
+    ……
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -115,7 +115,7 @@ apply plugin: 'kotlin-android'
 
 ``` groovy
 android {
-  ...
+  ……
 
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'

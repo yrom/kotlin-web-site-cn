@@ -254,7 +254,7 @@ class C {
 ```
 Kotlin 编译器在参数中提供了关于 `prop` 的所有必要信息：第一个参数 `this` 引用到外部类 `C` 的实例而 `this::prop` 是 `KProperty` 类型的反射对象，该对象描述 `prop` 自身。
 
-请注意，直接在代码中引用[绑定的可调用引用](reflection.html#bound-function-and-property-references-since-11)的语法 `this::prop` 自 Kotlin 1.1 起才可用。
+请注意，直接在代码中引用[绑定的可调用引用](reflection.html#绑定的函数与属性引用（自-11-起）)的语法 `this::prop` 自 Kotlin 1.1 起才可用。
 
 ### 提供委托（自 1.1 起）
 

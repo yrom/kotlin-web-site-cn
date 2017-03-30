@@ -16,7 +16,7 @@ Kotlin 中自由地与 JavaScript 交流，但是如果你想要 Kotlin 类型�
 
 ## 内联 JavaScript
 
-你可以使用 [js("...")](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html) 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。
+你可以使用 [js("……")](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html) 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。
 例如：
 
 ``` kotlin

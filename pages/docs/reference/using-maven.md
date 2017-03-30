@@ -248,7 +248,7 @@ Maven plugin node:
     <artifactId>kotlin-maven-plugin</artifactId>
     <groupId>org.jetbrains.kotlin</groupId>
     <version>${kotlin.version}</version>
-    <executions>...</executions>
+    <executions>……</executions>
     <configuration>
         <nowarn>true</nowarn>  <!-- Disable warnings -->
     </configuration>
@@ -258,7 +258,7 @@ Maven plugin node:
 Many of the options can also be configured through properties:
 
 ``` xml
-<project ...>
+<project ……>
     <properties>
         <kotlin.compiler.languageVersion>1.0</kotlin.compiler.languageVersion>
     </properties>

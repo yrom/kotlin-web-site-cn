@@ -59,7 +59,7 @@ alert(myModule.my.qualified.packagename.foo());
 的名称。要控制生成的名称，可以使用 `@JsName` 注解：
 
 ``` kotlin
-// 模块 'kjs'
+// 模块“kjs”
 class Person(val name: String) {
     fun hello() {
         println("Hello $name!")
@@ -75,7 +75,7 @@ class Person(val name: String) {
 现在，你可以通过以下方式在 JavaScript 中使用这个类：
 
 ``` javascript
-var person = new kjs.Person("Dmitry");   // 引用到模块 'kjs'
+var person = new kjs.Person("Dmitry");   // 引用到模块“kjs”
 person.hello();                          // 输出“Hello Dmitry!”
 person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
 ```

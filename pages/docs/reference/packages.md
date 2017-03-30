@@ -16,7 +16,7 @@ fun baz() {}
 
 class Goo {}
 
-// ...
+// ……
 ```
 
 源文件所有内容（无论是类还是函数）都包含在声明的包内。
@@ -60,14 +60,14 @@ import foo.Bar // 现在 Bar 可以不用限定符访问
 也可以导入一个作用域下的所有内容（包、类、对象等）:
 
 ``` kotlin
-import foo.* // 'foo' 中的一切都可访问
+import foo.* // “foo”中的一切都可访问
 ```
 
 如果出现名字冲突，可以使用 *as*{: .keyword } 关键字在本地重命名冲突项来消歧义：
 
 ``` kotlin
 import foo.Bar // Bar 可访问
-import bar.Bar as bBar // bBar 代表 'bar.Bar'
+import bar.Bar as bBar // bBar 代表“bar.Bar”
 ```
 
 关键字 `import` 并不仅限于导入类；也可用它来导入其他声明：

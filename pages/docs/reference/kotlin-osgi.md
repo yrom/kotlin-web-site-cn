@@ -57,7 +57,7 @@ compile "org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"
 dependencies {
  compile (
    [group: 'some.group.id', name: 'some.library', version: 'someversion'],
-   .....) {
+   ……) {
   exclude group: 'org.jetbrains.kotlin'
 }
 ```

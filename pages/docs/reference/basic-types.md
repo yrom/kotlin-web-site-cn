@@ -63,20 +63,20 @@ val bytes = 0b11010010_01101001_10010100_10010010
 
 ``` kotlin
 val a: Int = 10000
-print(a === a) // 输出 'true'
+print(a === a) // 输出“true”
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA === anotherBoxedA) // !!!输出 'false'!!!
+print(boxedA === anotherBoxedA) // ！！！输出“false”！！！
 ```
 
 另一方面，它保留了相等性:
 
 ``` kotlin
 val a: Int = 10000
-print(a == a) // 输出 'true'
+print(a == a) // 输出“true”
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA == anotherBoxedA) // 输出 'true'
+print(boxedA == anotherBoxedA) // 输出“true”
 ```
 
 ### 显式转换
@@ -151,7 +151,7 @@ val x = (1 shl 2) and 0x000FF000
 ``` kotlin
 fun check(c: Char) {
     if (c == 1) { // 错误：类型不兼容
-        // ...
+        // ……
     }
 }
 ```
@@ -196,7 +196,7 @@ class Array<T> private constructor() {
     operator fun set(index: Int, value: T): Unit
 
     operator fun iterator(): Iterator<T>
-    // ...
+    // ……
 }
 ```
 
