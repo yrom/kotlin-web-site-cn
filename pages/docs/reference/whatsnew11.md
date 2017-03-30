@@ -430,7 +430,7 @@ table {
 会在传给 `td` 的 lambda 表达式中可用。你可以通过定义标记有 `@DslMarker` 元注解的注解
 并将其应用于标记类的基类。
 
-更详细信息请参阅其[文档](type-safe-builders.html#scope-control-dslmarker-since-11)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
+更详细信息请参阅其[文档](type-safe-builders.html#作用域控制：dslmarker（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
 
 
 ### `rem` 操作符

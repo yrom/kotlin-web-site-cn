@@ -342,7 +342,7 @@ fun render(list: List<*>, to: Appendable) {
 val fooClass = foo::class.java
 ```
 
-上面的代码使用了自 Kotlin 1.1 起支持的[绑定的类引用](reflection.html#bound-class-references-since-11)。你也可以使用 `javaClass` 扩展属性。
+上面的代码使用了自 Kotlin 1.1 起支持的[绑定的类引用](reflection.html#绑定的类引用（自-11-起）)。你也可以使用 `javaClass` 扩展属性。
 
 ``` kotlin
 val fooClass = foo.javaClass
