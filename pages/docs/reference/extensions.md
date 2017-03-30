@@ -17,7 +17,7 @@ Kotlin 同 C# 和 Gosu 类似，能够扩展一个类的新功能而无需继承
 
 ``` kotlin
 fun MutableList<Int>.swap(index1: Int, index2: Int) {
-    val tmp = this[index1] // 'this' 对应该列表
+    val tmp = this[index1] // “this”对应该列表
     this[index1] = this[index2]
     this[index2] = tmp
 }
@@ -28,14 +28,14 @@ fun MutableList<Int>.swap(index1: Int, index2: Int) {
 
 ``` kotlin
 val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // 'swap()' 内部的 'this' 得到 'l' 的值
+l.swap(0, 2) // “swap()”内部的“this”得到“l”的值
 ```
 
 当然，这个函数对任何 `MutableList<T>` 起作用，我们可以泛化它：
 
 ``` kotlin
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
-    val tmp = this[index1] // 'this' 对应该列表
+    val tmp = this[index1] // “this”对应该列表
     this[index1] = this[index2]
     this[index2] = tmp
 }
@@ -145,7 +145,7 @@ class MyClass {
 }
 
 fun MyClass.Companion.foo() {
-    // ...
+    // ……
 }
 ```
 
@@ -163,7 +163,7 @@ MyClass.foo()
 ``` kotlin
 package foo.bar
 
-fun Baz.goo() { ... } 
+fun Baz.goo() { …… } 
 ``` 
 
 要使用所定义包之外的一个扩展，我们需要在调用方导入它：
@@ -191,11 +191,11 @@ _分发接收者_，扩展方法调用所在的接收者类型的实例称为 _�
 
 ``` kotlin
 class D {
-    fun bar() { ... }
+    fun bar() { …… }
 }
 
 class C {
-    fun baz() { ... }
+    fun baz() { …… }
 
     fun D.foo() {
         bar()   // 调用 D.bar

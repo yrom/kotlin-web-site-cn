@@ -145,7 +145,7 @@ fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
 如上所写的是就函数类型，或者可以有命名参数，如果你想文档化每个参数的含义的话。
 
 ``` kotlin
-val compare: (x: T, y: T) -> Int = ...
+val compare: (x: T, y: T) -> Int = ……
 ```
 
 ### Lambda 表达式语法
@@ -276,7 +276,7 @@ val sum = fun Int.(other: Int): Int = this + other
 
 ``` kotlin
 class HTML {
-    fun body() { ... }
+    fun body() { …… }
 }
 
 fun html(init: HTML.() -> Unit): HTML {

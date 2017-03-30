@@ -38,7 +38,7 @@ val age = person.component2()
 解构声明也可以用在 *for*{: .keyword }-循环中：当你写
 
 ``` kotlin
-for ((a, b) in collection) { ... }
+for ((a, b) in collection) { …… }
 ```
 
 变量 `a` 和 `b` 的值取自对集合中的元素上调用 `component1()` 和 `component2()` 的返回值。
@@ -50,14 +50,14 @@ for ((a, b) in collection) { ... }
 
 ``` kotlin
 data class Result(val result: Int, val status: Status)
-fun function(...): Result {
+fun function(……): Result {
     // 各种计算
 
     return Result(result, status)
 }
 
 // 现在，使用该函数：
-val (result, status) = function(...)
+val (result, status) = function(……)
 ```
 
 因为数据类自动声明 `componentN()` 函数，所以这里可以用解构声明。
@@ -112,10 +112,10 @@ map.mapValues { (key, value) -> "$value!" }
 注意声明两个参数和声明一个解构对来取代单个参数之间的区别：
 
 ``` kotlin
-{ a -> ... } // 一个参数
-{ a, b -> ... } // 两个参数
-{ (a, b) -> ... } // 一个解构对
-{ (a, b), c -> ... } // 一个解构对以及其他参数
+{ a //-> …… } // 一个参数
+{ a, b //-> …… } // 两个参数
+{ (a, b) //-> …… } // 一个解构对
+{ (a, b), c //-> …… } // 一个解构对以及其他参数
 ```
 
 如果解构的参数中的一个组件未使用，那么可以将其替换为下划线，以避免编造其名称：

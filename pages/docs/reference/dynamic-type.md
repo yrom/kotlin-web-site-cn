@@ -27,7 +27,7 @@ val dyn: dynamic = ……
 ：
 
 ``` kotlin
-dyn.whatever(1, "foo", dyn) // 'whatever' 在任何地方都没有定义
+dyn.whatever(1, "foo", dyn) // “whatever”在任何地方都没有定义
 dyn.whatever(*arrayOf(1, 2, 3))
 ```
 

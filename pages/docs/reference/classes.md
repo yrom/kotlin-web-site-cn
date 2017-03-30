@@ -72,7 +72,7 @@ class Customer(name: String) {
 
 ``` kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
-    // ...
+    // ……
 }
 ```
 
@@ -83,7 +83,7 @@ class Person(val firstName: String, val lastName: String, var age: Int) {
 这些修饰符在它前面：
 
 ``` kotlin
-class Customer public @Inject constructor(name: String) { ... }
+class Customer public @Inject constructor(name: String) { …… }
 ```
 
 更多详情，参见[可见性修饰符](visibility-modifiers.html#构造函数)
@@ -228,11 +228,11 @@ open class AnotherDerived() : Base() {
 
 ``` kotlin
 open class Foo {
-    open val x: Int get { ... }
+    open val x: Int get { …… }
 }
 
 class Bar1 : Foo() {
-    override val x: Int = ...
+    override val x: Int = ……
 }
 ```
 
@@ -265,7 +265,7 @@ open class A {
 }
 
 interface B {
-    fun f() { print("B") } // 接口成员默认就是 'open' 的
+    fun f() { print("B") } // 接口成员默认就是“open”的
     fun b() { print("b") }
 }
 

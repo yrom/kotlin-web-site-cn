@@ -45,7 +45,7 @@ class Group<T>(val name: String) {
      * 将 [member] 添加到这个组。
      * @return 这个组的新大小。
      */
-    fun add(member: T): Int { ... }
+    fun add(member: T): Int { …… }
 }
 ```
 

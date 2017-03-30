@@ -28,7 +28,7 @@ data class Customer(val name: String, val email: String)
 ### 函数的默认参数
 
 ``` kotlin
-fun foo(a: Int = 0, b: String = "") { ... }
+fun foo(a: Int = 0, b: String = "") { …… }
 ```
 
 ### 过滤 list
@@ -53,9 +53,9 @@ println("Name $name")
 
 ``` kotlin
 when (x) {
-    is Foo -> ...
-    is Bar -> ...
-    else   -> ...
+    is Foo //-> ……
+    is Bar //-> ……
+    else   //-> ……
 }
 ```
 
@@ -72,11 +72,11 @@ for ((k, v) in map) {
 ### 使用区间
 
 ``` kotlin
-for (i in 1..100) { ... }  // 闭区间：包含 100
-for (i in 1 until 100) { ... } // 半开区间：不包含 100
-for (x in 2..10 step 2) { ... }
-for (x in 10 downTo 1) { ... }
-if (x in 1..10) { ... }
+for (i in 1..100) { …… }  // 闭区间：包含 100
+for (i in 1 until 100) { …… } // 半开区间：不包含 100
+for (x in 2..10 step 2) { …… }
+for (x in 10 downTo 1) { …… }
+if (x in 1..10) { …… }
 ```
 
 ### 只读 list
@@ -109,7 +109,7 @@ val p: String by lazy {
 ### 扩展函数
 
 ``` kotlin
-fun String.spaceToCamelCase() { ... }
+fun String.spaceToCamelCase() { …… }
 
 "Convert this to camelcase".spaceToCamelCase()
 ```
@@ -141,17 +141,17 @@ println(files?.size ?: "empty")
 ### if null 执行一个语句
 
 ``` kotlin
-val data = ...
+val data = ……
 val email = data["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
 ### if not null 执行代码
 
 ``` kotlin
-val data = ...
+val data = ……
 
 data?.let {
-    ... // 代码会执行到此处, 假如data不为null
+    …… // 代码会执行到此处, 假如data不为null
 }
 ```
 
@@ -168,7 +168,7 @@ fun transform(color: String): Int {
 }
 ```
 
-### 'try/catch' 表达式
+### “try/catch”表达式
 
 ``` kotlin
 fun test() {
@@ -182,7 +182,7 @@ fun test() {
 }
 ```
 
-### 'if' 表达式
+### “if”表达式
 
 ``` kotlin
 fun foo(param: Int) {
@@ -264,9 +264,9 @@ stream.buffered().reader().use { reader ->
 
 ``` kotlin
 //  public final class Gson {
-//     ...
+//     ……
 //     public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
-//     ...
+//     ……
 
 inline fun <reified T: Any> Gson.fromJson(json): T = this.fromJson(json, T::class.java)
 ```
@@ -274,9 +274,9 @@ inline fun <reified T: Any> Gson.fromJson(json): T = this.fromJson(json, T::clas
 ### 使用可空布尔
 
 ``` kotlin
-val b: Boolean? = ...
+val b: Boolean? = ……
 if (b == true) {
-    ...
+    ……
 } else {
     // `b` 是 false 或者 null
 }

@@ -314,7 +314,7 @@ fun getX() = 10
 
 ``` kotlin
 @JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
-    ...
+    ……
 }
 ```
 
@@ -360,7 +360,7 @@ try {
   demo.Example.foo();
 }
 catch (IOException e) { // 错误：foo() 未在 throws 列表中声明 IOException
-  // ...
+  // ……
 }
 ```
 
@@ -398,8 +398,8 @@ fun unboxBase(box: Box<Base>): Base = box.value
 一种看似理所当然地将这俩函数转换成 Java 代码的方式可能会是：
  
 ``` java
-Box<Derived> boxDerived(Derived value) { ... }
-Base unboxBase(Box<Base> box) { ... }
+Box<Derived> boxDerived(Derived value) { …… }
+Base unboxBase(Box<Base> box) { …… }
 ``` 
 
 问题是，在 Kotlin 中我们可以这样写 `unboxBase(boxDerived("s"))`，但是在 Java 中是行不通的，因为在 Java 中
@@ -407,7 +407,7 @@ Base unboxBase(Box<Base> box) { ... }
 要使其在 Java 中工作，我们按以下这样定义 `unboxBase`：
   
 ``` java
-Base unboxBase(Box<? extends Base> box) { ... }  
+Base unboxBase(Box<? extends Base> box) { …… }  
 ```  
 
 这里我们使用 Java 的*通配符类型*（`? extends Base`）来
@@ -420,10 +420,10 @@ Java 编码风格）。因此，我们的示例中的对应函数实际上翻译
   
 ``` java
 // 作为返回类型——没有通配符
-Box<Derived> boxDerived(Derived value) { ... }
+Box<Derived> boxDerived(Derived value) { …… }
  
 // 作为参数——有通配符
-Base unboxBase(Box<? extends Base> box) { ... }
+Base unboxBase(Box<? extends Base> box) { …… }
 ```
 
 注意：当参数类型是 final 时，生成通配符通常没有意义，所以无论在什么地方 `Box<String>` 
@@ -434,7 +434,7 @@ Base unboxBase(Box<? extends Base> box) { ... }
 ``` kotlin
 fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 // 将被转换成
-// Box<? extends Derived> boxDerived(Derived value) { ... }
+// Box<? extends Derived> boxDerived(Derived value) { …… }
 ```
 
 另一方面，如果我们根本不需要默认的通配符转换，我们可以使用`@JvmSuppressWildcards`
@@ -442,7 +442,7 @@ fun boxDerived(value: Derived): Box<@JvmWildcard Derived> = Box(value)
 ``` kotlin
 fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 // 会翻译成
-// Base unboxBase(Box<Base> box) { ... }
+// Base unboxBase(Box<Base> box) { …… }
 ```
 
 注意：`@JvmSuppressWildcards` 不仅可用于单个类型参数，还可用于整个声明（如
@@ -457,5 +457,5 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 ``` kotlin
 fun emptyList(): List<Nothing> = listOf()
 // 会翻译成
-// List emptyList() { ... }
+// List emptyList() { …… }
 ```

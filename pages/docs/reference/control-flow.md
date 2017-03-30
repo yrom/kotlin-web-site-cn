@@ -136,7 +136,7 @@ for (item in collection) print(item)
 
 ``` kotlin
 for (item: Int in ints) {
-    // ...
+    // ……
 }
 ```
 

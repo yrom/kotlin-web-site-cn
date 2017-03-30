@@ -16,7 +16,7 @@ package my.demo
 
 import java.util.*
 
-// ...
+// ……
 ```
 
 目录与包的结构无需匹配：源代码可以在文件系统的任意位置。
@@ -216,7 +216,7 @@ fun main(args: Array<String>) {
 
 ``` kotlin
 fun parseInt(str: String): Int? {
-    // ...
+    // ……
 }
 ```
 
@@ -270,7 +270,7 @@ fun printProduct(arg1: String, arg2: String) {
     val y = parseInt(arg2)
     
 //sampleStart
-    // ...
+    // ……
     if (x == null) {
         println("Wrong number format in arg1: '${arg1}'")
         return

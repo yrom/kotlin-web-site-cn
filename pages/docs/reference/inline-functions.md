@@ -37,7 +37,7 @@ finally {
 
 ``` kotlin
 inline fun lock<T>(lock: Lock, body: () -> T): T {
-    // ...
+    // ……
 }
 ```
 
@@ -54,7 +54,7 @@ inline fun lock<T>(lock: Lock, body: () -> T): T {
 
 ``` kotlin
 inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) {
-    // ...
+    // ……
 }
 ```
 
@@ -111,7 +111,7 @@ inline fun f(crossinline body: () -> Unit) {
     val f = object: Runnable {
         override fun run() = body()
     }
-    // ...
+    // ……
 }
 ```
 

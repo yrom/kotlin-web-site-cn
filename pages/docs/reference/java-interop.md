@@ -355,7 +355,7 @@ val fooClass = foo.javaClass
 ```kotlin
 
 class Example : Cloneable {
-    override fun clone(): Any { ... }
+    override fun clone(): Any { …… }
 }
 ```
 

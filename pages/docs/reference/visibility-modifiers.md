@@ -78,7 +78,7 @@ class Subclass : Outer() {
     // b、c、d 可见
     // Nested 和 e 可见
 
-    override val b = 5   // 'b' 为 protected
+    override val b = 5   // “b”为 protected
 }
 
 class Unrelated(o: Outer) {
@@ -94,7 +94,7 @@ class Unrelated(o: Outer) {
 显式 *constructor*{:.keyword} 关键字）：
 
 ``` kotlin
-class C private constructor(a: Int) { ... }
+class C private constructor(a: Int) { …… }
 ```
 
 这里的构造函数是私有的。默认情况下，所有构造函数都是 `public`，这实际上

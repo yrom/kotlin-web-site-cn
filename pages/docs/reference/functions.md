@@ -60,7 +60,7 @@ infix fun Int.shl(x: Int): Int {
 
 ``` kotlin
 fun powerOf(number: Int, exponent: Int) {
-...
+……
 }
 ```
 
@@ -71,7 +71,7 @@ fun powerOf(number: Int, exponent: Int) {
 
 ``` kotlin
 fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
-...
+……
 }
 ```
 
@@ -82,11 +82,11 @@ fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
 
 ``` kotlin
 open class A {
-    open fun foo(i: Int = 10) { ... }
+    open fun foo(i: Int = 10) { …… }
 }
 
 class B : A() {
-    override fun foo(i: Int) { ... }  // 不能有默认值
+    override fun foo(i: Int) { …… }  // 不能有默认值
 }
 ```
 
@@ -102,7 +102,7 @@ fun reformat(str: String,
              upperCaseFirstLetter: Boolean = true,
              divideByCamelHumps: Boolean = false,
              wordSeparator: Char = ' ') {
-...
+……
 }
 ```
 
@@ -276,7 +276,7 @@ Sample().foo() // 创建类 Sample 实例并调用 foo
 
 ``` kotlin
 fun <T> singletonList(item: T): List<T> {
-    // ...
+    // ……
 }
 ```
 

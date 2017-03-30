@@ -64,7 +64,7 @@ for (i in 1 until 10) {   // i in [1, 10) 排除了 10
 
 ``` java
 for (int i = first; i != last; i += step) {
-  // ...
+  // ……
 }
 ```
 
