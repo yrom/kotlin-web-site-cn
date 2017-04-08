@@ -70,7 +70,7 @@ fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
 该函数可以如下调用:
 
 ``` kotlin
-val doubled = ints.map { it -> it * 2 }
+val doubled = ints.map { value -> value * 2 }
 ```
 
 请注意，如果 lambda 是该调用的唯一参数，则调用中的圆括号可以完全省略。
