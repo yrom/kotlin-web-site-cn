@@ -144,7 +144,7 @@ fun main(args: Array<String>) {
 
 与 Java 不同的是，Kotlin 的块注释可以嵌套。
 
-参见[生成 Kotlin 代码文档](kotlin-doc.html) 查看关于文档注释语法的信息。
+参见[编写 Kotlin 代码文档](kotlin-doc.html) 查看关于文档注释语法的信息。
 
 ## 使用字符串模板
 
