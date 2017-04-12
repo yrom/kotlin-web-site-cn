@@ -188,8 +188,8 @@ fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 ``` kotlin
 class Foo
 
-fun function(factory : () -> Foo) {
-    val x : Foo = factory()
+fun function(factory: () -> Foo) {
+    val x: Foo = factory()
 }
 ```
 

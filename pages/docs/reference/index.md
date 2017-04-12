@@ -23,7 +23,7 @@ title: "参考"
 [ePUB 文件](https://www.gitbook.com/download/epub/book/hltj/kotlin-reference-chinese)、
 [Mobi 文件](https://www.gitbook.com/download/mobi/book/hltj/kotlin-reference-chinese)。
 
-也可以关注 GitBook：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/activity)。
+其中 ePUB 和 Mobi 格式的文件是 GitBook 上自动构建的，也可同时关注 GitBook 上的电子书：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/details)。
 
 # 参考书
 
