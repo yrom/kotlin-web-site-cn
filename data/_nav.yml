@@ -2,6 +2,9 @@
 # ====================
 main:
   items:
+    - url: http://www.kotliner.cn/
+      title: 博客
+
     - url: /docs/reference/
       title: 学习
 
