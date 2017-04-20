@@ -38,7 +38,7 @@ Kotlin 是一种开源语言并在 Apache 2 开源软件许可下授权。它的
 
 ### 哪里可以获取 Kotlin 的高清徽标？
 
-徽标可以在[这里](https://resources.jetbrains.com/storage/products/kotlin/docs/kotlin_logos.zip)下载。请遵循压缩包内的`readme.txt`中的简单规则使用。
+徽标可以在[这里](https://resources.jetbrains.com/storage/products/kotlin/docs/kotlin_logos.zip)下载。请遵循压缩包内的 `guidelines.pdf` 中的简单规则使用。
 
 
 ### 它兼容Java？

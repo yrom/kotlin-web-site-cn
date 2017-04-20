@@ -8,8 +8,6 @@ title: "使用 Gradle"
 
 In order to build Kotlin with Gradle you should [set up the *kotlin-gradle* plugin](#插件和版本), [apply it](#targeting-the-jvm) to your project and [add *kotlin-stdlib* dependencies](#配置依赖). Those actions may also be performed automatically in IntelliJ IDEA by invoking the Tools \| Kotlin \| Configure Kotlin in Project action.
 
-You can also enable [incremental compilation](#incremental-compilation) to make your builds faster. 
-
 ## 插件和版本
 
 使用 *kotlin-gradle-plugin* 编译Kotlin的源代码和模块.
@@ -18,15 +16,15 @@ You can also enable [incremental compilation](#incremental-compilation) to make 
 
 ``` groovy
 buildscript {
-   ext.kotlin_version = '<version to use>'
+    ext.kotlin_version = '<version to use>'
 
-   repositories {
-     mavenCentral()
-   }
+    repositories {
+        mavenCentral()
+    }
 
-   dependencies {
-     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-   }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 ```
 
@@ -45,7 +43,7 @@ Or, starting with Kotlin 1.1.1, the plugin can be applied using the [Gradle plug
 
 ```groovy
 plugins {
-  id "org.jetbrains.kotlin.jvm" version "<version to use>"
+    id "org.jetbrains.kotlin.jvm" version "<version to use>"
 }
 ```
 The `version` should be literal in this block, and it cannot be applied from another build script.
@@ -86,8 +84,9 @@ sourceSets {
 }
 ```
 
-如果你想创建一个可重用的库, 使用 `kotlinOptions.metaInfo` 来生成额外的二进制形式的JS文件.
-这个文件应该和编译结果一起分发.
+In addition to the output JavaScript file, the plugin by default creates an additional JS file with binary descriptors.
+This file is required if you're building a re-usable library that other Kotlin modules can depend on, and should be distributed together with the result of translation.
+The generation is controlled by the  `kotlinOptions.metaInfo` option:
 
 ``` groovy
 compileKotlin2Js {
@@ -152,8 +151,16 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 ```
+If you're targeting JDK 7 or JDK 8, you can use extended versions of the Kotlin standard library which contain
+additional extension functions for APIs added in new JDK versions. Instead of `kotlin-stdlib`, use one of the
+following dependencies:
 
-If your project uses [Kotlin reflection](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) or testing facilities, you need to add the corresponding dependencies as well:
+``` groovy
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+```
+
+If your project uses [Kotlin reflection](/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) or testing facilities, you need to add the corresponding dependencies as well:
 
 ``` groovy
 compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
@@ -171,16 +178,17 @@ apply plugin: 'kotlin-kapt'
 
 Or, starting with Kotlin 1.1.1, you can apply it using the plugins DSL:
 
-```groovy
+``` groovy
 plugins {
-  id "org.jetbrains.kotlin.kapt" version "<version to use>"
+    id "org.jetbrains.kotlin.kapt" version "<version to use>"
 }
 ```
 
 Then add the respective dependencies using the `kapt` configuration in your `dependencies` block:
-```groovy
+
+``` groovy
 dependencies {
-  kapt 'groupId:artifactId:version'
+    kapt 'groupId:artifactId:version'
 }
 ```
 
@@ -297,7 +305,7 @@ OSGi 支持查看 [Kotlin OSGi page](kotlin-osgi.html).
 
 ## 例子
 
-[Kotlin Repository](https://github.com/jetbrains/kotlin) 包含的例子:
+The following examples show different possibilities of configuring the Gradle plugin:
 
 * [Kotlin](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/hello-world)
 * [Mixed Java and Kotlin](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/mixed-java-kotlin-hello-world)
