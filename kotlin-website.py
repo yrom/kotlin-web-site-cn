@@ -222,7 +222,7 @@ def process_page(page_path):
 
             ids = map(lambda x: x['id'], referenced_page.parsed_html.select('h1,h2,h3,h4'))
             if href.fragment not in ids:
-                build_errors.append("Bad anchor: " + str(href.fragment) + " on page " + page_path)
+                build_errors.append("Bad anchor: " + href.fragment + " on page " + page_path)
     return render_template(
         template,
         page=page,
