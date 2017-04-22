@@ -49,3 +49,28 @@ Kotlin 只有很小的运行时，且旨在保持如此。我们相信标准运�
 
 Kotlin 是一门新的语言，但我们对此抱有很高期望，我们需要相信它的人传播这个词！
 
+---
+
+### 中文站翻译贡献者
+
+Kotlin 编程语言中文站翻译贡献者如下（排名不分先后）：
+
+* [灰蓝天际](https://github.com/hltj)
+* [晓_晨DEV](http://tanfujun.com/)
+* S_arige
+* dingsx
+* 空白
+* [LyndonChin](https://github.com/LyndonChin)
+* Jacky Xu
+* [wahchi](https://github.com/wahchi)
+* _Y
+* EasonZhou
+* [pecpwee](https://github.com/pecpwee)
+* Airoyee
+* [化缘](http://frblog.sinaapp.com/)
+* [drakeet](https://github.com/drakeet)
+* [cx9527](https://github.com/cx9527)
+* [zsn012](http://github.com/zsn012)
+* [xwSurfer](https://github.com/xwSurfer)
+* [chiahaolu](https://github.com/chiahaolu)
+* [DemoJameson](http://www.demojameson.com/)
