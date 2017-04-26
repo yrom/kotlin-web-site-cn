@@ -10,9 +10,9 @@ title: "使用 Gradle"
 
 ## 插件和版本
 
-使用 *kotlin-gradle-plugin* 编译 Kotlin 源代码和模块.
+使用 `kotlin-gradle-plugin` 编译 Kotlin 源代码和模块.
 
-要使用的 Kotlin 版本通常定义为 *kotlin_version* 属性：
+要使用的 Kotlin 版本通常定义为 `kotlin_version` 属性：
 
 ``` groovy
 buildscript {
@@ -127,45 +127,40 @@ android {
 
 ## 配置依赖
 
-除了上面显示的 kotlin-gradle-plugin 依赖之外，还需要添加 Kotlin 标准库的依赖：
+除了上面显示的 `kotlin-gradle-plugin` 依赖之外，还需要添加 Kotlin 标准库的依赖：
 
 ``` groovy
-buildscript {
-    ext.kotlin_version = '＜要使用的版本＞'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-apply plugin: "kotlin" // 或应用插件：“kotlin2js”如果针对 JavaScript 的话
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib"
 }
 ```
+
+If you target JavaScript, use `compile "org.jetbrains.kotlin:kotlin-stdlib-js"` instead.
+
 如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含
 为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 `kotlin-stdlib`
 ：
 
 ``` groovy
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre7"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
 ```
 
 如果你的项目中使用 [Kotlin 反射](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)或者测试设施，你也需要添加相应的依赖：
 
 ``` groovy
-compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+compile "org.jetbrains.kotlin:kotlin-reflect"
+testCompile "org.jetbrains.kotlin:kotlin-test"
+testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 ```
+
+Starting with Kotlin 1.1.2, the dependencies with group `org.jetbrains.kotlin` are by default resolved with the version
+taken from the applied plugin. You can provide the version manually using the full dependency notation like
+`compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"`.
 
 ## 注解处理
 
