@@ -139,7 +139,7 @@ dependencies {
 }
 ```
 
-If you target JavaScript, use `compile "org.jetbrains.kotlin:kotlin-stdlib-js"` instead.
+如果针对 JavaScript，请使用 `compile "org.jetbrains.kotlin:kotlin-stdlib-js"` 替代之。
 
 如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含
 为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 `kotlin-stdlib`
@@ -158,9 +158,9 @@ testCompile "org.jetbrains.kotlin:kotlin-test"
 testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 ```
 
-Starting with Kotlin 1.1.2, the dependencies with group `org.jetbrains.kotlin` are by default resolved with the version
-taken from the applied plugin. You can provide the version manually using the full dependency notation like
-`compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"`.
+从 Kotlin 1.1.2 起，使用 `org.jetbrains.kotlin` group 的依赖项默认使用
+从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
+（如 `compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"`）手动提供其版本。
 
 ## 注解处理
 
