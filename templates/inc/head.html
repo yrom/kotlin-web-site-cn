@@ -9,9 +9,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 {% if page and page.title %}
-    {% set title=page.title + ' - Kotlin 编程语言' %}
+    {% set title=page.title + ' - Kotlin 语言中文站' %}
 {% else %}
-    {% set title='Kotlin 编程语言' %}
+    {% set title='Kotlin 语言中文站' %}
 {% endif %}
 
 <title>{{ title }}</title>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:description" content="{{ page.description }}">
 {% else %}
     <meta property="og:description"
-          content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
+          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 {% endif %}
 <meta property="og:site_name" content="Kotlin"/>
 
@@ -50,7 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:description" content="{{ page.description }}">
 {% else %}
     <meta name="twitter:description"
-          content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
+          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 {% endif %}
 <meta name="twitter:image:src" content="https://kotlinlang.org{{ url_for('asset', path='images/twitter-card/kotlin_800x320.png') }}">
 <!-- Social Media tag Ends -->
