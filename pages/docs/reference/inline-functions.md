@@ -126,10 +126,10 @@ inline fun f(crossinline body: () -> Unit) {
 fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
     var p = parent
     while (p != null && !clazz.isInstance(p)) {
-        p = p?.parent
+        p = p.parent
     }
     @Suppress("UNCHECKED_CAST")
-    return p as T
+    return p as T?
 }
 ```
 
@@ -137,13 +137,13 @@ fun <T> TreeNode.findParentOfType(clazz: Class<T>): T? {
 这都没有问题，但是调用处不是很优雅：
 
 ``` kotlin
-myTree.findParentOfType(MyTreeNodeType::class.java)
+treeNode.findParentOfType(MyTreeNode::class.java)
 ```
 
 我们真正想要的只是传一个类型给该函数，即像这样调用它：
 
 ``` kotlin
-myTree.findParentOfType<MyTreeNodeType>()
+treeNode.findParentOfType<MyTreeNode>()
 ```
 
 为能够这么做，内联函数支持*具体化的类型参数*，于是我们可以这样写：
@@ -152,9 +152,9 @@ myTree.findParentOfType<MyTreeNodeType>()
 inline fun <reified T> TreeNode.findParentOfType(): T? {
     var p = parent
     while (p != null && p !is T) {
-        p = p?.parent
+        p = p.parent
     }
-    return p as T
+    return p as T?
 }
 ```
 

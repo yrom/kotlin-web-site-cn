@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: FAQ
-title: "与 Scala 比较"
+title: "与 Scala 比较【官方已删除】"
 ---
 
-# 与 Scala 比较
+# 与 Scala 比较【官方已删除】
 
 Kotlin 团队的主要目标是创建一种务实且高效的编程语言，而不是提高编程语言研究中的最新技术水平。
 考虑到这一点，如果你对 Scala 感到满意，那你很可能不需要 Kotlin。
