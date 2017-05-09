@@ -168,7 +168,7 @@ fun demo(x: Comparable<Number>) {
 
 ### 使用处型变：类型投影
 
-It is very convenient to declare a type parameter T as *out* and avoid trouble with subtyping on the use site, but some classes **can't** actually be restricted to only return `T`'s! 
+将类型参数 T 声明为 *out* 非常方便，并且能避免使用处子类型化的麻烦，但是有些类实际上**不能**限制为只返回 `T`！
 一个很好的例子是 Array：
 
 ``` kotlin
