@@ -168,7 +168,7 @@ fun demo(x: Comparable<Number>) {
 
 ### 使用处型变：类型投影
 
-声明一个类型参数 T 为 *out* 非常方便，并且在使用处运用子类型也没有问题。是的，当问题中的类**能够**仅限于返回 `T` 时，但是如果它**不能**呢？
+It is very convenient to declare a type parameter T as *out* and avoid trouble with subtyping on the use site, but some classes **can't** actually be restricted to only return `T`'s! 
 一个很好的例子是 Array：
 
 ``` kotlin
