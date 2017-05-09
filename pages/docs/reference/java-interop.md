@@ -167,7 +167,7 @@ Java 的装箱原始类型映射到可空的 Kotlin 类型：
 | `java.lang.Long`    | `kotlin.Long?`   |
 | `java.lang.Char`    | `kotlin.Char?`   |
 | `java.lang.Float`   | `kotlin.Float?`  |
-| `java.lang.Double`  | `kotlin.Double?  |
+| `java.lang.Double`  | `kotlin.Double?`  |
 | `java.lang.Boolean` | `kotlin.Boolean?` |
 {:.zebra}
 

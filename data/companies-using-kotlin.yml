@@ -213,3 +213,19 @@
 - company: Hootsuite
   url: https://hootsuite.com
   description: Hootsuite is a platform for managing social media. All new Android code is written in Kotlin.
+
+- company: BandLab
+  url: https://play.google.com/store/apps/dev?id=8375301961782396369
+  description: Kotlin is a primary language for BandLab's Android application and Gradle plugins
+  
+- company: Trove
+  url: https://www.mytrove.com/
+  description: Modernizing Moving and Storage. Android app is 100% Kotlin and introducing Kotlin into our Java backend stack.
+
+- company: Tiendeo
+  url: http://www.tiendeo.com/
+  description: Offers app with millions of users and 40% of code written in Kotlin (and increasing)
+
+- company: userfeeds.io
+  url: http://userfeeds.io/
+  description: The content ranking system for blockchain communities. Android SDK and apps written in Kotlin.

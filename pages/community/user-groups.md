@@ -1,7 +1,7 @@
 ---
 ---
 
-# Kotlin User Groups
+# Kotlin User Groups (47)
 
 <div class="g-grid">
 <div class="g-6" markdown="1">
@@ -12,9 +12,10 @@
  * [Belgium Kotlin User Group](https://www.kotlin.be/), Belgium
  * [Berlin Kotlin User Group](https://www.meetup.com/kotlin-berlin/), Germany
  * [Bucharest Kotlin User Group](https://www.meetup.com/kug-bucharest/), Romania
- * [Budapest Kotlin User Group](mailto:orsi@makery.co), Hungary
+ * [Budapest Kotlin User Group](https://www.facebook.com/groups/KotlinBudapest/), Hungary
  * [Cologne Kotlin User Group](https://www.meetup.com/Kotlin-User-Group-Cologne/?from=ref), Germany
  * [Czech Kotlin User Group](http://www.kotliners.cz), Czech
+ * [Dutch Kotlin User Group](http://kotlin.nl/), Netherlands
  * [London Kotlin](http://www.meetup.com/kotlin-london/), United Kingdom
  * [Lyon Kotlin User Group](http://www.meetup.com/Lyon-Kotlin-User-Group/), France
  * [Madrid Kotlin User Group](https://www.meetup.com/KotlinMAD/), Spain
@@ -31,12 +32,16 @@
 ### Asia
   
  * [Azerbaijan Kotlin User Group](https://www.facebook.com/groups/395337754167951/), Azerbaijan
+ * [Beijing Kotlin User Group](http://www.kotliner.cn/), China
+ * [Chengdu Kotlin User Group](https://www.kotliner.cn/chengdu/), China
  * [Dubai Kotlin User Group](https://www.facebook.com/kotlindubai/), United Arab Emirates
  * [Japan Kotlin User Group](https://kotlin.connpass.com/), Japan
  * [Hyderabad Kotlin User Group](https://www.facebook.com/KotlinHyd/), India
  * [Karachi Kotlin User Group](https://www.facebook.com/kotlinkarachi/), Pakistan
  * [Korean Kotlin User Group](http://kotlin.kr/), Korea
  * [New Delhi Kotlin User Group](https://www.facebook.com/kotlinNewDelhi/), India
+ * [Thailand Kotlin Developers](https://www.facebook.com/groups/872547279487598/), Thailand
+
 </div>
 
 <div class="g-6" markdown="1">
@@ -45,8 +50,9 @@
 
 * [Bay Area Kotlin User Group](http://www.meetup.com/Bay-Area-Kotlin-User-Group/), USA
 * [Boulder Kotlin Group](http://www.meetup.com/Kotlin-Group-Boulder/), USA
+* [Brooklyn (NY) Kotlin User Group](https://www.meetup.com/Brooklyn-Kotlin/), USA
 * [Chicago Kotlin Users Group](http://www.meetup.com/Chicago-Kotlin/), USA
-* [Minneapolis Kotlin User Group](https://www.meetup.com/Twin-Cities-Kotlin-User-Group/), USA
+* [Twin Cities Kotlin User Group](https://www.meetup.com/Twin-Cities-Kotlin-User-Group/), USA
 * [New York Kotlin Meetup](http://www.meetup.com/New-York-Kotlin-Meetup/), USA
 * [Norfolk Kotlin User Group](mailto:robert.chrzanowski@gmail.com), USA
 * [Toronto Kotlin](https://www.meetup.com/Kotlin-Toronto/events/235740293/), Canada
@@ -63,6 +69,7 @@
 ### Australia/Oceania
 
 * [Brisbane Kotlin User Group](https://www.meetup.com/Brisbane-Kotlin-User-Group/), Australia
+* [Sydney Kotlin User Group](https://sydkotlin.space/), Australia
 * [Wellington Kotlin User Group](https://www.meetup.com/Wellington-kt/), New Zealand
 
 ### Africa

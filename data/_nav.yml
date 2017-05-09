@@ -2,6 +2,9 @@
 # ====================
 main:
   items:
+    - url: http://www.kotliner.cn/
+      title: 博客
+
     - url: /docs/reference/
       title: 学习
 
@@ -206,7 +209,7 @@ reference:
         - url: /docs/reference/comparison-to-java.html
           title: 与 Java 比较
         - url: /docs/reference/comparison-to-scala.html
-          title: 与 Scala 比较
+          title: 与 Scala 比较【官方已删除】
 
 
 
@@ -226,6 +229,12 @@ tutorials:
           title: 使用构建工具
         - url: /docs/tutorials/koans.html
           title: 心印
+    - title: Android
+      items:
+        - url: /docs/tutorials/kotlin-android.html
+          title: Android 开发入门
+        - url: /docs/tutorials/android-plugin.html
+          title: Kotlin Android 扩展
     - title: Java 互操作
       items:
         - url: /docs/tutorials/mixing-java-kotlin-intellij.html
@@ -259,12 +268,6 @@ tutorials:
         - url: /docs/tutorials/spring-boot-restful.html
           title: 用  Spring Boot 创建 RESTful Web 服务
 
-    - title: 移动开发
-      items:
-        - url: /docs/tutorials/kotlin-android.html
-          title: Android 开发入门
-        - url: /docs/tutorials/android-plugin.html
-          title: Kotlin Android 扩展
     - title: 工具
       items:
         - url: /docs/tutorials/kotlin-and-ci.html
