@@ -9,9 +9,9 @@ description: "This tutorials walks you through different scenarios when using Ma
 
 ## 插件与版本
 
-*kotlin-maven-plugin* 用于编译 Kotlin 源码与模块，当前只支持 Marven V3
+*kotlin-maven-plugin* 用于编译 Kotlin 源代码与模块，目前只支持 Marven V3。
 
-Define the version of Kotlin you want to use via a *kotlin.version* property:
+通过 *kotlin.version* 属性定义要使用的 Kotlin 版本：
 
 ``` xml
 <properties>
@@ -21,7 +21,7 @@ Define the version of Kotlin you want to use via a *kotlin.version* property:
 
 ## 依赖
 
-Kotlin 提供了大量的标准库以供开发使用，需要在 pom 文件中设置以下依赖：
+Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配置以下依赖关系
 
 ``` xml
 <dependencies>
@@ -33,17 +33,17 @@ Kotlin 提供了大量的标准库以供开发使用，需要在 pom 文件中�
 </dependencies>
 ```
 
-If you're targeting JDK 7 or JDK 8, you can use extended versions of the Kotlin standard library which contain
-additional extension functions for APIs added in new JDK versions. Instead of `kotlin-stdlib`, use `kotlin-stdlib-jre7`
-or `kotlin-stdlib-jre8`, depending on your JDK version.
+如果你是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，
+其中包含为新版 JDK 所增 API 而加的额外的扩展函数。使用 `kotlin-stdlib-jre7`
+或 `kotlin-stdlib-jre8` 取代 `kotlin-stdlib`，这取决于你的 JDK 版本。
 
-If your project uses [Kotlin reflection](/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) or testing facilities, you need to add the corresponding dependencies as well.
-The artifact IDs are `kotlin-reflect` for the reflection library, and `kotlin-test` and `kotlin-test-junit`
-for the testing libraries.
+如果你的项目使用 [Kotlin 反射](/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) 或者测试设施，那么你还需要添加相应的依赖项。
+其构件 ID 对于反射库是 `kotlin-reflect`，对于测试库是 `kotlin-test` 与 `kotlin-test-junit`
+。
 
-## 仅编译 Kotlin 源码
+## 编译只有 Kotlin 的源代码
 
-在 &lt;build&gt; 标签中指定所要编译的 Kotlin 源码目录：
+要编译源代码，请在 `<build>` 标签中指定源代码目录：
 
 ``` xml
 <build>
@@ -52,7 +52,7 @@ for the testing libraries.
 </build>
 ```
 
-Maven 中需要引用 Kotlin 插件用于编码源码：
+需要引用 Kotlin Maven 插件来编译源代码：
 
 ``` xml
 <build>
@@ -78,10 +78,10 @@ Maven 中需要引用 Kotlin 插件用于编码源码：
 </build>
 ```
 
-## 同时编译 Kotlin 与 Java 源码
+## 同时编译 Kotlin 与 Java 源代码
 
-To compile mixed code applications Kotlin compiler should be invoked before Java compiler.
-In maven terms that means kotlin-maven-plugin should be run before maven-compiler-plugin using the following method, making sure that the kotlin plugin is above the maven-compiler-plugin in your pom.xml file.
+要编译混合代码应用程序，必须在 Java 编译器之前调用 Kotlin 编译器。
+按照 maven 的方式，这意味着应该使用以下方法在 maven-compiler-plugin 之前运行 kotlin-maven-plugin，确保 pom.xml 文件中的 kotlin 插件位于 maven-compiler-plugin 上面。
 
 ``` xml
 <build>
@@ -118,12 +118,12 @@ In maven terms that means kotlin-maven-plugin should be run before maven-compile
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.5.1</version>
             <executions>
-                <!-- Replacing default-compile as it is treated specially by maven -->
+                <!-- 替换会被 maven 特别处理的 default-compile -->
                 <execution>
                     <id>default-compile</id>
                     <phase>none</phase>
                 </execution>
-                <!-- Replacing default-testCompile as it is treated specially by maven -->
+                <!-- 替换会被 maven 特别处理的 default-testCompile -->
                 <execution>
                     <id>default-testCompile</id>
                     <phase>none</phase>
@@ -144,10 +144,10 @@ In maven terms that means kotlin-maven-plugin should be run before maven-compile
 </build>
 ```
 
-## Incremental compilation
+## 增量编译
 
-To make your builds faster, you can enable incremental compilation for Maven (supported since Kotlin 1.1.2).
-In order to do that, define the `kotlin.compiler.incremental` property:
+为了使构建更快，可以为 Maven 启用增量编译（从 Kotlin 1.1.2 起支持）。
+为了做到这一点，需要定义 `kotlin.compiler.incremental` 属性：
 
 ``` xml
 <properties>
@@ -155,13 +155,13 @@ In order to do that, define the `kotlin.compiler.incremental` property:
 </properties>
 ```
 
-Alternatively, run your build with the `-Dkotlin.compiler.incremental=true` option.
+或者，使用 `-Dkotlin.compiler.incremental=true` 选项运行构建。
 
-## Annotation processing
+## 注解处理
 
-The Kotlin plugin supports annotation processors like _Dagger_. In order for them to work with Kotlin classes, configure the
-execution of `kapt`, the Kotlin annotation processing tool (supported since Kotlin 1.1.2).
-Specifically, you need to add an execution of the `kapt` goal before `compile`:
+Kotlin插件支持像 _Dagger_ 这样的注解处理器。为了让它们能够使用 Kotlin 类，需要配置 Kotlin 注解处理工具
+（Kotlin annotation processing tool） `kapt` 的执行（从 Kotlin 1.1.2 起支持）。
+具体来说，你需要在 `compile` 之前添加 `kapt` 目标的执行：
 
 ``` xml
 <execution>
@@ -175,7 +175,7 @@ Specifically, you need to add an execution of the `kapt` goal before `compile`:
             <sourceDir>src/main/java</sourceDir>
         </sourceDirs>
         <annotationProcessorPaths>
-            <!-- Specify your annotation processors here. -->
+            <!-- 在此处指定你的注解处理器。 -->
             <annotationProcessorPath>
                 <groupId>com.google.dagger</groupId>
                 <artifactId>dagger-compiler</artifactId>
@@ -186,13 +186,13 @@ Specifically, you need to add an execution of the `kapt` goal before `compile`:
 </execution>
 ```
 
-You can find a complete sample project showing the use of Kotlin, Maven and Dagger in the
-[Kotlin examples repository](https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example).
+你可以在
+[Kotlin 示例版本库](https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example) 中找到一个显示使用 Kotlin、Maven 和 Dagger 的完整示例项目。
 
-## Jar file
+## Jar 文件
 
-To create a small Jar file containing just the code from your module, include the following under `build->plugins` in your Maven pom.xml file,
-where `main.class` is defined as a property and points to the main Kotlin or Java class.
+要创建一个仅包含模块代码的小型 Jar 文件，请在 Maven pom.xml 文件中的 `build->plugins` 下面包含以下内容，
+其中 `main.class` 定义为一个属性，并指向主 Kotlin 或 Java 类。
 
 ``` xml
 <plugin>
@@ -210,10 +210,10 @@ where `main.class` is defined as a property and points to the main Kotlin or Jav
 </plugin>
 ```
 
-## Self-contained Jar file
+## 独立的 Jar 文件
 
-To create a self-contained Jar file containing the code from your module along with dependencies, include the following under `build->plugins` in your Maven pom.xml file,
-where `main.class` is defined as a property and points to the main Kotlin or Java class.
+要创建一个独立的（self-contained）Jar 文件，包含模块中的代码及其依赖项，请在 Maven pom.xml 文件中的 `build->plugins` 下面包含以下内容
+其中 `main.class` 定义为一个属性，并指向主 Kotlin 或 Java 类。
 
 ``` xml
 <plugin>
@@ -240,15 +240,15 @@ where `main.class` is defined as a property and points to the main Kotlin or Jav
 </plugin>
 ```
 
-This self-contained jar file can be passed directly to a JRE to run your application:
+这个独立的 jar 文件可以直接传给 JRE 来运行应用程序：
 
 ``` bash
 java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-## Targeting JavaScript
+## 针对 JavaScript
 
-In order to compile JavaScript code, you need to use the `js` and `test-js` goals for the `compile` execution:
+为了编译 JavaScript 代码，需要使用 `js` 和 `test-js` 目标来执行 `compile`：
 
 ``` xml
 <plugin>
@@ -274,7 +274,7 @@ In order to compile JavaScript code, you need to use the `js` and `test-js` goal
 </plugin>
 ```
 
-You also need to change the standard library dependency:
+你还需要更改标准库依赖：
 
 ``` xml
 <groupId>org.jetbrains.kotlin</groupId>
@@ -282,15 +282,15 @@ You also need to change the standard library dependency:
 <version>${kotlin.version}</version>
 ```
 
-For unit testing support, you also need to add a dependency on the `kotlin-test-js` artifact.
+对于单元测试支持，你还需要添加对 `kotlin-test-js` 构件的依赖。
 
-See the [Getting Started with Kotlin and JavaScript with Maven](/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html)
-tutorial for more information.
+更多信息请参阅[以 Maven 入门使用 Kotlin 与 JavaScript](/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html)
+教程。
 
-## Specifying compiler options
+## 指定编译器选项
 
-Additional options for the compiler can be specified as tags under the `<configuration>` element of the
-Maven plugin node:
+可以将额外的编译器选项指定为 Maven 插件节点的 `<configuration>` 元素下的标签
+：
 
 ``` xml
 <plugin>
@@ -299,12 +299,12 @@ Maven plugin node:
     <version>${kotlin.version}</version>
     <executions>……</executions>
     <configuration>
-        <nowarn>true</nowarn>  <!-- Disable warnings -->
+        <nowarn>true</nowarn>  <!-- 禁用警告 -->
     </configuration>
 </plugin>
 ```
 
-Many of the options can also be configured through properties:
+许多选项还可以通过属性来配置：
 
 ``` xml
 <project ……>
@@ -314,49 +314,49 @@ Many of the options can also be configured through properties:
 </project>
 ```
 
-The following attributes are supported:
+支持以下属性：
 
-### Attributes common for JVM and JS
+### JVM 和 JS 的公共属性
 
-| Name | Property name | Description | Possible values |Default value |
+| 名称 | 属性名 | 描述 | 可能的值 | 默认值 |
 |------|---------------|-------------|-----------------|--------------|
-| nowarn | | Generate no warnings | true, false | false |
-| languageVersion | kotlin.compiler.languageVersion | Provide source compatibility with specified language version | "1.0", "1.1" | "1.1"
-| apiVersion | kotlin.compiler.apiVersion | Allow to use declarations only from the specified version of bundled libraries | "1.0", "1.1" | "1.1"
-| sourceDirs | | The directories containing the source files to compile | | The project source roots
-| compilerPlugins | | Enabled [compiler plugins](compiler-plugins.html)  | | []
-| pluginOptions | | Options for compiler plugins  | | []
-| args | | Additional compiler arguments | | []
+| nowarn | | 不生成警告 | true, false | false |
+| languageVersion | kotlin.compiler.languageVersion | 提供与指定语言版本源代码兼容性 | "1.0", "1.1" | "1.1"
+| apiVersion | kotlin.compiler.apiVersion | 只允许使用来自捆绑库的指定版本中的声明 | "1.0", "1.1" | "1.1"
+| sourceDirs | | 包含要编译源文件的目录 | | 该项目源代码根目录
+| compilerPlugins | | 启用[编译器插件](compiler-plugins.html)  | | []
+| pluginOptions | | 编译器插件的选项  | | []
+| args | | 额外的编译器参数 | | []
 
 
-### Attributes specific for JVM
+### JVM 特有的属性
 
-| Name | Property name | Description | Possible values |Default value |
+| 名称 | 属性名 | 描述 | 可能的值 | 默认值 |
 |------|---------------|-------------|-----------------|--------------|
-| jvmTarget | kotlin.compiler.jvmTarget | Target version of the generated JVM bytecode | "1.6", "1.8" | "1.6" |
-| jdkHome | kotlin.compiler.jdkHome |  	Path to JDK home directory to include into classpath, if differs from default JAVA_HOME | | |
+| jvmTarget | kotlin.compiler.jvmTarget | 生成的 JVM 字节码的目标版本 | "1.6", "1.8" | "1.6" |
+| jdkHome | kotlin.compiler.jdkHome | 要包含到 classpath 中的 JDK 主目录路径，如果与默认 JAVA_HOME 不同的话 | | &nbsp; |
 
-### Attributes specific for JS
+### JS 特有的属性
 
-| Name | Property name | Description | Possible values |Default value |
+| 名称 | 属性名 | 描述 | 可能的值 | 默认值 |
 |------|---------------|-------------|-----------------|--------------|
-| outputFile | | Output file path | | |
-| metaInfo |  | Generate .meta.js and .kjsm files with metadata. Use to create a library | true, false | true
-| sourceMap | | Generate source map | true, false | false
-| moduleKind | | Kind of a module generated by compiler | "plain", "amd", "commonjs", "umd" | "plain"
+| outputFile | | 输出文件路径 | | |
+| metaInfo |  | 使用元数据生成 .meta.js 与 .kjsm 文件。用于创建库 | true, false | true
+| sourceMap | | 生成源代码映射（source map） | true, false | false
+| moduleKind | | 编译器生成的模块类型 | "plain", "amd", "commonjs", "umd" | "plain"
 
-## Generating documentation
+## 生成文档
 
-The standard JavaDoc generation plugin (`maven-javadoc-plugin`) does not support Kotlin code.
-To generate documentation for Kotlin projects, use [Dokka](https://github.com/Kotlin/dokka);
-please refer to the [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin)
-for configuration instructions. Dokka supports mixed-language projects and can generate output in multiple
-formats, including standard JavaDoc.
+标准的 JavaDoc 生成插件（`maven-javadoc-plugin`）不支持 Kotlin 代码。
+要生成 Kotlin 项目的文档，请使用 [Dokka](https://github.com/Kotlin/dokka)；
+相关配置说明请参见 [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin)
+。Dokka 支持混合语言项目，并且可以生成多种格式的输出
+，包括标准 JavaDoc。
 
 ## OSGi
 
-OSGi支持查看 [Kotlin OSGi page](kotlin-osgi.html).
+对于 OSGi 支持，请参见 [Kotlin OSGi 页](kotlin-osgi.html)。
 
-## 例子
+## 示例
 
-Maven 工程的例子可从 [Github 直接下载](https://github.com/JetBrains/kotlin-examples/archive/master/maven.zip)
+一个示例 Maven 项目可以[从 Github 版本库直接下载](https://github.com/JetBrains/kotlin-examples/archive/master/maven.zip)
