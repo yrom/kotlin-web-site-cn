@@ -11,7 +11,7 @@
   content_file: versatile.html
 
 - title: 互操作性
-  description: 通过 100% Java 互操作性，利用 JVM 既有框架和库。
+  description: 通过完整的互操作性，充分利用 JVM、Android 和浏览器的现有库。
   content_file: interoperable.md
 
 - title: 工具化

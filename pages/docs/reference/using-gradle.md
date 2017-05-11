@@ -293,6 +293,13 @@ compileKotlin {
 | `target` | 生成指定 ECMA 版本的 JS 文件 | "v5" | "v5" |
 
 
+## Generating documentation
+
+To generate documentation for Kotlin projects, use [Dokka](https://github.com/Kotlin/dokka);
+please refer to the [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-gradle-plugin)
+for configuration instructions. Dokka supports mixed-language projects and can generate output in multiple
+formats, including standard JavaDoc.
+
 ## OSGi
 
 关于 OSGi 支持请参见 [Kotlin OSGi 页](kotlin-osgi.html)。

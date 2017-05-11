@@ -51,6 +51,18 @@ subnav:
 # ====================
 reference:
   items:
+    - title: Overview
+      description: Overview of Kotlin
+      items:
+        - url: /docs/reference/server-overview.html
+          title: Kotlin for Server Side
+        - url: /docs/reference/android-overview.html
+          title: Kotlin for Android
+        - url: /docs/reference/js-overview.html
+          title: Kotlin for JavaScript
+        - url: /docs/reference/whatsnew11.html
+          title: 1.1 的新特性
+
     - title: 开始
       description: 开始熟悉 Kotlin 基础包括操作、编码习惯和习惯用法。
       items:
@@ -60,8 +72,6 @@ reference:
           title: 习惯用法
         - url: /docs/reference/coding-conventions.html
           title: 编码习惯
-        - url: /docs/reference/whatsnew11.html
-          title: 1.1 的新特性
 
     - title: 基础
       description: 基础内容
@@ -171,8 +181,6 @@ reference:
     - title: JavaScript
       description: Kotlin 与 JavaScript 合用
       items:
-       - url: /docs/reference/js-overview.html
-         title: JavaScript 概述
        - url: /docs/reference/dynamic-type.html
          title: 动态类型
        - url: /docs/reference/js-interop.html

@@ -30,7 +30,7 @@ data class User(val name: String, val age: Int)
   * 数据类不能是抽象、开放、密封或者内部的；
   * （在1.1之前）数据类只能实现接口。
   
-自 1.1 起，数据类可以扩展其他类（示例请参见[密封类](sealed-classes.html#密封类与数据类)）。
+自 1.1 起，数据类可以扩展其他类（示例请参见[密封类](sealed-classes.html)）。
 
 在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
 （参见[构造函数](classes.html#构造函数)）。
