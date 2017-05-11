@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Introduction"
-title: "Kotlin for Server Side"
+title: "Kotlin 用于 Server Side"
 ---
 
 # Using Kotlin for Server-side Development

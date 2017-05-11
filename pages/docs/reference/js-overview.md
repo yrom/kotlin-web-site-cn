@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Introduction"
-title: "Kotlin for JavaScript"
+title: "Kotlin 用于 JavaScript"
 ---
 
 # Kotlin JavaScript 概述

@@ -51,15 +51,15 @@ subnav:
 # ====================
 reference:
   items:
-    - title: Overview
-      description: Overview of Kotlin
+    - title: 概述
+      description: Kotlin 的概述
       items:
         - url: /docs/reference/server-overview.html
-          title: Kotlin for Server Side
+          title: Kotlin 用于服务器端
         - url: /docs/reference/android-overview.html
-          title: Kotlin for Android
+          title: Kotlin 用于 Android
         - url: /docs/reference/js-overview.html
-          title: Kotlin for JavaScript
+          title: Kotlin 用于 JavaScript
         - url: /docs/reference/whatsnew11.html
           title: 1.1 的新特性
 
