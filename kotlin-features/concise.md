@@ -9,7 +9,7 @@ data class Customer(val name: String, val email: String, val company: String)
 或者使用 lambda 表达式来过滤列表：
 
 ``` kotlin
-val positiveNumbers = list.filter {it > 0}
+val positiveNumbers = list.filter { it > 0 }
 ```
 
 想要单例？创建一个 object 就可以了：

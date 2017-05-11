@@ -187,7 +187,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更详细信息请参阅其[文档](sealed-classes.html#密封类的放宽规则（自-11-起）)或者
+更详细信息请参阅其[文档](sealed-classes.html)或者
 [密封类](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md) 及
 [数据类](https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md)的 KEEP。
 
