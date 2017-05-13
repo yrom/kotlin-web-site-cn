@@ -5,50 +5,50 @@ category: "Introduction"
 title: "Kotlin 用于 Android"
 ---
 
-# Using Kotlin for Android Development
+# 使用 Kotlin 进行 Android 开发
 
-Kotlin is a great fit for developing Android applications, bringing all of the advantages of a modern language
-to the Android platform without introducing any new restrictions:
+Kotlin 非常适合开发 Android 应用程序，将现代语言的所有优势带入
+Android 平台而不会引入任何新的限制：
 
-  * **Compatibility**: Kotlin is fully compatible with JDK 6, ensuring that Kotlin applications can run on older
-    Android devices with no issues. The Kotlin tooling is fully supported in Android Studio and compatible with the Android build system.
-  * **Performance**: A Kotlin application runs as fast as an equivalent Java one, thanks to very similar bytecode structure.
-    With Kotlin's support for inline functions, code using lambdas often runs even faster than the same code written in Java.
-  * **Interoperability**: Kotlin is 100% interoperable with Java, allowing to use all existing Android libraries
-    in a Kotlin application. This includes annotation processing, so databinding and Dagger work too.
-  * **Footprint**: Kotlin has a very compact runtime library, which can be further reduced through the use of ProGuard.
-    In a [real application](https://blog.gouline.net/kotlin-production-tales-62b56057dc8a), the Kotlin runtime adds
-    only a few hundred methods and less than 100K to the size of the .apk file.
-  * **Compilation Time**: Kotlin supports efficient incremental compilation, so while there's some additional overhead
-    for clean builds, [incremental builds are usually as fast or faster than with Java](https://medium.com/keepsafe-engineering/kotlin-vs-java-compilation-speed-e6c174b39b5d).
-  * **Learning Curve**: For a Java developer, getting started with Kotlin is very easy. The automated Java to Kotlin converter included in the Kotlin plugin
-    helps with the first steps. [Kotlin Koans](/docs/tutorials/koans.html) offer a guide though the key features of the language with a series of interactive exercises.
+  * **兼容性**：Kotlin 与 JDK 6 完全兼容，保障了 Kotlin 应用程序可以在较旧的
+    Android 设备上运行而无任何问题。Kotlin 工具在 Android Studio 中会完全支持，并且兼容 Android 构建系统。
+  * **性能**：由于非常相似的字节码结构，Kotlin 应用程序的运行速度与 Java 类似。
+    随着 Kotlin 对内联函数的支持，使用 lambda 表达式的代码通常比用 Java 写的代码运行得更快。
+  * **互操作性**：Kotlin 可与 Java 进行 100％ 的互操作，允许在 Kotlin 应用程序中使用所有现有的 Android 库
+    。这包括注解处理，所以数据绑定和 Dagger 也是一样。
+  * **占用**：Kotlin 具有非常紧凑的运行时库，可以通过使用 ProGuard 进一步减少。
+    在[实际应用程序](https://blog.gouline.net/kotlin-production-tales-62b56057dc8a)中，Kotlin 运行时
+    只增加几百个方法以及 .apk 文件不到 100K 大小。
+  * **编译时长**：Kotlin 支持高效的增量编译，所以对于
+    清理构建会有额外的开销，[增量构建通常与 Java 一样快或者更快](https://medium.com/keepsafe-engineering/kotlin-vs-java-compilation-speed-e6c174b39b5d)。
+  * **学习曲线**：对于 Java 开发人员，Kotlin 入门很容易。包含在 Kotlin 插件中的自动 Java 到 Kotlin 的转换器
+    有助于迈出第一步。[Kotlin 心印](/docs/tutorials/koans.html) 通过一系列互动练习提供了语言主要功能的指南。
 
-## Kotlin for Android Case Studies
+## Kotlin 用于 Android 的案例学习
 
-Kotlin has been successfully adopted by major companies, and a few of them have shared their experiences:
+Kotlin 已被一些大公司成功采用，其中一些公司分享了他们的经验：
 
-  * Pinterest has successfully [introduced Kotlin into their application](https://www.youtube.com/watch?v=mDpnc45WwlI), used by 150M people every month.
-  * Basecamp's Android app is [100% Kotlin code](https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12), and they report a huge
-    difference in programmer happiness and great improvements in work quality and speed.
-  * Keepsafe's App Lock app has also been [converted to 100% Kotlin](https://medium.com/keepsafe-engineering/lessons-from-converting-an-app-to-100-kotlin-68984a05dcb6),
-    leading to a 30% decrease in source line count and 10% decrease in method count.
+  * Pinterest 已经成功地[将 Kotlin 引入了他们的应用程序中](https://www.youtube.com/watch?v=mDpnc45WwlI)，每个月有 1 亿 5 千万人使用。
+  * Basecamp 的 Android 应用程序是 [100％ Kotlin 代码](https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12)，他们报告了程序员幸福的
+    巨大差异，以及工作质量和速度的巨大改善。
+  * Keepsafe 的 App Lock 应用程序也[已转换为 100％ Kotlin](https://medium.com/keepsafe-engineering/lessons-from-converting-an-app-to-100-kotlin-68984a05dcb6)，
+    使源代码行数减少 30％、方法数减少 10％。
 
-## Tools for Android Development
+## 用于 Android 开发的工具
 
-The Kotlin team offers a set of tools for Android development that goes beyond the standard language features:
+Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具：
 
- * [Kotlin Android Extensions](/docs/tutorials/android-plugin.html) is a compiler extension
-that allows you to get rid of `findViewById()` calls in your code and to replace them with synthetic compiler-generated
-properties.
- * [Anko](http://github.com/kotlin/anko) is a library providing a set of Kotlin-friendly wrappers around the Android
-   APIs, as well as a DSL that lets your replace your layout .xml files with Kotlin code.
+ * [Kotlin Android 扩展](/docs/tutorials/android-plugin.html)是一个编译器扩展，
+可以让你摆脱代码中的 `findViewById()` 调用，并将其替换为合成的编译器生成的
+属性。
+ * [Anko](http://github.com/kotlin/anko) 是一个提供围绕 Android API 的 Kotlin 友好的包装器的库
+   ，以及一个可以用 Kotlin 代码替换布局 .xml 文件的 DSL。
 
-## Next Steps
+## 下一步
 
-* The [Getting Started with Android and Kotlin](/docs/tutorials/kotlin-android.html) tutorial
-guides you through installing the Kotlin plugin into Android Studio and creating your first Kotlin application.
-* For a more in-depth introduction, check out the [reference documentation](/docs/reference/index.html) on this site and
-[Kotlin Koans](/docs/tutorials/koans.html).
-* Another great resource is [Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers),
-a book that guides you step by step through the process of creating a real Android application in Kotlin.
+* [Android 与 Kotlin 入门](/docs/tutorials/kotlin-android.html)教程
+指导你将 Kotlin 插件安装到 Android Studio 中，并创建你的第一个 Kotlin 应用程序。
+* 关于更深入的介绍，请查看本站的[参考文档](/docs/reference/index.html)及
+[Kotlin 心印](/docs/tutorials/koans.html)。
+* 另一个很好的资源是 [Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers)，
+这本书会引导你逐步完成在 Kotlin 中创建真正的 Android 应用程序的过程。
