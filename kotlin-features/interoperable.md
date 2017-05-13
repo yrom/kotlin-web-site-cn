@@ -1,27 +1,27 @@
 
 ### 互操作性
 
-随意创建和使用 Java 代码
+使用 JVM 上的任何现有库，因为有 100％ 的兼容性，包括 SAM 支持。
 
 ``` kotlin
-import io.netty.channel.ChannelInboundMessageHandlerAdapter
-import io.netty.channel.ChannelHandlerContext
+import io.reactivex.Flowable
+import io.reactivex.schedulers.Schedulers
 
-public class NettyHandler: ChannelInboundMessageHandlerAdapter<Any>() {
-    public override fun messageReceived(p0: ChannelHandlerContext?, p1: Any?) {
-        throw UnsupportedOperationException()
-    }
+Flowable.fromCallable {
+    Thread.sleep(1000) //  imitate expensive computation
+    "Done"
 }
+    .subscribeOn(Schedulers.io())
+    .observeOn(Schedulers.single())
+    .subscribe(::println, Throwable::printStackTrace)
 ```
-
-或者使用任何 JVM 上已有的库，因为百分百兼容，包括 SAM 支持。
 
 无论是 JVM 还是 JavaScript 目标平台，都可用 Kotlin 写代码然后部署到你想要的地方
 
 ``` kotlin
-import js.dom.html.*
+import kotlin.browser.window
 
 fun onLoad() {
-    window.document.body.innerHTML += "<br/>Hello, Kotlin!"
+    window.document.body!!.innerHTML += "<br/>Hello, Kotlin!"
 }
 ```

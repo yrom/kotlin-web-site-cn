@@ -27,8 +27,8 @@ subnav:
         - url: /docs/tutorials/
           title: 教程
 
-        - url: /docs/videos.html
-          title: 视频
+        - url: /docs/books.html
+          title: 书籍
 
         - url: /docs/resources.html
           title: 更多资源
