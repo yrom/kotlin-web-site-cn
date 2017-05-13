@@ -7,7 +7,6 @@ title: "参考"
 
 提供关于 Kotlin 语言的完整参考以及[标准库](https://kotlinlang.org/api/latest/jvm/stdlib/index.html)。
 
-
 ### 从哪开始
 
 这个参考是为让你很容易地在几个小时内学习 Kotlin 而设计的。

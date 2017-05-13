@@ -8,7 +8,7 @@ import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 
 Flowable.fromCallable {
-    Thread.sleep(1000) //  imitate expensive computation
+    Thread.sleep(1000) //  模仿高昂的计算
     "Done"
 }
     .subscribeOn(Schedulers.io())
