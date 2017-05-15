@@ -10,8 +10,8 @@ output = null   // 编译错误
 Kotlin 可以保护你避免对可空类型的误操作
 
 ``` kotlin
-val data: String? = null    // 可控类型
-println(data.length())      // 编译错误
+val name: String? = null    // 可控类型
+println(name.length())      // 编译错误
 ```
 
 并且如果你检查类型是正确的，编译器会为你做自动类型转换
