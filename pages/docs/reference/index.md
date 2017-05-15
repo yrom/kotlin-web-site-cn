@@ -24,11 +24,3 @@ title: "参考"
 
 其中 ePUB 和 Mobi 格式的文件是 GitBook 上自动构建的，也可同时关注 GitBook 上的电子书：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/details)。
 
-关于网站与 PDF 有任何问题请在[这里](https://github.com/hltj/kotlin-web-site-cn/issues)反馈；
-关于 ePUB 与 Mobi 有任何问题请在[这里](https://github.com/hltj/kotlin-reference-chinese/issues)反馈。
-
-欢迎关注我的博客 [https://hltj.me/](https://hltj.me/) 以及微博与公众号：
-
-| ![weibo_qr.png](/assets/weibo_qr.png) | ![wechat_qr.png](/assets/wechat_qr.png) |
-|:-----:|:------:|
-| 微博  | 公众号 |
