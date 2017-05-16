@@ -7,10 +7,11 @@
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 
-Flowable.fromCallable {
-    Thread.sleep(1000) //  模仿高昂的计算
-    "Done"
-}
+Flowable
+    .fromCallable {
+        Thread.sleep(1000) //  模仿高开销的计算
+        "Done"
+    }
     .subscribeOn(Schedulers.io())
     .observeOn(Schedulers.single())
     .subscribe(::println, Throwable::printStackTrace)
