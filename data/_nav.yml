@@ -198,6 +198,8 @@ reference:
   #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
         - url: /docs/reference/kotlin-doc.html
           title: 编写 Kotlin 代码文档
+        - url: /docs/reference/kapt.html
+          title: 使用 Kapt
         - url: /docs/reference/using-gradle.html
           title: 使用 Gradle
         - url: /docs/reference/using-maven.html
@@ -243,6 +245,8 @@ tutorials:
           title: Android 开发入门
         - url: /docs/tutorials/android-plugin.html
           title: Kotlin Android 扩展
+        - url: /docs/tutorials/android-frameworks.html
+          title: Android 框架
     - title: Java 互操作
       items:
         - url: /docs/tutorials/mixing-java-kotlin-intellij.html

@@ -159,35 +159,7 @@ Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配�
 
 ## 注解处理
 
-Kotlin插件支持像 _Dagger_ 这样的注解处理器。为了让它们能够使用 Kotlin 类，需要配置 Kotlin 注解处理工具
-（Kotlin annotation processing tool） `kapt` 的执行（从 Kotlin 1.1.2 起支持）。
-具体来说，你需要在 `compile` 之前添加 `kapt` 目标的执行：
-
-``` xml
-<execution>
-    <id>kapt</id>
-    <goals>
-        <goal>kapt</goal>
-    </goals>
-    <configuration>
-        <sourceDirs>
-            <sourceDir>src/main/kotlin</sourceDir>
-            <sourceDir>src/main/java</sourceDir>
-        </sourceDirs>
-        <annotationProcessorPaths>
-            <!-- 在此处指定你的注解处理器。 -->
-            <annotationProcessorPath>
-                <groupId>com.google.dagger</groupId>
-                <artifactId>dagger-compiler</artifactId>
-                <version>2.9</version>
-            </annotationProcessorPath>
-        </annotationProcessorPaths>
-    </configuration>
-</execution>
-```
-
-你可以在
-[Kotlin 示例版本库](https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example) 中找到一个显示使用 Kotlin、Maven 和 Dagger 的完整示例项目。
+See the description of [Kotlin annotation processing tool](kapt.html) (`kapt`).
 
 ## Jar 文件
 

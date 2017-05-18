@@ -7,95 +7,151 @@ title: FAQ
 
 # FAQ
 
-## 常见问题
+### What is Kotlin?
 
-### Kotlin是什么？
+Kotlin is an OSS statically typed programming language that targets the JVM, Android, JavaScript and Native. 
+It’s developed by [JetBrains](http://www.jetbrains.com). The project started in 2010 and was open source from very early on. The first official 1.0 release was in February 2016. 
 
-Kotlin 是目标平台为 JVM 和 JavaScript 的静态类型语言。它是一种旨在工业级使用的通用语言。
+### What is the current version of Kotlin?
 
-它是由 JetBrains 一个团队开发的，然而它是开源（OSS）语言并且也有外部贡献者。
+The currently released version is {{ data.releases.latest.version }}, published on {{ data.releases.latest.date }}.
 
-### 为什么要出一门新语言？
+### Is Kotlin free?
 
-在 JetBrains 我们已经在 Java 平台开发很长时间，并且我们知道它（Java）有多好。
-另一方面，我们知道由于向后兼容性问题 Java 编程语言有一定的局限性和问题是不可能
-或者很难解决的。我们知道 Java 还会延续很长时间，
-但我们相信社区会从这个新的静态类型 JVM 平台语言中受益，它没有
-遗留问题而有开发人员迫切想要特性。
+Yes. Kotlin is free, has been free and will remain free. It is developed under the Apache 2.0 license and the source code is available [on GitHub](https://github.com/jetbrains/kotlin).
 
-Kotlin 这样设计背后的核心价值是使其
+### Is Kotlin an object-oriented language or a functional one?
 
-* 可互操作：Kotlin 可以与 Java 自由混搭，
-* 安全：静态检查常见的陷阱（如：解引用空指针）来在编译期捕获错误，
-* 可工具化：启用像 IDE、构建系统这样精确而高效的工具，
-* “民主”：使语言的全部可供所有开发者使用（无需限制库的作者或者其他开发组使用一些功能的策略）。
+Kotlin has both object-oriented and functional constructs. You can use it in both OO and FP styles, or mix elements of the two. 
+With first-class support for features such as higher-order functions, function types and lambdas, Kotlin is a great choice if you’re doing or exploring functional programming.
 
-### 如何授权？
+### What advantages does Kotlin give me over the Java programming language?
 
-Kotlin 是一种开源语言并在 Apache 2 开源软件许可下授权。它的 IntelliJ 插件也是开源软件。
+Kotlin is more concise. Rough estimates indicate approximately a 40% cut in the number of lines of code. 
+It’s also more type-safe, e.g. support for non-nullable types makes applications less prone to NPE’s. 
+Other features including smart casting, higher-order functions, extension functions and lambdas with receivers provide 
+the ability to write expressive code as well as facilitating creation of DSL.
+ 
+### Is Kotlin compatible with the Java programming language?
 
-它托管在 Github 上并且我们很乐意接受贡献者。
+Yes. Kotlin is 100% interoperable with the Java programming language and major emphasis has been placed on making sure that your existing codebase 
+can interact properly with Kotlin. You can easily call Kotlin code from Java and Java code from Kotlin. This makes adoption
+much easier and lower-risk. There’s also an automated Java-to-Kotlin converter built into the IDE that simplifies migration of existing code.
 
-### 哪里可以获取 Kotlin 的高清徽标？
+### What can I use Kotlin for?
 
-徽标可以在[这里](https://resources.jetbrains.com/storage/products/kotlin/docs/kotlin_logos.zip)下载。请遵循压缩包内的 `guidelines.pdf` 中的简单规则使用。
+Kotlin can be used for any kind of development, be it server-side, client-side web and Android. With Kotlin/Native currently 
+in the works, support for other platforms such as embedded systems, macOS and iOS is coming. People are using Kotlin for mobile 
+and server-side applications, client-side with JavaScript or JavaFX, and data science, just to name a few possibilities. 
 
+### Can I use Kotlin for Android development?
 
-### 它兼容Java？
+Yes. Kotlin is supported as a first-class language on Android. There are hundreds of applications already using Kotlin 
+for Android, such as Basecamp, Pinterest and more. For more information check out [the resource on Android development](/docs/reference/android-overview.html).
 
-兼容。编译器生成的是 Java 字节码。Kotlin 可以调用 Java 并且 Java 也可以调用 Kotlin。参见[与 Java 互操作性](java-interop.html)。
+### Can I use Kotlin for server-side development?
 
-### 运行Kotlin代码所需的最低Java版本是哪个？
+Yes. Kotlin is 100% compatible with the JVM and as such you can use any existing frameworks such as Spring Boot, 
+vert.x or JSF. In addition there are specific frameworks written in Kotlin such as [Ktor](http://github.com/kotlin/ktor). 
+For more information check out [the resource on server-side development](/docs/reference/server-overview.html).
 
-Kotlin 生成的字节码兼容 Java 6 以及更新版本。这确保 Kotlin 可以在像 Android 这样上一个所支持版本是 Java 6 的环境中使用。
+### Can I use Kotlin for web development?
 
-### 有没有工具支持？
+Yes. In addition to using for backend web, you can also use Kotlin/JS for client-side web. Kotlin can use definitions from 
+[DefinitelyTyped](http://definitelytyped.org) to get static typing for common JavaScript libraries, and it is compatible with existing module systems such as AMD and CommonJS. 
+For more information check out [the resource on client-side development](/docs/reference/js-overview.html).
 
-有。有一个作为 Apache 2 许可下开源项目的 IntelliJ IDEA 插件可用。 在
-[自由开源社区版和旗舰版](http://www.jetbrains.com/idea/features/editions_comparison_matrix.html)的 IntelliJ IDEA 中都可以使用 Kotlin。
+### Can I use Kotlin for desktop development?
 
-### 有没有Eclipse支持？
+Yes. You can use any Java UI framework such as JavaFx, Swing or other. 
+In addition there are Kotlin specific frameworks such as [TornadoFX](https://github.com/edvin/tornadofx). 
 
-有。安装说明请参见这个[教程](/docs/tutorials/getting-started-eclipse.html)。
+### Can I use Kotlin for native development?
 
-### 有独立的编译器吗？
+Kotlin/Native is currently [in the works](https://blog.jetbrains.com/kotlin/tag/native/). It compiles Kotlin to native code 
+that can run without a VM. There is a Technology Preview released but it is not production-ready yet, and doesn’t yet
+ target all the platforms that we plan to support for 1.0. For more information check out the [blog post announcing Kotlin/Native](https://blog.jetbrains.com/kotlin/2017/04/kotlinnative-tech-preview-kotlin-without-a-vm/).
 
-有。你可以从 [Github 上的发布页]({{site.data.releases.latest.url}})下载独立的编译器和其他构建工具。
+### What IDE’s support Kotlin?
 
-### Kotlin是函数式语言吗？
+Kotlin is supported by all major Java IDE’s including [IntelliJ IDEA](/docs/tutorials/getting-started.html),
+[Android Studio](/docs/tutorials/kotlin-android.html), [Eclipse](/docs/tutorials/getting-started-eclipse.html) and 
+[NetBeans](http://plugins.netbeans.org/plugin/68590/kotlin). In addition, a [command line compiler](/docs/tutorials/command-line.html) 
+is available and provides straightforward support for compiling and running applications.
+  
+### What build tools support Kotlin?
 
-Kotlin 是一种面向对象语言。不过它支持高阶函数以及 lambda 表达式和顶层函数。此外，在
-Kotlin 标准库中还有很多一般函数式语言的设计（例如 map、flatMap、reduce 等）。当然，什么是**函数式语言**没有明确的定义，所以我们不能说 Kotlin 是其中之一。
+On the JVM side, the main build tools include [Gradle](/docs/reference/using-gradle.html), [Maven](/docs/reference/using-maven.html), 
+[Ant](/docs/reference/using-ant.html), and [Kobalt](http://beust.com/kobalt/home/index.html). There are also some build tools available that target client-side JavaScript. 
 
-### Kotlin支持泛型吗？
+### What does Kotlin compile down to?
 
-Kotlin 支持泛型。它也支持声明处型变和使用处型变。Kotlin 没有通配符类型。内联函数支持具体化的类型参数。
+When targeting the JVM, Kotlin produces Java compatible bytecode. When targeting JavaScript, Kotlin transpiles to ES5.1 and generates
+code which is compatible with module systems including AMD and CommonJS. When targeting native, Kotlin will produce platform-specific code (via LLVM). 
 
-### 分号是必需的吗？
+### Does Kotlin only target Java 6?
 
-不是。它们是可选的。
+No. Kotlin lets you choose between generating Java 6 and Java 8 compatible bytecode. More optimal byte code may be generated for higher versions of the platform.
 
-### 为什么类型声明在右侧？
+### Is Kotlin hard?
 
-我们相信这会使代码更易读。此外它启用了一些很好的语法特性，例如，很容易脱离类型注解。Scala 也已
-很好地证明了这没有问题。
+Kotlin is inspired by existing languages such as Java, C#, JavaScript, Scala and Groovy. We've tried to ensure that Kotlin is easy to learn,
+so that people can easily jump on board, reading and writing Kotlin in a matter of days. 
+Learning idiomatic Kotlin and using some more of its advanced features can take a little longer, but overall it is not a complicated language.
+ 
+### What companies are using Kotlin?
+ 
+There are too many companies using Kotlin to list, but some more visible companies that have publicly declared usage of Kotlin, be this via blog posts, GitHub repositories or talks include 
+[Square](https://medium.com/square-corner-blog/square-open-source-loves-kotlin-c57c21710a17), [Pinterest](https://www.youtube.com/watch?v=mDpnc45WwlI) or [Basecamp](https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12).
+ 
+### Who develops Kotlin?
 
-### 右侧类型声明会影响工具吗？
+Kotlin is primarily developed by a team of engineers at JetBrains (current team size is 40+). The lead language designer is 
+[Andrey Breslav](https://twitter.com/abreslav). In addition to the core team, there are also over 100 external contributors on GitHub. 
 
-不会。我们仍然可以实现对变量名的建议等等。
+### Where can I learn more about Kotlin?
 
-### Kotlin是可扩展的吗？
+The best place to start is [this website](https://kotlinlang.org). From there you can download the compiler, 
+[try it online](https://try.kotlinlang.org) as well as get access to resources, [reference documentation](/docs/reference/index.html) 
+and [tutorials](/docs/tutorials/index.html). 
 
-我们计划使其在这几个方面可扩展：从内联函数到注解和类型加载器。
+### Are there any books on Kotlin?
 
-### 我可以把我的DSL嵌入到语言里吗？
+There are already [a number of books](/docs/books.html) available for Kotlin, including [Kotlin in Action](https://www.manning.com/books/kotlin-in-action) which is by Kotlin team members Dmitry Jemerov and Svetlana Isakova, 
+[Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers) targeted at Android developers. 
+
+### Are there any online courses available for Kotlin?
 
-可以。Kotlin 提供了一些有助于此的特性：操作符重载、通过内联函数自定义控制结构、中缀函数调用、扩展函数、注解。
+There are a few courses available for Kotlin, including a [Pluralsight Kotlin Course](https://www.pluralsight.com/courses/kotlin-getting-started) by Kevin Jones, 
+an [O’Reilly Course](http://shop.oreilly.com/product/0636920052982.do) by Hadi Hariri and an [Udemy Kotlin Course](http://petersommerhoff.com/dev/kotlin/kotlin-beginner-tutorial/) by Peter Sommerhoff.
 
-### Kotlin for JavaScript 支持到 ECMAScript的什么水平？
+There are also many recordings of [Kotlin talks](http://kotlinlang.org/community/talks.html) available on YouTube and Vimeo. 
 
-目前到 5。
+### Does Kotlin have a community?
 
-### JavaScript后端支持模块系统吗？
+Yes. Kotlin has a very vibrant community. Kotlin developers hang out on the [Kotlin forums](http://discuss.kotlinlang.org), 
+[StackOverflow](http://stackoverflow.com/questions/tagged/kotlin) and more actively on the [Kotlin Slack](http://slack.kotlinlang.org) 
+(with close to 7000 members as of May 2017). 
 
-支持。至少有提供 CommonJS 和 AMD 支持的计划。
+### Are there Kotlin events?
+ 
+Yes. There are many User Groups and Meetups now focused exclusively around Kotlin. You can find [a list on the web site](/community/user-groups.html). 
+In addition there are community organised [Kotlin Nights](/community/kotlin-nights.html) events around the world.
+
+### Is there a Kotlin conference?
+
+Yes. The first official [KotlinConf](https://kotlinconf.com), taking place in San Francisco 2-3 November 2017. 
+Kotlin is also being covered in different conferences worldwide. You can find a list of [upcoming talks on the web site](/community/talks.html?time=upcoming).
+
+### Is Kotlin on Social Media?
+
+Yes. The most active Kotlin account is [on Twitter](https://twitter.com/kotlin). There is also a [Google+ group](https://plus.google.com/communities/104597899765146112928). 
+
+### Any other online Kotlin resources?
+
+The web site has a bunch of [online resources](https://kotlinlang.org/community/), including [Kotlin Digests](https://kotlin.link) by community members, 
+a [newsletter](http://www.kotlinweekly.net), a [podcast](https://talkingkotlin.com) and more.   
+
+### Where can I get an HD Kotlin logo?
+
+Logos can be downloaded [here](https://resources.jetbrains.com/storage/products/kotlin/docs/kotlin_logos.zip). Please follow simple rules in the `guidelines.pdf` inside the archive.
