@@ -164,7 +164,7 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 
 ## 注解处理
 
-See the description of [Kotlin annotation processing tool](kapt.html) (`kapt`).
+请参见 [Kotlin 注解处理工具](kapt.html)（`kapt`）的描述。
 
 ## 增量编译
 
@@ -259,12 +259,12 @@ compileKotlin {
 | `target` | 生成指定 ECMA 版本的 JS 文件 | "v5" | "v5" |
 
 
-## Generating documentation
+## 生成文档
 
-To generate documentation for Kotlin projects, use [Dokka](https://github.com/Kotlin/dokka);
-please refer to the [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-gradle-plugin)
-for configuration instructions. Dokka supports mixed-language projects and can generate output in multiple
-formats, including standard JavaDoc.
+要生成 Kotlin 项目的文档，请使用 [Dokka](https://github.com/Kotlin/dokka)；
+相关配置说明请参见 [Dokka README](https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin)
+。Dokka 支持混合语言项目，并且可以生成多种格式的输出
+，包括标准 JavaDoc。
 
 ## OSGi
 

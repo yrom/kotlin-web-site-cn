@@ -105,7 +105,7 @@ Kotlin 可用于多个平台（JVM/Android、JavaScript 以及即将推出的本
 
 ## 兼容性模式
 
-当一个大团队迁移到一个新版本时，当一些开发人员已经更新、而其他人没有时，可能会在某个时候出现“不一致的状态”。为了防止前者编写和提交别人可能无法编译的代码，我们提供了以下命令行开关（在 IDE 以及 [Gradle](using-gradle.html#编译器选项)/[Maven](using-maven.html#specifying-compiler-options) 中也可用）：
+当一个大团队迁移到一个新版本时，当一些开发人员已经更新、而其他人没有时，可能会在某个时候出现“不一致的状态”。为了防止前者编写和提交别人可能无法编译的代码，我们提供了以下命令行开关（在 IDE 以及 [Gradle](using-gradle.html#编译器选项)/[Maven](using-maven.html#指定编译器选项) 中也可用）：
 
 - `-language-version X.Y`——Kotlin 语言版本 X.Y 的兼容性模式，对其后出现的所有语言功能报告错误
 - `-api-version X.Y`——Kotlin API 版本 X.Y 的兼容性模式，对使用来自 Kotlin 标准库（包括编译器生成的代码）的新版 API 的所有代码报告错误。

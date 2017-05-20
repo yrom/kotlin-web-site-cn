@@ -159,7 +159,7 @@ Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配�
 
 ## 注解处理
 
-See the description of [Kotlin annotation processing tool](kapt.html) (`kapt`).
+请参见 [Kotlin 注解处理工具](kapt.html)（`kapt`）的描述。
 
 ## Jar 文件
 
