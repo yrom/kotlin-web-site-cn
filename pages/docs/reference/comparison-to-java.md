@@ -5,7 +5,7 @@ category: FAQ
 title: "与 Java 比较"
 ---
 
-# 与 Java 比较
+# 与 Java 语言比较
 
 ## Kotlin 解决了一些 Java 中的问题
 
@@ -44,3 +44,4 @@ Kotlin 通过以下措施修复了 Java 中一系列长期困扰我们的问题
 * [伴生对象](classes.html#伴生对象)
 * [数据类](data-classes.html)
 * [分离用于只读和可变集合的接口](collections.html)
+* [协程](coroutines.html)
