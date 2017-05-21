@@ -101,11 +101,19 @@ Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要�
 
 ``` groovy
 buildscript {
+    ext.kotlin_version = '＜要使用的版本＞'
+
     ……
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 ```
+
+不要忘记配置[标准库依赖关系](#配置依赖)。
 
 ### Android Studio
 

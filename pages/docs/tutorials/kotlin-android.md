@@ -9,7 +9,7 @@ showAuthorInfo: false
 
 ### Installing the Kotlin plugin
 
-The Kotlin plugin is bundled with Android Studio starting from version 3.0. If you use an earlier version, you'll need to install the Kotlin plugin.
+The Kotlin plugin is bundled with Android Studio starting from [version 3.0](https://developer.android.com/studio/preview/index.html). If you use an earlier version, you'll need to install the Kotlin plugin.
 Go to _File \| Settings \| Plugins \| Install JetBrains plugin..._ and then search for and install *Kotlin*.
 If you are looking at the "Welcome to Android Studio" screen, choose _Configure \| Plugins \| Install JetBrains plugin..._
 You'll need to restart the IDE after this completes.
@@ -66,6 +66,7 @@ After the conversion you should have an activity written in Kotlin.
 #### Configuring Kotlin in the project
 
 If you start editing this file, Android Studio shows you a prompt that Kotlin is not configured, so you can configure it.
+Alternatively, you can invoke the configuration by selecting Tools | Kotlin | Configure Kotlin in Project from the main menu. 
 
 ![Config-Kotlin]({{ url_for('tutorial_img', filename='kotlin-android/kotlin-not-configured.png') }})
 
@@ -74,9 +75,9 @@ You are then prompted for the version of Kotlin. Choose the latest available fro
 ![Config-Kotlin-Details]({{ url_for('tutorial_img', filename='kotlin-android/configure-kotlin-in-project-details.png') }})
 
 After you configure Kotlin, build.gradle file for the application should be updated. 
-Now you can see that _apply plugin: 'kotlin-android'_ and the dependencies were added. 
+Now you can see that _apply plugin: 'kotlin-android'_ and the `kotlin-stdlib` dependency were added.
 
-*(For more details how to set up gradle for your project, please check [Using Gradle](/docs/reference/using-gradle.html))*
+*(For more details how to set up gradle for your project, please check [Using Gradle](/docs/reference/using-gradle.html#targeting-android))*
  
 ![Sync-Project-With-Gradle]({{ url_for('tutorial_img', filename='kotlin-android/sync-project-with-gradle.png') }})
 
@@ -96,5 +97,6 @@ Kotlin compiler produces byte-code, thus there really is no difference in terms 
 
 ### What's next?
 
-Read about [Kotlin Android Extensions plugin](android-plugin.html) and [Android Frameworks Using Annotation Processing](android-frameworks.html). 
-If you want to learn different Kotlin features, try [Kotlin Koans](koans.html).
+ * Read about [Kotlin Android Extensions plugin](android-plugin.html) and [Android Frameworks Using Annotation Processing](android-frameworks.html). 
+ * If you want to learn different Kotlin features, try [Kotlin Koans](koans.html).
+ * Check out Google's [sample projects written in Kotlin](https://developer.android.com/samples/index.html?language=kotlin)
