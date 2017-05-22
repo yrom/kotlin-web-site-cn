@@ -50,7 +50,7 @@ Java code to Kotlin)"这一步骤。早期版本中则会先使用Java创建acti
 
 #### 配置Kotlin工程
 
-在开始编辑此文件时，Android Studio会提示当前工程还未配置Kotlin，根据提示完成操作即可；相应的也可以在菜单栏中选择 Tools | Kotlin | Configure Kotlin 完成配置。  
+在开始编辑此文件时，Android Studio会提示当前工程还未配置Kotlin，根据提示完成操作即可；或者可以在菜单栏中选择 Tools | Kotlin | Configure Kotlin 。  
 
 ![Config-Kotlin]({{ url_for('tutorial_img', filename='kotlin-android/kotlin-not-configured.png') }})
 
@@ -64,17 +64,17 @@ Kotlin配置完成后，应用程序的build.gradle文件会新增 _apply plugin
  
 ![Sync-Project-With-Gradle]({{ url_for('tutorial_img', filename='kotlin-android/sync-project-with-gradle.png') }})
 
-同步工程，在提示框中点击'立即同步(Sync Now)'或者使用**Sync Project with Gradle Files**即可。
+同步工程，在提示框中点击'立即同步(Sync Now)'或者使用**Sync Project with Gradle Files**命令。
 
 ![Sync-Project-With-Gradle-2]({{ url_for('tutorial_img', filename='kotlin-android/sync-project-with-gradle-2.png') }})
 
 ### 构建和发布Android的Kotlin应用程序
 
-最后构建应用程序，并发布到虚拟机或连接的设备；所有这些操作和Java并无区别，您可以发布应用程序，并以类似于使用Java编写的Android应用程序的方式进行签名。
+最后构建应用程序，在虚拟机或连接的设备上运行；所有这些工作和Java并无区别。甚至完全能够以类似使用Java编写Android程序的方式进行签名并且发布。您可以发布应用程序，并以类似于使用Java编写的Android应用程序的方式进行签名。
 
 Kotlin有着极小的运行时文件体积：整个库的大小约{{ site.data.releases.latest.runtime_size }} ( {{ site.data.releases.latest.version }} 版本)。这意味着Kotlin对apk文件大小影响微乎其微。
 
-而对于Kotlin编译器生成的字节码，对于Kotlin与Java所编写的程序而言，丝毫没有任何差异。
+就对比Kotlin与Java所编写的程序而言，Kotlin编译器所生成的字节码看上去几乎毫无差异。
 
 ### 后续?
 * 更多内容请查阅[Kotlin Android Extensions plugin](android-plugin.html) 以及 [Android Frameworks Using Annotation Processing](android-frameworks.html)。
