@@ -58,7 +58,7 @@ Java code to Kotlin)"这一步骤。早期版本中则会先使用Java创建acti
 
 ![Config-Kotlin-Details]({{ url_for('tutorial_img', filename='kotlin-android/configure-kotlin-in-project-details.png') }})
 
-Kotlin配置完成后，应用程序的build.gradle文件会新增 _apply plugin: 'kotlin-android'_ 的依赖。
+Kotlin配置完成后，应用程序的build.gradle文件会新增 _apply plugin: 'kotlin-android'_ 依赖。
 
 *(有关使用gradle设置的详情，请查阅[Gradle使用手册](/docs/reference/using-gradle.html))*
  
@@ -77,7 +77,6 @@ Kotlin有着极小的运行时文件体积：整个库的大小约{{ site.data.r
 而对于Kotlin编译器生成的字节码，对于Kotlin与Java所编写的程序而言，丝毫没有任何差异。
 
 ### 后续?
-
-- 更多内容请查阅[Kotlin Android Extensions plugin](android-plugin.html) 以及 [Android Frameworks Using Annotation Processing](android-frameworks.html)。
-- 想尝试Kotlin的不同特性？试试 [Kotlin Koans](koans.html)。
-- 查看[Google的Kotlin示例工程](https://developer.android.com/samples/index.html?language=kotlin)
+* 更多内容请查阅[Kotlin Android Extensions plugin](android-plugin.html) 以及 [Android Frameworks Using Annotation Processing](android-frameworks.html)。
+* 想尝试Kotlin的不同特性？试试 [Kotlin Koans](koans.html)。
+* 查看[Google的Kotlin示例工程](https://developer.android.com/samples/index.html?language=kotlin)
