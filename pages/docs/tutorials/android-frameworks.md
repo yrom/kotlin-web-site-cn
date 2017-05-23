@@ -8,29 +8,27 @@ showAuthorInfo: false
 source:
 ---
 
-The Android world has many popular frameworks simplifying development.
-You can use the same frameworks if you develop in Kotlin, often as easily as you'd do that in Java. 
-This tutorial provides examples and highlights the differences in settings.
+在日常Android开发中，流行着数以千计的框架帮助我们提升开发效率。使用Kotlin开发时仍然可以使用这些框架，而且和Java同样简单。本章教程将提供相关示例并重点突出配置的差异。
 
-We'll look at [Dagger](android-frameworks.html#dagger), [Butterknife](android-frameworks.html#butterknife), [Data Binding](android-frameworks.html#data-binding), [Auto-parcel](android-frameworks.html#auto-parcel) and [DBFlow](android-frameworks.html#dbflow) (other frameworks can be set up similarly).
-All these frameworks work through annotation processing: you annotate the code to have the boiler-plate code generated for you.
-Annotations allow to hide all the verbosity and keep your code simple, and if you need to understand what actually happens at runtime, you can look at the generated code.
-Note that all these frameworks generate source code in Java, not Kotlin.
+教程以[Dagger](android-frameworks.html#dagger), [Butterknife](android-frameworks.html#butterknife), [Data Binding](android-frameworks.html#data-binding), [Auto-parcel](android-frameworks.html#auto-parcel)以及[DBFlow](android-frameworks.html#dbflow)进行示例(其余框架配置基本类似)。
+以上框架均以注解处理方式工作：通过对代码注解后自动生成模板代码。
+注解有助于减少冗余代码，让代码清晰可读，想要了解运行时的代码，可以直接阅读自动生成的源代码。
+但所有生成的代码均是Java代码而非Kotlin。
 
-In Kotlin you specify the dependencies in a similar to Java way using [Kotlin Annotation processing tool](/docs/reference/kapt.html) (`kapt`) instead of `annotationProcessor`.
+在Kotlin中添加依赖与Java类似，需要使用[Kotlin Annotation processing tool](/docs/reference/kapt.html) (`kapt`)代替`annotationProcessor`。
 
 
 ### Dagger
 
-[Dagger](https://google.github.io/dagger//) is a dependency injection framework.
-If you're not familiar with it yet, you can read its [user's guide](https://google.github.io/dagger//users-guide.html).
-We've converted [the coffee example](https://github.com/google/dagger/tree/master/examples/simple) 
-described in this guide into Kotlin, and you can find the result [here](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger). 
-The Kotlin code looks pretty much the same; you can browse the whole example in one [file](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger/src/main/kotlin/Coffee.kt).
+[Dagger](https://google.github.io/dagger//) 是著名的依赖注入框架。
+如果你对它还不了解，可以查阅[用户手册](https://google.github.io/dagger//users-guide.html)。
+我们已经将整个[(咖啡示例)the coffee example](https://github.com/google/dagger/tree/master/examples/simple) 
+使用Kotlin重写，详细代码在[这里](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger)。 
+Kotlin代码与Java非常相似；所有示例代码可在同一[文件](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger/src/main/kotlin/Coffee.kt)内查看。
 
-As in Java, you use `@Inject` to annotate the constructor used by Dagger to create instances of a class.
-Kotlin has a short syntax for declaring a property and a constructor parameter at the same time.
-To annotate the constructor, use the `constructor` keyword explicitly and put the `@Inject` annotation before it:
+和Java一样，Dagger使用`@Inject`对构造函数注解，从而创建类的实例。
+Kotlin拥有更简洁的语法同时声明属性和构造函数。
+要对构造函数进行注解，必须显示使用`constructor`关键字，并在关键字前声明`@Inject`。
 
 ```kotlin
 class Thermosiphon 
@@ -41,8 +39,8 @@ class Thermosiphon
 }    
 ```
 
-Annotating methods looks absolutely the same. 
-In the example below `@Binds` determines that a `Thermosiphon` object is used whenever a `Pump` is required, `@Provides` specifies the way to build a `Heater`, and `@Singleton` says that the same `Heater` should be used all over the place:
+注解方法看上去完全相同。
+在下面的示例中，`@Binds`决定了无论何时需要`Pump`，使用都是`Thermosiphon`对象，`@Provides`指定了`Heater`的构造方式，`@Singleton`则表示`Heater`是全局单例:
 
 ```kotlin
 @Module
@@ -58,11 +56,10 @@ class DripCoffeeModule {
 }
 ```
 
-`@Module`-annotated classes define how to provide different objects.
-Note that when you pass an annotation argument as a vararg argument, you have to explicitly wrap it into `arrayOf`, like in `@Module(includes = arrayOf(PumpModule::class))` above.
+`@Module`-对类注解，定义如何提供不同对象.
+需要注意的是，作为多参数传递注解参数时时，需要显示的使用`arrayOf`进行包装，比如上文示例`@Module(includes = arrayOf(PumpModule::class))`。
 
-To have a dependency-injected implementation generated for the type, annotate it with `@Component`.
-The generated class will have the name of this type prepended with Dagger, like `DaggerCoffeeShop` below:
+使用`@Component`为类型生成依赖注入的实现。自动生成类的类名带有Dagger前置，比如`DaggerCoffeeShop`：
 
 ```kotlin
 @Singleton
@@ -77,13 +74,13 @@ fun main(args: Array<String>) {
 }
 ``` 
 
-Dagger generates an implementation of `CoffeeShop` that allows you to get a fully-injected `CoffeeMaker`.
-You can navigate and see the implementation of `DaggerCoffeeShop` if you open the project in IDE.
+Dagger为`CoffeeShop`生成的一套实现能够让你获取一个完全注入的`CoffeeMaker`。
+`DaggerCoffeeShop`的具体代码实现可在IDE中查看。
 
-We observed that annotating your code almost hasn't changed when you switched to Kotlin.
-Now let's see what changes should be made to the build script.
+我们注意到转换到Kotlin时代码几乎没有发生改变。
+现在我们看看构造脚本(build script)中有些什么变化。  
 
-In Java you specify `Dagger` as `annotationProcessor` (or `apt`) dependency:
+在Java中需要指定`Dagger`作为`annotationProcessor `(或`apt`)依赖：
 
 ``` groovy
 dependencies {
@@ -92,7 +89,7 @@ dependencies {
 }
 ```
 
-In Kotlin you have to add the `kotlin-kapt` plugin to enable `kapt`, and then replace `annotationProcessor` with `kapt`:
+在Kotlin中则需要添加`kotlin-kapt`插件激活`kapt`，并使用`kapt`替换`annotationProcessor`：
 
 ``` groovy
 apply plugin: 'kotlin-kapt'
@@ -102,11 +99,10 @@ dependencies {
 }
 ```
 
-That's all!
-Note that `kapt` takes care of your Java files as well, so you don't need to keep the `annotationProcessor` dependency.
+特别提示：`kapt`也能够处理Java文件，所以不需要再保留`annotationProcessor`的依赖。
 
-The full build script for the sample project can be found [here](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger/build.gradle).
-You can also look at the converted code for [the Android sample](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dagger).
+查看示例项目的完整[构建脚本](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger/build.gradle)，
+以及[Android示例](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dagger)转换后的代码。
 
 
 ### ButterKnife
