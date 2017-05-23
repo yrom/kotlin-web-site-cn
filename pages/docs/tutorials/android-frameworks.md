@@ -107,15 +107,16 @@ dependencies {
 
 ### ButterKnife
 
-[ButterKnife](http://jakewharton.github.io/butterknife/) allows to bind views to fields directly instead of calling `findViewById`. 
 
-Note that [Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/android-plugin.html) plugin (automatically bundled into the Kotlin plugin in Android Studio) solves the same issue: replacing `findViewById` with a concise and straightforward code.
-Consider using it unless you're already using ButterKnife and don't want to migrate.
+[ButterKnife](http://jakewharton.github.io/butterknife/)可以直接将view和变量进行绑定从而免去调用`findViewById`。
+
+另外，[Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/android-plugin.html)插件(Android Studio内置)具有同样的效果：使用简洁明了的代码替换`findViewByid`。除非现在你正在使用ButterKnife而且没有迁移计划，那么前者非常值得尝试。
  
-You use `ButterKnife` with Kotlin in the same way as you use it with Java.
-Let's see first the changes in the Gradle build script, and then highlight some of the differences in the code.
+在Kotlin中使用`ButterKnife`与Java中完全一致。
+在Gradle构建脚本的变化内容如下，后面将重点介绍代码部分的差异。
  
-In the Gradle dependencies you use add the `kotlin-kapt` plugin and replace `annotationProcessor` with `kapt`:
+在Gradle依赖中添加`kotlin-kapt`插件，并使用`kapt`替代`annotationProcessor`。
+
 
 ``` groovy
 apply plugin: 'kotlin-kapt'
@@ -127,29 +128,28 @@ dependencies {
 }
 ```
 
-We've converted the ButterKnife [sample](https://github.com/JakeWharton/butterknife/tree/master/sample/app/src/main/java/com/example) to Kotlin.
-The resulting code can be found [here](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-butterknife).
+我们已经将整个ButterKnife[示例代码](https://github.com/JakeWharton/butterknife/tree/master/sample/app/src/main/java/com/example)转换为Kotlin，
+查看[详细代码](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-butterknife).
 
-Let's look over it to spot what has changed.
-In Java you annotated the field, binding it with the corresponding view:
+在Java中对变量使用注解与相应的view进行绑定：
  
 ``` java 
 @BindView(R2.id.title) TextView title;
 ```
 
-In Kotlin you can't work with fields directly, you work with [properties](/docs/reference/properties.html). 
-You annotate the property:
+在Kotlin中需要使用[属性](/docs/reference/properties.html)而不是直接使用变量。
+对属性使用注解:
 
 ``` kotlin
 @BindView(R2.id.title)
 lateinit var title: TextView
 ```
-The `@BindView` annotation is defined to be applied to the fields only, but the Kotlin compiler understands that and annotates the corresponding field under the hood when you apply the annotation to the whole property.
+`@BindView`被定义为仅应用于变量字段，而将注释应用于整个属性时，Kotlin编译器能够理解并且覆盖相应注解的字段。
 
-Note how [the lateinit modifier](/docs/reference/properties.html#late-initialized-properties) allows to declare a non-null type initialized after the object is created (after the constructor call).
-Without `lateinit` you'd have to declare a [nullable type](/docs/reference/null-safety.html) and add additional nullability checks.
+[lateinit修饰符](/docs/reference/properties.html#late-initialized-properties)允许在对象创建后(构造函数调用后)声明非空类型。
+不使用`lateinit`则需要声明[空类型](/docs/reference/null-safety.html)并且有额外的空安全检测操作。
  
-You can also configure methods as listeners, using ButterKnife annotations:
+使用ButterKnife可以将方法设置为监听器：
 
 ``` java
 @OnClick(R2.id.hello)
@@ -158,8 +158,8 @@ internal fun sayHello() {
 }
 ```
 
-This code specifies an action to be performed on the "hello" button click.
-Note that with lambdas this code looks rather concise written directly in Kotlin:
+以上代码表示点击"hello"按钮后的事件响应。
+然而在Kotlin中使用lambdas表达式会让代码更加简单直接：
 
 ``` kotlin
 hello.setOnClickListener {
@@ -167,7 +167,7 @@ hello.setOnClickListener {
 }
 ```
 
-The `toast` function is defined in the [Anko](https://github.com/Kotlin/anko) library.
+[Anko](https://github.com/Kotlin/anko)的库已经定义了`toast`函数。
 
 ### Data Binding
 
