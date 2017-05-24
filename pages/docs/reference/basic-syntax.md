@@ -335,7 +335,7 @@ fun main(args: Array<String>) {
 //sampleStart
 fun getStringLength(obj: Any): Int? {
     // `obj` 在 `&&` 右边自动转换成 `String` 类型
-    if (obj is String && obj.length > 0) ｛
+    if (obj is String && obj.length > 0) {
       return obj.length
     }
 
