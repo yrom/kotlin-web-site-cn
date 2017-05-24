@@ -11,6 +11,6 @@
 - company: Coursera
   text: Coursera Android 应用程序<a href="https://building.coursera.org/blog/2016/03/16/becoming-bilingual-coursera/">部分用 Kotlin 编写</a>
 - company: Pivotal
-  text: Spring <a href="https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0">采用 Kotlin 的语言特性</a>来提供更简洁的 API
+  text: Spring <a href="https://hltj.me/kotlin/2017/05/23/kotlin-support-in-spring5.html">采用 Kotlin 的语言特性</a>来提供更简洁的 API
 - company: Atlassian
   text: <a href="https://twitter.com/danlew42/status/809065097339564032">Trello Android</a>应用程序中的所有新代码都用 Kotlin。
