@@ -1,100 +1,101 @@
 ---
 type: tutorial
 layout: tutorial
-title: "Getting started with Android and Kotlin"
+title: "Android 与 Kotlin 入门"
 description: "This tutorial walks us through creating a simple Kotlin application for Android using Android Studio."
 authors: 
 showAuthorInfo: false
 ---
 
-### Installing the Kotlin plugin
+### 安装 Kotlin 插件
 
-The Kotlin plugin is bundled with Android Studio starting from version 3.0. If you use an earlier version, you'll need to install the Kotlin plugin.
-Go to _File \| Settings \| Plugins \| Install JetBrains plugin..._ and then search for and install *Kotlin*.
-If you are looking at the "Welcome to Android Studio" screen, choose _Configure \| Plugins \| Install JetBrains plugin..._
-You'll need to restart the IDE after this completes.
+Android Studio 从 3.0（preview）版本开始将内置安装 Kotlin 插件。如果你正在使用的是早期版本，
+需要通过 _File \| Settings \| Plugins \| Install JetBrains plugin..._ 搜索并安装 *Kotlin* 插件。
+在 Android Studio 欢迎界面中，可以通过 _Configure \| Plugins \| Install JetBrains plugin..._ 。
+安装完成后需要重新启动 Android Studio。
 
-### Creating a project
+### 创建新工程
 
-It’s extremely easy to start using Kotlin for Android development. 
-In this tutorial we’ll follow the warming up process with Android Studio.
-If using Intellij IDEA with Android, the process is almost the same.
+使用 Kotlin 来进行 Android 的开发是极其之容易的。
+在本章教程中，我们直接根据 Android Studio 的引导进行操作。
+若你当前使用的 IDE 是 Intellij IDEA，所有操作几乎一致。
 
-First let's create a new project. Choose **Start a new Android Studio project** or **File | New project**.
-The following dialogs walk you through the process of new project creation. 
-You need to name the project and choose which Android SDK version you have installed. Most options can be left with their default values, so you can press 'Enter' several times.
+首先，创建新的工程。选择 **Start a new Android Studio project** 或者 **File | New project**。
+根据弹出的对话框提示进行操作。
+为新工程命名，选择已安装的 Android SDK 版本。实际上大多数选项均有默认值 ，只需要按几次“回车”键即可。
 
-Name the project:
+命名工程:
 ![Dialog 1]({{ url_for('tutorial_img', filename='kotlin-android/0-create-new-project.png') }})
 
-Android Studio 3.0 offers an option to enable Kotlin support on this screen. You can check this option and skip the
-"Configuring Kotlin in the project" step below.
+Android Studio 3.0 在当前对话框中提供启用 Kotlin 支持的选项，勾选后可以跳过
+“配置 Kotlin 工程（Configuring Kotlin in the project）”的步骤。
 
-Choose the Android version:
+选择 Android 版本:
 
 ![Dialog 2]({{ url_for('tutorial_img', filename='kotlin-android/1-create-new-project.png') }})
 
-Choose creating an activity that will be generated for you:
+选择需要创建的 Activity 样式:
 
 ![Dialog 3]({{ url_for('tutorial_img', filename='kotlin-android/2-create-new-project.png') }})
 
-Name the activity:
+命名该 Activity:
 
 ![Dialog 4]({{ url_for('tutorial_img', filename='kotlin-android/3-create-new-project.png') }})
 
-In Android Studio 3.0, you can choose to create the activity in Kotlin right away, so you can skip the "Converting
-Java code to Kotlin" step. Earlier versions will create an activity in Java, and you can use the automated converter tool
-to convert it.
+在 Android Studio 3.0 中，可以选择使用 Kotlin 创建 activity，因此也不需要“将Java 代码转换为 Kotlin（Converting
+Java code to Kotlin）”这一步骤。早期版本中则会先使用 Java 创建 activity，然后再使用自动转换工具
+进行转换。
 
-In general, the easiest way to start using Kotlin is to convert automatically Java activity into Kotlin one.
-Please note that anytime instead of looking through documentation for a new way to express an old pattern, 
-you can write it in Java, then copy-paste Java code into Kotlin file, and IntelliJ IDEA (or Android Studio) will suggest to convert it. 
+一般而言，着手使用 Kotlin 的最便捷方式，无疑是将 Java 代码自动转换为 Kotlin。
+值得一提的是，与其为了使用新的方式表达旧的模式而去查阅文档，
+不如直接使用 Java 编写代码，再复制粘贴到 Kotlin 文件中，IntelliJ IDEA（或Android Studio）会提示需要转换代码。
 
 
-#### Converting Java code to Kotlin
+#### 将 Java 代码转换为 Kotlin
 
-Open `MainActivity.java` file. Then invoke action **Convert Java File to Kotlin File**. You can do it by several ways.
-The easiest one is to invoke [Find Action](https://www.jetbrains.com/idea/help/navigating-to-action.html) and start typing an action name (like in a screencast below). 
-Alternatively you can call this option via the _Code \| Convert Java File to Kotlin File_  menu entry or by using the corresponding shortcut (you can find it at the menu entry).
+打开 `MainActivity.java` 文件，使用 **Convert Java File to Kotlin File** 命令。使用该命令的方式有如下几种，
+强烈推荐 [Find Action](https://www.jetbrains.com/idea/help/navigating-to-action.html)，输入相应的命令名称（见下方截图）即可。
+同样也可以通过菜单栏依次调出 _Code \| Convert Java File to Kotlin File_ 或使用快捷键（菜单栏入口可见）完成操作。
  
 ![Convert]({{ url_for('tutorial_img', filename='kotlin-android/convert-java-to-kotlin.png') }})
 
-After the conversion you should have an activity written in Kotlin.
+转换完成后即可看到使用 Kotlin 编写的 activity。
 
 ![Koltin-Activity]({{ url_for('tutorial_img', filename='kotlin-android/converted-code.png') }})
 
-#### Configuring Kotlin in the project
+#### 工程中配置 Kotlin
 
-If you start editing this file, Android Studio shows you a prompt that Kotlin is not configured, so you can configure it.
+在开始编辑此文件时，Android Studio 会提示当前工程还未配置 Kotlin，根据提示完成操作即可；或者可以在菜单栏中选择 Tools | Kotlin | Configure Kotlin 。
 
 ![Config-Kotlin]({{ url_for('tutorial_img', filename='kotlin-android/kotlin-not-configured.png') }})
 
-You are then prompted for the version of Kotlin. Choose the latest available from the list of installed versions.
+选择配置时有如下对话框，选择已安装的最新版本即可。
 
 ![Config-Kotlin-Details]({{ url_for('tutorial_img', filename='kotlin-android/configure-kotlin-in-project-details.png') }})
 
-After you configure Kotlin, build.gradle file for the application should be updated. 
-Now you can see that _apply plugin: 'kotlin-android'_ and the dependencies were added. 
+Kotlin 配置完成后，应用程序的 build.gradle 文件会更新。
+你能看到新增了 _apply plugin: 'kotlin-android'_ 及其依赖。
 
-*(For more details how to set up gradle for your project, please check [Using Gradle](/docs/reference/using-gradle.html))*
+*（有关使用 gradle 设置的详情，请查阅 [Gradle使用手册](/docs/reference/using-gradle.html)）*
  
 ![Sync-Project-With-Gradle]({{ url_for('tutorial_img', filename='kotlin-android/sync-project-with-gradle.png') }})
 
-The last thing to do is to sync the project. You can press 'Sync Now' in a prompt or invoke an action **Sync Project with Gradle Files**.
+同步工程，在提示框中点击“立即同步（Sync Now）”或者使用 **Sync Project with Gradle Files**命令。
 
 ![Sync-Project-With-Gradle-2]({{ url_for('tutorial_img', filename='kotlin-android/sync-project-with-gradle-2.png') }})
 
-### Building and publishing the Kotlin application for Android
+### 构建和发布用于 Android 的 Kotlin 应用程序
 
-You are now ready to build the application and run it on an emulator or device.
-This works in exactly the same way as in Java.
-You can make a release of the application and sign it similarly to what you do for an Android application written in Java. 
+最后构建应用程序，在虚拟机或连接的设备上运行。
+所有这些工作与 Java 并无区别。
+你可以发布应用程序，并以类似于使用 Java 编写的 Android 应用程序的方式进行签名。
 
-Kotlin has a rather small runtime file size: the library is approximately {{ site.data.releases.latest.runtime_size }} (as of {{ site.data.releases.latest.version }}). This means Kotlin adds just a little to .apk file size.
+Kotlin有着极小的运行时文件体积：整个库的大小约 {{ site.data.releases.latest.runtime_size }}（{{ site.data.releases.latest.version }} 版本）。这意味着 Kotlin 对 apk 文件大小影响微乎其微。
 
-Kotlin compiler produces byte-code, thus there really is no difference in terms of look and feel of Kotlin applications versus those written in Java.
+就对比 Kotlin 与 Jav a所编写的程序而言，Kotlin 编译器所生成的字节码看上去几乎毫无差异。
 
-### What's next?
+### 后续？
 
-Read about [Kotlin Android Extensions plugin](android-plugin.html) and [Android Frameworks Using Annotation Processing](android-frameworks.html). 
-If you want to learn different Kotlin features, try [Kotlin Koans](koans.html).
+* 更多内容请查阅 [Kotlin Android 扩展插件](android-plugin.html) 以及 [Android 框架使用注解处理](android-frameworks.html)。
+* 想尝试 Kotlin的不同特性？试试 [Kotlin Koans](koans.html)。
+* 【译者补充】查看 [Google 的 Kotlin 示例工程](https://developer.android.com/samples/index.html?language=kotlin)。

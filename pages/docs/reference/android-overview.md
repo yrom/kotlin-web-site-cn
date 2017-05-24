@@ -46,9 +46,11 @@ Kotlin 团队为 Android 开发提供了一套超越标准语言功能的工具�
 
 ## 下一步
 
-* [Android 与 Kotlin 入门](/docs/tutorials/kotlin-android.html)教程
-指导你将 Kotlin 插件安装到 Android Studio 中，并创建你的第一个 Kotlin 应用程序。
-* 关于更深入的介绍，请查看本站的[参考文档](index.html)及
+ * 下载并安装 [Android Studio 3.0 预览版](https://developer.android.com/studio/preview/index.html)，其中包含开箱即用的 Kotlin 支持。
+ * 按照 [Android 与 Kotlin 入门](/docs/tutorials/kotlin-android.html)教程
+创建你的第一个 Kotlin 应用程序。
+ * 关于更深入的介绍，请查看本站的[参考文档](index.html)及
 [Kotlin 心印](/docs/tutorials/koans.html)。
-* 另一个很好的资源是 [Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers)，
+ * 另一个很好的资源是 [Kotlin for Android Developers](https://leanpub.com/kotlin-for-android-developers)，
 这本书会引导你逐步完成在 Kotlin 中创建真正的 Android 应用程序的过程。
+ * 检出 Google 的 [Kotlin 写的示例项目](https://developer.android.com/samples/index.html?language=kotlin)。
