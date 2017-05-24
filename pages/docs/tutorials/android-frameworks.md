@@ -171,9 +171,10 @@ hello.setOnClickListener {
 
 ### Data Binding
 
+使用[Data Binding开源库](https://developer.android.com/topic/libraries/data-binding/index.html)能够让开发者以更简洁的方式将应用程序数据与布局界面进行绑定。
 The [Data Binding Library](https://developer.android.com/topic/libraries/data-binding/index.html) allows you to bind your application data to the layouts in a concise way.
 
-You enable the library using the same configuration as in Java:
+与在Java中一样，开发者需要在gradle文件中激活配置。
 
 ``` groovy
 android {
@@ -184,7 +185,7 @@ android {
 }
 ```
 
-To make it work with Kotlin classes add the `kapt` dependency: 
+添加`kapt`的依赖后即可与Kotlin代码交互：
 
 ``` groovy
 apply plugin: 'kotlin-kapt'
@@ -193,9 +194,8 @@ dependencies {
 }  
 ```
 
-When you switch to Kotlin, your xml layout files don't change at all.
-For instance, you use `variable` within `data` to describe a variable that may be used within the layout.
-You can declare a variable of a Kotlin type:
+使用Kotlin并不需要修改任何的xml文件。
+例如，在`data`中使用`variable`来描述可能在布局中使用的变量。可以使用Kotlin类型声明变量：
  
 ```xml
 <data>
@@ -203,7 +203,7 @@ You can declare a variable of a Kotlin type:
 </data>
 ``` 
 
-You use the `@{}` syntax for writing expressions, which can now refer Kotlin [properties](/docs/reference/properties.html): 
+可以使用`@{}`语法引用Kotlin[属性](/docs/reference/properties.html): 
 
 ```xml
 <ImageView
@@ -213,9 +213,8 @@ You use the `@{}` syntax for writing expressions, which can now refer Kotlin [pr
     android:contentDescription="@string/image" />
 ```
 
-Note that the databinding expression language uses the same syntax for referring to properties as Kotlin: `data.imageUrl`.
-In Kotlin you can write `v.prop` instead of `v.getProp()` even if `getProp()` is a Java method.
-Similarly, instead of calling a setter directly, you may use an assignment:
+值得一提的是，数据绑定表达式语言使用Kotlin中相同的语法引用忏悔：`data.imageUrl`。在Kotlin之中可以使用`v.prop`来替代`v.getProp()`，尽管`getProp()`是Java中的方法。
+类似的，也可以直接向属性赋值，而不再需要调用setter。
   
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -232,7 +231,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-You can bind a listener to run an action when a specific event happens:
+可以在xml中绑定监听器用以对执行相应操作：
 
 ```xml
 <Button
@@ -242,7 +241,7 @@ You can bind a listener to run an action when a specific event happens:
     android:onClick="startOtherActivity" />
 ```
 
-Here `startOtherActivity` is a method defined in our `MainActivity`:
+比如在`MainActivity`中定义的`startOtherActivity`方法：
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -251,10 +250,10 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-This example uses the utility function `startActivity` creating an intent with no data and starting a new activity, which comes from the [Anko](https://github.com/Kotlin/anko) library.
-To pass some data, you can say `startActivity<OtherActivity>("KEY" to "VALUE")`.
+本例中使用效用函数`startActivity`创建一个不带任何数据参数的intent，并启动一个新的activity，这些方法都来自于[Anko](https://github.com/Kotlin/anko)
+若需要参数，则调用`startActivity<OtherActivity>("KEY" to "VALUE")`.
 
-Note that instead of declaring lambdas in xml like in the following example, you can can bind actions directly in the code: 
+请注意，与其在xml中声明lambdas表达式，不如直接使用代码绑定相关动作： 
 
 ```xml
 <Button 
@@ -268,10 +267,9 @@ Note that instead of declaring lambdas in xml like in the following example, you
 button.setOnClickListener { presenter.onSaveClick(task) }
 ```
 
-In the last line `button` is referenced by `id` using the [Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/android-plugin.html) plugin. 
-Consider using this plugin as an alternative which allows you to keep binding logic in code and have the concise syntax at the same time.    
+最后一行中`button`由`id`使用[Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/android-plugin.html)插件所引用。考虑使用该插件作为替代方案，既允许在代码中保持绑定逻辑，同时又具有简洁的语法。  
 
-You can find an example project [here](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-databinding).
+查看[完整示例](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-databinding).
 
 ### DBFlow
 
