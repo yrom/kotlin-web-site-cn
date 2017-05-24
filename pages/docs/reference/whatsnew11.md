@@ -590,7 +590,7 @@ class ImmutablePropertyBag(map: Map<String, Any>) {
 
 ### Map.minus(key)
 
-运算符 `plus` 提供了一种将键值对添加到只读映射中以生成新映射的方法，但是没有一种简单的方法来做相反的操作：从映射中删除一个键采用不那么直接的方式如 Map.filter() 或 Map.filterKeys()。
+运算符 `plus` 提供了一种将键值对添加到只读映射中以生成新映射的方法，但是没有一种简单的方法来做相反的操作：从映射中删除一个键采用不那么直接的方式如 `Map.filter()` 或 `Map.filterKeys()`。
 现在运算符 `minus` 填补了这个空白。有 4 个可用的重载：用于删除单个键、键的集合、键的序列和键的数组。
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
