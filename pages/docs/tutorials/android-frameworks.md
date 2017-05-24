@@ -267,16 +267,16 @@ class MainActivity : AppCompatActivity() {
 button.setOnClickListener { presenter.onSaveClick(task) }
 ```
 
-最后一行中`button`由`id`使用[Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/android-plugin.html)插件所引用。考虑使用该插件作为替代方案，既允许在代码中保持绑定逻辑，同时又具有简洁的语法。  
+最后一行中`button`由`id`使用[Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/android-plugin.html)插件所引用。使用该插件作为替代方案，既允许在代码中保持绑定逻辑，同时又具有简洁的语法。  
 
 查看[完整示例](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-databinding).
 
 ### DBFlow
 
-[DBFlow](https://github.com/Raizlabs/DBFlow) is a SQLite library that simplifies interaction with databases.
-It heavily relies on annotation processing.
+[DBFlow](https://github.com/Raizlabs/DBFlow)是一个用于简化数据库交互的SQLite开源库。
+它非常之依赖于注解处理。
 
-To use it with Kotlin configure annotation processing dependency using `kapt`:
+使用`kapt`添加Kotlin配置注释处理依赖关系使用：
 
 ``` kotlin
 apply plugin: 'kotlin-kapt'
@@ -288,12 +288,12 @@ dependencies {
 }
 ```
 
-[Here](https://agrosner.gitbooks.io/dbflow/content/including-in-project.html) is a detailed guide how to configure DBFlow.
+查看DBFlow[配置向导](https://agrosner.gitbooks.io/dbflow/content/including-in-project.html)。
 
-If your application already uses DBFlow, you can safely introduce Kotlin into your project. 
-You can gradually convert existing code to Kotlin (ensuring that everything compiles along the way).
-The converted code doesn't differ much from Java. 
-For instance, declaring a table looks similar to Java with the small difference that default values for properties must be specified explicitly:
+若您的项目中已在使用DBFlow，可以安全地将在项目中引入Kotlin。
+并且逐步的将代码转换为Kotlin（确保每次编译通过）。
+转换后的代码与Java并无明显差异。
+例如，对表的声明和在Java中仅有小小的区别，属性声明时必须显示的指定默认值：
  
 ``` kotlin 
 @Table(name="users", database = AppDatabase::class)
@@ -308,26 +308,24 @@ class User: BaseModel() {
 }
 ``` 
 
-Besides converting existing functionality to Kotlin, you can also enjoy the Kotlin specific support.
-For instance, you can declare tables as [data classes](/docs/reference/data-classes.html):
+对于DBFlow而言，除了将已经有功能代码转换为Kotlin，还能享受到Kotlin的特别支持。
+譬如，将表声明为[data classes](/docs/reference/data-classes.html)：
 
 ``` kotlin
 @Table(database = KotlinDatabase::class)
 data class User(@PrimaryKey var id: Long = 0, @Column var name: String? = null)
 ```
 
-DBFlow defines a bunch of extensions to make its usage in Kotlin more idiomatic, which you can include in your dependencies:
+DBFlow定义了一系列符合Kotlin语言习惯的扩展功能，这些都可以通过依赖添加：
 
 ``` kotlin
 dependencies {
     compile "com.github.raizlabs.dbflow:dbflow-kotlinextensions:$dbflow_version"
 }
 ```
+该扩展可以通过类似C#中的LINQ语法方式编写查询语句，使用lambdas可以编写更简单的异步计算代码([详细内容](https://agrosner.gitbooks.io/dbflow/content/KotlinSupport.html))。
 
-That gives you a way to express queries via C#-like LINQ syntax, use lambdas to write much simpler code for asynchronous computations, and more.
-Read all the details [here](https://agrosner.gitbooks.io/dbflow/content/KotlinSupport.html).
-
-You can browse the converted [sample application](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dbflow).
+查看完整[示例程序](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dbflow).
 
 
 ### Auto-Parcel
