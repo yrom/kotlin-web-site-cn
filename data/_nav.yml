@@ -234,9 +234,9 @@ tutorials:
     - title: 开始
       items:
         - url: /docs/tutorials/getting-started.html
-          title: 从 IntelliJ IDEA 入门
+          title: 以 IntelliJ IDEA 入门
         - url: /docs/tutorials/getting-started-eclipse.html
-          title: 从 Eclipse 入门
+          title: 以 Eclipse 入门
         - url: /docs/tutorials/command-line.html
           title: 使用命令行编译器
         - url: /docs/tutorials/build-tools.html
