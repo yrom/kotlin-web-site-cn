@@ -37,7 +37,7 @@ Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配�
 其中包含为新版 JDK 所增 API 而加的额外的扩展函数。使用 `kotlin-stdlib-jre7`
 或 `kotlin-stdlib-jre8` 取代 `kotlin-stdlib`，这取决于你的 JDK 版本。
 
-如果你的项目使用 [Kotlin 反射](/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) 或者测试设施，那么你还需要添加相应的依赖项。
+如果你的项目使用 [Kotlin 反射](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) 或者测试设施，那么你还需要添加相应的依赖项。
 其构件 ID 对于反射库是 `kotlin-reflect`，对于测试库是 `kotlin-test` 与 `kotlin-test-junit`
 。
 
