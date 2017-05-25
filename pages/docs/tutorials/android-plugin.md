@@ -7,16 +7,16 @@ authors: Yan Zhulanow
 showAuthorInfo: true
 source:
 ---
-In this tutorial we'll walk through the steps required to use the Kotlin Android Extensions plugin, enhancing the development experience with Android.
+在本章教程中，我们将逐步介绍如何使用Kotlin安卓扩展插件提升安卓的开发体验。
 
-### Background
+### 背景
 
-Every Android developer knows well the `findViewById()` function. It is, without a doubt, a source of potential bugs and nasty code which is hard to read and support.
-While there are several libraries available that provide solutions to this problem, being libraries dependent on runtime, they require annotating fields for each `View`.
+相信每一位安卓开发人员对`findViewById()`这个方法再熟悉不过了，毫无疑问，潜在的bug和脏乱的代码是难以阅读和支持的。
+尽管存在一系列的开源库能够为这个问题带来解决方案，然而对于运行时依赖的库，需要为每一个`View`注解变量字段。
 
-The Kotlin Android Extensions plugin allows us to obtain the same experience we have with some of these libraries, without having to add any extra code or shipping any additional runtime.
+现在Kotlin安卓扩展插件能够提供与这些开源库功能相同的体验，不需要添加任何额外代码，也不影响任何运行时体验。
 
-In essence, this would allow for the following code:
+因此，我们可以写出如下代码：
 
 ```kotlin
 // Using R.layout.activity_main from the main source set
@@ -32,11 +32,11 @@ class MyActivity : Activity() {
 }
 ```
 
-`textView` is an extension property for `Activity`, and it has the same type as declared in `activity_main.xml`.
+`textView`是对`Activity`的一项扩展属性，与在`activity_main.xml`中的声明具有同样类型。
 
-### Using Kotlin Android Extensions
+### 使用Kotlin安卓扩展
 
-#### Configuring the dependency
+#### 依赖配置
 
 {{ site.text_using_gradle }}
 
