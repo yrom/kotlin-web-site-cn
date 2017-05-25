@@ -330,9 +330,9 @@ dependencies {
 
 ### Auto-Parcel
 
-[Auto-Parcel](https://github.com/frankiesardo/auto-parcel) allows to generate `Parcelable` values for classes annotated with `@AutoValue`.
+[Auto-Parcel](https://github.com/frankiesardo/auto-parcel)使用`@AutoValue`的注解为类文件自动生成`Parcelable`对应方法和值。
 
-When you specify the dependency you again use `kapt` as annotation processor to take care of Kotlin files: 
+同样的，gradle文件中也需要添加`kapt`作为注解处理器来处理Kotlin文件：
  
 ``` groovy
 apply plugin: 'kotlin-kapt'
@@ -343,10 +343,9 @@ dependencies {
 }
 ```
 
-The converted [sample](https://github.com/frankiesardo/auto-parcel/tree/master/sample) can be found [here](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-auto-parcel).
+点击[这里](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-auto-parcel)查看[完整示例代码](https://github.com/frankiesardo/auto-parcel/tree/master/sample)。
 
-You can annotate Kotlin classes with `@AutoValue`.
-Let's look at the converted [`Address`](https://github.com/frankiesardo/auto-parcel/blob/master/sample/src/main/java/model2/Address.java) class for which the `Parcelable` implementation will be generated:
+现在对Kotlin类文件添加`@AutoValue`注解。下方的示例展示转换后的[`Address`](https://github.com/frankiesardo/auto-parcel/blob/master/sample/src/main/java/model2/Address.java)类以及自动生成相应的`Parceable`实现：
 
 ``` kotlin
 @AutoValue
@@ -371,9 +370,9 @@ abstract class Address : Parcelable {
 }
 ```
 
-Kotlin doesn't have `static` methods, so they should be place inside a [`companion object`](/docs/reference/object-declarations.html#companion-objects).
-If you still want to use them from Java code, annotate them with [`@JvmStatic`](/docs/reference/java-to-kotlin-interop.html#static-methods).
+由于Kotlin中并没有`static`方法，因此相应的方法会被放入[`companion object`](/docs/reference/object-declarations.html#companion-objects)之中。
+如果仍然需要从Java中调用这些方法，需要添加[`@JvmStatic`](/docs/reference/java-to-kotlin-interop.html#static-methods)注解。
 
-If you need to access a Java class or method with a name that is not a valid identifier in Kotlin, you can [escape the name](/docs/reference/java-interop.html#escaping-for-java-identifiers-that-are-keywords-in-kotlin) with the  backtick (\`) character, like in accessing the generated class \``$AutoValue_Address`\`.
+如果调用Java的类或方法恰好在Kotlin中是保留字，可以使用反引号(\`)作为[转义字符](/docs/reference/java-interop.html#escaping-for-java-identifiers-that-are-keywords-in-kotlin)，比如调用上例中生成类的\``$AutoValue_Address`\`。
   
-Overall the converted code looks very similar to the original Java code.
+以上所有经过转换的代码与原生Java代码非常相似。
