@@ -214,9 +214,11 @@ kotlin {
 当针对 JVM 时，对于生产代码这些任务称为 `compileKotlin` 而对于
 测试代码称为 `compileTestKotlin`。对于自定义源文件集（source set）这些任务称呼取决于 `compile＜Name＞Kotlin` 模式。
 
+The names of the tasks in Android Projects contain the [build variant](https://developer.android.com/studio/build/build-variants.html) names and follow the pattern `compile<BuildVariant>Kotlin`, for example, `compileDebugKotlin`, `compileReleaseUnitTestKotlin`.
+
 当针对 JavaScript 时，这些任务分别称为 `compileKotlin2Js` 与 `compileTestKotlin2Js`，以及对于自定义源文件集称为 `compile＜Name＞Kotlin2Js`。
 
-示例：
+To configure a single task, use its name. 示例：
 
 ``` groovy
 compileKotlin {
@@ -230,6 +232,15 @@ compileKotlin {
 }
 ```
 
+It is also possible to configure all Kotlin compilation tasks in the project:
+
+``` groovy
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        // ...
+    }
+}
+```
 
 对于 Gradle 任务的完整选项列表如下：
 
