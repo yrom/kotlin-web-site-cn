@@ -59,7 +59,7 @@ class DripCoffeeModule {
 `@Module`-注解的类定义如何提供不同对象。
 需要注意的是，作为多参数传递注解参数时，需要显示的使用`arrayOf`进行包装，比如上文示例中的`@Module(includes = arrayOf(PumpModule::class))`。
 
-使用`@Component`为类型生成依赖注入的实现。自动生成类的类名带有Dagger前缀，比如下文示例`DaggerCoffeeShop`：
+使用`@Component`为类型生成依赖注入的实现。自动生成类文件的类名带有Dagger前缀，比如下文示例`DaggerCoffeeShop`：
 
 ```kotlin
 @Singleton
@@ -74,7 +74,7 @@ fun main(args: Array<String>) {
 }
 ``` 
 
-Dagger为`CoffeeShop`生成的一套实现，允许你获得一个完全注入的`CoffeeMaker`。
+Dagger为`CoffeeShop`所生成的实现，允许你获得一个完全注入的`CoffeeMaker`。
 `DaggerCoffeeShop`的具体代码实现可在IDE中查看。
 
 我们注意到转换到Kotlin时注解代码几乎没有发生改变。
@@ -131,7 +131,7 @@ dependencies {
 我们已经将整个ButterKnife[示例代码](https://github.com/JakeWharton/butterknife/tree/master/sample/app/src/main/java/com/example)转换为Kotlin，
 查看[详细代码](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-butterknife).
 
-在Java中对变量使用注解与相应的view进行绑定：
+在Java中使用注解对将变量与之对应的view进行绑定：
  
 ``` java 
 @BindView(R2.id.title) TextView title;
