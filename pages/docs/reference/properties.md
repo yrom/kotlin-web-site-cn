@@ -157,7 +157,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 ```
 
 
-## 惰性初始化属性
+## 延迟初始化属性
 
 一般地，属性声明为非空类型必须在构造函数中初始化。
 然而，这经常不方便。例如：属性可以通过依赖注入来初始化，
