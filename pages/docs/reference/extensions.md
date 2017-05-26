@@ -171,9 +171,9 @@ fun Baz.goo() { …… }
 ``` kotlin
 package com.example.usage
 
-import foo.bar.goo // 以名字 "goo" 导入所有扩展
+import foo.bar.goo // 导入所有名为“goo”的扩展
                    // 或者
-import foo.bar.*   // 从 "foo.bar" 导入一切
+import foo.bar.*   // 从“foo.bar”导入一切
 
 fun usage(baz: Baz) {
     baz.goo()
