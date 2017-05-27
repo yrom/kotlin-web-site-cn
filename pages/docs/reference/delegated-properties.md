@@ -77,7 +77,7 @@ Kotlin 标准库为几种有用的委托提供了工厂方法。
 
 ### 延迟属性 Lazy
 
-`lazy()` 是接受一个 lambda 并返回一个 `Lazy <T>` 实例的函数，返回的实例可以作为实现延迟属性的委托：
+[`lazy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html) 是接受一个 lambda 并返回一个 `Lazy <T>` 实例的函数，返回的实例可以作为实现延迟属性的委托：
 第一次调用 `get()` 会执行已传递给 `lazy()` 的 lamda 表达式并记录结果，
 后续调用 `get()` 只是返回记录的结果。
 
@@ -111,7 +111,7 @@ Hello
 
 ### 可观察属性 Observable
 
-`Delegates.observable()` 接受两个参数：初始值和修改时处理程序（handler）。
+[`Delegates.observable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html) 接受两个参数：初始值和修改时处理程序（handler）。
 每当我们给属性赋值时会调用该处理程序（在赋值*后*执行）。它有三个
 参数：被赋值的属性、旧值和新值：
 
@@ -139,7 +139,7 @@ fun main(args: Array<String>) {
 first -> second
 ```
 
-如果你想能够截获一个赋值并“否决”它，就使用 `vetoable()` 取代 `observable()`。
+如果你想能够截获一个赋值并“否决”它，就使用 [`vetoable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html) 取代 `observable()`。
 在属性被赋新值生效*之前*会调用传递给 `vetoable` 的处理程序。
 
 ## 把属性储存在映射中
