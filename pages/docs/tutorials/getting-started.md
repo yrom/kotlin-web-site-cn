@@ -1,54 +1,54 @@
 ---
 type: tutorial
 layout: tutorial
-title:  "Getting Started with IntelliJ IDEA"
-description: "This tutorial walks you through creating a simple Hello World application using IntelliJ IDEA."
+title:  "以 IntelliJ IDEA 入门"
+description: "本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。"
 authors: Hadi Hariri, Roman Belov
 date: 2017-05-04
 showAuthorInfo: false
 ---
-### Setting up the environment
-In this tutorial we're going to use IntelliJ IDEA.
-For instructions on how to compile and execute Kotlin applications using the command line compiler, see [Working with the Command Line Compiler][getting_started_command_line].
+### 环境搭建
+在本教程中，我们会使用 IntelliJ IDEA。
+关于如何使用命令行编译器编译和执行 Kotlin 应用程序的说明，请参见[使用命令行编译器][getting_started_command_line]。
 
-If you are new to the JVM and Java, check out the [JVM Minimal Survival Guide](http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/). If you are new to IntelliJ IDEA, check out the [The IntelliJ IDEA Minimal Survival Guide](http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/).
+如果你是 JVM 及 Java 的新手，请查看 [JVM Minimal Survival Guide](http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/)。如果你是 IntelliJ IDEA 的新手，请查看 [The IntelliJ IDEA Minimal Survival Guide](http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/)。
 
-1. **Install a recent version of IntelliJ IDEA**. Kotlin is bundled with IntelliJ IDEA
-   starting from version 15. You can download the free [Community Edition][intellijdownload] from [JetBrains][jetbrains].
+1. **安装最新版本的 IntelliJ IDEA**。从版本 15 开始，Kotlin 就已内置于 IntelliJ IDEA 了。
+   你可以从 [JetBrains][jetbrains] 下载免费的[社区版][intellijdownload]。
 
-2. Create a New Project. We select Java Module and select the SDK. Kotlin works with JDK 1.6+. Also, select the *Kotlin (Java)* checkbox.
+2. 创建一个新项目。我们选择 Java Module 并选择 SDK。 Kotlin 与 JDK 1.6+ 一起使用。 另外，选择 *Kotlin (Java)* 复选框。
 
-   ![Kotlin New Project]({{ url_for('tutorial_img', filename='getting-started/new_project_step1.png') }})
+   ![新建 Kotlin 项目]({{ url_for('tutorial_img', filename='getting-started/new_project_step1.png') }})
 
-3. Give our project a name on the next step.
+3. 下一步给我们的项目起个名字。
 
-   ![Kotlin Project Name]({{ url_for('tutorial_img', filename='getting-started/project_name.png') }})
+   ![Kotlin 项目名]({{ url_for('tutorial_img', filename='getting-started/project_name.png') }})
 
-4. We should now have the new project created with the following folder structure:
+4. 我们现在应该已经创建了新项目并且有如下文件夹解构：
 
-   ![Kotlin Folder Structure]({{ url_for('tutorial_img', filename='getting-started/folders.png') }})
+   ![Kotlin 文件夹解构]({{ url_for('tutorial_img', filename='getting-started/folders.png') }})
 
-5. Let's create a new Kotlin file under the source folder. It can be named anything. In our case, we will call it *app*.
+5. 让我们在源代码文件夹下创建一个新的 Kotlin 文件。它可以任意命名。在本例中，我们称之为 *app*。
 
-   ![Kotlin New File]({{ url_for('tutorial_img', filename='getting-started/new_file.png') }})
+   ![新建 Kotlin 文件]({{ url_for('tutorial_img', filename='getting-started/new_file.png') }})
 
-6. Once we have the file created, we need to type the main routine, which is the entry point to a Kotlin application. IntelliJ IDEA offers us a template to do this quickly. Just type *main* and press tab.
+6. 我们创建完文件后，我们需要键入主程序，这是 Kotlin 应用程序的入口点。IntelliJ IDEA 为我们提供了一个快速完成此操作的模板。只需键入 *main* 然后按 Tab 即可。
 
-   ![Kotlin Main Fun]({{ url_for('tutorial_img', filename='getting-started/main.png') }})
+   ![Kotlin Main 函数]({{ url_for('tutorial_img', filename='getting-started/main.png') }})
 
-7. Let's now add a line of code to print out 'Hello, World!'.
+7. 现在我们添加一行代码来打印出“Hello, World!”吧。
 
-   ![Kotlin New File]({{ url_for('tutorial_img', filename='getting-started/hello_world.png') }})
+   ![Kotlin 添加代码]({{ url_for('tutorial_img', filename='getting-started/hello_world.png') }})
 
-8. Now we can run the application. The easiest way is to click on the Kotlin icon in the gutter and select *Run 'AppKt'*.
+8. 现在我们可以运行应用程序了。最简单的方法是点击左边框中的 Kotlin 图标，然后选择 *Run 'AppKt'*。
 
-   ![Kotlin Folder Structure]({{ url_for('tutorial_img', filename='getting-started/run_default.png') }})
+   ![Kotlin 运行程序]({{ url_for('tutorial_img', filename='getting-started/run_default.png') }})
 
-9. If everything went well, we should now see the result in the **Run** tool window.
+9. 如果一切顺利，我们现在会在工具窗口 **Run** 中看到结果。
 
-   ![Kotlin Folder Structure]({{ url_for('tutorial_img', filename='getting-started/run_window.png') }})
+   ![Kotlin 运行窗口]({{ url_for('tutorial_img', filename='getting-started/run_window.png') }})
 
-Congratulations! We now have our first application running.
+恭喜！ 我们现在让我们的第一个应用程序运行起来了。
 
 [intellijdownload]: http://www.jetbrains.com/idea/download/index.html
 [jetbrains]: http://www.jetbrains.com

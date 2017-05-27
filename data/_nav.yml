@@ -158,12 +158,16 @@ reference:
           title: 类型别名
 
 
-
-    - title: 参考
-      description: API 和语法
+    - title: 核心库
       items:
         - url: https://kotlinlang.org/api/latest/jvm/stdlib/index.html
-          title: API 参考
+          title: 标准库
+        - url: https://kotlinlang.org/api/latest/kotlin.test/index.html
+          title: kotlin.test
+
+    - title: 参考
+      description: 语法及其他信息
+      items:
         - url: /docs/reference/grammar.html
           title: 语法
         - url: /docs/reference/compatibility.html
@@ -230,9 +234,9 @@ tutorials:
     - title: 开始
       items:
         - url: /docs/tutorials/getting-started.html
-          title: 从 IntelliJ IDEA 入门
+          title: 以 IntelliJ IDEA 入门
         - url: /docs/tutorials/getting-started-eclipse.html
-          title: 从 Eclipse 入门
+          title: 以 Eclipse 入门
         - url: /docs/tutorials/command-line.html
           title: 使用命令行编译器
         - url: /docs/tutorials/build-tools.html
