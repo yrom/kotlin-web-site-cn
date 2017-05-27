@@ -1,8 +1,8 @@
 ---
 type: tutorial
 layout: tutorial
-title:  "Android Frameworks Using Annotation Processing"
-description: "This tutorial describes how to use in Kotlin popular Android frameworks and libraries that rely on annotation processing."
+title:  "使用注释处理的 Android 框架"
+description: "本教程介绍如何在 Kotlin 中使用依赖于注释处理的流行的 Android 框架和库。"
 authors: Svetlana Isakova
 showAuthorInfo: false
 source:
@@ -353,7 +353,7 @@ dependencies {
 
 点击[这里](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-auto-parcel)查看[完整示例代码](https://github.com/frankiesardo/auto-parcel/tree/master/sample)。
 
-对 Kotli n类文件添加 `@AutoValue` 注解。
+对 Kotlin 类文件添加 `@AutoValue` 注解。
 下方的示例展示转换后的 [`Address`](https://github.com/frankiesardo/auto-parcel/blob/master/sample/src/main/java/model2/Address.java) 类以及自动生成相应的 `Parceable` 实现：
 
 ``` kotlin
