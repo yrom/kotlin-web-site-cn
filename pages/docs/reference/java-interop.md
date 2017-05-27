@@ -159,16 +159,16 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住[平台类型](#
 
 Java 的装箱原始类型映射到可空的 Kotlin 类型：
 
-| **Java type**       | **Kotlin type**  |
-|---------------------|------------------|
-| `java.lang.Byte`    | `kotlin.Byte?`   |
-| `java.lang.Short`   | `kotlin.Short?`  |
-| `java.lang.Integer` | `kotlin.Int?`    |
-| `java.lang.Long`    | `kotlin.Long?`   |
-| `java.lang.Char`    | `kotlin.Char?`   |
-| `java.lang.Float`   | `kotlin.Float?`  |
-| `java.lang.Double`  | `kotlin.Double?`  |
-| `java.lang.Boolean` | `kotlin.Boolean?` |
+| **Java type**           | **Kotlin type**  |
+|-------------------------|------------------|
+| `java.lang.Byte`        | `kotlin.Byte?`   |
+| `java.lang.Short`       | `kotlin.Short?`  |
+| `java.lang.Integer`     | `kotlin.Int?`    |
+| `java.lang.Long`        | `kotlin.Long?`   |
+| `java.lang.Character`   | `kotlin.Char?`   |
+| `java.lang.Float`       | `kotlin.Float?`  |
+| `java.lang.Double`      | `kotlin.Double?`  |
+| `java.lang.Boolean`     | `kotlin.Boolean?` |
 {:.zebra}
 
 请注意，用作类型参数的装箱原始类型映射到平台类型：
