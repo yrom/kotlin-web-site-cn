@@ -11,7 +11,7 @@ source:
 
 ### 背景
 
-相信每一位安卓开发人员对`findViewById()`这个方法再熟悉不过了，毫无疑问，潜在的bug和脏乱的代码是难以阅读和支持的。
+相信每一位安卓开发人员对`findViewById()`这个方法再熟悉不过了，毫无疑问，潜在的bug和脏乱的代码令后续开发无从下手的。
 尽管存在一系列的开源库能够为这个问题带来解决方案，然而对于运行时依赖的库，需要为每一个`View`注解变量字段。
 
 现在Kotlin安卓扩展插件能够提供与这些开源库功能相同的体验，不需要添加任何额外代码，也不影响任何运行时体验。
@@ -48,7 +48,7 @@ class MyActivity : Activity() {
 apply plugin: 'kotlin-android-extensions'
 ```
 
-#### 导入综合属性
+#### 导入合成属性
 
 仅需要一行即可非常方便导入指定布局文件中所有控件属性：
 
@@ -98,7 +98,7 @@ android {
 import kotlinx.android.synthetic.free.activity_free.*
 ```
 
-### Under the hood
+### 缓存覆盖
 
 Kotlin安卓扩展作为Kotlin编译器的插件，主要有两大作用：
 
@@ -106,7 +106,7 @@ Kotlin安卓扩展作为Kotlin编译器的插件，主要有两大作用：
 2. 使用函数调用替换每一个合成属性。
 
 其工作原理是，当调用合成属性时，作为模块资源中Kotlin Activity/Fragment类的接收器，缓存函数被调用。
-例如，
+例如：
 
 ``` kotlin
 class MyActivity: Activity()
