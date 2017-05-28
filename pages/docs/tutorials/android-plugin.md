@@ -7,16 +7,16 @@ authors: Yan Zhulanow
 showAuthorInfo: true
 source:
 ---
-In this tutorial we'll walk through the steps required to use the Kotlin Android Extensions plugin, enhancing the development experience with Android.
+在本章教程中，我们将逐步介绍如何使用Kotlin安卓扩展插件提升安卓的开发体验。
 
-### Background
+### 背景
 
-Every Android developer knows well the `findViewById()` function. It is, without a doubt, a source of potential bugs and nasty code which is hard to read and support.
-While there are several libraries available that provide solutions to this problem, being libraries dependent on runtime, they require annotating fields for each `View`.
+相信每一位安卓开发人员对`findViewById()`这个方法再熟悉不过了，毫无疑问，潜在的bug和脏乱的代码令后续开发无从下手的。
+尽管存在一系列的开源库能够为这个问题带来解决方案，然而对于运行时依赖的库，需要为每一个`View`注解变量字段。
 
-The Kotlin Android Extensions plugin allows us to obtain the same experience we have with some of these libraries, without having to add any extra code or shipping any additional runtime.
+现在Kotlin安卓扩展插件能够提供与这些开源库功能相同的体验，不需要添加任何额外代码，也不影响任何运行时体验。
 
-In essence, this would allow for the following code:
+因此，我们可以写出如下代码：
 
 ```kotlin
 // Using R.layout.activity_main from the main source set
@@ -32,36 +32,36 @@ class MyActivity : Activity() {
 }
 ```
 
-`textView` is an extension property for `Activity`, and it has the same type as declared in `activity_main.xml`.
+`textView`是对`Activity`的一项扩展属性，与在`activity_main.xml`中的声明具有同样类型。
 
-### Using Kotlin Android Extensions
+### 使用Kotlin安卓扩展
 
-#### Configuring the dependency
+#### 依赖配置
 
 {{ site.text_using_gradle }}
 
-Android Extensions is a part of the Kotlin IDEA plugin. You do not need to install additional plugins.
+安卓扩展是Kotlin IDEA插件的组成之一，因此不需要再单独安装额外插件。
 
-All you need is to enable the Android Extensions Gradle plugin in your project-local `build.gradle` file:
+开发者仅需要在项目的`build.gradle`文件中启用Gradle安卓扩展插件即可：
 
 ``` groovy
 apply plugin: 'kotlin-android-extensions'
 ```
 
-#### Importing synthetic properties
+#### 导入合成属性
 
-It is convenient to import all widget properties for a specific layout in one go:
+仅需要一行即可非常方便导入指定布局文件中所有控件属性：
 
 ``` kotlin
 import kotlinx.android.synthetic.main.<layout>.*
 ```
 
-Thus if the layout filename is `activity_main.xml`, we'd import `kotlinx.android.synthetic.main.activity_main.*`.
+假设当前布局文件是`activity_main.xml`，我们只需要引入`kotlinx.android.synthetic.main.activity_main.*`。
 
-If we want to call the synthetic properties on `View` (useful in adapter classes), we should also import `kotlinx.android.synthetic.main.activity_main.view.*`.
+若需要调用`View`的合成属性(在适配器类中非常有用)，同时还应该导入`kotlinx.android.synthetic.main.activity_main.view.*`。
 
-Once we do that, we can then invoke the corresponding extensions, which are properties named after the views in the XML file. 
-For example, for this view:
+导入完成后即可调用在xml文件中以视图控件命名属性的对应扩展，
+比如下例:
 
 ``` xml
     <TextView
@@ -72,15 +72,15 @@ For example, for this view:
             />
 ```
 
-There will be a property named `hello`:
+将有一个名为`hello`的属性：
 
 ``` kotlin
 activity.hello.setText("Hi!")
 ```
 
-### Android Flavors
+### 安卓多渠道
 
-Android Extensions plugin supports Android flavors. Suppose you have a flavor named `free` in your `build.gradle` file:
+安卓扩展插件现已支持安卓多渠道。假设当前在`build.gradle`文件中指定一个名为`free`的渠道：
 
 ```
 android {
@@ -92,21 +92,21 @@ android {
 }
 ```
 
-So you can import all synthetic properties for the `free/res/layout/activity_free.xml` layout by adding this import:
+所以现在只需要添加一行导入语句即可从`free/res/layout/activity_free.xml`布局中导入所有的合成属性：
 
 ```kotlin
 import kotlinx.android.synthetic.free.activity_free.*
 ```
 
-### Under the hood
+### 缓存覆盖
 
-Kotlin Android Extensions is a plugin for the Kotlin compiler, and it does two things:
+Kotlin安卓扩展作为Kotlin编译器的插件，主要有两大作用：
 
-1. Adds a hidden caching function and a field inside each Kotlin `Activity`. The method is pretty small so it doesn't increase the size of APK much.
-2. Replaces each synthetic property call with a function call.
+1. 在每一个Kotlin`Activity`中添加一个隐藏缓存函数以及一个变量。该方法非常简洁，因此不会直接对APK体积有明显增加。
+2. 使用函数调用替换每一个合成属性。
 
-How this works is that when invoking a synthetic property, where the receiver is a Kotlin Activity/Fragment class that is in module sources, the caching function is invoked.
-For instance, given
+其工作原理是，当调用合成属性，在模块资源中Kotlin Activity/Fragment类作为接收器时，缓存函数将被调用。
+例如：
 
 ``` kotlin
 class MyActivity: Activity()
@@ -115,9 +115,9 @@ fun MyActivity.a() {
 }
 ```
 
-a hidden caching function is generated inside MyActivity, so we can use the caching mechanism.
+在MyActivity中生成一个隐藏缓存函数，因此我们可以使用缓存机制。 
 
-However in the following case:
+然而在下面的例子中：
 
 ``` kotlin
 fun Activity.b() { 
@@ -125,5 +125,4 @@ fun Activity.b() {
 }
 ```
 
-We wouldn't know if this function would be invoked on only Activities from our sources or on plain Java Activities also. As such, we don’t use caching there, even
-if MyActivity instance from the previous example is the receiver.
+我们并不知道这个函数会被我们自己的来源或者普通的Java Activity调用，因此，即便在前一个示例中的MyActivity是接收器，也不会使用缓存。
