@@ -2,7 +2,7 @@
 type: tutorial
 layout: tutorial
 title: "Android 与 Kotlin 入门"
-description: "This tutorial walks us through creating a simple Kotlin application for Android using Android Studio."
+description: "本教程将引导我们使用 Android Studio 为 Android 创建一个简单的 Kotlin 应用程序。"
 authors: 
 showAuthorInfo: false
 ---

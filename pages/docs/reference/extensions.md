@@ -177,7 +177,7 @@ import foo.bar.*   // 从“foo.bar”导入一切
 
 fun usage(baz: Baz) {
     baz.goo()
-)
+}
 
 ```
 

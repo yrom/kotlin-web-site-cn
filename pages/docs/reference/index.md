@@ -19,8 +19,9 @@ title: "参考"
 
 ### 离线浏览
 下载离线文档 [PDF 文件](https://www.kotlincn.net/docs/kotlin-docs.pdf)、
+[PDF 文件 GitBook 版（字大一些）](https://www.gitbook.com/download/pdf/book/hltj/kotlin-reference-chinese)、
 [ePUB 文件](https://www.gitbook.com/download/epub/book/hltj/kotlin-reference-chinese)、
 [Mobi 文件](https://www.gitbook.com/download/mobi/book/hltj/kotlin-reference-chinese)。
 
-其中 ePUB 和 Mobi 格式的文件是 GitBook 上自动构建的，也可同时关注 GitBook 上的电子书：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/details)。
+其中 ePUB、 Mobi 以及字大版 PDF 文件都是 GitBook 上自动构建的，也可同时关注 GitBook 上的电子书：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/details)。
 
