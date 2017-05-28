@@ -19,13 +19,14 @@ title: "参考"
 
 ### 离线浏览
 下载离线文档 [PDF 文件](https://www.kotlincn.net/docs/kotlin-docs.pdf)、
+[PDF 文件 GitBook 版（字大一些）](https://www.gitbook.com/download/pdf/book/hltj/kotlin-reference-chinese)、
 [ePUB 文件](https://www.gitbook.com/download/epub/book/hltj/kotlin-reference-chinese)、
 [Mobi 文件](https://www.gitbook.com/download/mobi/book/hltj/kotlin-reference-chinese)。
 
-其中 ePUB 和 Mobi 格式的文件是 GitBook 上自动构建的，也可同时关注 GitBook 上的电子书：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/details)。
+其中 ePUB、 Mobi 以及字大版 PDF 文件都是 GitBook 上自动构建的，也可同时关注 GitBook 上的电子书：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/details)。
 
 关于网站与 PDF 有任何问题请在[这里](https://github.com/hltj/kotlin-web-site-cn/issues)反馈；
-关于 ePUB 与 Mobi 有任何问题请在[这里](https://github.com/hltj/kotlin-reference-chinese/issues)反馈。
+关于 ePUB、Mobi 以及字大版 PDF 有任何问题请在[这里](https://github.com/hltj/kotlin-reference-chinese/issues)反馈。
 
 欢迎关注我的博客 [https://hltj.me/](https://hltj.me/) 以及公众号与微博：
 
