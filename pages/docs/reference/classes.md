@@ -91,7 +91,7 @@ class Customer public @Inject constructor(name: String) { …… }
 
 #### 次构造函数
 
-类也可以声明前缀有 *constructor*{: .keyword }** 的次构造函数**：
+类也可以声明前缀有 *constructor*{: .keyword }的**次构造函数**：
 
 ``` kotlin
 class Person {
