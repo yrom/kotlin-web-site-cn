@@ -33,7 +33,7 @@ Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现�
 
 *注意* 这些操作以及所有其他操作都针对[基本类型](basic-types.html)做了优化，不会为它们引入函数调用的开销。
 
-As an example, here's how you can overload the unary minus operator:
+以下是如何重载一元减运算符的示例：
 
 ``` kotlin
 data class Point(val x: Int, val y: Int)
@@ -41,7 +41,7 @@ data class Point(val x: Int, val y: Int)
 operator fun Point.unaryMinus() = Point(-x, -y)
 
 val point = Point(10, 20)
-println(-point)  // prints "(-10, -20)"
+println(-point)  // 输出“(-10, -20)”
 ```
 
 ### 递增和递减
@@ -95,9 +95,9 @@ Kotlin 1.1 中被弃用。
 
 {:#in}
 
-### Example
+### 示例
 
-Below is an example Counter class that starts at a given value and can be incremented using the overloaded `+` operator.
+下面是一个从给定值起始的 Counter 类的示例，它可以使用重载的 `+` 运算符来增加计数。
 
 ``` kotlin
 data class Counter(var dayIndex: Int) {
