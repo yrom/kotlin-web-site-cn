@@ -21,12 +21,6 @@ sealed class Expr
 data class Const(val number: Double) : Expr()
 data class Sum(val e1: Expr, val e2: Expr) : Expr()
 object NotANumber : Expr()
-
-fun eval(expr: Expr): Double = when (expr) {
-    is Const -> expr.number
-    is Sum -> eval(expr.e1) + eval(expr.e2)
-    NotANumber -> Double.NaN
-}
 ```
 
 （上文示例使用了 Kotlin 1.1 的一个额外的新功能：数据类扩展包括密封类在内的其他类的可能性。
@@ -40,9 +34,9 @@ fun eval(expr: Expr): Double = when (expr) {
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {
-    is Expr.Const -> expr.number
-    is Expr.Sum -> eval(expr.e1) + eval(expr.e2)
-    Expr.NotANumber -> Double.NaN
+    is Const -> expr.number
+    is Sum -> eval(expr.e1) + eval(expr.e2)
+    NotANumber -> Double.NaN
     // 不再需要 `else` 子句，因为我们已经覆盖了所有的情况
 }
 ```

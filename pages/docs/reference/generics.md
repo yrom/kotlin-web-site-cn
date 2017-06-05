@@ -192,7 +192,7 @@ fun copy(from: Array<Any>, to: Array<Any>) {
 
 ``` kotlin
 val ints: Array<Int> = arrayOf(1, 2, 3)
-val any = Array<Any>(3)
+val any = Array<Any>(3) { "" } 
 copy(ints, any) // 错误：期望 (Array<Any>, Array<Any>)
 ```
 
