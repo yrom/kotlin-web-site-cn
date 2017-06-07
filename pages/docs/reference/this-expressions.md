@@ -19,8 +19,8 @@ title: "This 表达式"
 
 
 要访问来自外部作用域的*this*{: .keyword }（一个[类](classes.html) 或者[扩展函数](extensions.html)，
-或者带标签的[带接收者的函数字面值](lambdas.html#带接收者的函数字面值)）我们使用`this@label`，其中 `@label` 是一个
-代指 *this*{: .keyword } 来源的标签：
+或者带标签的[带接收者的函数字面值](lambdas.html#带接收者的函数字面值)）我们使用`this@label`，其中 `@label` 是一个<!--
+-->代指 *this*{: .keyword } 来源的标签：
 
 ``` kotlin
 class A { // 隐式标签 @A

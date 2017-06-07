@@ -7,8 +7,8 @@ authors: Hadi Hariri
 showAuthorInfo: false
 source: servlet-web-applications
 ---
-Kotlin 可以使用 JavaEE 的 Http Servlet，就像使用其他的 Java 库或者框架一样。我们将看到
-如何让一个简单的控制器返回 "Hello, World!"。
+Kotlin 可以使用 JavaEE 的 Http Servlet，就像使用其他的 Java 库或者框架一样。我们将看到<!--
+-->如何让一个简单的控制器返回 "Hello, World!"。
 
 ### 定义项目和依赖关系
 {{ site.text_using_gradle }}

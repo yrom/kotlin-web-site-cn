@@ -203,8 +203,8 @@ class Array<T> private constructor() {
 我们可以使用库函数 `arrayOf()` 来创建一个数组并传递元素值给它，这样 `arrayOf(1, 2, 3)` 创建了 array [1, 2, 3]。
 或者，库函数 `arrayOfNulls()` 可以用于创建一个指定大小、元素都为空的数组。
 
-另一个选项是用接受数组大小和一个函数参数的工厂函数，用作参数的函数能够返回
-给定索引的每个元素初始值：
+另一个选项是用接受数组大小和一个函数参数的工厂函数，用作参数的函数能够返回<!--
+-->给定索引的每个元素初始值：
 
 ``` kotlin
 // 创建一个 Array<String> 初始化为 ["0", "1", "4", "9", "16"]
@@ -218,8 +218,8 @@ val asc = Array(5, { i -> (i * i).toString() })
 参见[类型投影](generics.html#类型投影)）。
 
 Kotlin 也有无装箱开销的专门的类来表示原生类型数组: `ByteArray`、
-`ShortArray`、`IntArray` 等等。这些类和 `Array` 并没有继承关系，但是
-它们有同样的方法属性集。它们也都有相应的工厂方法:
+`ShortArray`、`IntArray` 等等。这些类和 `Array` 并没有继承关系，但是<!--
+-->它们有同样的方法属性集。它们也都有相应的工厂方法:
 
 ``` kotlin
 val x: IntArray = intArrayOf(1, 2, 3)

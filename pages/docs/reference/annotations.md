@@ -83,8 +83,8 @@ annotation class Special(val why: String)
  * 其他注解；
  * 上面已列类型的数组。
 
-注解参数不能有可空类型，因为 JVM 不支持将 `null` 作为
-注解属性的值存储。
+注解参数不能有可空类型，因为 JVM 不支持将 `null` 作为<!--
+-->注解属性的值存储。
 
 如果注解用作另一个注解的参数，则其名称不以 @ 字符为前缀：
 
@@ -99,8 +99,8 @@ annotation class Deprecated(
 ```
 
 如果需要将一个类指定为注解的参数，请使用 Kotlin 类
-（[KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)）。Kotlin 编译器会
-自动将其转换为 Java 类，以便 Java 代码能够正常看到该注解和参数
+（[KClass](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html)）。Kotlin 编译器会<!--
+-->自动将其转换为 Java 类，以便 Java 代码能够正常看到该注解和参数
 。
 
 ``` kotlin
@@ -126,8 +126,8 @@ val f = @Suspendable { Fiber.sleep(10) }
 
 ## 注解使用处目标
 
-当对属性或主构造函数参数进行标注时，从相应的 Kotlin 元素
-生成的 Java 元素会有多个，因此在生成的 Java 字节码中该注解有多个可能位置
+当对属性或主构造函数参数进行标注时，从相应的 Kotlin 元素<!--
+-->生成的 Java 元素会有多个，因此在生成的 Java 字节码中该注解有多个可能位置
 。如果要指定精确地指定应该如何生成该注解，请使用以下语法：
 
 ``` kotlin
@@ -136,8 +136,8 @@ class Example(@field:Ann val foo,    // 标注 Java 字段
               @param:Ann val quux)   // 标注 Java 构造函数参数
 ```
 
-可以使用相同的语法来标注整个文件。 要做到这一点，把带有目标 `file` 的注解放在
-文件的顶层、package 指令之前或者在所有导入之前（如果文件在默认包中的话）：
+可以使用相同的语法来标注整个文件。 要做到这一点，把带有目标 `file` 的注解放在<!--
+-->文件的顶层、package 指令之前或者在所有导入之前（如果文件在默认包中的话）：
 
 ``` kotlin
 @file:JvmName("Foo")
@@ -145,8 +145,8 @@ class Example(@field:Ann val foo,    // 标注 Java 字段
 package org.jetbrains.demo
 ```
 
-如果你对同一目标有多个注解，那么可以这样来避免目标重复——在目标后面添加方括号
-并将所有注解放在方括号内：
+如果你对同一目标有多个注解，那么可以这样来避免目标重复——在目标后面添加方括号<!--
+-->并将所有注解放在方括号内：
 
 ``` kotlin
 class Example {
@@ -202,8 +202,8 @@ class Tests {
 }
 ```
 
-因为 Java 编写的注解没有定义参数顺序，所以不能使用常规函数调用
-语法来传递参数。相反，你需要使用命名参数语法。
+因为 Java 编写的注解没有定义参数顺序，所以不能使用常规函数调用<!--
+-->语法来传递参数。相反，你需要使用命名参数语法。
 
 ``` java
 // Java

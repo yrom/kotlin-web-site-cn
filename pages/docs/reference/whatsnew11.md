@@ -22,8 +22,8 @@ title: "Kotlin 1.1 的新特性"
 
 ## 协程（实验性的）
 
-Kotlin 1.1 的关键新特性是*协程*，它带来了 `future`/`await`、 `yield` 以及类似的编程模式的
-支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，
+Kotlin 1.1 的关键新特性是*协程*，它带来了 `future`/`await`、 `yield` 以及类似的编程模式的<!--
+-->支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，
 而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。
 
 协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过[*挂起函数*](coroutines.html#挂起函数)支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使用匿名挂起函数（即挂起 lambda 表达式）。
@@ -84,8 +84,8 @@ fun main(args: Array<String>) {
 
 更多信息请参见[协程文档](coroutines.html)及[教程](/docs/tutorials/coroutines-basic-jvm.html)。
 
-请注意，协程目前还是一个**实验性的功能**，这意味着 Kotlin 团队不承诺
-在最终的 1.1 版本时保持该功能的向后兼容性。
+请注意，协程目前还是一个**实验性的功能**，这意味着 Kotlin 团队不承诺<!--
+-->在最终的 1.1 版本时保持该功能的向后兼容性。
 
 
 ## 其他语言功能
@@ -187,9 +187,9 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-更详细信息请参阅其[文档](sealed-classes.html)或者
-[密封类](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md) 及
-[数据类](https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md)的 KEEP。
+更详细信息请参阅其[文档](sealed-classes.html)或者<!--
+-->[密封类](https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md)及<!--
+-->[数据类](https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md)的 KEEP。
 
 
 ### lambda 表达式中的解构
@@ -382,8 +382,8 @@ class MyUI {
 }
 ```
 
-`provideDelegate` 方法在创建 `MyUI` 实例期间将会为每个属性调用，并且可以立即执行
-必要的验证。
+`provideDelegate` 方法在创建 `MyUI` 实例期间将会为每个属性调用，并且可以立即执行<!--
+-->必要的验证。
 
 更详细信息请参阅其[文档](delegated-properties.html#提供委托（自-11-起）)。
 
@@ -423,12 +423,12 @@ table {
 ```
 
 在 Kotlin 1.0 中，传递给 `td` 的 lambda 表达式中的代码可以访问三个隐式接收者：传递给 `table`、`tr`
-和 `td` 的。 这允许你调用在上下文中没有意义的方法——例如在 `td` 里面调用 `tr`，从而
-在 `<td>` 中放置一个 `<tr>` 标签。
+和 `td` 的。 这允许你调用在上下文中没有意义的方法——例如在 `td` 里面调用 `tr`，从而<!--
+-->在 `<td>` 中放置一个 `<tr>` 标签。
 
-在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 `td` 的隐式接收者上定义的方法
-会在传给 `td` 的 lambda 表达式中可用。你可以通过定义标记有 `@DslMarker` 元注解的注解
-并将其应用于标记类的基类。
+在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 `td` 的隐式接收者上定义的方法<!--
+-->会在传给 `td` 的 lambda 表达式中可用。你可以通过定义标记有 `@DslMarker` 元注解的注解<!--
+-->并将其应用于标记类的基类。
 
 更详细信息请参阅其[文档](type-safe-builders.html#作用域控制：dslmarker（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
 
@@ -453,10 +453,10 @@ val port = System.getenv("PORT")?.toIntOrNull() ?: 80
 
 ### onEach()
 
-`onEach` 是一个小、但对于集合和序列很有用的扩展函数，它允许对操作链中
-的集合/序列的每个元素执行一些操作，可能带有副作用。
-对于迭代其行为像 `forEach` 但是也进一步返回可迭代实例。 对于序列它返回一个
-包装序列，它在元素迭代时延迟应用给定的动作。
+`onEach` 是一个小、但对于集合和序列很有用的扩展函数，它允许对操作链中<!--
+-->的集合/序列的每个元素执行一些操作，可能带有副作用。
+对于迭代其行为像 `forEach` 但是也进一步返回可迭代实例。 对于序列它返回一个<!--
+-->包装序列，它在元素迭代时延迟应用给定的动作。
 
 ``` kotlin
 inputDir.walk()
@@ -501,8 +501,8 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-`takeIf` 就像单个值的 `filter`。它检查接收者是否满足该谓词，并
-在满足时返回该接收者否则不满足时返回 `null`。
+`takeIf` 就像单个值的 `filter`。它检查接收者是否满足该谓词，并<!--
+-->在满足时返回该接收者否则不满足时返回 `null`。
 结合 elvis-操作符和及早返回，它允许编写如下结构：
 
 ``` kotlin
@@ -557,8 +557,8 @@ fun main(args: Array<String>) {
 
 ### groupingBy()
 
-此 API 可以用于按照键对集合进行分组，并同时折叠每个组。 例如，它可以用于
-计算文本中字符的频率：
+此 API 可以用于按照键对集合进行分组，并同时折叠每个组。 例如，它可以用于<!--
+-->计算文本中字符的频率：
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -631,8 +631,8 @@ fun main(args: Array<String>) {
 
 ### 类似数组的列表实例化函数
 
-类似于 `Array` 构造函数，现在有创建 `List` 和 `MutableList` 实例的函数，并通过
-调用 lambda 表达式来初始化每个元素：
+类似于 `Array` 构造函数，现在有创建 `List` 和 `MutableList` 实例的函数，并通过<!--
+-->调用 lambda 表达式来初始化每个元素：
 
 <div class="sample" markdown="1" data-min-compiler-version="1.1">
 
@@ -709,9 +709,9 @@ fun main(args: Array<String>) {
 
 ### Java 8 字节码支持
 
-Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 `-jvm-target 1.8`或者Ant/Maven/Gradle 中
-的相应选项）。目前这并不改变字节码的语义（特别是，接口和 lambda 表达式中的默认方法
-的生成与 Kotlin 1.0 中完全一样），但我们计划在以后进一步使用它。
+Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 `-jvm-target 1.8` 或者 Ant/Maven/Gradle 中<!--
+-->的相应选项）。目前这并不改变字节码的语义（特别是，接口和 lambda 表达式中的默认方法<!--
+-->的生成与 Kotlin 1.0 中完全一样），但我们计划在以后进一步使用它。
 
 
 ### Java 8 标准库支持
@@ -734,8 +734,8 @@ Kotlin 现在支持在字节码中存储参数名。这可以使用命令行选�
 ### 可变闭包变量
 
 用于在 lambda 表达式中捕获可变闭包变量的装箱类不再具有 volatile 字段。
-此更改提高了性能，但在一些罕见的使用情况下可能导致新的竞争条件。如果受此影响，你需要提供
-自己的同步机制来访问变量。
+此更改提高了性能，但在一些罕见的使用情况下可能导致新的竞争条件。如果受此影响，你需要提供<!--
+-->自己的同步机制来访问变量。
 
 
 ### javax.scripting 支持
@@ -755,8 +755,8 @@ println(engine.eval("x + 2"))  // 输出 5
 
 ### kotlin.reflect.full
 
-[为 Java 9 支持准备](https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/)，在 `kotlin-reflect.jar` 库中的扩展函数和属性已移动
-到 `kotlin.reflect.full` 包中。旧包（`kotlin.reflect`）中的名称已弃用，将在
+[为 Java 9 支持准备](https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/)，在 `kotlin-reflect.jar` 库中的扩展函数和属性已移动<!--
+-->到 `kotlin.reflect.full` 包中。旧包（`kotlin.reflect`）中的名称已弃用，将在
 Kotlin 1.2 中删除。请注意，核心反射接口（如 `KClass`）是 Kotlin 标准库
 （而不是 `kotlin-reflect`）的一部分，不受移动影响。
 
@@ -766,9 +766,9 @@ Kotlin 1.2 中删除。请注意，核心反射接口（如 `KClass`）是 Kotli
 ### 统一的标准库
 
 Kotlin 标准库的大部分目前可以从代码编译成 JavaScript 来使用。
-特别是，关键类如集合（`ArrayList`、 `HashMap` 等）、异常（`IllegalArgumentException` 等）以及其他
-几个关键类（`StringBuilder`、 `Comparator`）现在都定义在 `kotlin` 包下。在 JVM 平台上，一些名称是相应 JDK 类的
-类型别名，而在 JS 平台上，这些类在 Kotlin 标准库中实现。
+特别是，关键类如集合（`ArrayList`、 `HashMap` 等）、异常（`IllegalArgumentException` 等）以及其他<!--
+-->几个关键类（`StringBuilder`、 `Comparator`）现在都定义在 `kotlin` 包下。在 JVM 平台上，一些名称是相应 JDK 类的<!--
+-->类型别名，而在 JS 平台上，这些类在 Kotlin 标准库中实现。
 
 ### 更好的代码生成
 
@@ -797,9 +797,9 @@ external class Node {
 ### 改进的导入处理
 
 现在可以更精确地描述应该从 JavaScript 模块导入的声明。
-如果在外部声明上添加 `@JsModule("＜模块名＞")` 注解，它会在编译期间正确导入
-到模块系统（CommonJS或AMD）。例如，使用 CommonJS，该声明会
-通过 `require(……)` 函数导入。
+如果在外部声明上添加 `@JsModule("＜模块名＞")` 注解，它会在编译期间正确导入<!--
+-->到模块系统（CommonJS或AMD）。例如，使用 CommonJS，该声明会<!--
+-->通过 `require(……)` 函数导入。
 此外，如果要将声明作为模块或全局 JavaScript 对象导入，
 可以使用 `@JsNonModule` 注解。
 

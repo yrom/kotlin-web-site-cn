@@ -13,8 +13,8 @@ Kotlin 编译器生成正常的 JavaScript 类，可以在 JavaScript 代码中�
 ## 用独立的 JavaScript 隔离声明
 
 为了防止损坏全局对象，Kotlin 创建一个包含当前模块中所有 Kotlin 声明的对象
-。所以如果你把模块命名为 `myModule`，那么所有的声明都可以
-通过 `myModule` 对象在 JavaScript 中可用。例如：
+。所以如果你把模块命名为 `myModule`，那么所有的声明都可以<!--
+-->通过 `myModule` 对象在 JavaScript 中可用。例如：
 
 ``` kotlin
 fun foo() = "Hello"
@@ -55,8 +55,8 @@ alert(myModule.my.qualified.packagename.foo());
 
 ### `@JsName` 注解
 
-在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性
-的名称。要控制生成的名称，可以使用 `@JsName` 注解：
+在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性<!--
+-->的名称。要控制生成的名称，可以使用 `@JsName` 注解：
 
 ``` kotlin
 // 模块“kjs”
@@ -80,11 +80,11 @@ person.hello();                          // 输出“Hello Dmitry!”
 person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
 ```
 
-如果我们没有指定 `@JsName` 注解，相应函数的名称会包含
-从函数签名计算而来的后缀，例如 `hello_61zpoe$`。
+如果我们没有指定 `@JsName` 注解，相应函数的名称会包含<!--
+-->从函数签名计算而来的后缀，例如 `hello_61zpoe$`。
 
-请注意，Kotlin 编译器不会对 `external` 声明应用这种修饰，因此你不必在其上
-使用 `@JsName`。 值得注意的另一个例子是从外部类继承的非外部类。
+请注意，Kotlin 编译器不会对 `external` 声明应用这种修饰，因此你不必在其上<!--
+-->使用 `@JsName`。 值得注意的另一个例子是从外部类继承的非外部类。
 在这种情况下，任何被覆盖的函数也不会被修饰。
 
 `@JsName` 的参数需要是一个常量字符串字面值，该字面值是一个有效的标识符。

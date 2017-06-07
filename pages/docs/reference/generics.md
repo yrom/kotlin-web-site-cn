@@ -34,8 +34,8 @@ Java 类型系统中最棘手的部分之一是通配符类型（参见 [Java Ge
 
 首先，让我们思考为什么 Java 需要那些神秘的通配符。在 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html) 解释了该问题——第28条：*利用有限制通配符来提升 API 的灵活性*。
 首先，Java 中的泛型是**不型变的**，这意味着 `List<String>` 并**不是** `List<Object>` 的子类型。
-为什么这样？ 如果 List 不是**不型变的**，它就没
-比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：
+为什么这样？ 如果 List 不是**不型变的**，它就没<!--
+-->比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：
 
 ``` java
 // Java
@@ -87,15 +87,15 @@ interface Collection<E> …… {
 `Object` 集合并向其中放入 `String`：在 Java 中有 `List<? super String>` 是 `List<Object>` 的一个**超类**。
 
 后者称为**逆变性（contravariance）**，并且对于 `List <? super String>` 你只能调用接受 String 作为参数的方法
-（例如，你可以调用 `add(String)` 或者 `set(int, String)`），当然
-如果调用函数返回 `List<T>` 中的 `T`，你得到的并非一个 `String` 而是一个 `Object`。
+（例如，你可以调用 `add(String)` 或者 `set(int, String)`），当然<!--
+-->如果调用函数返回 `List<T>` 中的 `T`，你得到的并非一个 `String` 而是一个 `Object`。
 
 Joshua Bloch 称那些你只能从中**读取**的对象为**生产者**，并称那些你只能**写入**的对象为**消费者**。他建议：“*为了灵活性最大化，在表示生产者或消费者的输入参数上使用通配符类型*”，并提出了以下助记符：
 
 *PECS 代表生产者-Extens，消费者-Super（Producer-Extends, Consumer-Super）。*
 
-*注意*：如果你使用一个生产者对象，如 `List<? extends Foo>`，在该对象上不允许调用 `add()` 或 `set()`。但这并不意味着
-该对象是**不可变的**：例如，没有什么阻止你调用 `clear()`从列表中删除所有项目，因为 `clear()`
+*注意*：如果你使用一个生产者对象，如 `List<? extends Foo>`，在该对象上不允许调用 `add()` 或 `set()`。但这并不意味着<!--
+-->该对象是**不可变的**：例如，没有什么阻止你调用 `clear()`从列表中删除所有项目，因为 `clear()`
 根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是**类型安全**。不可变性完全是另一回事。
 
 ### 声明处型变
@@ -144,8 +144,8 @@ fun demo(strs: Source<String>) {
 **out**修饰符称为**型变注解**，并且由于它在类型参数声明处提供，所以我们讲**声明处型变**。
 这与 Java 的**使用处型变**相反，其类型用途通配符使得类型协变。
 
-另外除了 **out**，Kotlin 又补充了一个型变注释：**in**。它使得一个类型参数**逆变**：只可以被消费而不可以
-被生产。逆变类的一个很好的例子是 `Comparable`：
+另外除了 **out**，Kotlin 又补充了一个型变注释：**in**。它使得一个类型参数**逆变**：只可以被消费而不可以<!--
+-->被生产。逆变类的一个很好的例子是 `Comparable`：
 
 ``` kotlin
 abstract class Comparable<in T> {
@@ -196,8 +196,8 @@ val any = Array<Any>(3) { "" }
 copy(ints, any) // 错误：期望 (Array<Any>, Array<Any>)
 ```
 
-这里我们遇到同样熟悉的问题：`Array <T>` 在 `T` 上是**不型变的**，因此 `Array <Int>` 和 `Array <Any>` 都不是
-另一个的子类型。为什么？ 再次重复，因为 copy **可能**做坏事，也就是说，例如它可能尝试**写**一个 String 到 `from`，
+这里我们遇到同样熟悉的问题：`Array <T>` 在 `T` 上是**不型变的**，因此 `Array <Int>` 和 `Array <Any>` 都不是<!--
+-->另一个的子类型。为什么？ 再次重复，因为 copy **可能**做坏事，也就是说，例如它可能尝试**写**一个 String 到 `from`，
 并且如果我们实际上传递一个 `Int` 的数组，一段时间后将会抛出一个 `ClassCastException` 异常。
 
 那么，我们唯一要确保的是 `copy()` 不会做任何坏事。我们想阻止它**写**到 `from`，我们可以：

@@ -29,20 +29,20 @@ Kotlin 既具有面向对象又具有函数式结构。你既可以按 OO 风格
 
 Kotlin 更简洁。粗略估计显示，代码行数减少约 40％。
 它也更安全，例如对不可空类型的支持使应用程序不易发生 NPE。
-其他功能包括智能类型转换、高阶函数、扩展函数和带接收者的 lambda 表达式，提供了
-编写富于表现力的代码的能力以及易于创建 DSL 的能力。
+其他功能包括智能类型转换、高阶函数、扩展函数和带接收者的 lambda 表达式，提供了<!--
+-->编写富于表现力的代码的能力以及易于创建 DSL 的能力。
  
 ### Kotlin 与 Java 语言兼容吗？
 
-兼容。Kotlin 与 Java 语言可以 100％ 互操作，并且主要强调确保你现有的代码库
-可以与Kotlin 正确交互。你可以轻松地在 Java 中调用 Kotlin 代码以及在 Kotlin 中调用 Java 代码。 这使得采用 Kotlin
+兼容。Kotlin 与 Java 语言可以 100％ 互操作，并且主要强调确保你现有的代码库<!--
+-->可以与Kotlin 正确交互。你可以轻松地在 Java 中调用 Kotlin 代码以及在 Kotlin 中调用 Java 代码。 这使得采用 Kotlin
 更容易、风险更低。内置于 IDE 的自动化 Java 到 Kotlin 转换器可简化现有代码的迁移。
 
 ### 我可以用 Kotlin 做什么？
 
-Kotlin 可用于任何类型的开发，无论是服务器端、客户端 Web 还是 Android。随着原生 Kotlin（Kotlin/Native）目前
-的进展，对其他平台（如嵌入式系统、macOS 和 iOS）的支持即将就绪。人们将 Kotlin 用于移动端
-和服务器端应用程序、使用 JavaScript 或 JavaFX的客户端、以及数据科学，仅举这几例。
+Kotlin 可用于任何类型的开发，无论是服务器端、客户端 Web 还是 Android。随着原生 Kotlin（Kotlin/Native）目前<!--
+-->的进展，对其他平台（如嵌入式系统、macOS 和 iOS）的支持即将就绪。人们将 Kotlin 用于移动端<!--
+-->和服务器端应用程序、使用 JavaScript 或 JavaFX的客户端、以及数据科学，仅举这几例。
 
 ### 我可以用 Kotlin 进行 Android 开发吗？
 
@@ -68,16 +68,16 @@ vert.x 或 JSF。另外还有一些 Kotlin 写的特定框架，例如 [Ktor](ht
 
 ### 我可以用 Kotlin 进行原生开发吗？
 
-原生 Kotlin（Kotlin/Native）目前[正在准备中](https://blog.jetbrains.com/kotlin/tag/native/)。它将 Kotlin 编译为
-可以无需 VM 运行的原生代码。有一个技术预览发布版，但它还不能用于生产，并且 1.0 我们还
-没有针对所有平台支持的计划。更多信息请查看 [Kotlin/Native 博文公告](https://blog.jetbrains.com/kotlin/2017/04/kotlinnative-tech-preview-kotlin-without-a-vm/)。
+原生 Kotlin（Kotlin/Native）目前[正在准备中](https://blog.jetbrains.com/kotlin/tag/native/)。它将 Kotlin 编译为<!--
+-->可以无需 VM 运行的原生代码。有一个技术预览发布版，但它还不能用于生产，并且 1.0 我们还<!--
+-->没有针对所有平台支持的计划。更多信息请查看 [Kotlin/Native 博文公告](https://blog.jetbrains.com/kotlin/2017/04/kotlinnative-tech-preview-kotlin-without-a-vm/)。
 
 ### 哪些 IDE 支持 Kotlin？
 
 所有主要的 Java IDE 都支持 Kotlin，包括 [IntelliJ IDEA](/docs/tutorials/getting-started.html)、
 [Android Studio](/docs/tutorials/kotlin-android.html)、[Eclipse](/docs/tutorials/getting-started-eclipse.html) 和
-[NetBeans](http://plugins.netbeans.org/plugin/68590/kotlin)。另外，有一个[命令行编译器](/docs/tutorials/command-line.html)
-可用，为编译和运行应用程序提供了直接的支持。
+[NetBeans](http://plugins.netbeans.org/plugin/68590/kotlin)。另外，有一个[命令行编译器](/docs/tutorials/command-line.html)<!--
+-->可用，为编译和运行应用程序提供了直接的支持。
   
 ### 哪些构建工具支持 Kotlin？
 
@@ -86,8 +86,8 @@ vert.x 或 JSF。另外还有一些 Kotlin 写的特定框架，例如 [Ktor](ht
 
 ### Kotlin 会编译成什么？
 
-当针对JVM 平台时，Kotlin 生成 Java 兼容的字节码。当针对JavaScript 时，Kotlin 会转译到 ES5.1，并生成与
-包括 AMD 和 CommonJS 在内的模块系统相兼容的代码。当针对原生平台时，Kotlin 会（通过 LLVM）生成平台相关的代码。
+当针对JVM 平台时，Kotlin 生成 Java 兼容的字节码。当针对JavaScript 时，Kotlin 会转译到 ES5.1，并生成与<!--
+-->包括 AMD 和 CommonJS 在内的模块系统相兼容的代码。当针对原生平台时，Kotlin 会（通过 LLVM）生成平台相关的代码。
 
 ### Kotlin 只针对 Java 6 吗？
 
@@ -112,8 +112,8 @@ Kotlin 主要由 JetBrains 的一个工程师团队开发（目前团队规模�
 ### 在哪里可以了解关于 Kotlin 更多？
 
 最好的起始地方好是[本网站](https://www.kotlincn.net)（原文是[英文官网](https://kotlinlang.org)）。从那里你可以下载编译器、
-[在线尝试](https://try.kotlinlang.org)以及访问资源、[参考文档](index.html)
-和[教程](/docs/tutorials/index.html)。
+[在线尝试](https://try.kotlinlang.org)以及访问资源、[参考文档](index.html)<!--
+-->和[教程](/docs/tutorials/index.html)。
 
 ### 有没有关于 Kotlin 的书？
 

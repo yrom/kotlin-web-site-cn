@@ -7,8 +7,8 @@ title: "Kotlin 中调用 Java"
 
 # 在 Kotlin 中调用 Java 代码
 
-Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以
-很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。
+Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以<!--
+-->很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。
 
 几乎所有 Java 代码都可以使用而没有任何问题
 
@@ -30,8 +30,8 @@ fun demo(source: List<Int>) {
 
 ## Getter 和 Setter
 
-遵循 Java 约定的 getter 和 setter 的方法（名称以 `get` 开头的无参数方法和
-以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。 例如：
+遵循 Java 约定的 getter 和 setter 的方法（名称以 `get` 开头的无参数方法和<!--
+-->以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。 例如：
 
 ``` kotlin
 import java.util.Calendar
@@ -55,8 +55,8 @@ fun calendarDemo() {
 ## 将 Kotlin 中是关键字的 Java 标识符进行转义
 
 一些 Kotlin 关键字在 Java 中是有效标识符：*in*{: .keyword }、 *object*{: .keyword }、 *is*{: .keyword } 等等。
-如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它
-来调用该方法
+如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它<!--
+-->来调用该方法
 
 ``` kotlin
 foo.`is`(bar)
@@ -93,16 +93,16 @@ val nullable: String? = item // 允许，没有问题
 val notNull: String = item // 允许，运行时可能失败
 ```
 
-如果我们选择非空类型，编译器会在赋值时触发一个断言。这防止 Kotlin 的非空变量保存
-空值。当我们把平台值传递给期待非空值等的 Kotlin 函数时，也会触发断言。
-总的来说，编译器尽力阻止空值通过程序向远传播（尽管鉴于泛型的原因，有时这
-不可能完全消除）。
+如果我们选择非空类型，编译器会在赋值时触发一个断言。这防止 Kotlin 的非空变量保存<!--
+-->空值。当我们把平台值传递给期待非空值等的 Kotlin 函数时，也会触发断言。
+总的来说，编译器尽力阻止空值通过程序向远传播（尽管鉴于泛型的原因，有时这<!--
+-->不可能完全消除）。
 
 ### 平台类型表示法
 
 如上所述，平台类型不能在程序中显式表述，因此在语言中没有相应语法。
-然而，编译器和 IDE 有时需要（在错误信息中、参数信息中等）显示他们，所以我们用
-一个助记符来表示他们：
+然而，编译器和 IDE 有时需要（在错误信息中、参数信息中等）显示他们，所以我们用<!--
+-->一个助记符来表示他们：
 
 * `T!` 表示“`T` 或者 `T?`”，
 * `(Mutable)Collection<T>!` 表示“可以可变或不可变、可空或不可空的 `T` 的 Java 集合”，
@@ -300,8 +300,8 @@ javaObj.removeIndicesVarArg(*array)
 
 ## 操作符
 
-由于 Java 无法标记用于运算符语法的方法，Kotlin 允许
-具有正确名称和签名的任何 Java 方法作为运算符重载和其他约定（`invoke()` 等）使用。
+由于 Java 无法标记用于运算符语法的方法，Kotlin 允许<!--
+-->具有正确名称和签名的任何 Java 方法作为运算符重载和其他约定（`invoke()` 等）使用。
 不允许使用中缀调用语法调用 Java 方法。
 
 
@@ -399,9 +399,9 @@ Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 
 
 ## SAM 转换
 
-就像 Java 8 一样，Kotlin 支持 SAM 转换。这意味着 Kotlin 函数字面值可以被自动的转换成
-只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型
-能够与这个 Kotlin 函数的参数类型相匹配。
+就像 Java 8 一样，Kotlin 支持 SAM 转换。这意味着 Kotlin 函数字面值可以被自动的转换成<!--
+-->只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型<!--
+-->能够与这个 Kotlin 函数的参数类型相匹配。
 
 你可以这样创建 SAM 接口的实例：
 
@@ -417,19 +417,19 @@ val executor = ThreadPoolExecutor()
 executor.execute { println("This runs in a thread pool") }
 ```
 
-如果 Java 类有多个接受函数式接口的方法，那么可以通过使用
-将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需
-由编译器生成。
+如果 Java 类有多个接受函数式接口的方法，那么可以通过使用<!--
+-->将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需<!--
+-->由编译器生成。
 
 ``` kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })
 ```
 
-请注意，SAM 转换只适用于接口，而不适用于抽象类，即使这些抽象类也只有一个
-抽象方法。
+请注意，SAM 转换只适用于接口，而不适用于抽象类，即使这些抽象类也只有一个<!--
+-->抽象方法。
 
-还要注意，此功能只适用于 Java 互操作；因为 Kotlin 具有合适的函数类型，所以不需要将函数自动转换
-为 Kotlin 接口的实现，因此不受支持。
+还要注意，此功能只适用于 Java 互操作；因为 Kotlin 具有合适的函数类型，所以不需要将函数自动转换<!--
+-->为 Kotlin 接口的实现，因此不受支持。
 
 ## 在 Kotlin 中使用 JNI
 

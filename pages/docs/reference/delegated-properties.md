@@ -102,9 +102,9 @@ Hello
 Hello
 ```
 
-默认情况下，对于 lazy 属性的求值是**同步锁的（synchronized）**：该值只在一个线程中计算，并且所有线程
-会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程
-可以同时执行，那么将 `LazyThreadSafetyMode.PUBLICATION` 作为参数传递给 `lazy()` 函数。
+默认情况下，对于 lazy 属性的求值是**同步锁的（synchronized）**：该值只在一个线程中计算，并且所有线程<!--
+-->会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程<!--
+-->可以同时执行，那么将 `LazyThreadSafetyMode.PUBLICATION` 作为参数传递给 `lazy()` 函数。
 而如果你确定初始化将总是发生在单个线程，那么你可以使用 `LazyThreadSafetyMode.NONE` 模式，
 它不会有任何线程安全的保证和相关的开销。
 
@@ -112,8 +112,8 @@ Hello
 ### 可观察属性 Observable
 
 [`Delegates.observable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html) 接受两个参数：初始值和修改时处理程序（handler）。
-每当我们给属性赋值时会调用该处理程序（在赋值*后*执行）。它有三个
-参数：被赋值的属性、旧值和新值：
+每当我们给属性赋值时会调用该处理程序（在赋值*后*执行）。它有三个<!--
+-->参数：被赋值的属性、旧值和新值：
 
 ``` kotlin
 import kotlin.properties.Delegates
@@ -259,8 +259,8 @@ Kotlin 编译器在参数中提供了关于 `prop` 的所有必要信息：第�
 ### 提供委托（自 1.1 起）
 
 通过定义 `provideDelegate` 操作符，可以扩展创建属性实现所委托对象的逻辑。
-如果 `by` 右侧所使用的对象将 `provideDelegate` 定义为成员或扩展函数，那么会调用该函数来
-创建属性委托实例。
+如果 `by` 右侧所使用的对象将 `provideDelegate` 定义为成员或扩展函数，那么会调用该函数来<!--
+-->创建属性委托实例。
 
 `provideDelegate` 的一个可能的使用场景是在创建属性时（而不仅在其 getter 或 setter 中）检查属性一致性。
 
@@ -314,8 +314,8 @@ fun <T> MyUI.bindResource(
 ```
 
 在生成的代码中，会调用 `provideDelegate` 方法来初始化辅助的 `prop$delegate` 属性。
-比较对于属性声明 `val prop: Type by MyDelegate()` 生成的代码与
-[上面](delegated-properties.html#翻译规则)（当 `provideDelegate` 方法不存在时）生成的代码：
+比较对于属性声明 `val prop: Type by MyDelegate()` 生成的代码与<!--
+-->[上面](delegated-properties.html#翻译规则)（当 `provideDelegate` 方法不存在时）生成的代码：
 
 ``` kotlin
 class C {

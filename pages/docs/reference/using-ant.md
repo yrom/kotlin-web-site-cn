@@ -53,8 +53,8 @@ Kotlin 为 Ant 提供了三个任务：
 
 ## 针对 JVM 使用 Kotlin 和 Java 源代码
 
-如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 *kotlinc* 来避免任务参数的重复，但是
-建议使用 *withKotlin* 任务
+如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 *kotlinc* 来避免任务参数的重复，但是<!--
+-->建议使用 *withKotlin* 任务
 
 ``` xml
 <project name="Ant Task Test" default="build">
@@ -111,9 +111,9 @@ Kotlin 为 Ant 提供了三个任务：
 ## 针对 JavaScript 用单个源文件夹以及 metaInfo 选项
 
 如果要将翻译结果作为 Kotlin/JavaScript 库分发，那么 `metaInfo` 选项会很有用。
-如果 `metaInfo` 设置为 `true`，则在编译期间将创建具有
-二进制元数据的额外的 JS 文件。该文件应该与翻译
-结果一起分发。
+如果 `metaInfo` 设置为 `true`，则在编译期间将创建具有<!--
+-->二进制元数据的额外的 JS 文件。该文件应该与翻译<!--
+-->结果一起分发。
 
 ``` xml
 <project name="Ant Task Test" default="build">

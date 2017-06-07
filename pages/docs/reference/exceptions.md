@@ -43,8 +43,8 @@ finally {
 val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
 ```
 
-*try*{: .keyword }-表达式的返回值是 *try*{: .keyword } 块中的
-最后一个表达式或者是（所有）*catch*{: .keyword } 块中的最后一个表达式。
+*try*{: .keyword }-表达式的返回值是 *try*{: .keyword } 块中的<!--
+-->最后一个表达式或者是（所有）*catch*{: .keyword } 块中的最后一个表达式。
 *finally*{: .keyword } 块中的内容不会影响表达式的结果。
 
 ## 受检的异常
@@ -57,8 +57,8 @@ Kotlin 没有受检的异常。这其中有很多原因，但我们会提供一�
 Appendable append(CharSequence csq) throws IOException;
 ```
 
-这个签名是什么意思？ 它是说，每次我追加一个字符串到一些东西（一个 `StringBuilder`、某种日志、一个控制台等）上时
-我就必须捕获那些 `IOException`。 为什么？因为它可能正在执行 IO 操作（`Writer` 也实现了 `Appendable`）……
+这个签名是什么意思？ 它是说，每次我追加一个字符串到一些东西（一个 `StringBuilder`、某种日志、一个控制台等）上时<!--
+-->我就必须捕获那些 `IOException`。 为什么？因为它可能正在执行 IO 操作（`Writer` 也实现了 `Appendable`）……
 所以它导致这种代码随处可见的出现：
 
 ``` kotlin

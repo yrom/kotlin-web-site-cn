@@ -8,8 +8,8 @@ title: "Kotlin 中调用 JavaScript"
 # Kotlin 中调用 JavaScript
 
 Kotlin 已被设计为能够与 Java 平台轻松互操作。它将 Java 类视为 Kotlin 类，并且
-Java 也将 Kotlin 类视为 Java 类。但是，JavaScript 是一种动态类型语言，这意味着
-它不会在编译期检查类型。你可以通过[动态](dynamic-type.html)类型在
+Java 也将 Kotlin 类视为 Java 类。但是，JavaScript 是一种动态类型语言，这意味着<!--
+-->它不会在编译期检查类型。你可以通过[动态](dynamic-type.html)类型在
 Kotlin 中自由地与 JavaScript 交流，但是如果你想要 Kotlin 类型系统的全部威力
 ，你可以为 JavaScript 库创建 Kotlin 头文件。
 
@@ -37,8 +37,8 @@ fun getTypeof() = "typeof"
 ## `external` 修饰符
 
 要告诉 Kotlin 某个声明是用纯 JavaScript 编写的，你应该用 `external` 修饰符来标记它。
-当编译器看到这样的声明时，它假定相应类、函数或
-属性的实现由开发人员提供，因此不会尝试从声明中生成任何 JavaScript 代码。
+当编译器看到这样的声明时，它假定相应类、函数或<!--
+-->属性的实现由开发人员提供，因此不会尝试从声明中生成任何 JavaScript 代码。
 这意味着你应该省略 `external` 声明内容的代码体。例如：
 
 ``` kotlin
@@ -57,8 +57,8 @@ external class Node {
 external val window: Window
 ```
 
-请注意，嵌套的声明会继承 `external` 修饰符，即在 `Node` 类中，我们在
-成员函数和属性之前并不放置 `external`。
+请注意，嵌套的声明会继承 `external` 修饰符，即在 `Node` 类中，我们在<!--
+-->成员函数和属性之前并不放置 `external`。
 
 `external` 修饰符只允许在包级声明中使用。 你不能声明一个非 `external` 类的 `external` 成员。
 
@@ -75,8 +75,8 @@ MyClass.prototype.ownMember = function() { /* 实现 */ };
 ```
 
 Kotlin 中没有这样的语法。然而，在 Kotlin 中我们有伴生（`companion`）对象。Kotlin 以特殊的方式处理
-`external` 类的伴生对象：替代期待一个对象的是，它假定伴生对象的成员
-就是该类自身的成员。要描述来自上例中的 `MyClass`，你可以这样写：
+`external` 类的伴生对象：替代期待一个对象的是，它假定伴生对象的成员<!--
+-->就是该类自身的成员。要描述来自上例中的 `MyClass`，你可以这样写：
 
 ``` kotlin
 external class MyClass {
@@ -102,14 +102,14 @@ external fun myFunWithOptionalArgs(x: Int,
     z: Long = definedExternally)
 ```
 
-这意味着你可以使用一个必需参数和两个可选参数来调用 `myFunWithOptionalArgs`（它们的
-默认值由一些 JavaScript 代码算出）。
+这意味着你可以使用一个必需参数和两个可选参数来调用 `myFunWithOptionalArgs`（它们的<!--
+-->默认值由一些 JavaScript 代码算出）。
 
 
 ### 扩展 JavaScript 类
 
-你可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 `external` 类并用
-非 `external` 类扩展它。例如：
+你可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 `external` 类并用<!--
+-->非 `external` 类扩展它。例如：
 
 ``` kotlin
 external open class HTMLElement : Element() {

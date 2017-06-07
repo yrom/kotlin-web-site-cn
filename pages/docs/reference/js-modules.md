@@ -7,8 +7,8 @@ title: "JavaScript 模块"
 
 # JavaScript 模块
 
-Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是
-可用选项的列表：
+Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是<!--
+-->可用选项的列表：
 
 1. 无模块（Plain）。不为任何模块系统编译。像往常一样，你可以在全局作用域中以其名称访问模块。
    默认使用此选项。
@@ -176,9 +176,9 @@ external fun baz()
 ### `@JsNonModule` 注解
 
 当一个声明具有 `@JsModule`、当你并不把它编译到一个 JavaScript 模块时，你不能在 Kotlin 代码中使用它。
-通常，开发人员将他们的库既作为 JavaScript 模块也作为可下载的` .js` 文件分发，你可以将这些文件复制到
-项目的静态资源，并通过 `<script>` 元素包含。 要告诉 Kotlin，可以
-在非模块环境中使用一个 `@JsModule` 声明，你应该放置 `@JsNonModule` 声明。例如，
+通常，开发人员将他们的库既作为 JavaScript 模块也作为可下载的` .js` 文件分发，你可以将这些文件复制到<!--
+-->项目的静态资源，并通过 `<script>` 元素包含。 要告诉 Kotlin，可以<!--
+-->在非模块环境中使用一个 `@JsModule` 声明，你应该放置 `@JsNonModule` 声明。例如，
 给定 JavaScript 代码：
 
 ``` javascript
@@ -200,7 +200,7 @@ external fun sayHello(name: String)
 
 ### 备注
 
-Kotlin 以 `kotlin.js` 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此
-你可以使用上述任何模块系统。也可以在 NPM 上使用 [`kotlin` 包](https://www.npmjs.com/package/kotlin)
+Kotlin 以 `kotlin.js` 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此<!--
+-->你可以使用上述任何模块系统。也可以在 NPM 上使用 [`kotlin` 包](https://www.npmjs.com/package/kotlin)
 
 
