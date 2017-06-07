@@ -33,3 +33,4 @@ fun main(args: Array<String>) {
 `Derived` 的超类型列表中的 *by*{: .keyword }-子句表示 `b` 将会在 `Derived` 中内部存储。
 并且编译器将生成转发给 `b` 的所有 `Base` 的方法。
 
+Note that overrides work as you might expect: The compiler will use your `override` implementations instead of those in the delegate object. If we were to add `override fun print() { print("abc") }` to `Derived`, the program would print "abc" instead of "10".
