@@ -8,8 +8,8 @@ category: "Syntax"
 # 操作符符重载
 
 Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示
-（如 `+` 或 `*`）和固定的[优先级](grammar.html#precedence)。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的[成员函数](functions.html#成员函数)
-或[扩展函数](extensions.html)。
+（如 `+` 或 `*`）和固定的[优先级](grammar.html#precedence)。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的[成员函数](functions.html#成员函数)<!--
+-->或[扩展函数](extensions.html)。
 重载操作符的函数需要用 `operator` 修饰符标记。
 
 另外，我们描述为不同操作符规范操作符重载的约定。
@@ -32,6 +32,17 @@ Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现�
 * 如果函数存在且其返回类型为 `R`，那就表达式 `+a` 具有类型 `R`。
 
 *注意* 这些操作以及所有其他操作都针对[基本类型](basic-types.html)做了优化，不会为它们引入函数调用的开销。
+
+以下是如何重载一元减运算符的示例：
+
+``` kotlin
+data class Point(val x: Int, val y: Int)
+
+operator fun Point.unaryMinus() = Point(-x, -y)
+
+val point = Point(10, 20)
+println(-point)  // 输出“(-10, -20)”
+```
 
 ### 递增和递减
 
@@ -83,6 +94,18 @@ Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现�
 Kotlin 1.1 中被弃用。
 
 {:#in}
+
+### 示例
+
+下面是一个从给定值起始的 Counter 类的示例，它可以使用重载的 `+` 运算符来增加计数。
+
+``` kotlin
+data class Counter(var dayIndex: Int) {
+    operator fun plus(increment: Int): Counter {
+        return Counter(dayIndex + increment)
+    }
+}
+```
 
 ### “In”操作符
 

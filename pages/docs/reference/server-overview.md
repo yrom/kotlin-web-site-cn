@@ -31,8 +31,8 @@ Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现�
  * [Vert.x](http://vertx.io) 是在 JVM 上构建响应式 Web 应用程序的框架，
 为 Kotlin 提供了[专门支持](https://github.com/vert-x3/vertx-lang-kotlin)，包括[完整的文档](http://vertx.io/docs/vertx-core/kotlin/)。
 
- * [Ktor](https://github.com/kotlin/ktor) 是由 JetBrains 构建的 Kotlin 原生 Web 框架，利用协程实现
-高可伸缩性，并提供易于使用且合乎惯用法的 API。
+ * [Ktor](https://github.com/kotlin/ktor) 是由 JetBrains 构建的 Kotlin 原生 Web 框架，利用协程实现<!--
+-->高可伸缩性，并提供易于使用且合乎惯用法的 API。
 
  * [kotlinx.html](https://github.com/kotlin/kotlinx.html) 是可在 Web 应用程序中用于构建 HTML 的 DSL。
 它可以作为传统模板系统（如JSP和FreeMarker）的替代品。
@@ -57,14 +57,14 @@ AWS Labs 提供了一个[示例项目](https://github.com/awslabs/serverless-pho
 [Corda](https://www.corda.net/2017/01/10/kotlin/) 是一个开源的分布式分类帐平台，由各大银行提供支持
 ，完全由 Kotlin 构建。
 
-[JetBrains 账户](https://account.jetbrains.com/)，负责 JetBrains 整个许可证销售和验证
-过程的系统 100％ 由 Kotlin 编写，自 2015 年生产运行以来，一直没有重大问题。
+[JetBrains 账户](https://account.jetbrains.com/)，负责 JetBrains 整个许可证销售和验证<!--
+-->过程的系统 100％ 由 Kotlin 编写，自 2015 年生产运行以来，一直没有重大问题。
 
 
 ## 下一步
 
-* [使用 Http Servlet 创建 Web 应用程序](/docs/tutorials/httpservlets.html)和
-[使用 Spring Boot 创建 RESTful Web 服务](/docs/tutorials/spring-boot-restful.html)教程
-将向你展示如何在 Kotlin 中构建和运行非常小的 Web 应用程序。
+* [使用 Http Servlet 创建 Web 应用程序](/docs/tutorials/httpservlets.html)和<!--
+-->[使用 Spring Boot 创建 RESTful Web 服务](/docs/tutorials/spring-boot-restful.html)教程<!--
+-->将向你展示如何在 Kotlin 中构建和运行非常小的 Web 应用程序。
 * 关于更深入的介绍，请查看本站的[参考文档](index.html)及
 [Kotlin 心印](/docs/tutorials/koans.html)。

@@ -20,8 +20,8 @@ class Invoice {
 }
 ```
 
-类声明由类名、类头（指定其类型参数、主
-构造函数等）和由大括号包围的类体构成。类头和类体都是可选的；
+类声明由类名、类头（指定其类型参数、主<!--
+-->构造函数等）和由大括号包围的类体构成。类头和类体都是可选的；
 如果一个类没有类体，可以省略花括号。
 
 ``` kotlin
@@ -31,8 +31,8 @@ class Empty
 
 ### 构造函数
 
-在 Kotlin 中的一个类可以有一个**主构造函数**和一个或多个**次构造函数**。主
-构造函数是类头的一部分：它跟在类名（和可选的类型参数）后。
+在 Kotlin 中的一个类可以有一个**主构造函数**和一个或多个**次构造函数**。主<!--
+-->构造函数是类头的一部分：它跟在类名（和可选的类型参数）后。
 
 ``` kotlin
 class Person constructor(firstName: String) {
@@ -47,8 +47,8 @@ class Person(firstName: String) {
 }
 ```
 
-主构造函数不能包含任何的代码。初始化的代码可以放
-到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中：
+主构造函数不能包含任何的代码。初始化的代码可以放<!--
+-->到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中：
 
 ``` kotlin
 class Customer(name: String) {
@@ -58,8 +58,8 @@ class Customer(name: String) {
 }
 ```
 
-注意，主构造的参数可以在初始化块中使用。它们也可以在
-类体内声明的属性初始化器中使用：
+注意，主构造的参数可以在初始化块中使用。它们也可以在<!--
+-->类体内声明的属性初始化器中使用：
 
 ``` kotlin
 class Customer(name: String) {
@@ -76,11 +76,11 @@ class Person(val firstName: String, val lastName: String, var age: Int) {
 }
 ```
 
-与普通属性一样，主构造函数中声明的属性可以是
-可变的（*var*{: .keyword }）或只读的（*val*{: .keyword }）。
+与普通属性一样，主构造函数中声明的属性可以是<!--
+-->可变的（*var*{: .keyword }）或只读的（*val*{: .keyword }）。
 
-如果构造函数有注解或可见性修饰符，这个 *constructor*{: .keyword } 关键字是必需的，并且
-这些修饰符在它前面：
+如果构造函数有注解或可见性修饰符，这个 *constructor*{: .keyword } 关键字是必需的，并且<!--
+-->这些修饰符在它前面：
 
 ``` kotlin
 class Customer public @Inject constructor(name: String) { …… }
@@ -91,7 +91,7 @@ class Customer public @Inject constructor(name: String) { …… }
 
 #### 次构造函数
 
-类也可以声明前缀有 *constructor*{: .keyword }** 的次构造函数**：
+类也可以声明前缀有 *constructor*{: .keyword }的**次构造函数**：
 
 ``` kotlin
 class Person {
@@ -102,8 +102,8 @@ class Person {
 ```
 
 如果类有一个主构造函数，每个次构造函数需要委托给主构造函数，
-可以直接委托或者通过别的次构造函数间接委托。委托到同一个类的另一个构造函数
-用 *this*{: .keyword } 关键字即可：
+可以直接委托或者通过别的次构造函数间接委托。委托到同一个类的另一个构造函数<!--
+-->用 *this*{: .keyword } 关键字即可：
 
 ``` kotlin
 class Person(val name: String) {
@@ -113,9 +113,9 @@ class Person(val name: String) {
 }
 ```
 
-如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的
-不带参数的主构造函数。构造函数的可见性是 public。如果你不希望你的类
-有一个公有构造函数，你需要声明一个带有非默认可见性的空的主构造函数：
+如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的<!--
+-->不带参数的主构造函数。构造函数的可见性是 public。如果你不希望你的类<!--
+-->有一个公有构造函数，你需要声明一个带有非默认可见性的空的主构造函数：
 
 ``` kotlin
 class DontCreateMe private constructor () {
@@ -178,8 +178,8 @@ class Derived(p: Int) : Base(p)
 如果该类有一个主构造函数，其基类型可以（并且必须）
 用（基类型的）主构造函数参数就地初始化。
 
-如果类没有主构造函数，那么每个次构造函数必须
-使用 *super*{: .keyword} 关键字初始化其基类型，或委托给另一个构造函数做到这一点。
+如果类没有主构造函数，那么每个次构造函数必须<!--
+-->使用 *super*{: .keyword} 关键字初始化其基类型，或委托给另一个构造函数做到这一点。
 注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：
 
 ``` kotlin
@@ -190,15 +190,15 @@ class MyView : View {
 }
 ```
 
-类上的 *open*{: .keyword} 标注与 Java 中 *final*{: .keyword} 相反，它允许其他类
-从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
-对应于 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html)书中的
-第 17 条：**要么为继承而设计，并提供文档说明，要么就禁止继承**。
+类上的 *open*{: .keyword} 标注与 Java 中 *final*{: .keyword} 相反，它允许其他类<!--
+-->从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
+对应于 [Effective Java](http://www.oracle.com/technetwork/java/effectivejava-136174.html)书中的<!--
+-->第 17 条：**要么为继承而设计，并提供文档说明，要么就禁止继承**。
 
 ### 覆盖方法
 
-我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式
-标注可覆盖的成员（我们称之为*开放*）和覆盖后的成员：
+我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式<!--
+-->标注可覆盖的成员（我们称之为*开放*）和覆盖后的成员：
 
 ``` kotlin
 open class Base {
@@ -302,13 +302,13 @@ abstract class Derived : Base() {
 
 ## 伴生对象
 
-与 Java 或 C# 不同，在 Kotlin 中类没有静态方法。在大多数情况下，它建议简单地使用
-包级函数。
+与 Java 或 C# 不同，在 Kotlin 中类没有静态方法。在大多数情况下，它建议简单地使用<!--
+-->包级函数。
 
-如果你需要写一个可以无需用一个类的实例来调用、但需要访问类内部的
-函数（例如，工厂方法），你可以把它写成该类内[对象声明](object-declarations.html)
-中的一员。
+如果你需要写一个可以无需用一个类的实例来调用、但需要访问类内部的<!--
+-->函数（例如，工厂方法），你可以把它写成该类内[对象声明](object-declarations.html)<!--
+-->中的一员。
 
 更具体地讲，如果在你的类内声明了一个[伴生对象](object-declarations.html#伴生对象)，
-你就可以使用像在 Java/C# 中调用静态方法相同的语法来调用其成员，只使用类名
-作为限定符。
+你就可以使用像在 Java/C# 中调用静态方法相同的语法来调用其成员，只使用类名<!--
+-->作为限定符。

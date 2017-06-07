@@ -71,7 +71,7 @@ reference:
         - url: /docs/reference/idioms.html
           title: 习惯用法
         - url: /docs/reference/coding-conventions.html
-          title: 编码习惯
+          title: 编码规范
 
     - title: 基础
       description: 基础内容

@@ -8,19 +8,19 @@ title: "反射"
 # 反射
 
 反射是这样的一组语言和库功能，它允许在运行时自省你的程序的结构。
-Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即在运行时获悉
-一个名称或者一个属性或函数的类型）与简单地使用函数式或响应式风格紧密相关。
+Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即在运行时获悉<!--
+-->一个名称或者一个属性或函数的类型）与简单地使用函数式或响应式风格紧密相关。
 
 > 在 Java 平台上，使用反射功能所需的运行时组件作为单独的
-JAR 文件（`kotlin-reflect.jar`）分发。这样做是为了减少不使用反射功能的应用程序所需的
-运行时库的大小。如果你需要使用反射，请确保该 .jar文件添加到项目的
+JAR 文件（`kotlin-reflect.jar`）分发。这样做是为了减少不使用反射功能的应用程序所需的<!--
+-->运行时库的大小。如果你需要使用反射，请确保该 .jar文件添加到项目的
 classpath 中。
 {:.note}
 
 ## 类引用
 
-最基本的反射功能是获取 Kotlin 类的运行时引用。要获取对
-静态已知的 Kotlin 类的引用，可以使用 _类字面值_ 语法：
+最基本的反射功能是获取 Kotlin 类的运行时引用。要获取对<!--
+-->静态已知的 Kotlin 类的引用，可以使用 _类字面值_ 语法：
 
 ``` kotlin
 val c = MyClass::class
@@ -118,8 +118,8 @@ fun main(args: Array<String>) {
 ```
 
 表达式 `::x` 求值为 `KProperty<Int>` 类型的属性对象，它允许我们使用
-`get()` 读取它的值，或者使用 `name` 属性来获取属性名。更多信息请参见
-[关于 `KProperty` 类的文档](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)。
+`get()` 读取它的值，或者使用 `name` 属性来获取属性名。更多信息请参见<!--
+-->[关于 `KProperty` 类的文档](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html)。
 
 对于可变属性，例如 `var y = 1`，`::y` 返回 [`KMutableProperty<Int>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 类型的一个值，
 该类型有一个 `set()` 方法。
@@ -180,8 +180,8 @@ fun getKClass(o: Any): KClass<Any> = o.javaClass.kotlin
 
 ## 构造函数引用
 
-构造函数可以像方法和属性那样引用。他们可以用于期待这样的函数类型对象的任何
-地方：它与该构造函数接受相同参数并且返回相应类型的对象。
+构造函数可以像方法和属性那样引用。他们可以用于期待这样的函数类型对象的任何<!--
+-->地方：它与该构造函数接受相同参数并且返回相应类型的对象。
 通过使用 `::` 操作符并添加类名来引用构造函数。考虑下面的函数，
 它期待一个无参并返回 `Foo` 类型的函数参数：
 

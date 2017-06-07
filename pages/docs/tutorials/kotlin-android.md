@@ -43,8 +43,8 @@ Android Studio 3.0 在当前对话框中提供启用 Kotlin 支持的选项，�
 ![Dialog 4]({{ url_for('tutorial_img', filename='kotlin-android/3-create-new-project.png') }})
 
 在 Android Studio 3.0 中，可以选择使用 Kotlin 创建 activity，因此也不需要“将Java 代码转换为 Kotlin（Converting
-Java code to Kotlin）”这一步骤。早期版本中则会先使用 Java 创建 activity，然后再使用自动转换工具
-进行转换。
+Java code to Kotlin）”这一步骤。早期版本中则会先使用 Java 创建 activity，然后再使用自动转换工具<!--
+-->进行转换。
 
 一般而言，着手使用 Kotlin 的最便捷方式，无疑是将 Java 代码自动转换为 Kotlin。
 值得一提的是，与其为了使用新的方式表达旧的模式而去查阅文档，

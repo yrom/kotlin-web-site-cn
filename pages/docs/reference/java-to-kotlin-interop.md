@@ -31,8 +31,8 @@ public void setFirstName(String firstName) {
 }
 ```
 
-如果属性的名称以 `is` 开头，则使用不同的名称映射规则：getter 的名称
-与属性名称相同，并且 setter 的名称是通过将 `is` 替换为 `set` 获得。
+如果属性的名称以 `is` 开头，则使用不同的名称映射规则：getter 的名称<!--
+-->与属性名称相同，并且 setter 的名称是通过将 `is` 替换为 `set` 获得。
 例如，对于属性 `isOpen`，其 getter 会称做 `isOpen()`，而其 setter 会称做 `setOpen()`。
 这一规则适用于任何类型的属性，并不仅限于 `Boolean`。
 
@@ -79,8 +79,8 @@ demo.DemoUtils.bar();
 ```
 
 如果多个文件中生成了相同的 Java 类名（包名相同并且类名相同或者有相同的
-`@JvmName` 注解）通常是错误的。然而，编译器能够生成一个单一的 Java 外观
-类，它具有指定的名称且包含来自所有文件中具有该名称的所有声明。
+`@JvmName` 注解）通常是错误的。然而，编译器能够生成一个单一的 Java 外观<!--
+-->类，它具有指定的名称且包含来自所有文件中具有该名称的所有声明。
 要启用生成这样的外观，请在所有相关文件中使用 @JvmMultifileClass 注解。
 
 ``` kotlin
@@ -137,8 +137,8 @@ class JavaClient {
 
 ## 静态字段
 
-在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中
-具有静态幕后字段。
+在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中<!--
+-->具有静态幕后字段。
 
 通常这些字段是私有的，但可以通过以下方式之一暴露出来：
 
@@ -163,8 +163,8 @@ Key.COMPARATOR.compare(key1, key2);
 // Key 类中的 public static final 字段
 ```
 
-在命名对象或者伴生对象中的一个[延迟初始化的](properties.html#惰性初始化属性)属性
-具有与属性 setter 相同可见性的静态幕后字段。
+在命名对象或者伴生对象中的一个[延迟初始化的](properties.html#惰性初始化属性)属性<!--
+-->具有与属性 setter 相同可见性的静态幕后字段。
 
 ``` kotlin
 object Singleton {
@@ -258,9 +258,9 @@ Kotlin 的可见性以下列方式映射到 Java：
 * `private` 的顶层声明编译成包级局部声明；
 * `protected` 保持 `protected`（注意 Java 允许访问同一个包中其他类的受保护成员，
 而 Kotlin 不能，所以 Java 类会访问更广泛的代码）；
-* `internal` 声明会成为 Java 中的 `public`。`internal` 类的成员会通过名字修饰，使其
-更难以在 Java 中意外使用到，并且根据 Kotlin 规则使其允许重载相同签名的成员
-而互不可见；
+* `internal` 声明会成为 Java 中的 `public`。`internal` 类的成员会通过名字修饰，使其<!--
+-->更难以在 Java 中意外使用到，并且根据 Kotlin 规则使其允许重载相同签名的成员<!--
+-->而互不可见；
 * `public` 保持 `public`。
 
 ## KClass
@@ -308,8 +308,8 @@ fun getX() = 10
 
 ## 生成重载
 
-通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 中只会有一个所有参数都存在的完整参数
-签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
+通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 中只会有一个所有参数都存在的完整参数<!--
+-->签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
 @JvmOverloads 注解。
 
 ``` kotlin
@@ -318,8 +318,8 @@ fun getX() = 10
 }
 ```
 
-对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和
-它右边的所有参数都移除掉。在上例中，会生成以下方法
+对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和<!--
+-->它右边的所有参数都移除掉。在上例中，会生成以下方法
 ：
 
 ``` java
@@ -329,12 +329,12 @@ void f(String a, int b) { }
 void f(String a) { }
 ```
 
-该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括
-在接口中定义的方法。
+该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括<!--
+-->在接口中定义的方法。
 
-请注意，如[次构造函数](classes.html#次构造函数)中所述，如果一个类的所有构造函数参数都有默认
-值，那么会为其生成一个公有的无参构造函数。这就算
-没有 @JvmOverloads 注解也有效。
+请注意，如[次构造函数](classes.html#次构造函数)中所述，如果一个类的所有构造函数参数都有默认<!--
+-->值，那么会为其生成一个公有的无参构造函数。这就算<!--
+-->没有 @JvmOverloads 注解也有效。
 
 
 ## 受检异常
@@ -382,8 +382,8 @@ fun foo() {
 
 ## 型变的泛型
 
-当 Kotlin 的类使用了[声明处型变](generics.html#声明处型变)，有两种选择
-可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：
+当 Kotlin 的类使用了[声明处型变](generics.html#声明处型变)，有两种选择<!--
+-->可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：
 
 ``` kotlin
 class Box<out T>(val value: T)
@@ -402,16 +402,16 @@ Box<Derived> boxDerived(Derived value) { …… }
 Base unboxBase(Box<Base> box) { …… }
 ``` 
 
-问题是，在 Kotlin 中我们可以这样写 `unboxBase(boxDerived("s"))`，但是在 Java 中是行不通的，因为在 Java 中
-类 `Box` 在其泛型参数 `T` 上是*不型变的*，于是 `Box<Derived>` 并不是 `Box<Base>` 的子类。
+问题是，在 Kotlin 中我们可以这样写 `unboxBase(boxDerived("s"))`，但是在 Java 中是行不通的，因为在 Java 中<!--
+-->类 `Box` 在其泛型参数 `T` 上是*不型变的*，于是 `Box<Derived>` 并不是 `Box<Base>` 的子类。
 要使其在 Java 中工作，我们按以下这样定义 `unboxBase`：
   
 ``` java
 Base unboxBase(Box<? extends Base> box) { …… }  
 ```  
 
-这里我们使用 Java 的*通配符类型*（`? extends Base`）来
-通过使用处型变来模拟声明处型变，因为在 Java 中只能这样。
+这里我们使用 Java 的*通配符类型*（`? extends Base`）来<!--
+-->通过使用处型变来模拟声明处型变，因为在 Java 中只能这样。
 
 当它*作为参数*出现时，为了让 Kotlin 的 API 在 Java 中工作，对于协变定义的 `Box` 我们生成 `Box<Super>` 作为 `Box<? extends Super>`
 （或者对于逆变定义的 `Foo` 生成 `Foo<? super Bar>`）。当它是一个返回值时，
@@ -445,14 +445,14 @@ fun unboxBase(box: Box<@JvmSuppressWildcards Base>): Base = box.value
 // Base unboxBase(Box<Base> box) { …… }
 ```
 
-注意：`@JvmSuppressWildcards` 不仅可用于单个类型参数，还可用于整个声明（如
-函数或类），从而抑制其中的所有通配符。
+注意：`@JvmSuppressWildcards` 不仅可用于单个类型参数，还可用于整个声明（如<!--
+-->函数或类），从而抑制其中的所有通配符。
 
 ### Nothing 类型翻译
  
 类型 [`Nothing`](exceptions.html#nothing-类型) 是特殊的，因为它在 Java 中没有自然的对应。确实，每个 Java 引用类型，包括
-`java.lang.Void` 都可以接受 `null` 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中
-准确表示。这就是为什么在使用 `Nothing` 参数的地方 Kotlin 生成一个原始类型：
+`java.lang.Void` 都可以接受 `null` 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中<!--
+-->准确表示。这就是为什么在使用 `Nothing` 参数的地方 Kotlin 生成一个原始类型：
 
 ``` kotlin
 fun emptyList(): List<Nothing> = listOf()

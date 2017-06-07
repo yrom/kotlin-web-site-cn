@@ -249,8 +249,8 @@ html {
 ## `com.example.html` 包的完整定义
 
 这就是 `com.example.html` 包的定义（只有上面例子中使用的元素）。
-它构建一个 HTML 树。代码中大量使用了[扩展函数](extensions.html)和
-[带接收者的 lambda 表达式](lambdas.html#带接收者的函数字面值)。
+它构建一个 HTML 树。代码中大量使用了[扩展函数](extensions.html)和<!--
+-->[带接收者的 lambda 表达式](lambdas.html#带接收者的函数字面值)。
 
 请注意，`@DslMarker` 注解在 Kotlin 1.1 起才可用。
 

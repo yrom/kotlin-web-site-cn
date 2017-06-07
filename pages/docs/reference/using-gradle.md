@@ -74,8 +74,8 @@ sourceSets {
 apply plugin: "kotlin2js"
 ```
 
-这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与
-针对 JVM 一样，如果不使用默认约定，我们需要使用 *sourceSets* 来指定源代码文件夹。
+这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
+-->针对 JVM 一样，如果不使用默认约定，我们需要使用 *sourceSets* 来指定源代码文件夹。
 
 ``` groovy
 sourceSets {
@@ -96,8 +96,8 @@ compileKotlin2Js {
 
 ## 针对 Android
 
-Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要
-用 *kotlin-android* 插件取代 *kotlin* 插件：
+Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
+-->用 *kotlin-android* 插件取代 *kotlin* 插件：
 
 ``` groovy
 buildscript {
@@ -149,8 +149,8 @@ dependencies {
 
 如果针对 JavaScript，请使用 `compile "org.jetbrains.kotlin:kotlin-stdlib-js"` 替代之。
 
-如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含
-为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 `kotlin-stdlib`
+如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含<!--
+-->为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 `kotlin-stdlib`
 ：
 
 ``` groovy
@@ -166,8 +166,8 @@ testCompile "org.jetbrains.kotlin:kotlin-test"
 testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 ```
 
-从 Kotlin 1.1.2 起，使用 `org.jetbrains.kotlin` group 的依赖项默认使用
-从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
+从 Kotlin 1.1.2 起，使用 `org.jetbrains.kotlin` group 的依赖项默认使用<!--
+-->从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
 （如 `compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"`）手动提供其版本。
 
 ## 注解处理
@@ -211,8 +211,8 @@ kotlin {
 
 要指定附加的编译选项，请使用 Kotlin 编译任务的 `kotlinOptions` 属性。
 
-当针对 JVM 时，对于生产代码这些任务称为 `compileKotlin` 而对于
-测试代码称为 `compileTestKotlin`。对于自定义源文件集（source set）这些任务称呼取决于 `compile＜Name＞Kotlin` 模式。
+当针对 JVM 时，对于生产代码这些任务称为 `compileKotlin` 而对于<!--
+-->测试代码称为 `compileTestKotlin`。对于自定义源文件集（source set）这些任务称呼取决于 `compile＜Name＞Kotlin` 模式。
 
 Android 项目中的任务名称包含[构建变体](https://developer.android.com/studio/build/build-variants.html) 名称，并遵循 `compile<BuildVariant>Kotlin` 的模式，例如 `compileDebugKotlin`、 `compileReleaseUnitTestKotlin`。
 
