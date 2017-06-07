@@ -1,8 +1,8 @@
 ---
 type: tutorial
 layout: tutorial
-title: "Mixing Java and Kotlin in one project"
-description: "This tutorials walks us through the process of using Java and Kotlin in a single IntelliJ IDEA project."
+title: "在工程中混用 Java 与 Kotlin"
+description: "这个教程将介绍如何在一个 IntelliJ IDEA 工程中同时使用 Java 与 Kotlin。"
 authors: Hadi Hariri
 showAuthorInfo: false
 date: 2014-09-23
@@ -10,17 +10,15 @@ related:
     - getting-started.md
 ---
 
-We'll be using IntelliJ IDEA (Ultimate or Community edition). If using build tools, please see the corresponding
-entry under [Build Tools](build-tools.html). To understand how to start a new Kotlin project using IntelliJ IDEA,
-please see the [Getting-Started](getting-started.html) tutorial.
+教程将使用 IntelliJ IDEA (Ultimate 或 Community edition版本). 如果需要使用构建工具, 请参考 [构建工具](build-tools.html). 如需了解如何使用  IntelliJ IDEA 开始一个 Kotlin 项目，请参考 [以 IntelliJ IDEA 入门](getting-started.html)。
 
-### Adding Java source code to an existing Kotlin project
-To add a new Java class to a Kotlin project is very straightforward. All we need to do is create a new Java file (Ctrl+N/Cmd+N) in the correct folder/package.
+### 在 Kotlin 项目中加入 Java 代码
+向一个 Kotlin 项目添加 Java 代码非常简单，直接在包（或文件夹）中新建 (Ctrl+N/Cmd+N) Java 文件即可。
 
 ![New Java Class]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/new-java-class.png') }})
 
 
-We can now consume the Java Class from Kotlin or vice versa without any further actions. For instance, adding the following Java class:
+现在不需要进行其它的额外操作，就可以从 Kotlin 代码中使用新建的 Java 类，反之亦然。例如添加以下 Java 类:
 
 ``` java
 public class Customer {
@@ -41,7 +39,7 @@ public class Customer {
 }
 ```
 
-allows us to call it from Kotlin like any other type in Kotlin.
+可以像其它 Kotlin 内置类型一样，直接使用它。
 
 ``` kotlin
         val customer = Customer("Phase")
@@ -50,39 +48,35 @@ allows us to call it from Kotlin like any other type in Kotlin.
 ```
 
 
-### Adding Kotlin source code to an existing Java project
-Adding a Kotlin file to an existing Java project is pretty much the same process. The only difference here is that depending on how we do this, slightly different actions need to be taken:
+### 在已有的 Java 项目中使用 Kotlin
+将 Kotlin 代码加入一个已有的 Java 工程也非常简单。有以下几种方式：
 
-#### Creating a new Kotlin file
-To create a new Kotlin file we simply decide on the location in the project folder and create it.
+#### 创建新的 Kotlin 代码
+只要决定在何处创建文件，并创建它。
 
 ![New Kotlin File]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/new-kotlin-file.png') }})
 
-If this is the first time we're adding a Kotlin file, IntelliJ IDEA will prompt us to add the required Kotlin runtime.
+如果这是第一次创建 Kotlin 文件，IntelliJ IDEA 会提示添加所需的 Kotlin 运行库。
 
 ![Add Kotlin Runtime]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/add-kotlin-runtime.png') }})
 
-As we're working with a Java project, we'd most likely want to configure it as a Kotlin Java Module.
-The next step is to decide which modules to configure (if our project has more than one module) and whether we want to
-add the runtime library to the project or use those provided by the current Kotlin plugin.
+在 Java 项目中，选择配置为 Java 模块（as a Kotlin Java Module）。
+接下来选择需要配置的模块（如果项目中有多个模块），并选择添加运行库或者直接使用 Kotlin 插件中提供的运行库。
 
 ![Bundling Kotlin Runtime]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/bundling-kotlin-option.png') }})
 
-#### Adding an existing Kotlin file
-If instead of creating a new file, we want to add an existing Kotlin file to the project, IntelliJ IDEA won't prompt us to configure the Kotlin runtime. We have to invoke
-this action manually. This can be done via the *Tools\|Kotlin* menu option
-
+#### 添加已有的 Kotlin 代码
+如果不创建新的 Kotlin 文件，而直接向项目添加一个 Kotlin 文件，IntelliJ IDEA不会提示配置 Kotlin 运行库。因此需要从 *Tools\|Kotlin* 菜单，手动进行这个操作。
 
 ![Kotlin Menu]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/kotlin-menu.png') }})
 
+会弹出与 [创建新的 Kotlin 文件](#creating-a-new-kotlin-file) 相同的对话框。
 
-which then prompts the same dialog and process as when we [create a new Kotlin file](#creating-a-new-kotlin-file).
+#### 使用 J2K 将已有的 Java 代码 转换为 Kotlin 代码
 
-#### Converting an existing Java file to Kotlin with J2K
-
-The Kotlin plugin also bundles a Java to Kotlin compiler which is located under the *Code* menu in IntelliJ IDEA.
+Kotlin 插件自带了一个 Java 到 Kotlin 的转换工具，可以从 IntelliJ IDEA 的 *Code* 菜单中找到它。
 
 ![Convert Java to Kotlin Menu]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/convert-java-to-kotlin.png') }})
 
-Selecting an existing Java file, we can use this option to convert it automatically into Kotlin.
-While the converter is not fool-proof, it does a pretty decent job of converting most boiler-plate code from Java to Kotlin. Some manual tweaking however is sometimes required.
+选择一个 Java 文件，就可以使用这个功能将它自动转换成 Kotlin 代码。
+这个工具能很好的转换大部分的 Java 代码，但有时转换结果也需要进行手动调整。
