@@ -63,7 +63,7 @@ AWS Labs 提供了一个[示例项目](https://github.com/awslabs/serverless-pho
 
 ## 下一步
 
-* [使用 Http Servlet 创建 Web 应用程序](/docs/tutorials/httpservlets.html)和<!--
+* [使用 Http Servlet 创建 Web 应用程序](/docs/tutorials/httpservlets.html)及<!--
 -->[使用 Spring Boot 创建 RESTful Web 服务](/docs/tutorials/spring-boot-restful.html)教程<!--
 -->将向你展示如何在 Kotlin 中构建和运行非常小的 Web 应用程序。
 * 关于更深入的介绍，请查看本站的[参考文档](index.html)及
