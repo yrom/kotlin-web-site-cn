@@ -10,18 +10,18 @@ title: "Kotlin 用于服务器端开发"
 Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现力强的代码，
 同时保持与现有基于 Java 的技术栈的完全兼容性以及平滑的学习曲线：
 
- * **表现力**：Kotlin 的革新式语言功能，例如支持[类型安全的构建器](type-safe-builders.html)
-   和[委托属性](delegated-properties.html)，有助于构建强大而易于使用的抽象。
+ * **表现力**：Kotlin 的革新式语言功能，例如支持[类型安全的构建器](type-safe-builders.html)<!--
+   -->和[委托属性](delegated-properties.html)，有助于构建强大而易于使用的抽象。
  * **可伸缩性**：Kotlin 对[协程](coroutines.html)的支持有助于构建服务器端应用程序，
    伸缩到适度的硬件要求以应对大量的客户端。
- * **互操作性**：Kotlin 与所有基于 Java 的框架完全兼容，可以让你保持
-   熟悉的技术栈，同时获得更现代化语言的优势。
- * **迁移**：Kotlin 支持大型代码库从 Java 到 Kotlin 逐步迁移。你可以开始
-   用 Kotlin 编写新代码，同时系统中较旧部分继续用 Java。
+ * **互操作性**：Kotlin 与所有基于 Java 的框架完全兼容，可以让你保持<!--
+   -->熟悉的技术栈，同时获得更现代化语言的优势。
+ * **迁移**：Kotlin 支持大型代码库从 Java 到 Kotlin 逐步迁移。你可以开始<!--
+   -->用 Kotlin 编写新代码，同时系统中较旧部分继续用 Java。
  * **工具**：除了很棒的 IDE 支持之外，Kotlin 还为 IntelliJ IDEA Ultimate 的插件提供了框架特定的工具（例如
    Spring）。
- * **学习曲线**：对于 Java 开发人员，Kotlin 入门很容易。包含在 Kotlin 插件中的自动 Java 到 Kotlin 的转换器
-   有助于迈出第一步。[Kotlin 心印](/docs/tutorials/koans.html) 通过一系列互动练习提供了语言主要功能的指南。
+ * **学习曲线**：对于 Java 开发人员，Kotlin 入门很容易。包含在 Kotlin 插件中的自动 Java 到 Kotlin 的转换器<!--
+   -->有助于迈出第一步。[Kotlin 心印](/docs/tutorials/koans.html) 通过一系列互动练习提供了语言主要功能的指南。
 
 ## 使用 Kotlin 进行服务器端开发的框架
 
@@ -63,7 +63,7 @@ AWS Labs 提供了一个[示例项目](https://github.com/awslabs/serverless-pho
 
 ## 下一步
 
-* [使用 Http Servlet 创建 Web 应用程序](/docs/tutorials/httpservlets.html)和<!--
+* [使用 Http Servlet 创建 Web 应用程序](/docs/tutorials/httpservlets.html)及<!--
 -->[使用 Spring Boot 创建 RESTful Web 服务](/docs/tutorials/spring-boot-restful.html)教程<!--
 -->将向你展示如何在 Kotlin 中构建和运行非常小的 Web 应用程序。
 * 关于更深入的介绍，请查看本站的[参考文档](index.html)及
