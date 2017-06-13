@@ -93,19 +93,20 @@ println(-point)  // 输出“(-10, -20)”
 请注意，自 Kotlin 1.1 起支持 `rem` 运算符。Kotlin 1.0 使用 `mod` 运算符，它在
 Kotlin 1.1 中被弃用。
 
-{:#in}
 
-### 示例
+#### 示例
 
 下面是一个从给定值起始的 Counter 类的示例，它可以使用重载的 `+` 运算符来增加计数。
 
 ``` kotlin
-data class Counter(var dayIndex: Int) {
+data class Counter(val dayIndex: Int) {
     operator fun plus(increment: Int): Counter {
         return Counter(dayIndex + increment)
     }
 }
 ```
+
+{:#in}
 
 ### “In”操作符
 

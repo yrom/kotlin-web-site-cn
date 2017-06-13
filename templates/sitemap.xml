@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for location in locations %}
         <url>
-            <loc>{{ location }}</loc>
+            <loc>https://www.kotlincn.net{{ location }}</loc>
         </url>
     {% endfor %}
 </urlset>

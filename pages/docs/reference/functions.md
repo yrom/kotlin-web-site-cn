@@ -13,6 +13,7 @@ Kotlin 中的函数使用 *fun*{: .keyword } 关键字声明
 
 ``` kotlin
 fun double(x: Int): Int {
+    return 2*x
 }
 ```
 
