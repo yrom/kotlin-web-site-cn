@@ -155,7 +155,15 @@ data?.let {
 }
 ```
 
-### 返回when表达式
+### 映射可空值（如果非空的话）
+
+``` kotlin
+val data = ……
+
+val mapped = data?.let { transformData(it) } ?: defaultValueIfDataIsNull
+```
+
+### 返回 when 表达式
 
 ``` kotlin
 fun transform(color: String): Int {
