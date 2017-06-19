@@ -1,7 +1,7 @@
 ---
 type: doc
 layout: reference
-title: "操作符符重载"
+title: "操作符重载"
 category: "Syntax"
 ---
 
