@@ -20,8 +20,7 @@ Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现�
    -->用 Kotlin 编写新代码，同时系统中较旧部分继续用 Java。
  * **工具**：除了很棒的 IDE 支持之外，Kotlin 还为 IntelliJ IDEA Ultimate 的插件提供了框架特定的工具（例如
    Spring）。
- * **学习曲线**：对于 Java 开发人员，Kotlin 入门很容易。包含在 Kotlin 插件中的自动 Java 到 Kotlin 的转换器<!--
-   -->有助于迈出第一步。[Kotlin 心印](/docs/tutorials/koans.html) 通过一系列互动练习提供了语言主要功能的指南。
+ * **学习曲线**：对于 Java 开发人员，Kotlin 入门很容易。包含在 Kotlin 插件中的自动 Java 到 Kotlin 的转换器有助于迈出第一步。[Kotlin 心印](/docs/tutorials/koans.html) 通过一系列互动练习提供了语言主要功能的指南。
 
 ## 使用 Kotlin 进行服务器端开发的框架
 
