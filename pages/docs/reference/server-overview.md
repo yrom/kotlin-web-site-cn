@@ -45,8 +45,7 @@ Kotlin 编译的类适应框架的要求。
 Kotlin 应用程序可以部署到支持 Java Web 应用程序的任何主机，包括 Amazon Web Services、
 Google Cloud Platform 等。
 
-[这篇博文](https://jkutner.github.io/2017/04/10/kotlin-heroku-ktor.html)提供了在 [Heroku](https://www.heroku.com)上部署 Kotlin
-应用程序的指南。
+To deploy Kotlin applications on [Heroku](https://www.heroku.com), you can follow the [official Heroku tutorial](https://devcenter.heroku.com/articles/getting-started-with-kotlin).
 
 AWS Labs 提供了一个[示例项目](https://github.com/awslabs/serverless-photo-recognition)，展示了 Kotlin
 编写 [AWS Lambda](https://aws.amazon.com/lambda/) 函数的使用。
