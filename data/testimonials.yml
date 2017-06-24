@@ -1,7 +1,7 @@
 - company: Pinterest
   text: Pinterest 已成功<a href="https://www.youtube.com/watch?v=mDpnc45WwlI">将 Kotlin 引入</a>了他们的应用程序，每个月有 1 亿 5 千万人使用。
 - company: Gradle
-  text: Gradle 正<a href="https://blog.gradle.org/kotlin-meets-gradle">引入 Kotlin</a> 作为编写脚本的语言。
+  text: Gradle 正<a href="https://hltj.me/kotlin/2017/06/13/kotlin-meet-gradle.html">引入 Kotlin</a> 作为编写脚本的语言。
 - company: Evernote
   text: Evernote 最近 <a href="https://blog.evernote.com/tech/2017/01/26/android-state-library/">将 Kotlin 整合</a>到了他们的 Android 客户端
 - company: Uber
