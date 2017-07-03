@@ -56,7 +56,7 @@ Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的�
 ``` kotlin
 fun foo() {
     ints.forEach {
-        if (it == 0) return
+        if (it == 0) return  // nonlocal return from inside lambda directly to the caller of foo()
         print(it)
     }
 }
@@ -93,7 +93,7 @@ fun foo() {
 ``` kotlin
 fun foo() {
     ints.forEach(fun(value: Int) {
-        if (value == 0) return
+        if (value == 0) return  // local return to the caller of the anonymous fun, i.e. the forEach loop
         print(value)
     })
 }

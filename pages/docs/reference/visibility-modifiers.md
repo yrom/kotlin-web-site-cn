@@ -112,5 +112,6 @@ class C private constructor(a: Int) { …… }
 一个模块是编译在一起的一套 Kotlin 文件：
 
   * 一个 IntelliJ IDEA 模块；
-  * 一个 Maven 或者 Gradle 项目；
+  * 一个 Maven 项目；
+  * 一个 Gradle 源集；
   * 一次 ＜kotlinc＞ Ant 任务执行所编译的一套文件。
