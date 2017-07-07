@@ -76,7 +76,7 @@ import bar.Bar as bBar // bBar 代表“bar.Bar”
   * 在[对象声明](object-declarations.html#对象声明)中声明的函数和属性;
   * [枚举常量](enum-classes.html)
 
-与 Java 不同，Kotlin 没有单独的 "import static" 语法； 所有这些声明都用 `import` 关键字导入。
+与 Java 不同，Kotlin 没有单独的[“import static”](https://docs.oracle.com/javase/8/docs/technotes/guides/language/static-import.html)语法； 所有这些声明都用 `import` 关键字导入。
 
 ## 顶层声明的可见性
 

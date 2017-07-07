@@ -166,6 +166,14 @@ noArg {
 }
 ```
 
+如果你希望该插件在合成的构造函数中运行其初始化逻辑，请启用 `invokeInitializers` 选项。由于在未来会解决的 [`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667) 及 [`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668)，自 Kotlin 1.1.3-2 起，它被默认禁用。
+
+```groovy
+noArg {
+    invokeInitializers = true
+}
+```
+
 在 Maven 中使用无参插件方法：
 
 ``` xml
@@ -182,6 +190,8 @@ noArg {
 
         <pluginOptions>
             <option>no-arg:annotation=com.my.Annotation</option>
+            <!-- 在合成的构造函数中调用实例初始化器 -->
+            <!-- <option>no-arg:invokeInitializers=true</option> -->
         </pluginOptions>
     </configuration>
 
