@@ -166,7 +166,7 @@ noArg {
 }
 ```
 
-Enable `invokeInitializers` option if you want the plugin to run the initialization logic from the synthetic constructor. Starting from Kotlin 1.1.3-2, it is disabled by default because of [`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667) and [`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668) which will be addressed in the future.
+如果你希望该插件在合成的构造函数中运行其初始化逻辑，请启用 `invokeInitializers` 选项。由于在未来会解决的 [`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667) 及 [`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668)，自 Kotlin 1.1.3-2 起，它被默认禁用。
 
 ```groovy
 noArg {
@@ -190,7 +190,7 @@ noArg {
 
         <pluginOptions>
             <option>no-arg:annotation=com.my.Annotation</option>
-            <!-- Call instance initializers in the synthetic constructor -->
+            <!-- 在合成的构造函数中调用实例初始化器 -->
             <!-- <option>no-arg:invokeInitializers=true</option> -->
         </pluginOptions>
     </configuration>
