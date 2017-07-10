@@ -5,6 +5,9 @@ main:
     - url: http://www.kotliner.cn/
       title: 博客
 
+    - url: http://discuss.kotliner.cn/
+      title: 论坛
+
     - url: /docs/reference/
       title: 学习
 
