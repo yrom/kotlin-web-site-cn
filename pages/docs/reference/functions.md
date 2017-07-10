@@ -71,7 +71,7 @@ fun powerOf(number: Int, exponent: Int) {
 -->重载数量。
 
 ``` kotlin
-fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size()) {
+fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size) {
 ……
 }
 ```
