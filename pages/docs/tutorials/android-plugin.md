@@ -65,11 +65,11 @@ import kotlinx.android.synthetic.main.＜布局＞.*
 
 ``` xml
     <TextView
-            android:id="@+id/hello"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MyActivity"
-            />
+        android:id="@+id/hello"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World, MyActivity"
+        />
 ```
 
 将有一个名为 `hello` 的属性：
@@ -109,9 +109,9 @@ Kotlin 安卓扩展作为 Kotlin 编译器的插件，主要有两大作用：
 例如：
 
 ``` kotlin
-class MyActivity: Activity()
+class MyActivity : Activity()
 fun MyActivity.a() { 
-        this.textView.setText(“”) 
+    this.textView.setText(“”)
 }
 ```
 
@@ -121,7 +121,7 @@ fun MyActivity.a() {
 
 ``` kotlin
 fun Activity.b() { 
-        this.textView.setText(“”)     
+    this.textView.setText(“”)
 }
 ```
 
