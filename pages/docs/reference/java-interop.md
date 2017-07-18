@@ -22,7 +22,7 @@ fun demo(source: List<Int>) {
         list.add(item)
     }
     // 操作符约定同样有效：
-    for (i in 0..source.size() - 1) {
+    for (i in 0..source.size - 1) {
         list[i] = source[i] // 调用 get 和 set
     }
 }
@@ -31,7 +31,10 @@ fun demo(source: List<Int>) {
 ## Getter 和 Setter
 
 遵循 Java 约定的 getter 和 setter 的方法（名称以 `get` 开头的无参数方法和<!--
--->以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。 例如：
+-->以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。
+`Boolean` 访问器方法（其中 getter 的名称以 `is` 开头而 setter 的名称以 `set` 开头）<!--
+-->会表示为与 getter 方法具有相同名称的属性。
+例如：
 
 ``` kotlin
 import java.util.Calendar
@@ -39,7 +42,10 @@ import java.util.Calendar
 fun calendarDemo() {
     val calendar = Calendar.getInstance()
     if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // 调用 getFirstDayOfWeek()
-        calendar.firstDayOfWeek = Calendar.MONDAY       // 调用 setFirstDayOfWeek()
+        calendar.firstDayOfWeek = Calendar.MONDAY      // 调用ll setFirstDayOfWeek()
+    }
+    if (!calendar.isLenient) {                         // 调用 isLenient() 
+        calendar.isLenient = true                      // 调用 setLenient()
     }
 }
 ```
@@ -73,7 +79,7 @@ Java 声明的类型在 Kotlin 中会被特别对待并称为*平台类型*。�
 ``` kotlin
 val list = ArrayList<String>() // 非空（构造函数结果）
 list.add("Item")
-val size = list.size() // 非空（原生 int）
+val size = list.size // 非空（原生 int）
 val item = list[0] // 推断为平台类型（普通 Java 对象）
 ```
 
