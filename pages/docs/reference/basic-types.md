@@ -7,7 +7,10 @@ title: "基本类型"
 
 # 基本类型
 
-在 Kotlin 中，所有东西都是对象，在这个意义上讲所以我们可以在任何变量上调用成员函数和属性。有些类型是内置的，因为他们的实现是优化过的。但是用户看起来他们就像普通的类。本节我们会描述大多数这些类型：数字、字符、布尔和数组。
+在 Kotlin 中，所有东西都是对象，在这个意义上讲所以我们可以在任何变量上调用成员函数和属性。
+Some of the types can have a special internal representation - for example, numbers, characters and booleans can be
+represented as primitive values at runtime - but to the user they look like ordinary classes. 
+In this section we describe the basic types used in Kotlin: numbers, characters, booleans, arrays, and strings.
 
 ## 数字
 
