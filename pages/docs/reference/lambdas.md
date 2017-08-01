@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "高阶函数和 lambda 表达式"
+title: "高阶函数与 lambda 表达式"
 ---
 
 # 高阶函数和 lambda 表达式

@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "类和继承"
+title: "类与继承"
 related:
     - functions.md
     - nested-classes.md
@@ -252,9 +252,9 @@ class Bar2 : Foo {
 }
 ```
 
-### Calling the superclass implementation
+### 调用超类实现
 
-Code in a derived class can call its superclass functions and property accessors implementations using the *super*{: .keyword } keyword:
+派生类中的代码可以使用 *super*{: .keyword } 关键字调用其超类的函数与属性访问器的实现：
 
 ```kotlin
 open class Foo {
@@ -272,17 +272,17 @@ class Bar : Foo() {
 }
 ```
 
-Inside an inner class, accessing the superclass of the outer class is done with the *super*{: .keyword } keyword qualified with the outer class name: `super@Outer`:
+在一个内部类中访问外部类的超类，可以通过由外部类名限定的 *super*{: .keyword } 关键字来实现：`super@Outer`：
 
 ```kotlin
 class Bar : Foo() {
-    override fun f() { /* ... */ }
+    override fun f() { /* …… */ }
     override val x: String get() = "..."
     
     inner class Baz {
         fun g() {
-            super@Bar.f() // Calls Foo's implementation of f()
-            println(super@Bar.x) // Uses Foo's implementation of x's getter
+            super@Bar.f() // 调用 Foo 实现的 f()
+            println(super@Bar.x) // 使用 Foo 实现的 x 的 getter
         }
     }
 }

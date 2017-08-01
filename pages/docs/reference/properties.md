@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "属性和字段"
+title: "属性与字段"
 ---
 
 # 属性和字段
