@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "类和继承"
+title: "类与继承"
 related:
     - functions.md
     - nested-classes.md
@@ -249,6 +249,42 @@ class Bar1(override val count: Int) : Foo
 
 class Bar2 : Foo {
     override var count: Int = 0
+}
+```
+
+### 调用超类实现
+
+派生类中的代码可以使用 *super*{: .keyword } 关键字调用其超类的函数与属性访问器的实现：
+
+```kotlin
+open class Foo {
+    open fun f() { println("Foo.f()") }
+    open val x: Int get() = 1
+}
+
+class Bar : Foo() {
+    override fun f() { 
+        super.f()
+        println("Bar.f()"} 
+    }
+    
+    override val x: Int get() = super.x + 1
+}
+```
+
+在一个内部类中访问外部类的超类，可以通过由外部类名限定的 *super*{: .keyword } 关键字来实现：`super@Outer`：
+
+```kotlin
+class Bar : Foo() {
+    override fun f() { /* …… */ }
+    override val x: String get() = "..."
+    
+    inner class Baz {
+        fun g() {
+            super@Bar.f() // 调用 Foo 实现的 f()
+            println(super@Bar.x) // 使用 Foo 实现的 x 的 getter
+        }
+    }
 }
 ```
 
