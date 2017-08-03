@@ -2,10 +2,10 @@
 # ====================
 main:
   items:
-    - url: http://www.kotliner.cn/
+    - url: https://blog.kotliner.cn/
       title: 博客
 
-    - url: http://discuss.kotliner.cn/
+    - url: https://kotliner.cn/
       title: 论坛
 
     - url: /docs/reference/
