@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "泛型"
+title: "泛型：in、out、where"
 ---
 
 # 泛型

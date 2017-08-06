@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "函数"
+title: "函数：infix、vararg、tailrec"
 ---
 
 # 函数

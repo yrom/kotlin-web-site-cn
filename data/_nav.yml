@@ -82,7 +82,7 @@ reference:
         - url: /docs/reference/basic-types.html
           title: 基本类型
         - url: /docs/reference/packages.html
-          title: 包
+          title: 包与导入
         - url: /docs/reference/control-flow.html
           title: 控制流
         - url: /docs/reference/returns.html
