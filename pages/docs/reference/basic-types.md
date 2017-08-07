@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "基本类型"
+title: "基本类型：数字、字符串、数组"
 ---
 
 # 基本类型

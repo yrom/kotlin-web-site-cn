@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "对象表达式和对象声明"
+title: "对象表达式、对象声明与伴生对象"
 ---
 
 # 对象表达式和对象声明

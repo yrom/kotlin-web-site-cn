@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "属性与字段"
+title: "属性与字段：Getters、Setters、const、lateinit"
 ---
 
 # 属性和字段

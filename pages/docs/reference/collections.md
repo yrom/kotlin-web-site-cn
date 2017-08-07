@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: Other
-title: "集合"
+title: "集合：List、Set、Map"
 ---
 
-# 集合
+# 集合：List、Set、Map
 
 与大多数语言不同，Kotlin 区分可变集合和不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 和设计良好的 API。
 

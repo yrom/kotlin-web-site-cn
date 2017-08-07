@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "内联函数"
+title: "内联函数与具体化的类型参数"
 ---
 
 # 内联函数

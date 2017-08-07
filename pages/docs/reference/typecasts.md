@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "类型的检查与转换"
+title: "类型的检查与转换：“is”与“as”"
 ---
 
-# 类型的检查与转换
+# 类型的检查与转换“is”与“as”
 
 ## `is` 和 `!is` 操作符
 
