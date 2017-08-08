@@ -148,8 +148,8 @@ fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
 val compare: (x: T, y: T) -> Int = ……
 ```
 
-To declare a nullable variable of a function type, enclose the entire function type in parentheses and put
-the question mark after it:
+如要声明一个函数类型的可空变量，请将整个函数类型括在括号中并在<!--
+-->其后加上问号：
 
 ``` kotlin
 var sum: ((Int, Int) -> Int)? = null
