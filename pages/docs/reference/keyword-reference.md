@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Tools"
-title: "Keywords and Operators"
+title: "关键字与操作符"
 ---
 
-# Keywords and Operators
+# 关键字与操作符
 
 ## Hard Keywords
 

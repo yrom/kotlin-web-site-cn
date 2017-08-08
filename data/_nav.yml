@@ -172,7 +172,7 @@ reference:
       description: 语法及其他信息
       items:
         - url: /docs/reference/keyword-reference.html
-          title: Keywords and Operators
+          title: 关键字与操作符
         - url: /docs/reference/grammar.html
           title: 语法
         - url: /docs/reference/compatibility.html
