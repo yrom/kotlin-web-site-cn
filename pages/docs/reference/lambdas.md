@@ -148,6 +148,14 @@ fun <T> max(collection: Collection<T>, less: (T, T) -> Boolean): T? {
 val compare: (x: T, y: T) -> Int = ……
 ```
 
+To declare a nullable variable of a function type, enclose the entire function type in parentheses and put
+the question mark after it:
+
+``` kotlin
+var sum: ((Int, Int) -> Int)? = null
+```
+
+
 ### Lambda 表达式语法
 
 Lambda 表达式的完整语法形式，即函数类型的字面值如下：
