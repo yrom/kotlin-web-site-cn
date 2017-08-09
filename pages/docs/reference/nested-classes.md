@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "嵌套类"
+title: "嵌套类与内部类"
 ---
 
-# 嵌套类
+# 嵌套类与内部类
 
 类可以嵌套在其他类中
 

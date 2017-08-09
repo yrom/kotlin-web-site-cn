@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "基本类型"
+title: "基本类型：数字、字符串、数组"
 ---
 
 # 基本类型
@@ -283,7 +283,7 @@ val i = 10
 val s = "i = $i" // 求值结果为 "i = 10"
 ```
 
-或者用花括号扩起来的任意表达式:
+或者用花括号括起来的任意表达式:
 
 ``` kotlin
 val s = "abc"

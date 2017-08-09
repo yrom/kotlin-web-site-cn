@@ -2,12 +2,12 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "控制流"
+title: "控制流：if、when、for、while"
 ---
 
-# 控制流
+# 控制流：if、when、for、while
 
-## If表达式
+## If 表达式
 
 在 Kotlin 中，*if*{: .keyword }是一个表达式，即它会返回一个值。
 因此就不需要三元运算符（条件 ? 然后 : 否则），因为普通的 *if*{: .keyword } 就能胜任这个角色。
@@ -126,7 +126,8 @@ when {
 
 ## For 循环
 
-*for*{: .keyword } 循环可以对任何提供迭代器（iterator）的对象进行遍历，语法如下:
+*for*{: .keyword } 循环可以对任何提供迭代器（iterator）的对象进行遍历，这相当<!--
+-->于像 C# 这样的语言中的 `foreach` 循环。语法如下：
 
 ``` kotlin
 for (item in collection) print(item)

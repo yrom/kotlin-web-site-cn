@@ -188,7 +188,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-参见[*if*{: .keyword } 表达式](control-flow.html#if表达式)。
+参见[*if*{: .keyword } 表达式](control-flow.html#if-表达式)。
 
 ## 使用可空值及 *null*{: .keyword } 检测
 

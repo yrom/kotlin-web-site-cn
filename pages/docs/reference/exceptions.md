@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "异常"
+title: "异常：try、catch、finally、throw、Nothing"
 ---
 
 # 异常

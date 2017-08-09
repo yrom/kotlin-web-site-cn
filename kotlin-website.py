@@ -3,7 +3,7 @@ import json
 import os
 import sys
 from os import path
-from urlparse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin
 
 import xmltodict
 import yaml
@@ -14,12 +14,14 @@ from flask_frozen import Freezer, walk_directory
 
 from src.Feature import Feature
 from src.Navigaton import Nav
+from src.api import get_api_page
 from src.encoder import DateAwareEncoder
 from src.grammar import get_grammar
 from src.markdown.makrdown import jinja_aware_markdown
 from src.pages.MyFlatPages import MyFlatPages
 from src.pdf import generate_pdf
 from src.processors.processors import process_code_blocks, process_header_ids
+from src.search import build_search_indices
 from src.sitemap import generate_sitemap
 
 app = Flask(__name__, static_folder='_assets')
@@ -45,7 +47,7 @@ def get_site_data():
         if not data_file.endswith(".yml"):
             continue
         data_file_path = path.join(data_folder, data_file)
-        with open(data_file_path) as stream:
+        with open(data_file_path, encoding="UTF-8") as stream:
             try:
                 file_name_without_extension = data_file[:-4] if data_file.endswith(".yml") else data_file
                 data[file_name_without_extension] = yaml.load(stream)
@@ -77,8 +79,8 @@ def get_kotlin_features():
     features = []
     for feature_meta in yaml.load(open(path.join(features_dir, "kotlin-features.yml"))):
         file_path = path.join(features_dir, feature_meta['content_file'])
-        with open(file_path) as f:
-            content = f.read().decode('utf-8')
+        with open(file_path, encoding='utf-8') as f:
+            content = f.read()
             content = content.replace("\r\n", "\n")
             if file_path.endswith(".md"):
                 html_content = BeautifulSoup(jinja_aware_markdown(content, pages), 'html.parser')
@@ -124,8 +126,8 @@ def versioned_url_for(endpoint, **values):
 
 @app.route('/data/events.json')
 def get_events():
-    with open(path.join(data_folder, "events.xml")) as events_file:
-        events = xmltodict.parse(events_file)['events']['event']
+    with open(path.join(data_folder, "events.xml"), encoding="UTF-8") as events_file:
+        events = xmltodict.parse(events_file.read())['events']['event']
         return Response(json.dumps(events, cls=DateAwareEncoder), mimetype='application/json')
 
 
@@ -164,12 +166,7 @@ def pdf():
 
 @app.route('/docs/resources.html')
 def resources():
-    return render_template('resources.html')
-
-
-@app.route('/search.html')
-def search_page():
-    return render_template('pages/search.html')
+    return render_template('pages/resources.html')
 
 
 @app.route('/community/')
@@ -270,52 +267,19 @@ def api_page():
 @app.route('/api/<path:page_path>')
 def api_page(page_path):
     if page_path.endswith('.html'):
-        return process_api_page(page_path)
+        return process_api_page(page_path[:-5])
     elif path.basename(page_path) == "package-list":
         return respond_with_package_list(page_path)
     elif not page_path.endswith('/'):
         page_path += '/'
-    return process_api_page(page_path + 'index.html')
-
-
-titles = {}
-
-
-def process_titles(row_titles, title_prefix, path_folder):
-    url = title_prefix + row_titles["url"].split(path_folder, 1)[1] + '.html'
-    titles[url] = row_titles["title"]
-    if "content" not in row_titles:
-        return
-    for child_titles in row_titles["content"]:
-        process_titles(child_titles, title_prefix, path_folder)
-
-
-def load_api_titles():
-    api_title_files_path = path.join(root_folder, 'api', 'latest', 'jvm', 'stdlib', 'index.yml')
-    with open(api_title_files_path) as title_files:
-        process_titles(yaml.load(title_files)[0], 'latest/jvm/stdlib', 'kotlin-stdlib')
-    test_title_files_path = path.join(root_folder, 'api', 'latest', 'kotlin.test', 'index.yml')
-    with open(test_title_files_path) as title_files:
-        process_titles(yaml.load(title_files)[0], 'latest/kotlin.test', 'kotlin-test')
+    return process_api_page(page_path + 'index')
 
 
 def process_api_page(page_path):
-    if len(titles) == 0:
-        load_api_titles()
-    file_path = path.join(root_folder, 'api', page_path)
-    if not path.exists(file_path):
-        return make_response("Api page " + page_path + " not found", 404)
-    with open(file_path) as html_file:
-        html_content = BeautifulSoup(html_file.read(), 'html.parser')
-        html_content = process_code_blocks(html_content)
-        html_content = process_header_ids(html_content)
-        return render_template(
-            'api.html',
-            page={
-                "title": titles[page_path],
-                "content": html_content
-            }
-        )
+    return render_template(
+        'api.html',
+        page=get_api_page(page_path)
+    )
 
 
 def respond_with_package_list(page_path):
@@ -367,13 +331,16 @@ def add_header(request):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1 and sys.argv[1] == "build":
-        build_mode = True
-        urls = freezer.freeze()
-        generate_sitemap(urls)
-        if len(build_errors) > 0:
-            for error in build_errors:
-                sys.stderr.write(error + '\n')
-            sys.exit(-1)
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "build":
+            build_mode = True
+            urls = freezer.freeze()
+            generate_sitemap(urls)
+            if len(build_errors) > 0:
+                for error in build_errors:
+                    sys.stderr.write(error + '\n')
+                sys.exit(-1)
+        elif sys.argv[1] == "index":
+            build_search_indices(freezer._generate_all_urls(), pages)
     else:
         app.run(host="0.0.0.0", debug=True, threaded=True)

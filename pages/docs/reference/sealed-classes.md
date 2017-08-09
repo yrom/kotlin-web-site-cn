@@ -30,7 +30,7 @@ object NotANumber : Expr()
 -->同一个文件中。
 
 使用密封类的关键好处在于使用 [`when` 表达式](control-flow.html#when-表达式) 的时候，如果能够<!--
--->验证语句覆盖了所有情况，就不需要为该语句再添加一个 `else` 子句了。
+-->验证语句覆盖了所有情况，就不需要为该语句再添加一个 `else` 子句了。当然，这只有当你用 `when` 作为表达式（使用结果）而不是作为语句时才有用。
 
 ``` kotlin
 fun eval(expr: Expr): Double = when(expr) {

@@ -2,10 +2,10 @@
 # ====================
 main:
   items:
-    - url: http://www.kotliner.cn/
+    - url: https://blog.kotliner.cn/
       title: 博客
 
-    - url: http://discuss.kotliner.cn/
+    - url: https://kotliner.cn/
       title: 论坛
 
     - url: /docs/reference/
@@ -82,7 +82,7 @@ reference:
         - url: /docs/reference/basic-types.html
           title: 基本类型
         - url: /docs/reference/packages.html
-          title: 包
+          title: 包与导入
         - url: /docs/reference/control-flow.html
           title: 控制流
         - url: /docs/reference/returns.html
@@ -171,6 +171,8 @@ reference:
     - title: 参考
       description: 语法及其他信息
       items:
+        - url: /docs/reference/keyword-reference.html
+          title: 关键字与操作符
         - url: /docs/reference/grammar.html
           title: 语法
         - url: /docs/reference/compatibility.html

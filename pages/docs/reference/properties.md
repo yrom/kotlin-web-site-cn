@@ -2,7 +2,7 @@
 type: doc
 layout: reference
 category: "Syntax"
-title: "属性与字段"
+title: "属性与字段：Getters、Setters、const、lateinit"
 ---
 
 # 属性和字段
@@ -34,7 +34,7 @@ fun copyAddress(address: Address): Address {
 }
 ```
 
-## Getters 和 Setters
+## Getters 与 Setters
 
 声明一个属性的完整语法是
 
