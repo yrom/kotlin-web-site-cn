@@ -34,7 +34,7 @@ fun copyAddress(address: Address): Address {
 }
 ```
 
-## Getters 和 Setters
+## Getters 与 Setters
 
 声明一个属性的完整语法是
 

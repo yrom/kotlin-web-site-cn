@@ -7,7 +7,7 @@ title: "控制流：if、when、for、while"
 
 # 控制流：if、when、for、while
 
-## If表达式
+## If 表达式
 
 在 Kotlin 中，*if*{: .keyword }是一个表达式，即它会返回一个值。
 因此就不需要三元运算符（条件 ? 然后 : 否则），因为普通的 *if*{: .keyword } 就能胜任这个角色。

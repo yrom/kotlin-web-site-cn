@@ -7,166 +7,166 @@ title: "关键字与操作符"
 
 # 关键字与操作符
 
-## Hard Keywords
+## 硬关键字
 
-The following tokens are always interpreted as keywords and cannot be used as identifiers:
+以下符号会始终解释为关键字，不能用作标识符：
 
  * `as` 
-      - is used for [type casts](/docs/reference/typecasts.html#unsafe-cast-operator)
-      - specifies an [alias for an import](/docs/reference/packages.html#imports)
- * `as?` is used for [safe type casts](/docs/reference/typecasts.html#safe-nullable-cast-operator)  
- * `break` [terminates the execution of a loop](http://kotlinlang.org/docs/reference/returns.html)
- * `class` declares a [class](/docs/reference/classes.html)
- * `continue` [proceeds to the next step of the nearest enclosing loop](/docs/reference/returns.html) 
- * `do` begins a [do/while loop](/docs/reference/control-flow.html#while-loops) (loop with postcondition)
- * `else` defines the branch of an [if expression](/docs/reference/control-flow.html#if-expression) which is executed when the condition is false
- * `false` specifies the 'false' value of the [Boolean type](/docs/reference/basic-types.html#booleans)
- * `for` begins a [for loop](/docs/reference/control-flow.html#for-loops)
- * `fun` declares a [function](/docs/reference/functions.html) 
- * `if` begins an [if expression](/docs/reference/control-flow.html#if-expression)
+      - 用于[类型转换](typecasts.html#“不安全的”转换操作符)
+      - 为[导入指定一个别名](packages.html#导入)
+ * `as?` 用于[安全类型转换](typecasts.html#“安全的”（可空）转换操作符)
+ * `break` [终止循环的执行](returns.html)
+ * `class` 声明一个[类](classes.html)
+ * `continue` [继续最近层循环的下一步](returns.html) 
+ * `do` 开始一个 [do/while 循环](control-flow.html#while-循环)（后置条件的循环）
+ * `else` 定义一个 [if 表达式](control-flow.html#if-表达式)条件为 false 时执行的分支
+ * `false` 指定[布尔类型](basic-types.html#布尔)的“假”值
+ * `for` 开始一个 [for 循环](control-flow.html#for-循环)
+ * `fun` 声明一个[函数](functions.html) 
+ * `if` 开始一个 [if 表达式](control-flow.html#if-表达式)
  * `in`
-     - specifies the object being iterated in a [for loop](/docs/reference/control-flow.html#for-loops)
-     - is used as an infix operator to check that a value belongs to [a range](/docs/reference/ranges.html), 
-       a collection or another entity that [defines the 'contains' method](/docs/reference/operator-overloading.html#in)
-     - is used in [when expressions](/docs/reference/control-flow.html#when-expression) for the same purpose
-     - marks a type parameter as [contravariant](/docs/reference/generics.html#declaration-site-variance)
+     - 指定在 [for 循环](control-flow.html#for-循环)中迭代的对象
+     - 用作中缀操作符以检查一个值属于[一个区间](ranges.html)、
+       一个集合或者其他[定义 'contains' 方法](operator-overloading.html#“in”操作符)的实体
+     - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
+     - 将一个类型参数标记为[逆变](generics.html#声明处型变)
  * `!in`
-     - is used as an operator to check that a value does NOT belong to [a range](/docs/reference/ranges.html), 
-       a collection or another entity that [defines the 'contains' method](/docs/reference/operator-overloading.html#in)
-     - is used in [when expressions](/docs/reference/control-flow.html#when-expression) for the same purpose
- * `interface` declares an [interface](/docs/reference/interfaces.html)
+     - 用作中缀操作符以检查一个值**不**属于[一个区间](ranges.html)、
+       一个集合或者其他[定义 'contains' 方法](/docs/reference/operator-overloading.html#in)的实体
+     - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
+ * `interface` 声明一个[接口](interfaces.html)
  * `is` 
-     - checks that [a value has a certain type](/docs/reference/typecasts.html#is-and-is-operators)
-     - is used in [when expressions](/docs/reference/control-flow.html#when-expression) for the same purpose
+     - 检查[一个值具有指定类型](typecasts.html#is-与-is-操作符)
+     - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
  * `!is`
-     - checks that [a value does NOT have a certain type](/docs/reference/typecasts.html#is-and-is-operators)
-     - is used in [when expressions](/docs/reference/control-flow.html#when-expression) for the same purpose
- * `null` is a constant representing an object reference that doesn't point to any object
- * `object` declares [a class and its instance at the same time](/docs/reference/object-declarations.html)
- * `package` specifies the [package for the current file](/docs/reference/packages.html)
- * `return` [returns from the nearest enclosing function or anonymous function](/docs/reference/returns.html)  
+     - 检查[一个值**不**具有指定类型](typecasts.html#is-与-is-操作符)
+     - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
+ * `null` 是表示不指向任何对象的对象引用的常量
+ * `object` 同时声明[一个类及其实例](object-declarations.html)
+ * `package` 指定[当前文件的包](packages.html)
+ * `return` [从最近层的函数或匿名函数返回](returns.html)  
  * `super` 
-     - [refers to the superclass implementation of a method or property](/docs/reference/classes.html#calling-the-superclass-implementation)
-     - [calls the superclass constructor from a secondary constructor](/docs/reference/classes.html#inheritance)
+     - [引用一个方法或属性的超类实现](classes.html#调用超类实现)
+     - [在次构造函数中调用超类构造函数](classes.html#继承)
  * `this` 
-     - refers to [the current receiver](/docs/reference/this-expressions.html)
-     - [calls another constructor of the same class from a secondary constructor](http://kotlinlang.org/docs/reference/classes.html#constructors)
- * `throw` [throws an exception](/docs/reference/exceptions.html)
- * `true` specifies the 'true' value of the [Boolean type](/docs/reference/basic-types.html#booleans)
- * `try` [begins an exception handling block](/docs/reference/exceptions.html)
- * `typealias` declares a [type alias](/docs/reference/type-aliases.html)
- * `val` declares a read-only [property](/docs/reference/properties.html) or [local variable](/docs/reference/basic-syntax.html#defining-local-variables)
- * `var` declares a mutable [property](/docs/reference/properties.html) or [local variable](/docs/reference/basic-syntax.html#defining-local-variables)
- * `when` begins a [when expression](/docs/reference/control-flow.html#when-expression) (executes one of the given branches)
- * `while` begins a [while loop](/docs/reference/control-flow.html#while-loops) (loop with precondition)
+     - 引用[当前接收者](this-expressions.html)
+     - [在次构造函数中调用同一个类的另一个构造函数](classes.html#构造函数)
+ * `throw` [抛出一个异常](exceptions.html)
+ * `true` 指定[布尔类型](basic-types.html#布尔)的“真”值
+ * `try` [开始一个异常处理块](exceptions.html)
+ * `typealias` 声明一个[类型别名](type-aliases.html)
+ * `val` 声明一个只读[属性](properties.html)或[局部变量](basic-syntax.html#定义局部变量)
+ * `var` 声明一个可变[属性](properties.html)或[局部变量](basic-syntax.html#定义局部变量)
+ * `when` 开始一个 [when 表达式](control-flow.html#when-表达式)（执行其中一个给定分支）
+ * `while` 开始一个 [while 循环](control-flow.html#while-循环)（前置条件的循环）
 
-## Soft Keywords
+## 软关键字
 
-The following tokens act as keywords in the context when they are applicable and can be used
-as identifiers in other contexts:
+以下符号在适用的上下文中充当关键字，而在<!--
+-->其他上下文中可用作标识符：
 
  * `by`
-     - [delegates the implementation of an interface to another object](/docs/reference/delegation.html)
-     - [delegates the implementation of accessors for a property to another object](/docs/reference/delegated-properties.html)
- * `catch` begins a block that [handles a specific exception type](/docs/reference/exceptions.html)
- * `constructor` declares a [primary or secondary constructor](/docs/reference/classes.html#constructors)
- * `delegate` is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets) 
- * `dynamic` references a [dynamic type](/docs/reference/dynamic-type.html) in Kotlin/JS code
- * `field` is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
- * `file` is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
- * `finally` begins a block that [is always executed when a try block exits](/docs/reference/exceptions.html)
+     - [将接口的实现委托给另一个对象](delegation.html)
+     - [将属性访问器的实现委托给另一个对象](delegated-properties.html)
+ * `catch` 开始一个[处理指定异常类型](exceptions.html)的块
+ * `constructor` 声明一个[主构造函数或次构造函数](classes.html#构造函数)
+ * `delegate` 用作[注解使用处目标](annotations.html#注解使用处目标) 
+ * `dynamic` 引用一个 Kotlin/JS 代码中的[动态类型](dynamic-type.html)
+ * `field` 用作[注解使用处目标](annotations.html#注解使用处目标)
+ * `file` 用作[注解使用处目标](annotations.html#注解使用处目标)
+ * `finally` 开始一个[当 try 块退出时总会执行的块](exceptions.html)
  * `get`
-     - declares the [getter of a property](/docs/reference/properties.html#getters-and-setters)
-     - is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
- * `import` [imports a declaration from another package into the current file](/docs/reference/packages.html)
- * `init` begins an [initializer block](/docs/reference/classes.html#constructors)
- * `param` is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
- * `property` is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
- * `receiver`is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
+     - 声明[属性的 getter](properties.html#getters-与-setters)
+     - 用作[注解使用处目标](annotations.html#注解使用处目标)
+ * `import` [将另一个包中的声明导入当前文件](packages.html)
+ * `init` 开始一个[初始化块](classes.html#构造函数)
+ * `param` 用作[注解使用处目标](annotations.html#注解使用处目标)
+ * `property` 用作[注解使用处目标](annotations.html#注解使用处目标)
+ * `receiver`用作[注解使用处目标](annotations.html#注解使用处目标)
  * `set`
-     - declares the [setter of a property](/docs/reference/properties.html#getters-and-setters)
-     - is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
- * `setparam` is used as an [annotation use-site target](/docs/reference/annotations.html#annotation-use-site-targets)
- * `where` specifies [constraints for a generic type parameter](/docs/reference/generics.html#upper-bounds)
+     - 声明[属性的 setter](properties.html#getters-与-setters)
+     - 用作[注解使用处目标](annotations.html#注解使用处目标)
+ * `setparam` 用作[注解使用处目标](annotations.html#注解使用处目标)
+ * `where` 指定[泛型类型参数的约束](generics.html#上界)
  
-## Modifier Keywords
+## 修饰符关键字
 
-The following tokens act as keywords in modifier lists of declarations and can be used as identifiers
-in other contexts:
+以下符号作为声明中修饰符列表中的关键字，并可用作其他上下文中<!--
+-->的标识符：
 
- * `abstract` marks a class or member as [abstract](/docs/reference/classes.html#abstract-classes)
- * `annotation` declares an [annotation class](/docs/reference/annotations.html)
- * `companion` declares a [companion object](/docs/reference/object-declarations.html#companion-objects)
- * `const` marks a property as a [compile-time constant](/docs/reference/properties.html#compile-time-constants)
- * `crossinline` forbids [non-local returns in a lambda passed to an inline function](/docs/reference/inline-functions.html#non-local-returns) 
- * `data` instructs the compiler to [generate canonical members for a class](/docs/reference/data-classes.html)
- * `enum` declares an [enumeration](/docs/reference/enum-classes.html)
- * `external` marks a declaration as implemented not in Kotlin (accessible through [JNI](/docs/reference/java-interop.html#using-jni-with-kotlin) or in [JavaScript](/docs/reference/js-interop.html#external-modifier)) 
- * `final` forbids [overriding a member](/docs/reference/classes.html#overriding-methods)
- * `infix` allows calling a function in [infix notation](/docs/reference/functions.html#infix-notation)
- * `inline` tells the compiler to [inline the function and the lambdas passed to it at the call site](/docs/reference/inline-functions.html)
- * `inner` allows referring to the outer class instance from a [nested class](/docs/reference/nested-classes.html)
- * `internal` marks a declaration as [visible in the current module](/docs/reference/visibility-modifiers.html)
- * `lateinit` allows initializing a [non-null property outside of a constructor](/docs/reference/properties.html#late-initialized-properties)
- * `noinline` turns off [inlining of a lambda passed to an inline function](/docs/reference/inline-functions.html#noinline)
- * `open` allows [subclassing a class or overriding a member](/docs/reference/classes.html#inheritance)
- * `operator` marks a function as [overloading an operator or implementing a convention](/docs/reference/operator-overloading.html)
- * `out` marks a type parameter as [covariant](/docs/reference/generics.html#declaration-site-variance)
- * `override` marks a member as an [override of a superclass member](/docs/reference/classes.html#overriding-methods)
- * `private` marks a declaration as [visible in the current class or file](/docs/reference/visibility-modifiers.html) 
- * `protected` marks a declaration as [visible in the current class and its subclasses](/docs/reference/visibility-modifiers.html)
- * `public` marks a declaration as [visible anywhere](/docs/reference/visibility-modifiers.html)
- * `reified` marks a type parameter of an inline function as [accessible at runtime](/docs/reference/inline-functions.html#reified-type-parameters)
- * `sealed` declares a [sealed class](/docs/reference/sealed-classes.html) (a class with restricted subclassing)
- * `suspend` marks a function or lambda as suspending (usable as a [coroutine](/docs/reference/coroutines.html))
- * `tailrec` marks a function as [tail-recursive](/docs/reference/functions.html#tail-recursive-functions) (allowing the compiler to replace recursion with iteration)
- * `vararg` allows [passing a variable number of arguments for a parameter](/docs/reference/functions.html#variable-number-of-arguments-varargs)
+ * `abstract` 将一个类或成员标记为[抽象](classes.html#抽象类)
+ * `annotation` 声明一个[注解类](annotations.html)
+ * `companion` 声明一个[伴生对象](object-declarations.html#伴生对象)
+ * `const` 将属性标记为[编译期常量](properties.html#编译期常量)
+ * `crossinline` 禁止[传递给内联函数的 lambda 中的非局部返回](inline-functions.html#非局部返回) 
+ * `data` 指示编译器[为类生成典型成员](data-classes.html)
+ * `enum` 声明一个[枚举](enum-classes.html)
+ * `external` 将一个声明标记为不是在 Kotlin 中实现（通过 [JNI](java-interop.html#在-kotlin-中使用-jni) 访问或者在 [JavaScript](js-interop.html#external-修饰符) 中实现）
+ * `final` 禁止[成员覆盖](classes.html#覆盖方法)
+ * `infix` 允许以[中缀表示法](functions.html#中缀表示法)调用函数
+ * `inline` 告诉编译器[在调用处内联传给它的函数和 lambda 表达式](inline-functions.html)
+ * `inner` 允许在[嵌套类](nested-classes.html)中引用外部类实例
+ * `internal` 将一个声明标记为[在当前模块中可见](visibility-modifiers.html)
+ * `lateinit` 允许[在构造函数之外初始化非空属性](properties.html#延迟初始化属性)
+ * `noinline` 关闭[传给内联函数的 lambda 表达式的内联](inline-functions.html#禁用内联)
+ * `open` 允许[一个类子类化或覆盖成员](classes.html#继承)
+ * `operator` 将一个函数标记为[重载一个操作符或者实现一个约定](operator-overloading.html)
+ * `out` 将类型参数标记为[协变](generics.html#声明处型变)
+ * `override` 将一个成员标记为[超类成员的覆盖](classes.html#覆盖方法)
+ * `private` 将一个声明标记为[在当前类或文件中可见](visibility-modifiers.html) 
+ * `protected` 将一个声明标记为[在当前类及其子类中可见](visibility-modifiers.html)
+ * `public` 将一个声明标记为[在任何地方可见](visibility-modifiers.html)
+ * `reified` 将内联函数的类型参数标记为[在运行时可访问](inline-functions.html#具体化的类型参数)
+ * `sealed` 声明一个[密封类](sealed-classes.html)（限制子类化的类）
+ * `suspend` 将一个函数或 lambda 表达式标记为挂起式（可用做[协程](coroutines.html)）
+ * `tailrec` 将一个函数标记为[尾递归](functions.html#尾递归函数)（允许编译器将递归替换为迭代）
+ * `vararg` 允许[一个参数传入可变数量的参数](functions.html#可变数量的参数（varargs）)
 
-## Special Identifiers
+## 特殊标识符
 
-The following identifiers are defined by the compiler in specific contexts and can be used as regular
-identifiers in other contexts:
+以下标识符由编译器在指定上下文中定义，并且可以用作其他上下文中的常规<!--
+-->标识符：
 
- * `field` is used inside a property accessor to refer to the [backing field of the property](/docs/reference/properties.html#backing-fields)
- * `it` is used inside a lambda to [refer to its parameter implicitly](/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter)
+ * `field` 用在属性访问器内部来引用该[属性的幕后字段](properties.html#幕后字段)
+ * `it` 用在 lambda 表达式内部来[隐式引用其参数](lambdas.html#it：单个参数的隐式名称)
  
  
-## Operators and Special Symbols
+## 操作符和特殊符号
 
-Kotlin supports the following operators and special symbols:
+Kotlin 支持以下操作符和特殊符号：
 
- * `+`, `-`, `*`, `/`, `%` - mathematical operators
-     - `*` is also used to [pass an array to a vararg parameter](/docs/reference/functions.html#variable-number-of-arguments-varargs)
+ * `+`、 `-`、 `*`、 `/`、 `%` —— 数学操作符
+     - `*` 也用于[将数组传递给 vararg 参数](functions.html#可变数量的参数（varargs）)
  * `=`
-     - assignment operator
-     - is used to specify [default values for parameters](/docs/reference/functions.html#default-arguments) 
- * `+=`, `-=`, `*=`, `/=`, `%=` - [augmented assignment operators](/docs/reference/operator-overloading.html#assignments)
- * `++`, `--` - [increment and decrement operators](/docs/reference/operator-overloading.html#increments-and-decrements)
- * `&&`, `||`, `!` - logical 'and', 'or', 'not' operators (for bitwise operations, use corresponding [infix functions](/docs/reference/basic-types.html#operations))
- * `==`, `!=` - [equality operators](/docs/reference/operator-overloading.html#equals) (translated to calls of `equals()` for non-primitive types) 
- * `===`, `!==` - [referential equality operators](/docs/reference/equality.html#referential-equality)
- * `<`, `>`, `<=`, `>=` - [comparison operators](/docs/reference/operator-overloading.html#comparison) (translated to calls of `compareTo()` for non-primitive types)
- * `[`, `]` - [indexed access operator](/docs/reference/operator-overloading.html#indexed) (translated to calls of `get` and `set`)
- * `!!` [asserts that an expression is non-null](/docs/reference/null-safety.html#the--operator)
- * `?.` performs a [safe call](/docs/reference/null-safety.html#safe-calls) (calls a method or accesses a property if the receiver is non-null)
- * `?:` takes the right-hand value if the left-hand value is null (the [elvis operator](http://kotlinlang.org/docs/reference/null-safety.html#elvis-operator))
- * `::` creates a [member reference](/docs/reference/null-safety.html#nullable-types-and-non-null-types) or a [class reference](/docs/reference/reflection.html#class-references)
- * `..` creates a [range](/docs/reference/ranges.html) 
- * `:` separates a name from a type in declarations
- * `?` marks a type as [nullable](/docs/reference/null-safety.html#nullable-types-and-non-null-types) 
+     - 赋值操作符
+     - 也用于指定[参数的默认值](functions.html#默认参数) 
+ * `+=`、 `-=`、 `*=`、 `/=`、 `%=` —— [广义赋值操作符](operator-overloading.html#广义赋值)
+ * `++`、 `--` —— [递增与递减操作符](operator-overloading.html#递增与递减)
+ * `&&`、 `||`、 `!` —— 逻辑“与”、“或”、“非”操作符（对于位运算，请使用相应的[中缀函数](basic-types.html#运算)）
+ * `==`、 `!=` —— [相等操作符](operator-overloading.html#相等与不等操作符)（对于非原生类型会翻译为调用 `equals()`）
+ * `===`、 `!==` —— [引用相等操作符](equality.html#引用相等)
+ * `<`、 `>`、 `<=`、 `>=` —— [比较操作符](operator-overloading.html#比较操作符)（对于非原生类型会翻译为调用 `compareTo()`）
+ * `[`、 `]` —— [索引访问操作符](operator-overloading.html#索引访问操作符)（会翻译为调用 `get` 与 `set`）
+ * `!!` [断言一个表达式非空](null-safety.html#-操作符)
+ * `?.` 执行[安全调用](null-safety.html#安全的调用)（如果接收者非空，就调用一个方法或访问一个属性）
+ * `?:` 如果左侧的值为空，就取右侧的值（[elvis 操作符](null-safety.html#elvis-操作符)）
+ * `::` 创建一个[成员引用](null-safety.html#可空类型与非空类型)或者一个[类引用](reflection.html#类引用)
+ * `..` 创建一个[区间](ranges.html) 
+ * `:` 分隔声明中的名称与类型
+ * `?` 将类型标记为[可空](null-safety.html#可空类型与非空类型) 
  * `->`
-     - separates the parameters and body of a [lambda expression](/docs/reference/lambdas.html#lambda-expression-syntax)
-     - separates the parameters and return type declaration in a [function type](/docs/reference/lambdas.html#function-types)
-     - separates the condition and body of a [when expression](http://kotlinlang.org/docs/reference/control-flow.html#when-expression) branch
+     - 分隔 [lambda 表达式](lambdas.html#lambda-表达式语法)的参数与主体
+     - 分隔在[函数类型](lambdas.html#函数类型)中的参数类型与返回类型声明
+     - 分隔 [when 表达式](control-flow.html#when-表达式)分支的条件与代码体
  * `@`
-    - introduces an [annotation](/docs/reference/annotations.html#usage)
-    - introduces or references a [loop label](/docs/reference/returns.html#break-and-continue-labels) 
-    - introduces or references a [lambda label](/docs/reference/returns.html#return-at-labels)
-    - references a ['this' expression from an outer scope](/docs/reference/this-expressions.html#qualified)
-    - references an [outer superclass](/docs/reference/classes.html#calling-the-superclass-implementation)
- * `;` separates multiple statements on the same line
- * `$` references a variable or expression in a [string template](/docs/reference/basic-types.html#string-templates)    
+    - 引入一个[注解](annotations.html#用法)
+    - 引入或引用一个[循环标签](returns.html#break-与-continue-标签) 
+    - 引入或引用一个 [lambda 表达式标签](returns.html#标签处返回)
+    - 引用一个来自外部作用域的 [“this”表达式](this-expressions.html#限定的-this)
+    - 引用一个[外部超类](classes.html#调用超类实现)
+ * `;` 分隔位于同一行的多个语句
+ * `$` 在[字符串模版](basic-types.html#字符串模板)中引用变量或者表达式
  * `_`
-     - substitutes an unused parameter in a [lambda expression](/docs/reference/lambdas.html#underscore-for-unused-variables-since-11)
-     - substitutes an unused parameter in a [destructuring declaration](http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11)
+     - 在 [lambda 表达式](lambdas.html#下划线用于未使用的变量（自-11-起）)中代替未使用的参数
+     - 在[解构声明](multi-declarations.html#下划线用于未使用的变量（自-11-起）)中代替未使用的参数
      
