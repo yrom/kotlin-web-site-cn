@@ -27,12 +27,12 @@ title: "关键字与操作符"
  * `in`
      - 指定在 [for 循环](control-flow.html#for-循环)中迭代的对象
      - 用作中缀操作符以检查一个值属于[一个区间](ranges.html)、
-       一个集合或者其他[定义 'contains' 方法](operator-overloading.html#“in”操作符)的实体
+       一个集合或者其他[定义“contains”方法](operator-overloading.html#“in”操作符)的实体
      - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
      - 将一个类型参数标记为[逆变](generics.html#声明处型变)
  * `!in`
      - 用作中缀操作符以检查一个值**不**属于[一个区间](ranges.html)、
-       一个集合或者其他[定义 'contains' 方法](/docs/reference/operator-overloading.html#in)的实体
+       一个集合或者其他[定义“contains”方法](/docs/reference/operator-overloading.html#in)的实体
      - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
  * `interface` 声明一个[接口](interfaces.html)
  * `is` 
