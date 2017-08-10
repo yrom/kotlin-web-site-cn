@@ -106,6 +106,16 @@ val s = person.name ?: fail("Name required")
 println(s)     // 在此已知“s”已初始化
 ```
 
+Another case where you may encounter this type is type inference. The nullable variant of this type,
+`Nothing?`, has exactly one possible value, which is `null`. If you use `null` to initialize
+a value of an inferred type and there's no other information that can be used to determine a more
+specific type, the compiler will infer the `Nothing?` type:
+
+``` kotlin
+val x = null           // 'x' has type `Nothing?`
+val l = listOf(null)   // 'l' has type `List<Nothing?>
+```
+
 ## Java 互操作性
 
 与 Java 互操作性相关的信息，请参见 [Java 互操作性章节](java-interop.html)中的异常部分。
