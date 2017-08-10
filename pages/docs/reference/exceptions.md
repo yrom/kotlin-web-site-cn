@@ -106,14 +106,14 @@ val s = person.name ?: fail("Name required")
 println(s)     // 在此已知“s”已初始化
 ```
 
-Another case where you may encounter this type is type inference. The nullable variant of this type,
-`Nothing?`, has exactly one possible value, which is `null`. If you use `null` to initialize
-a value of an inferred type and there's no other information that can be used to determine a more
-specific type, the compiler will infer the `Nothing?` type:
+可能会遇到这个类型的另一种情况是类型推断。这个类型的可空变体
+`Nothing?` 有一个可能的值是 `null`。如果用 `null` 来初始化<!--
+-->一个要推断类型的值，而又没有其他信息可用于确定更<!--
+-->具体的类型时，编译器会推断出 `Nothing?` 类型：
 
 ``` kotlin
-val x = null           // 'x' has type `Nothing?`
-val l = listOf(null)   // 'l' has type `List<Nothing?>
+val x = null           // “x”具有类型 `Nothing?`
+val l = listOf(null)   // “l”具有类型 `List<Nothing?>
 ```
 
 ## Java 互操作性
