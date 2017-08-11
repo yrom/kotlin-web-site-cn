@@ -150,7 +150,7 @@ Kotlin 支持以下操作符和特殊符号：
  * `!!` [断言一个表达式非空](null-safety.html#-操作符)
  * `?.` 执行[安全调用](null-safety.html#安全的调用)（如果接收者非空，就调用一个方法或访问一个属性）
  * `?:` 如果左侧的值为空，就取右侧的值（[elvis 操作符](null-safety.html#elvis-操作符)）
- * `::` 创建一个[成员引用](null-safety.html#可空类型与非空类型)或者一个[类引用](reflection.html#类引用)
+ * `::` 创建一个[成员引用](reflection.html#函数引用)或者一个[类引用](reflection.html#类引用)
  * `..` 创建一个[区间](ranges.html) 
  * `:` 分隔声明中的名称与类型
  * `?` 将类型标记为[可空](null-safety.html#可空类型与非空类型) 
