@@ -30,8 +30,7 @@ fun demo(source: List<Int>) {
 
 ## Getter 和 Setter
 
-遵循 Java 约定的 getter 和 setter 的方法（名称以 `get` 开头的无参数方法和<!--
--->以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。
+遵循 Java 约定的 getter 和 setter 的方法（名称以 `get` 开头的无参数方法和以 `set` 开头的单参数方法）在 Kotlin 中表示为属性。
 `Boolean` 访问器方法（其中 getter 的名称以 `is` 开头而 setter 的名称以 `set` 开头）<!--
 -->会表示为与 getter 方法具有相同名称的属性。
 例如：
@@ -44,7 +43,7 @@ fun calendarDemo() {
     if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // 调用 getFirstDayOfWeek()
         calendar.firstDayOfWeek = Calendar.MONDAY      // 调用ll setFirstDayOfWeek()
     }
-    if (!calendar.isLenient) {                         // 调用 isLenient() 
+    if (!calendar.isLenient) {                         // 调用 isLenient()
         calendar.isLenient = true                      // 调用 setLenient()
     }
 }
@@ -288,7 +287,7 @@ Java 类有时声明一个具有可变数量参数（varargs）的方法来使�
 ``` java
 public class JavaArrayExample {
 
-    public void removeIndices(int... indices) {
+    public void removeIndicesVarArg(int... indices) {
         // 在此编码……
     }
 }
@@ -297,7 +296,7 @@ public class JavaArrayExample {
 在这种情况下，你需要使用展开运算符 `*` 来传递 `IntArray`：
 
 ``` kotlin
-val javaObj = JavaArray()
+val javaObj = JavaArrayExample()
 val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndicesVarArg(*array)
 ```

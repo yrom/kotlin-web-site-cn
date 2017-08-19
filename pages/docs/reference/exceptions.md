@@ -106,6 +106,16 @@ val s = person.name ?: fail("Name required")
 println(s)     // 在此已知“s”已初始化
 ```
 
+可能会遇到这个类型的另一种情况是类型推断。这个类型的可空变体
+`Nothing?` 有一个可能的值是 `null`。如果用 `null` 来初始化<!--
+-->一个要推断类型的值，而又没有其他信息可用于确定更<!--
+-->具体的类型时，编译器会推断出 `Nothing?` 类型：
+
+``` kotlin
+val x = null           // “x”具有类型 `Nothing?`
+val l = listOf(null)   // “l”具有类型 `List<Nothing?>
+```
+
 ## Java 互操作性
 
 与 Java 互操作性相关的信息，请参见 [Java 互操作性章节](java-interop.html)中的异常部分。

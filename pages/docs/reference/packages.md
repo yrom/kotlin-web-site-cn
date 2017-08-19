@@ -28,23 +28,23 @@ class Goo {}
 
 有多个包会默认导入到每个 Kotlin 文件中：
 
-- kotlin.*
-- kotlin.annotation.*
-- kotlin.collections.*
-- kotlin.comparisons.*  （自 1.1 起）
-- kotlin.io.*
-- kotlin.ranges.*
-- kotlin.sequences.*
-- kotlin.text.*
+- [kotlin.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/index.html)
+- [kotlin.annotation.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/index.html)
+- [kotlin.collections.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html)
+- [kotlin.comparisons.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.comparisons/index.html)  （自 1.1 起）
+- [kotlin.io.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/index.html)
+- [kotlin.ranges.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/index.html)
+- [kotlin.sequences.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html)
+- [kotlin.text.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/index.html)
 
 根据目标平台还会导入额外的包：
 
 - JVM:
   - java.lang.*
-  - kotlin.jvm.*
+  - [kotlin.jvm.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/index.html)
 
 - JS:    
-  - kotlin.js.*
+  - [kotlin.js.*](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/index.html)
 
 ## 导入
 
