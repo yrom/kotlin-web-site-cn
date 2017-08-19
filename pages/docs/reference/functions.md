@@ -91,21 +91,21 @@ class B : A() {
 }
 ```
 
-If a default parameter precedes a parameter with no default value, the default value can be used only by calling the function with [named arguments](#named-arguments):
+如果一个默认参数在一个无默认值的参数之前，那么该默认值只能通过使用[命名参数](#命名参数)调用该函数来使用：
 
 ``` kotlin
-fun foo(bar: Int = 0, baz: Int) { /* ... */ }
+fun foo(bar: Int = 0, baz: Int) { /* …… */ }
 
-foo(baz = 1) // The default value bar = 0 is used
+foo(baz = 1) // 使用默认值 bar = 0
 ```
 
-But if a last argument [lambda](lambdas.html#lambda-expression-syntax) is passed to a function call outside the parentheses, passing no values for the default parameters is allowed:
+不过如果最后一个 [lambda 表达式](lambdas.html#lambda-表达式)参数从括号外传给函数函数调用，那么允许默认参数不传值：
 
 ``` kotlin
-fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { /* ... */ }
+fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { /* …… */ }
 
-foo(1) { println("hello") } // Uses the default value baz = 1 
-foo { println("hello") }    // Uses both defeault values bar = 0 and baz = 1
+foo(1) { println("hello") } // 使用默认值 baz = 1 
+foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 ```
 
 ### 命名参数
@@ -153,15 +153,15 @@ reformat(str,
 reformat(str, wordSeparator = '_')
 ```
 
-When a function is called with both positional and named arguments, all the positional arguments should be placed before the first named one. For example, the call `f(1, y = 2)` is allowed, but `f(x = 1, 2)` is not.
+当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 `f(1, y = 2)` 但不允许 `f(x = 1, 2)`。
 
-[Variable number of arguments (*vararg*{: .keyword })](#variable-number-of-arguments-varargs) can be passed in the named form by using the **spread** operator:
+可以通过使用**星号**操作符将[可变数量参数（*vararg*{: .keyword }）](#可变数量的参数（varargs）) 以命名形式传入：
 
 ``` kotlin
-fun foo(vararg strings: String) { /* ... */ }
+fun foo(vararg strings: String) { /* …… */ }
 
 foo(strings = *arrayOf("a", "b", "c"))
-foo(strings = "a") // Not required for a single value
+foo(strings = "a") // 对于单个值不需要星号
 ```
 
 请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--

@@ -292,9 +292,9 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 | 名称 | 属性名 | 描述 | 可能的值 | 默认值 |
 |------|---------------|-------------|-----------------|--------------|
-| nowarn | | 不生成警告 | true, false | false |
-| languageVersion | kotlin.compiler.languageVersion | 提供与指定语言版本源代码兼容性 | "1.0", "1.1" | "1.1"
-| apiVersion | kotlin.compiler.apiVersion | 只允许使用来自捆绑库的指定版本中的声明 | "1.0", "1.1" | "1.1"
+| nowarn | | 不生成警告 | true、 false | false |
+| languageVersion | kotlin.compiler.languageVersion | 提供与指定语言版本源代码兼容性 | "1.0"、 "1.1" | "1.1"
+| apiVersion | kotlin.compiler.apiVersion | 只允许使用来自捆绑库的指定版本中的声明 | "1.0"、 "1.1" | "1.1"
 | sourceDirs | | 包含要编译源文件的目录 | | 该项目源代码根目录
 | compilerPlugins | | 启用[编译器插件](compiler-plugins.html)  | | []
 | pluginOptions | | 编译器插件的选项  | | []
@@ -305,7 +305,7 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 | 名称 | 属性名 | 描述 | 可能的值 | 默认值 |
 |------|---------------|-------------|-----------------|--------------|
-| jvmTarget | kotlin.compiler.jvmTarget | 生成的 JVM 字节码的目标版本 | "1.6", "1.8" | "1.6" |
+| jvmTarget | kotlin.compiler.jvmTarget | 生成的 JVM 字节码的目标版本 | "1.6"、 "1.8" | "1.6" |
 | jdkHome | kotlin.compiler.jdkHome | 要包含到 classpath 中的 JDK 主目录路径，如果与默认 JAVA_HOME 不同的话 | | &nbsp; |
 
 ### JS 特有的属性
@@ -313,11 +313,11 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 | 名称 | 属性名 | 描述 | 可能的值 | 默认值 |
 |------|---------------|-------------|-----------------|--------------|
 | outputFile | | 输出文件路径 | | |
-| metaInfo |  | 使用元数据生成 .meta.js 与 .kjsm 文件。用于创建库 | true, false | true
-| sourceMap | | 生成源代码映射（source map） | true, false | false
-| sourceMapEmbedSources | | Embed source files into source map | "never", "always", "inlining" | "inlining" |
-| sourceMapPrefix | | Prefix for paths in a source map |  |  |
-| moduleKind | | 编译器生成的模块类型 | "plain", "amd", "commonjs", "umd" | "plain"
+| metaInfo |  | 使用元数据生成 .meta.js 与 .kjsm 文件。用于创建库 | true、 false | true
+| sourceMap | | 生成源代码映射（source map） | true、 false | false
+| sourceMapEmbedSources | | 将源代码嵌入到源代码映射中 | "never"、 "always"、 "inlining" | "inlining" |
+| sourceMapPrefix | | 源代码映射中路径的前缀 |  |  |
+| moduleKind | | 编译器生成的模块类型 | "plain"、 "amd"、 "commonjs"、 "umd" | "plain"
 
 ## 生成文档
 
