@@ -315,6 +315,8 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 | outputFile | | 输出文件路径 | | |
 | metaInfo |  | 使用元数据生成 .meta.js 与 .kjsm 文件。用于创建库 | true, false | true
 | sourceMap | | 生成源代码映射（source map） | true, false | false
+| sourceMapEmbedSources | | Embed source files into source map | "never", "always", "inlining" | "inlining" |
+| sourceMapPrefix | | Prefix for paths in a source map |  |  |
 | moduleKind | | 编译器生成的模块类型 | "plain", "amd", "commonjs", "umd" | "plain"
 
 ## 生成文档

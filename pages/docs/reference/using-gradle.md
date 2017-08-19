@@ -275,7 +275,10 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 | `noStdlib` | 不使用捆绑的 Kotlin stdlib |  | true |
 | `outputFile` | 输出文件路径 |  |  |
 | `sourceMap` | 生成源代码映射（source map） |  | false |
+| `sourceMapEmbedSources` | Embed source files into source map | "never", "always", "inlining" | "inlining" |
+| `sourceMapPrefix` | Prefix for paths in a source map |  |  |
 | `target` | 生成指定 ECMA 版本的 JS 文件 | "v5" | "v5" |
+| `typedArrays` | Translate primitive arrays to JS typed arrays |  | false |
 
 
 ## 生成文档

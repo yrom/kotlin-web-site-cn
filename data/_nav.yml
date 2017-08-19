@@ -200,6 +200,8 @@ reference:
          title: JavaScript 模块
        - url: /docs/reference/js-reflection.html
          title: JavaScript 反射
+       - url: /docs/reference/javascript-dce.html
+         title: JavaScript DCE
 
     - title: 工具
       description:
@@ -276,6 +278,8 @@ tutorials:
           title: Kotlin 与 JavaScript 模块使用
         - url: /docs/tutorials/javascript/working-with-javascript.html
           title: 与 JavaScript 合用
+        - url: /docs/tutorials/javascript/debugging-javascript/debugging-javascript.html
+          title: 在浏览器中调试 Kotlin
 
     - title: 协程
       items:

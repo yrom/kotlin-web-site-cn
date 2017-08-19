@@ -265,7 +265,7 @@ open class Foo {
 class Bar : Foo() {
     override fun f() { 
         super.f()
-        println("Bar.f()"} 
+        println("Bar.f()") 
     }
     
     override val x: Int get() = super.x + 1
@@ -277,7 +277,7 @@ class Bar : Foo() {
 ```kotlin
 class Bar : Foo() {
     override fun f() { /* …… */ }
-    override val x: String get() = "..."
+    override val x: Int get() = 0
     
     inner class Baz {
         fun g() {
