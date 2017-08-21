@@ -156,7 +156,7 @@ data class Counter(val dayIndex: Int) {
 | `a -= b` | `a.minusAssign(b)` |
 | `a *= b` | `a.timesAssign(b)` |
 | `a /= b` | `a.divAssign(b)` |
-| `a %= b` | `a.modAssign(b)` |
+| `a %= b` | `a.remAssign(b)`, `a.modAssign(b)`（已弃用） |
 
 对于赋值操作，例如 `a += b`，编译器执行以下步骤：
 
