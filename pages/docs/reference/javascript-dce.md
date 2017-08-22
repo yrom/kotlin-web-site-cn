@@ -5,6 +5,8 @@ category: "JavaScript"
 title: "JavaScript DCE"
 ---
 
+# JavaScript DCE
+
 自版本 1.1.4 起，Kotlin/JS 包含了一个无用代码消除（DCE，dead code elimination）工具。
 该工具允许在生成的 JS 中删除未使用的属性、函数和类。
 出现未使用的声明有这几种可能情况：
