@@ -26,6 +26,10 @@ object NotANumber : Expr()
 （上文示例使用了 Kotlin 1.1 的一个额外的新功能：数据类扩展包括密封类在内的其他类的可能性。
 ）
 
+A sealed class is [abstract](classes.html#abstract-classes) by itself, it cannot be instantiated directly and can have *abstract*{: .keyword } members.
+
+Sealed classes are not allowed to have non-*private*{: .keyword } constructors (their constructors are *private*{: .keyword } by default).
+
 请注意，扩展密封类子类的类（间接继承者）可以放在任何位置，而无需在<!--
 -->同一个文件中。
 
