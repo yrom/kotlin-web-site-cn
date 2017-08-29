@@ -32,29 +32,6 @@ val result = double(2)
 Sample().foo() // 创建类 Sample 实例并调用 foo
 ```
 
-### 中缀表示法
-
-函数还可以用中缀表示法调用，当
-
-* 他们是成员函数或[扩展函数](extensions.html)
-* 他们只有一个参数
-* 他们用 `infix` 关键字标注
-
-``` kotlin
-// 给 Int 定义扩展
-infix fun Int.shl(x: Int): Int {
-……
-}
-
-// 用中缀表示法调用扩展函数
-
-1 shl 2
-
-// 等同于这样
-
-1.shl(2)
-```
-
 ### 参数
 
 函数参数使用 Pascal 表示法定义，即 *name*: *type*。参数用逗号隔开。每个参数必须有显式类型。
@@ -242,6 +219,29 @@ val list = asList(1, 2, 3)
 ```kotlin
 val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
+```
+
+### 中缀表示法
+
+函数还可以用中缀表示法调用，当
+
+* 他们是成员函数或[扩展函数](extensions.html)
+* 他们只有一个参数
+* 他们用 `infix` 关键字标注
+
+``` kotlin
+// 给 Int 定义扩展
+infix fun Int.shl(x: Int): Int {
+……
+}
+
+// 用中缀表示法调用扩展函数
+
+1 shl 2
+
+// 等同于这样
+
+1.shl(2)
 ```
 
 ## 函数作用域

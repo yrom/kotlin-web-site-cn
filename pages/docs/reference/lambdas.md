@@ -87,7 +87,7 @@ ints.map { it * 2 }
 这些约定可以写[LINQ-风格](http://msdn.microsoft.com/en-us/library/bb308959.aspx)的代码:
 
 ``` kotlin
-strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
+strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 ```
 
 ### 下划线用于未使用的变量（自 1.1 起）
