@@ -26,7 +26,7 @@ object NotANumber : Expr()
 （上文示例使用了 Kotlin 1.1 的一个额外的新功能：数据类扩展包括密封类在内的其他类的可能性。
 ）
 
-一个密封类是自身[抽象的](classes.html#abstract-classes)，它不能直接实例化并可以有抽象（*abstract*{: .keyword }）成员。
+一个密封类是自身[抽象的](classes.html#抽象类)，它不能直接实例化并可以有抽象（*abstract*{: .keyword }）成员。
 
 密封类不允许有非-*private*{: .keyword } 构造函数（其构造函数默认为 *private*{: .keyword }）。
 

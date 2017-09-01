@@ -178,6 +178,8 @@ fun main(s: Array<String>) {
 
 相关底层描述，请参见[规范文档](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md)。
 
+{:#内联属性自-11-起}
+
 ## 内联属性（自 1.1 起）
 
 `inline` 修饰符可用于没有幕后字段的属性的访问器。

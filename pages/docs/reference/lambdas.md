@@ -36,13 +36,13 @@ fun toBeSynchronized() = sharedResource.operation()
 val result = lock(lock, ::toBeSynchronized)
 ```
 
-通常会更方便的另一种方式是传一个 [lambda 表达式](#lambda-表达式和匿名函数)：
+通常会更方便的另一种方式是传一个 [lambda 表达式](#lambda-表达式与匿名函数)：
 
 ``` kotlin
 val result = lock(lock, { sharedResource.operation() })
 ```
 
-Lambda 表达式在[下文会有更详细的](#lambda-表达式和匿名函数)描述，但为了继续这一段，让我们看一个简短的概述：
+Lambda 表达式在[下文会有更详细的](#lambda-表达式与匿名函数)描述，但为了继续这一段，让我们看一个简短的概述：
 
 * lambda 表达式总是被大括号括着，
 * 其参数（如果有的话）在 `->` 之前声明（参数类型可以省略），
@@ -75,6 +75,8 @@ val doubled = ints.map { value -> value * 2 }
 
 请注意，如果 lambda 是该调用的唯一参数，则调用中的圆括号可以完全省略。
 
+{:#it单个参数的隐式名称}
+
 ### `it`：单个参数的隐式名称
 
 另一个有用的约定是，如果函数字面值只有一个参数，
@@ -90,6 +92,8 @@ ints.map { it * 2 }
 strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 ```
 
+{:#下划线用于未使用的变量自-11-起}
+
 ### 下划线用于未使用的变量（自 1.1 起）
 
 如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：
@@ -98,15 +102,17 @@ strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 map.forEach { _, value -> println("$value!") }
 ```
 
+{:#在-lambda-表达式中解构自-11-起}
+
 ### 在 lambda 表达式中解构（自 1.1 起）
 
-在 lambda 表达式中解构是作为[解构声明](multi-declarations.html#在-lambda-表达式中解构（自-11-起）)的一部分描述的。
+在 lambda 表达式中解构是作为[解构声明](multi-declarations.html#在-lambda-表达式中解构自-11-起)的一部分描述的。
 
 ## 内联函数
 
 使用[内联函数](inline-functions.html)有时能提高高阶函数的性能。
 
-## Lambda 表达式和匿名函数
+## Lambda 表达式与匿名函数
 
 一个 lambda 表达式或匿名函数是一个“函数字面值”，即一个未声明的函数，
 但立即做为表达式传递。考虑下面的例子：
@@ -234,7 +240,7 @@ ints.filter(fun(item) = item > 0)
 请注意，匿名函数参数总是在括号内传递。 允许将函数<!--
 -->留在圆括号外的简写语法仅适用于 lambda 表达式。
 
-Lambda表达式和匿名函数之间的另一个区别是<!--
+Lambda表达式与匿名函数之间的另一个区别是<!--
 -->[非局部返回](inline-functions.html#非局部返回)的行为。一个不带标签的 *return*{: .keyword } 语句<!--
 -->总是在用 *fun*{: .keyword } 关键字声明的函数中返回。这意味着 lambda 表达式中的 *return*{: .keyword }
 将从包含它的函数返回，而匿名函数中的 *return*{: .keyword }
