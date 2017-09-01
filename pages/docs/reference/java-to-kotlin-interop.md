@@ -308,33 +308,39 @@ fun getX() = 10
 
 ## 生成重载
 
-通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 中只会有一个所有参数都存在的完整参数<!--
+通常，如果你写一个有默认参数值的 Kotlin 函数，在 Java 中只会有一个所有参数都存在的完整参数<!--
 -->签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
-@JvmOverloads 注解。
+`@JvmOverloads` 注解。
+
+该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括<!--
+-->在接口中定义的方法。
 
 ``` kotlin
-@JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
-    ……
+class Foo @JvmOverloads constructor(x: Int, y: Double = 0.0) {
+    @JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
+        ……
+    }
 }
 ```
 
 对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和<!--
--->它右边的所有参数都移除掉。在上例中，会生成以下方法
+-->它右边的所有参数都移除掉。在上例中，会生成以下代码
 ：
 
 ``` java
-// Java
+// 构造函数：
+Foo(int x, double y)
+Foo(int x)
+
+// 方法
 void f(String a, int b, String c) { }
 void f(String a, int b) { }
 void f(String a) { }
 ```
 
-该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括<!--
--->在接口中定义的方法。
-
 请注意，如[次构造函数](classes.html#次构造函数)中所述，如果一个类的所有构造函数参数都有默认<!--
 -->值，那么会为其生成一个公有的无参构造函数。这就算<!--
--->没有 @JvmOverloads 注解也有效。
+-->没有 `@JvmOverloads` 注解也有效。
 
 
 ## 受检异常
