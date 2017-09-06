@@ -29,4 +29,11 @@ a?.equals(b) ?: (b === null)
 
 请注意，当与 `null` 显式比较时完全没必要优化你的代码：`a == null` 会被自动转换为 `a=== null`。
 
+## Floating point numbers equality
 
+When an equality check operands are statically known to be `Float` or `Double` (nullable or not), the check follows the IEEE 754 
+Standard for Floating-Point Arithmetic. 
+
+Otherwise, the structural equality is used, which disagrees with the standard so that `NaN` is equal to itself, and `-0.0` is not equal to `0.0`.
+
+See: [Floating Point Numbers Comparison](basic-types.html#floating-point-numbers-comparison)

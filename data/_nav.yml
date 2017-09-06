@@ -1,7 +1,7 @@
 # Header navigation
 # ====================
 main:
-  items:
+  content:
     - url: https://blog.kotliner.cn/
       title: 博客
 
@@ -21,9 +21,9 @@ main:
 # Docs section navigation
 # =======================
 subnav:
-  items:
+  content:
     - url: /docs/
-      items:
+      content:
         - url: /docs/reference/
           title: 参考
 
@@ -36,7 +36,7 @@ subnav:
         - url: /docs/resources.html
           title: 更多资源
     - url: /community/
-      items:
+      content:
         - url: /community/
           urlPattern: ^/community/$
           title: 社区概述
@@ -53,10 +53,10 @@ subnav:
 # Reference navigation
 # ====================
 reference:
-  items:
+  content:
     - title: 概述
       description: Kotlin 的概述
-      items:
+      content:
         - url: /docs/reference/server-overview.html
           title: Kotlin 用于服务器端
         - url: /docs/reference/android-overview.html
@@ -68,7 +68,7 @@ reference:
 
     - title: 开始
       description: 开始熟悉 Kotlin 基础包括操作、编码习惯与习惯用法。
-      items:
+      content:
         - url: /docs/reference/basic-syntax.html
           title: 基础语法
         - url: /docs/reference/idioms.html
@@ -78,7 +78,7 @@ reference:
 
     - title: 基础
       description: 基础内容
-      items:
+      content:
         - url: /docs/reference/basic-types.html
           title: 基本类型
         - url: /docs/reference/packages.html
@@ -90,7 +90,7 @@ reference:
 
     - title: 类与对象
       description: 所有对象相关的
-      items:
+      content:
         - url: /docs/reference/classes.html
           title: 类与继承
         - url: /docs/reference/properties.html
@@ -120,7 +120,7 @@ reference:
 
     - title: 函数与 Lambda 表达式
       description: 所有函数相关的
-      items:
+      content:
         - url: /docs/reference/functions.html
           title: 函数
         - url: /docs/reference/lambdas.html
@@ -132,7 +132,7 @@ reference:
 
     - title: 其他
       description: 各种知识点
-      items:
+      content:
         - url: /docs/reference/multi-declarations.html
           title: 解构声明
         - url: /docs/reference/collections.html
@@ -162,7 +162,7 @@ reference:
 
 
     - title: 核心库
-      items:
+      content:
         - url: https://kotlinlang.org/api/latest/jvm/stdlib/index.html
           title: 标准库
         - url: https://kotlinlang.org/api/latest/kotlin.test/index.html
@@ -170,7 +170,7 @@ reference:
 
     - title: 参考
       description: 语法及其他信息
-      items:
+      content:
         - url: /docs/reference/keyword-reference.html
           title: 关键字与操作符
         - url: /docs/reference/grammar.html
@@ -181,7 +181,7 @@ reference:
 
     - title: Java 互操作
       description: 关于 Kotlin 与 Java 互操作性你需要知道的。
-      items:
+      content:
         - url: /docs/reference/java-interop.html
           title: Kotlin 中调用 Java
         - url: /docs/reference/java-to-kotlin-interop.html
@@ -189,7 +189,7 @@ reference:
 
     - title: JavaScript
       description: Kotlin 与 JavaScript 合用
-      items:
+      content:
        - url: /docs/reference/dynamic-type.html
          title: 动态类型
        - url: /docs/reference/js-interop.html
@@ -205,7 +205,7 @@ reference:
 
     - title: 工具
       description:
-      items:
+      content:
   #      - /docs/reference/kotlin-build-tools.html: Kotlin Build Tools
         - url: /docs/reference/kotlin-doc.html
           title: 编写 Kotlin 代码文档
@@ -224,7 +224,7 @@ reference:
 
     - title: 常见问题
       description: 你想到的问题可能会在这里得到解答。
-      items:
+      content:
         - url: /docs/reference/faq.html
           title: FAQ
         - url: /docs/reference/comparison-to-java.html
@@ -237,9 +237,9 @@ reference:
 # Tutorials navigation
 # ====================
 tutorials:
-  items:
+  content:
     - title: 开始
-      items:
+      content:
         - url: /docs/tutorials/getting-started.html
           title: 以 IntelliJ IDEA 入门
         - url: /docs/tutorials/getting-started-eclipse.html
@@ -251,7 +251,7 @@ tutorials:
         - url: /docs/tutorials/koans.html
           title: 心印
     - title: Android
-      items:
+      content:
         - url: /docs/tutorials/kotlin-android.html
           title: Android 开发入门
         - url: /docs/tutorials/android-plugin.html
@@ -259,11 +259,11 @@ tutorials:
         - url: /docs/tutorials/android-frameworks.html
           title: Android 框架
     - title: Java 互操作
-      items:
+      content:
         - url: /docs/tutorials/mixing-java-kotlin-intellij.html
           title: 在一个项目中混用 Java 与 Kotlin
     - title: JavaScript
-      items:
+      content:
         - url: /docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html
           title: Kotlin 转 JavaScript
         - url: /docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html
@@ -282,18 +282,18 @@ tutorials:
           title: 在浏览器中调试 Kotlin
 
     - title: 协程
-      items:
+      content:
         - url: /docs/tutorials/coroutines-basic-jvm.html
           title: JVM 平台的 Kotlin 协程简介
 
     - title: Web 开发
-      items:
+      content:
         - url: /docs/tutorials/httpservlets.html
           title: 用 Http Servlets 创建 web 应用
         - url: /docs/tutorials/spring-boot-restful.html
           title: 用  Spring Boot 创建 RESTful Web 服务
 
     - title: 工具
-      items:
+      content:
         - url: /docs/tutorials/kotlin-and-ci.html
           title: TeamCity 配置 Kotlin

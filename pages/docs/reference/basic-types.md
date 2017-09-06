@@ -147,6 +147,26 @@ val x = (1 shl 2) and 0x000FF000
 * `xor(bits)` – 位异或
 * `inv()` – 位非
 
+### Floating Point Numbers Comparison
+
+The operations on floating point numbers discussed in this section are:
+
+* Equality checks: `a == b` and `a != b`
+* Comparison operators: `a < b`, `a > b`, `a <= b`, `a >= b`
+* Range instantiation and range checks: `a..b`, `x in a..b`, `x !in a..b`
+
+When the operands `a` and `b` are statically known to be `Float` or `Double` or their nullable counterparts (the type is 
+declared or inferred or is a result of a [smart cast](typecasts.html#smart-casts)), the operations on the 
+numbers and the range that they form follow the IEEE 754 Standard for Floating-Point Arithmetic. 
+
+However, to support generic use cases and provide total ordering, when the operands are **not** statically typed as 
+floating point numbers (e.g. `Any`, `Comparable<...>`, a type parameter), the operations use the 
+`equals` and `compareTo` implementations for `Float` and `Double`, which disagree with the standard, so that:
+
+* `NaN` is considered equal to itself
+* `NaN` is considered greater than any other element including `POSITIVE_INFINITY`
+* `-0.0` is considered less than `0.0`
+
 ## 字符
 
 字符用 `Char` 类型表示。它们不能直接当作数字

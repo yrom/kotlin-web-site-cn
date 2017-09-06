@@ -195,6 +195,10 @@ data class Counter(val dayIndex: Int) {
 
 所有的比较都转换为对 `compareTo` 的调用，这个函数需要返回 `Int` 值
 
+### Property delegation operators
+`provideDelegate`, `getValue` and `setValue` operator functions are described
+in [Delegated properties](delegated-properties.html).
+
 ## 命名函数的中缀调用
 
 我们可以通过[中缀函数的调用](functions.html#中缀表示法) 来模拟自定义中缀操作符。
