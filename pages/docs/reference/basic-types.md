@@ -147,25 +147,25 @@ val x = (1 shl 2) and 0x000FF000
 * `xor(bits)` – 位异或
 * `inv()` – 位非
 
-### Floating Point Numbers Comparison
+### 浮点数比较
 
-The operations on floating point numbers discussed in this section are:
+本节讨论的浮点数操作如下：
 
-* Equality checks: `a == b` and `a != b`
-* Comparison operators: `a < b`, `a > b`, `a <= b`, `a >= b`
-* Range instantiation and range checks: `a..b`, `x in a..b`, `x !in a..b`
+* 相等性检测：`a == b` 与 `a != b`
+* 比较操作符：`a < b`、 `a > b`、 `a <= b`、 `a >= b`
+* 区间实例以及区间检测：`a..b`、 `x in a..b`、 `x !in a..b`
 
-When the operands `a` and `b` are statically known to be `Float` or `Double` or their nullable counterparts (the type is 
-declared or inferred or is a result of a [smart cast](typecasts.html#smart-casts)), the operations on the 
-numbers and the range that they form follow the IEEE 754 Standard for Floating-Point Arithmetic. 
+当其中的操作数 `a` 与 `b` 都是静态已知的 `Float` 或 `Double` 或者它们对应的可空类型（声明为<!--
+-->该类型，或者推断为该类型，或者[智能类型转换](typecasts.html#智能转换)的结果是该类型），两数字所形成的操作<!--
+-->或者区间遵循 IEEE 754 浮点运算标准。
 
-However, to support generic use cases and provide total ordering, when the operands are **not** statically typed as 
-floating point numbers (e.g. `Any`, `Comparable<...>`, a type parameter), the operations use the 
-`equals` and `compareTo` implementations for `Float` and `Double`, which disagree with the standard, so that:
+然而，为了支持泛型场景并提供全序支持，当这些操作符**并非**静态类型为<!-- 
+-->浮点数（例如是 `Any`、 `Comparable<……>`、 类型参数）时，这些操作使用<!--
+-->为 `Float` 与 `Double` 实现的不符合标准的 `equals` 与 `compareTo`，这会出现：
 
-* `NaN` is considered equal to itself
-* `NaN` is considered greater than any other element including `POSITIVE_INFINITY`
-* `-0.0` is considered less than `0.0`
+* 认为 `NaN` 与其自身相等
+* 认为 `NaN` 比包括正无穷大（`POSITIVE_INFINITY`）在内的任何其他元素都大
+* 认为 `-0.0` 小于 `0.0`（译注：这条编译执行可印证，但在 REPL 中不应验，其他两条在 REPL 中也可印证）
 
 ## 字符
 
