@@ -178,7 +178,7 @@ fun main(s: Array<String>) {
 
 相关底层描述，请参见[规范文档](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md)。
 
-{:#内联属性自-11-起}
+{:#inline-properties}
 
 ## 内联属性（自 1.1 起）
 
@@ -203,6 +203,8 @@ inline var bar: Bar
 ```
 
 在调用处，内联访问器如同内联函数一样内联。
+
+{:#public-inline-restrictions}
 
 ## 公有 API 内联函数的限制
 
