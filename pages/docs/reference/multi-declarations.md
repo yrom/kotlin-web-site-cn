@@ -91,6 +91,8 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 
 因此你可以在 *for*{: .keyword }-循环中对映射（以及数据类实例的集合等）自由使用解构声明。
 
+{:#下划线用于未使用的变量自-11-起}
+
 ## 下划线用于未使用的变量（自 1.1 起）
 
 如果在解构声明中你不需要某个变量，那么可以用下划线取代其名称：
@@ -98,6 +100,8 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 ``` kotlin
 val (_, status) = getResult()
 ```
+
+{:#在-lambda-表达式中解构自-11-起}
 
 ## 在 lambda 表达式中解构（自 1.1 起）
 

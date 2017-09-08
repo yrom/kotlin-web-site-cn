@@ -131,7 +131,7 @@ public external fun jQuery(selector: String): JQuery
 ```
 
 The above code indicates that the function is defined externally. The ```@JsName("$")``` annotation allows us to map the name at runtime to ```$```. 
-For more details on external declarations, please refer to the [JavaScript interop documentation](/docs/reference/js-interop.html#external-modifier).
+For more details on external declarations, please refer to the [JavaScript interop documentation](/docs/reference/js-interop.html#external-修饰符).
 
 Note that the type systems of TypeScript and Kotlin do not match exactly, so you may need to edit the generated headers in case
 you encounter difficulties with using the APIs from Kotlin.

@@ -156,7 +156,7 @@ data class Counter(val dayIndex: Int) {
 | `a -= b` | `a.minusAssign(b)` |
 | `a *= b` | `a.timesAssign(b)` |
 | `a /= b` | `a.divAssign(b)` |
-| `a %= b` | `a.modAssign(b)` |
+| `a %= b` | `a.remAssign(b)`, `a.modAssign(b)`（已弃用） |
 
 对于赋值操作，例如 `a += b`，编译器执行以下步骤：
 
@@ -194,6 +194,10 @@ data class Counter(val dayIndex: Int) {
 | `a <= b` | `a.compareTo(b) <= 0` |
 
 所有的比较都转换为对 `compareTo` 的调用，这个函数需要返回 `Int` 值
+
+### 属性委托操作符
+`provideDelegate`、 `getValue` 以及 `setValue` 操作符函数已在<!--
+-->[委托属性](delegated-properties.html)中描述。
 
 ## 命名函数的中缀调用
 

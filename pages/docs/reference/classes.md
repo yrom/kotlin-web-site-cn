@@ -228,7 +228,7 @@ open class AnotherDerived() : Base() {
 
 ``` kotlin
 open class Foo {
-    open val x: Int get { …… }
+    open val x: Int get() { …… }
 }
 
 class Bar1 : Foo() {

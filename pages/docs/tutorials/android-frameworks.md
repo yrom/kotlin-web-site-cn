@@ -380,7 +380,7 @@ abstract class Address : Parcelable {
 ```
 
 由于 Kotlin 中没有 `static` 方法，因此相应的方法会在 [`companion object`](/docs/reference/object-declarations.html#伴生对象)中生成。
-如果仍然需要从 Java 中调用这些方法，需要添加[`@JvmStatic`](/docs/reference/java-to-kotlin-interop.html#访问静态成员)注解。
+如果仍然需要从 Java 中调用这些方法，需要添加[`@JvmStatic`](/docs/reference/java-to-kotlin-interop.html#静态方法)注解。
 
 如果调用 Java 的类或方法恰好在 Kotlin 中是保留字，可以使用反引号(\`)作为[转义字符](/docs/reference/java-interop.html#将-kotlin-中是关键字的-java-标识符进行转义)，比如调用上例中生成类的\``$AutoValue_Address`\`。
   

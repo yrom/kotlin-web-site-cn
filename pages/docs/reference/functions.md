@@ -32,29 +32,6 @@ val result = double(2)
 Sample().foo() // 创建类 Sample 实例并调用 foo
 ```
 
-### 中缀表示法
-
-函数还可以用中缀表示法调用，当
-
-* 他们是成员函数或[扩展函数](extensions.html)
-* 他们只有一个参数
-* 他们用 `infix` 关键字标注
-
-``` kotlin
-// 给 Int 定义扩展
-infix fun Int.shl(x: Int): Int {
-……
-}
-
-// 用中缀表示法调用扩展函数
-
-1 shl 2
-
-// 等同于这样
-
-1.shl(2)
-```
-
 ### 参数
 
 函数参数使用 Pascal 表示法定义，即 *name*: *type*。参数用逗号隔开。每个参数必须有显式类型。
@@ -99,7 +76,7 @@ fun foo(bar: Int = 0, baz: Int) { /* …… */ }
 foo(baz = 1) // 使用默认值 bar = 0
 ```
 
-不过如果最后一个 [lambda 表达式](lambdas.html#lambda-表达式)参数从括号外传给函数函数调用，那么允许默认参数不传值：
+不过如果最后一个 [lambda 表达式](lambdas.html#lambda-表达式与匿名函数)参数从括号外传给函数函数调用，那么允许默认参数不传值：
 
 ``` kotlin
 fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { /* …… */ }
@@ -155,7 +132,7 @@ reformat(str, wordSeparator = '_')
 
 当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 `f(1, y = 2)` 但不允许 `f(x = 1, 2)`。
 
-可以通过使用**星号**操作符将[可变数量参数（*vararg*{: .keyword }）](#可变数量的参数（varargs）) 以命名形式传入：
+可以通过使用**星号**操作符将[可变数量参数（*vararg*{: .keyword }）](#可变数量的参数varargs) 以命名形式传入：
 
 ``` kotlin
 fun foo(vararg strings: String) { /* …… */ }
@@ -210,6 +187,7 @@ fun double(x: Int) = x * 2
 Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函数在代码体中可能有复杂的控制流，并且返回<!--
 -->类型对于读者（有时甚至对于编译器）是不明显的。
 
+{:#可变数量的参数varargs}
 
 ### 可变数量的参数（Varargs）
 
@@ -242,6 +220,29 @@ val list = asList(1, 2, 3)
 ```kotlin
 val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
+```
+
+### 中缀表示法
+
+函数还可以用中缀表示法调用，当
+
+* 他们是成员函数或[扩展函数](extensions.html)
+* 他们只有一个参数
+* 他们用 `infix` 关键字标注
+
+``` kotlin
+// 给 Int 定义扩展
+infix fun Int.shl(x: Int): Int {
+……
+}
+
+// 用中缀表示法调用扩展函数
+
+1 shl 2
+
+// 等同于这样
+
+1.shl(2)
 ```
 
 ## 函数作用域

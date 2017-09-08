@@ -8,7 +8,7 @@ title: "Kotlin 1.1 的新特性"
 
 ## 目录
 
-* [协程](#协程（实验性的）)
+* [协程](#协程实验性的)
 * [其他语言功能](#其他语言功能)
 * [标准库](#标准库)
 * [JVM 后端](#jvm-后端)
@@ -19,6 +19,8 @@ title: "Kotlin 1.1 的新特性"
 从 Kotlin 1.1 开始，JavaScript 目标平台不再当是实验性的。所有语言功能都支持，
 并且有许多新的工具用于与前端开发环境集成。更详细改动列表，请参见[下文](#javascript-后端)
 。
+
+{:#协程实验性的}
 
 ## 协程（实验性的）
 
@@ -205,7 +207,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-更详细信息请参阅其[文档](multi-declarations.html#在-lambda-表达式中解构（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
+更详细信息请参阅其[文档](multi-declarations.html#在-lambda-表达式中解构自-11-起)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md)。
 
 
 ### 下划线用于未使用的参数
@@ -303,7 +305,7 @@ fun main(args: Array<String>) {
 
 你也可以将整个属性标记为 `inline`——这样修饰符应用于两个访问器。
 
-更详细信息请参阅其[文档](inline-functions.html#内联属性（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
+更详细信息请参阅其[文档](inline-functions.html#inline-properties)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md)。
 
 
 ### 局部委托属性
@@ -363,7 +365,7 @@ class MyUI {
 `provideDelegate` 方法在创建 `MyUI` 实例期间将会为每个属性调用，并且可以立即执行<!--
 -->必要的验证。
 
-更详细信息请参阅其[文档](delegated-properties.html#提供委托（自-11-起）)。
+更详细信息请参阅其[文档](delegated-properties.html#提供委托自-11-起)。
 
 
 ### 泛型枚举值访问
@@ -406,7 +408,7 @@ table {
 -->会在传给 `td` 的 lambda 表达式中可用。你可以通过定义标记有 `@DslMarker` 元注解的注解<!--
 -->并将其应用于标记类的基类。
 
-更详细信息请参阅其[文档](type-safe-builders.html#作用域控制：dslmarker（自-11-起）)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
+更详细信息请参阅其[文档](type-safe-builders.html#作用域控制dslmarker自-11-起)及其 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md)。
 
 
 ### `rem` 操作符

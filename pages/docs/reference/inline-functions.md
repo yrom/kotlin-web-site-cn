@@ -178,6 +178,8 @@ fun main(s: Array<String>) {
 
 相关底层描述，请参见[规范文档](https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md)。
 
+{:#inline-properties}
+
 ## 内联属性（自 1.1 起）
 
 `inline` 修饰符可用于没有幕后字段的属性的访问器。
@@ -201,3 +203,16 @@ inline var bar: Bar
 ```
 
 在调用处，内联访问器如同内联函数一样内联。
+
+{:#public-inline-restrictions}
+
+## 公有 API 内联函数的限制
+
+当一个内联函数是 `public` 或 `protected` 而不是 `private` 或 `internal` 声明的一部分时，就会认为它是一个[模块级](visibility-modifiers.html#模块)的公有 API。可以在其他模块中调用它，并且也可以在调用处内联这样的调用。
+
+这带来了一些由模块做这样变更时导致的二进制兼容的风险——声明一个内联函数但调用它的模块在它修改后并没有重新编译。
+
+为了消除这种由**非**公有 API 变更引入的不兼容的风险，公有 API 内联函数体内不允许使用非公有声明，即，不允许使用 `private` 与 `internal` 声明以及其部件。
+
+一个 `internal` 声明可以由 `@PublishedApi` 标注，这会允许它在公有 API 内联函数中使用。当一个 `internal` 内联函数标记有 `@PublishedApi` 时，也会像公有函数一样检查其函数体。
+ 

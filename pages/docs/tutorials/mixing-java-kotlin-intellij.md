@@ -53,7 +53,7 @@ public class Customer {
 ### 在已有的 Java 项目中使用 Kotlin
 将 Kotlin 代码加入一个已有的 Java 工程也非常简单。有以下几种方式：
 
-#### 创建新的 Kotlin 代码
+#### 创建新的 Kotlin 文件
 只要决定在何处创建文件，并创建它。
 
 ![New Kotlin File]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/new-kotlin-file.png') }})
@@ -76,7 +76,7 @@ public class Customer {
 ![Kotlin Menu]({{ url_for('tutorial_img', filename='mixing-java-kotlin-intellij/kotlin-menu.png') }})
 
 
-会弹出与 [创建新的 Kotlin 文件](#creating-a-new-kotlin-file) 相同的对话框。
+会弹出与 [创建新的 Kotlin 文件](#创建新的-kotlin-文件) 相同的对话框。
 
 #### 使用 J2K 将已有的 Java 代码 转换为 Kotlin 代码
 

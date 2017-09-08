@@ -12,9 +12,9 @@ title: "关键字与操作符"
 以下符号会始终解释为关键字，不能用作标识符：
 
  * `as` 
-      - 用于[类型转换](typecasts.html#“不安全的”转换操作符)
+      - 用于[类型转换](typecasts.html#不安全的转换操作符)
       - 为[导入指定一个别名](packages.html#导入)
- * `as?` 用于[安全类型转换](typecasts.html#“安全的”（可空）转换操作符)
+ * `as?` 用于[安全类型转换](typecasts.html#安全的可空转换操作符)
  * `break` [终止循环的执行](returns.html)
  * `class` 声明一个[类](classes.html)
  * `continue` [继续最近层循环的下一步](returns.html) 
@@ -27,12 +27,12 @@ title: "关键字与操作符"
  * `in`
      - 指定在 [for 循环](control-flow.html#for-循环)中迭代的对象
      - 用作中缀操作符以检查一个值属于[一个区间](ranges.html)、
-       一个集合或者其他[定义“contains”方法](operator-overloading.html#“in”操作符)的实体
+       一个集合或者其他[定义“contains”方法](operator-overloading.html#in)的实体
      - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
      - 将一个类型参数标记为[逆变](generics.html#声明处型变)
  * `!in`
      - 用作中缀操作符以检查一个值**不**属于[一个区间](ranges.html)、
-       一个集合或者其他[定义“contains”方法](/docs/reference/operator-overloading.html#in)的实体
+       一个集合或者其他[定义“contains”方法](operator-overloading.html#in)的实体
      - 在 [when 表达式中](control-flow.html#when-表达式)用于上述目的
  * `interface` 声明一个[接口](interfaces.html)
  * `is` 
@@ -120,7 +120,7 @@ title: "关键字与操作符"
  * `sealed` 声明一个[密封类](sealed-classes.html)（限制子类化的类）
  * `suspend` 将一个函数或 lambda 表达式标记为挂起式（可用做[协程](coroutines.html)）
  * `tailrec` 将一个函数标记为[尾递归](functions.html#尾递归函数)（允许编译器将递归替换为迭代）
- * `vararg` 允许[一个参数传入可变数量的参数](functions.html#可变数量的参数（varargs）)
+ * `vararg` 允许[一个参数传入可变数量的参数](functions.html#可变数量的参数varargs)
 
 ## 特殊标识符
 
@@ -128,7 +128,7 @@ title: "关键字与操作符"
 -->标识符：
 
  * `field` 用在属性访问器内部来引用该[属性的幕后字段](properties.html#幕后字段)
- * `it` 用在 lambda 表达式内部来[隐式引用其参数](lambdas.html#it：单个参数的隐式名称)
+ * `it` 用在 lambda 表达式内部来[隐式引用其参数](lambdas.html#it单个参数的隐式名称)
  
  
 ## 操作符和特殊符号
@@ -136,17 +136,17 @@ title: "关键字与操作符"
 Kotlin 支持以下操作符和特殊符号：
 
  * `+`、 `-`、 `*`、 `/`、 `%` —— 数学操作符
-     - `*` 也用于[将数组传递给 vararg 参数](functions.html#可变数量的参数（varargs）)
+     - `*` 也用于[将数组传递给 vararg 参数](functions.html#可变数量的参数varargs)
  * `=`
      - 赋值操作符
      - 也用于指定[参数的默认值](functions.html#默认参数) 
- * `+=`、 `-=`、 `*=`、 `/=`、 `%=` —— [广义赋值操作符](operator-overloading.html#广义赋值)
+ * `+=`、 `-=`、 `*=`、 `/=`、 `%=` —— [广义赋值操作符](operator-overloading.html#assignments)
  * `++`、 `--` —— [递增与递减操作符](operator-overloading.html#递增与递减)
  * `&&`、 `||`、 `!` —— 逻辑“与”、“或”、“非”操作符（对于位运算，请使用相应的[中缀函数](basic-types.html#运算)）
- * `==`、 `!=` —— [相等操作符](operator-overloading.html#相等与不等操作符)（对于非原生类型会翻译为调用 `equals()`）
+ * `==`、 `!=` —— [相等操作符](operator-overloading.html#equals)（对于非原生类型会翻译为调用 `equals()`）
  * `===`、 `!==` —— [引用相等操作符](equality.html#引用相等)
- * `<`、 `>`、 `<=`、 `>=` —— [比较操作符](operator-overloading.html#比较操作符)（对于非原生类型会翻译为调用 `compareTo()`）
- * `[`、 `]` —— [索引访问操作符](operator-overloading.html#索引访问操作符)（会翻译为调用 `get` 与 `set`）
+ * `<`、 `>`、 `<=`、 `>=` —— [比较操作符](operator-overloading.html#comparison)（对于非原生类型会翻译为调用 `compareTo()`）
+ * `[`、 `]` —— [索引访问操作符](operator-overloading.html#indexed)（会翻译为调用 `get` 与 `set`）
  * `!!` [断言一个表达式非空](null-safety.html#-操作符)
  * `?.` 执行[安全调用](null-safety.html#安全的调用)（如果接收者非空，就调用一个方法或访问一个属性）
  * `?:` 如果左侧的值为空，就取右侧的值（[elvis 操作符](null-safety.html#elvis-操作符)）
@@ -167,6 +167,6 @@ Kotlin 支持以下操作符和特殊符号：
  * `;` 分隔位于同一行的多个语句
  * `$` 在[字符串模版](basic-types.html#字符串模板)中引用变量或者表达式
  * `_`
-     - 在 [lambda 表达式](lambdas.html#下划线用于未使用的变量（自-11-起）)中代替未使用的参数
-     - 在[解构声明](multi-declarations.html#下划线用于未使用的变量（自-11-起）)中代替未使用的参数
+     - 在 [lambda 表达式](lambdas.html#下划线用于未使用的变量自-11-起)中代替未使用的参数
+     - 在[解构声明](multi-declarations.html#下划线用于未使用的变量自-11-起)中代替未使用的参数
      
