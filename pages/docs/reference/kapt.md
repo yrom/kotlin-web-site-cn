@@ -21,7 +21,7 @@ apply plugin: 'kotlin-kapt'
 
 ``` groovy
 plugins {
-    id "org.jetbrains.kotlin.kapt" version "{{ site.data.releases.latest.version }}"
+    id "org.jetbrains.kotlin.kapt" version "1.1.4-3"
 }
 ```
 
