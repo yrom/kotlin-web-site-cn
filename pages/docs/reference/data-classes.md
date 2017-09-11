@@ -21,15 +21,23 @@ data class User(val name: String, val age: Int)
   * [`componentN()` 函数](multi-declarations.html) 按声明顺序对应于所有属性，
   * `copy()` 函数（见下文）。
 
-如果这些函数中的任何一个在类体中显式定义或继承自其基类型，则不会生成该函数。
-
 为了确保生成的代码的一致性和有意义的行为，数据类必须满足以下要求：
 
   * 主构造函数需要至少有一个参数；
   * 主构造函数的所有参数需要标记为 `val` 或 `var`；
   * 数据类不能是抽象、开放、密封或者内部的；
   * （在1.1之前）数据类只能实现接口。
-  
+
+Additionally, the members generation follows these rules with regard to the members inheritance:
+
+* If there are explicit implementations of `equals()`, `hashCode()` or `toString()` in the data class body or 
+*final*{: .keyword } implementations in a superclass, then these functions are not generated, and the existing 
+implementations are used;
+* If a supertype has the `componentN()` functions that are *open*{: .keyword } and return compatible types, the 
+corresponding functions are generated for the data class and override those of the supertype. If the functions of the 
+supertype cannot be overridden due to incompatible signatures or being final, an error is reported; 
+* Providing explicit implementations for the `componentN()` and `copy()` functions is not allowed.
+
 自 1.1 起，数据类可以扩展其他类（示例请参见[密封类](sealed-classes.html)）。
 
 在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
