@@ -28,15 +28,15 @@ data class User(val name: String, val age: Int)
   * 数据类不能是抽象、开放、密封或者内部的；
   * （在1.1之前）数据类只能实现接口。
 
-Additionally, the members generation follows these rules with regard to the members inheritance:
+此外，成员生成遵循关于成员继承的这些规则：
 
-* If there are explicit implementations of `equals()`, `hashCode()` or `toString()` in the data class body or 
-*final*{: .keyword } implementations in a superclass, then these functions are not generated, and the existing 
-implementations are used;
-* If a supertype has the `componentN()` functions that are *open*{: .keyword } and return compatible types, the 
-corresponding functions are generated for the data class and override those of the supertype. If the functions of the 
-supertype cannot be overridden due to incompatible signatures or being final, an error is reported; 
-* Providing explicit implementations for the `componentN()` and `copy()` functions is not allowed.
+* 如果在数据类体中有显式实现 `equals()`、 `hashCode()` 或者 `toString()`，或者这些函数在父类中有 
+*final*{: .keyword } 实现，那么不会生成这些函数，而会使用现有<!--
+-->函数；
+* 如果超类型具有 *open*{: .keyword } 的 `componentN()` 函数并且返回兼容的类型，
+那么会为数据类生成相应的函数，并覆盖超类的实现。如果超类型的这些函数<!--
+-->由于签名不兼容或者是 final 而导致无法覆盖，那么会报错；
+* 不允许为 `componentN()` 以及 `copy()` 函数提供显式实现。
 
 自 1.1 起，数据类可以扩展其他类（示例请参见[密封类](sealed-classes.html)）。
 
