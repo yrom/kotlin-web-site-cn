@@ -42,7 +42,7 @@ class MyActivity : Activity() {
 
 安卓扩展是 Kotlin IDEA 插件的组成之一，因此不需要再单独安装额外插件。
 
-开发者仅需要在项目的 `build.gradle` 文件中启用 Gradle 安卓扩展插件即可：
+开发者仅需要在模块的 `build.gradle` 文件中启用 Gradle 安卓扩展插件即可：
 
 ``` groovy
 apply plugin: 'kotlin-android-extensions'
