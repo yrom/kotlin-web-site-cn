@@ -57,7 +57,7 @@ project
             - java
 ```
 
-如果不使用默认约定，那么应该更新相应的 *sourceSets* 属性
+如果不使用默认约定，那么应该更新相应的 *sourceSets* 属性：
 
 ``` groovy
 sourceSets {
@@ -75,7 +75,7 @@ apply plugin: "kotlin2js"
 ```
 
 这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
--->针对 JVM 一样，如果不使用默认约定，我们需要使用 *sourceSets* 来指定源代码文件夹。
+-->针对 JVM 一样，如果不使用默认约定，我们需要使用 *sourceSets* 来指定源代码文件夹：
 
 ``` groovy
 sourceSets {
@@ -92,7 +92,6 @@ compileKotlin2Js {
 	kotlinOptions.metaInfo = true
 }
 ```
-
 
 ## 针对 Android
 
@@ -130,7 +129,6 @@ android {
 ```
 
 这让 Android Studio 知道该 kotlin 目录是源代码根目录，所以当项目模型加载到 IDE 中时，它会被正确识别。或者，你可以将 Kotlin 类放在 Java 源代码目录中，该目录通常位于 `src/main/java`。
-
 
 
 ## 配置依赖

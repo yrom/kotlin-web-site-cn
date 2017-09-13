@@ -12,13 +12,13 @@ title: "异常：try、catch、finally、throw、Nothing"
 Kotlin 中所有异常类都是 `Throwable` 类的子孙类。
 每个异常都有消息、堆栈回溯信息和可选的原因。
 
-使用 *throw*{: .keyword }-表达式来抛出异常。
+使用 *throw*{: .keyword }-表达式来抛出异常：
 
 ``` kotlin
 throw MyException("Hi There!")
 ```
 
-使用 *try*{: .keyword }-表达式来捕获异常。
+使用 *try*{: .keyword }-表达式来捕获异常：
 
 ``` kotlin
 try {
@@ -37,7 +37,7 @@ finally {
 
 ### Try 是一个表达式
 
-*try*{: .keyword } 是一个表达式，即它可以有一个返回值。
+*try*{: .keyword } 是一个表达式，即它可以有一个返回值：
 
 ``` kotlin
 val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
@@ -51,7 +51,7 @@ val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
 
 Kotlin 没有受检的异常。这其中有很多原因，但我们会提供一个简单的例子。
 
-以下是 JDK 中 `StringBuilder` 类实现的一个示例接口
+以下是 JDK 中 `StringBuilder` 类实现的一个示例接口：
 
 ``` java
 Appendable append(CharSequence csq) throws IOException;
