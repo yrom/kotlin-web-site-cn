@@ -7,7 +7,7 @@ title: "枚举类"
 
 # 枚举类
 
-枚举类的最基本的用法是实现类型安全的枚举
+枚举类的最基本的用法是实现类型安全的枚举：
 
 ``` kotlin
 enum class Direction {
@@ -19,7 +19,7 @@ enum class Direction {
 
 ## 初始化
 
-因为每一个枚举都是枚举类的实例，所以他们可以是初始化过的。
+因为每一个枚举都是枚举类的实例，所以他们可以是这样初始化过的：
 
 ``` kotlin
 enum class Color(val rgb: Int) {
@@ -31,7 +31,7 @@ enum class Color(val rgb: Int) {
 
 ## 匿名类
 
-枚举常量也可以声明自己的匿名类
+枚举常量也可以声明自己的匿名类：
 
 ``` kotlin
 enum class ProtocolState {
