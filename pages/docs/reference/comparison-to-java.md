@@ -9,7 +9,7 @@ title: "与 Java 比较"
 
 ## Kotlin 解决了一些 Java 中的问题
 
-Kotlin 通过以下措施修复了 Java 中一系列长期困扰我们的问题
+Kotlin 通过以下措施修复了 Java 中一系列长期困扰我们的问题：
 
 * 空引用由[类型系统控制](null-safety.html)。
 * [无原始类型](java-interop.html)

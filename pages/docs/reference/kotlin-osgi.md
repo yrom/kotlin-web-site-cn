@@ -26,7 +26,7 @@ title: "Kotlin 与 OSGi"
     </dependencies>
 ```
 
-从外部库中排除标准库（注意“星排除”只在 Maven 3 中有效）
+从外部库中排除标准库（注意“星排除”只在 Maven 3 中有效）：
 
 ```xml
         <dependency>
@@ -51,7 +51,7 @@ title: "Kotlin 与 OSGi"
 compile "org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"
 ```
 
-要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法
+要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法：
 
 ```groovy
 dependencies {
