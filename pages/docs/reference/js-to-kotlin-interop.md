@@ -122,3 +122,11 @@ external fun newC()
 * Kotlin 在 JavaScript 中保留了惰性对象初始化。
 * Kotlin 不会在 JavaScript 中实现顶层属性的惰性初始化。
 
+Starting with version 1.1.50 primitive array translation utilizes JavaScript TypedArray:
+
+* `kotlin.ByteArray`, `-.ShortArray`, `-.IntArray`, `-.FloatArray`, and `-.DoubleArray` are mapped to
+   JavaScript Int8Array, Int16Array, Int32Array, Float32Array, and Float64Array correspondingly.
+* `kotlin.BooleanArray` is mapped to JavaScript Int8Array with a property `$type$ == "BooleanArray"`
+* `kotlin.CharArray` is mapped to JavaScript UInt16Array with a property `$type$ == "CharArray"`
+* `kotlin.LongArray` is mapped to JavaScript Array of `kotlin.Long` with a property `$type$ == "LongArray"`.
+

@@ -35,7 +35,7 @@ val age = person.component2()
 
 请注意，`componentN()` 函数需要用 `operator` 关键字标记，以允许在解构声明中使用它们。
 
-解构声明也可以用在 *for*{: .keyword }-循环中：当你写
+解构声明也可以用在 *for*{: .keyword }-循环中：当你写：
 
 ``` kotlin
 for ((a, b) in collection) { …… }
@@ -77,7 +77,7 @@ for ((key, value) in map) {
 
 为使其能用，我们应该
 
-* 通过提供一个 `iterator()` 函数将映射表示为一个值的序列，
+* 通过提供一个 `iterator()` 函数将映射表示为一个值的序列；
 * 通过提供函数 `component1()` 和 `component2()` 来将每个元素呈现为一对。
 
 当然事实上，标准库提供了这样的扩展：
@@ -100,6 +100,8 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 ``` kotlin
 val (_, status) = getResult()
 ```
+
+The `componentN()` operator functions are not called for the components that are skipped in this way.
 
 {:#在-lambda-表达式中解构自-11-起}
 

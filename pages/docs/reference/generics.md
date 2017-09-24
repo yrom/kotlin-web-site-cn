@@ -278,7 +278,7 @@ fun <T : Comparable<T>> sort(list: List<T>) {
 }
 ```
 
-冒号之后指定的类型是**上界**：只有 `Comparable<T>` 的子类型可以替代 `T`。 例如
+冒号之后指定的类型是**上界**：只有 `Comparable<T>` 的子类型可以替代 `T`。 例如：
 
 ``` kotlin
 sort(listOf(1, 2, 3)) // OK。Int 是 Comparable<Int> 的子类型

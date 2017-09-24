@@ -16,10 +16,10 @@ Kotlin 的类型系统旨在消除来自代码空引用的危险，也称为[《
 
 Kotlin 的类型系统旨在从我们的代码中消除 `NullPointerException`。NPE 的唯一可能的原因可能是
 
-* 显式调用 `throw NullPointerException()`
-* 使用了下文描述的 `!!` 操作符
-* 外部 Java 代码导致的
-* 对于初始化，有一些数据不一致（如一个未初始化的 `this` 用于构造函数的某个地方）
+* 显式调用 `throw NullPointerException()`；
+* 使用了下文描述的 `!!` 操作符；
+* 外部 Java 代码导致的；
+* 对于初始化，有一些数据不一致（如一个未初始化的 `this` 用于构造函数的某个地方）。
 
 在 Kotlin 中，类型系统区分一个引用可以容纳 *null*{: .keyword } （可空引用）还是不能容纳（非空引用）。
 例如，String 类型的常规变量不能容纳 *null*{: .keyword }：
@@ -150,7 +150,7 @@ val aInt: Int? = a as? Int
 
 ## 可空类型的集合
 
-如果你有一个可空类型元素的集合，并且想要过滤非空元素，你可以使用 `filterNotNull` 来实现。
+如果你有一个可空类型元素的集合，并且想要过滤非空元素，你可以使用 `filterNotNull` 来实现：
 
 ``` kotlin
 val nullableList: List<Int?> = listOf(1, 2, null, 4)

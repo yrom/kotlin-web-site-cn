@@ -123,18 +123,18 @@ public abstract class SequenceBuilder<in T> {
 ## 标准 API
  
 协程有三个主要组成部分：
- - 语言支持（即如上所述的挂起功能），
- - Kotlin 标准库中的底层核心 API，
+ - 语言支持（即如上所述的挂起功能）；
+ - Kotlin 标准库中的底层核心 API；
  - 可以直接在用户代码中使用的高级 API。
  
 ### 底层 API：`kotlin.coroutines`
 
 底层 API 相对较小，并且除了创建更高级的库之外，不应该使用它。 它由两个主要包组成：
-- [`kotlin.coroutines.experimental`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html) 带有主要类型与下述原语
-  - [`createCoroutine()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html)
-  - [`startCoroutine()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html)
-  - [`suspendCoroutine()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html)
-- [`kotlin.coroutines.experimental.intrinsics`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html) 带有甚至更底层的内在函数如 [`suspendCoroutineOrReturn`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html)
+- [`kotlin.coroutines.experimental`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html) 带有主要类型与下述原语：
+  - [`createCoroutine()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html)，
+  - [`startCoroutine()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html)，
+  - [`suspendCoroutine()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html)；
+- [`kotlin.coroutines.experimental.intrinsics`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html) 带有甚至更底层的内在函数如 [`suspendCoroutineOrReturn`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html)。
  
 关于这些 API 用法的更多细节可以在[这里](https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md)找到。
 
@@ -258,12 +258,12 @@ fun main(args: Array<String>) {
 只有与协程相关的核心 API 可以从 Kotlin 标准库获得。这主要包括所有基于协程的库可能使用的核心原语和接口。
 
 大多数基于协程的应用程序级API都作为单独的库发布：[`kotlinx.coroutines`](https://github.com/Kotlin/kotlinx.coroutines)。这个库覆盖了
- * 使用 `kotlinx-coroutines-core` 的平台无关异步编程
-   * 此模块包括支持 `select` 和其他便利原语的类似 Go 的管道
-   * 这个库的综合指南[在这里](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)。
- * 基于 JDK 8 中的 `CompletableFuture` 的 API：`kotlinx-coroutines-jdk8`
- * 基于 JDK 7 及更高版本 API 的非阻塞 IO（NIO）：`kotlinx-coroutines-nio`
- * 支持 Swing (`kotlinx-coroutines-swing`) 和 JavaFx (`kotlinx-coroutines-javafx`)
- * 支持 RxJava：`kotlinx-coroutines-rx`
+ * 使用 `kotlinx-coroutines-core` 的平台无关异步编程：
+   * 此模块包括支持 `select` 和其他便利原语的类似 Go 的管道，
+   * 这个库的综合指南[在这里](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)；
+ * 基于 JDK 8 中的 `CompletableFuture` 的 API：`kotlinx-coroutines-jdk8`；
+ * 基于 JDK 7 及更高版本 API 的非阻塞 IO（NIO）：`kotlinx-coroutines-nio`；
+ * 支持 Swing (`kotlinx-coroutines-swing`) 和 JavaFx (`kotlinx-coroutines-javafx`)；
+ * 支持 RxJava：`kotlinx-coroutines-rx`。
  
 这些库既作为使通用任务易用的便利的 API，也作为如何构建基于协程的库的端到端示例。

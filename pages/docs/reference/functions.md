@@ -9,7 +9,7 @@ title: "函数：infix、vararg、tailrec"
 
 ## 函数声明
 
-Kotlin 中的函数使用 *fun*{: .keyword } 关键字声明
+Kotlin 中的函数使用 *fun*{: .keyword } 关键字声明：
 
 ``` kotlin
 fun double(x: Int): Int {
@@ -19,14 +19,14 @@ fun double(x: Int): Int {
 
 ## 函数用法
 
-调用函数使用传统的方法
+调用函数使用传统的方法：
 
 ``` kotlin
 val result = double(2)
 ```
 
 
-调用成员函数使用点表示法
+调用成员函数使用点表示法：
 
 ``` kotlin
 Sample().foo() // 创建类 Sample 实例并调用 foo
@@ -34,7 +34,7 @@ Sample().foo() // 创建类 Sample 实例并调用 foo
 
 ### 参数
 
-函数参数使用 Pascal 表示法定义，即 *name*: *type*。参数用逗号隔开。每个参数必须有显式类型。
+函数参数使用 Pascal 表示法定义，即 *name*: *type*。参数用逗号隔开。每个参数必须有显式类型：
 
 ``` kotlin
 fun powerOf(number: Int, exponent: Int) {
@@ -45,7 +45,7 @@ fun powerOf(number: Int, exponent: Int) {
 ### 默认参数
 
 函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少<!--
--->重载数量。
+-->重载数量：
 
 ``` kotlin
 fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size) {
@@ -89,7 +89,7 @@ foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 
 可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这会非常方便。
 
-给定以下函数
+给定以下函数：
 
 ``` kotlin
 fun reformat(str: String,
@@ -101,19 +101,19 @@ fun reformat(str: String,
 }
 ```
 
-我们可以使用默认参数来调用它
+我们可以使用默认参数来调用它：
 
 ``` kotlin
 reformat(str)
 ```
 
-然而，当使用非默认参数调用它时，该调用看起来就像
+然而，当使用非默认参数调用它时，该调用看起来就像：
 
 ``` kotlin
 reformat(str, true, true, false, '_')
 ```
 
-使用命名参数我们可以使代码更具有可读性
+使用命名参数我们可以使代码更具有可读性：
 
 ``` kotlin
 reformat(str,
@@ -124,7 +124,7 @@ reformat(str,
 )
 ```
 
-并且如果我们不需要所有的参数
+并且如果我们不需要所有的参数：
 
 ``` kotlin
 reformat(str, wordSeparator = '_')
@@ -147,7 +147,7 @@ foo(strings = "a") // 对于单个值不需要星号
 ### 返回 Unit 的函数
 
 如果一个函数不返回任何有用的值，它的返回类型是 `Unit`。`Unit` 是一种只有一个值——`Unit` 的类型。这个<!--
--->值不需要显式返回
+-->值不需要显式返回：
 
 ``` kotlin
 fun printHello(name: String?): Unit {
@@ -159,7 +159,7 @@ fun printHello(name: String?): Unit {
 }
 ```
 
-`Unit` 返回类型声明也是可选的。上面的代码等同于
+`Unit` 返回类型声明也是可选的。上面的代码等同于：
 
 ``` kotlin
 fun printHello(name: String?) {
@@ -169,13 +169,13 @@ fun printHello(name: String?) {
 
 ### 单表达式函数
 
-当函数返回单个表达式时，可以省略花括号并且在 **=** 符号之后指定代码体即可
+当函数返回单个表达式时，可以省略花括号并且在 **=** 符号之后指定代码体即可：
 
 ``` kotlin
 fun double(x: Int): Int = x * 2
 ```
 
-当返回值类型可由编译器推断时，显式声明返回类型是[可选](#显式返回类型)的
+当返回值类型可由编译器推断时，显式声明返回类型是[可选](#显式返回类型)的：
 
 ``` kotlin
 fun double(x: Int) = x * 2
@@ -226,9 +226,9 @@ val list = asList(-1, 0, *a, 4)
 
 函数还可以用中缀表示法调用，当
 
-* 他们是成员函数或[扩展函数](extensions.html)
-* 他们只有一个参数
-* 他们用 `infix` 关键字标注
+* 他们是成员函数或[扩展函数](extensions.html)；
+* 他们只有一个参数；
+* 他们用 `infix` 关键字标注。
 
 ``` kotlin
 // 给 Int 定义扩展
@@ -252,7 +252,7 @@ infix fun Int.shl(x: Int): Int {
 
 ### 局部函数
 
-Kotlin 支持局部函数，即一个函数在另一个函数内部
+Kotlin 支持局部函数，即一个函数在另一个函数内部：
 
 ``` kotlin
 fun dfs(graph: Graph) {
@@ -266,7 +266,7 @@ fun dfs(graph: Graph) {
 }
 ```
 
-局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，*visited* 可以是局部变量。
+局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，*visited* 可以是局部变量：
 
 ``` kotlin
 fun dfs(graph: Graph) {
@@ -283,7 +283,7 @@ fun dfs(graph: Graph) {
 
 ### 成员函数
 
-成员函数是在类或对象内部定义的函数
+成员函数是在类或对象内部定义的函数：
 
 ``` kotlin
 class Sample() {
@@ -291,17 +291,17 @@ class Sample() {
 }
 ```
 
-成员函数以点表示法调用
+成员函数以点表示法调用：
 
 ``` kotlin
 Sample().foo() // 创建类 Sample 实例并调用 foo
 ```
 
-关于类和覆盖成员的更多信息参见[类](classes.html)和[继承](classes.html#继承)
+关于类和覆盖成员的更多信息参见[类](classes.html)和[继承](classes.html#继承)。
 
 ## 泛型函数
 
-函数可以有泛型参数，通过在函数名前使用尖括号指定。
+函数可以有泛型参数，通过在函数名前使用尖括号指定：
 
 ``` kotlin
 fun <T> singletonList(item: T): List<T> {
@@ -309,25 +309,25 @@ fun <T> singletonList(item: T): List<T> {
 }
 ```
 
-关于泛型函数的更多信息参见[泛型](generics.html)
+关于泛型函数的更多信息参见[泛型](generics.html)。
 
 ## 内联函数
 
-内联函数在[这里](inline-functions.html)讲述
+内联函数在[这里](inline-functions.html)讲述。
 
 ## 扩展函数
 
-扩展函数在[其自有章节](extensions.html)讲述
+扩展函数在[其自有章节](extensions.html)讲述。
 
 ## 高阶函数和 Lambda 表达式
 
-高阶函数和 Lambda 表达式在[其自有章节](lambdas.html)讲述
+高阶函数和 Lambda 表达式在[其自有章节](lambdas.html)讲述。
 
 ## 尾递归函数
 
 Kotlin 支持一种称为[尾递归](https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8)的函数式编程风格。
 这允许一些通常用循环写的算法改用递归函数来写，而无堆栈溢出的风险。
-当一个函数用 `tailrec` 修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本。
+当一个函数用 `tailrec` 修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本：
 
 ``` kotlin
 tailrec fun findFixPoint(x: Double = 1.0): Double

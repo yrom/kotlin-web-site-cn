@@ -10,8 +10,7 @@ title: "编译器插件"
 
 Kotlin 有类及其默认为 `final` 的成员，这使得像 Spring AOP 这样需要类为 `open` 的框架和库用起来很不方便。
 这个 `all-open` 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 `open` 关键字打开。
-例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如
-`@Configuration` 或 `@Service`。
+例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 `@Configuration` 或 `@Service`。
 `all-open` 插件允许指定这些注解。
 
 我们为全开放插件提供 Gradle 和 Maven 以及 IDE 集成的支持。
@@ -94,7 +93,7 @@ class MyClass // 将会全开放
 
 ### Kotlin-spring 编译器插件
  
-你无需手动指定 Spring 注解，你可以使用 `kotlin-spring` 插件，它根据 Spring 的要求自动配置全开放插件。
+你无需手动指定 Spring 注解，你可以使用 `kotlin-spring` 插件，它根据 Spring 的要求自动配置全开放插件：
 
 ``` groovy
 buildscript {
@@ -117,11 +116,7 @@ plugins {
 其 Maven 示例与上面的类似。
 
 该插件指定了以下注解：
-[`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html)、 
-[`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html)、 
-[`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html)、 
-[`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html)。
-由于元注解的支持，标注有 `@Configuration`、 `@Controller`、 `@RestController`、 `@Service` 或者 `@Repository` 的类会自动打开，因为这些注解标注有元注解 `@Component`。
+[`@Component`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html)、 [`@Async`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html)、 [`@Transactional`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html)、 [`@Cacheable`](http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html)。 由于元注解的支持，标注有 `@Configuration`、 `@Controller`、 `@RestController`、 `@Service` 或者 `@Repository` 的类会自动打开，因为这些注解标注有元注解 `@Component`。
  
 当然，你可以在同一个项目中同时使用 `kotlin-allopen` 和 `kotlin-spring`。
 请注意，如果你使用 [start.spring.io](http://start.spring.io/#!language=kotlin)，`kotlin-spring` 插件将默认启用。
@@ -166,7 +161,7 @@ noArg {
 }
 ```
 
-如果你希望该插件在合成的构造函数中运行其初始化逻辑，请启用 `invokeInitializers` 选项。由于在未来会解决的 [`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667) 及 [`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668)，自 Kotlin 1.1.3-2 起，它被默认禁用。
+如果你希望该插件在合成的构造函数中运行其初始化逻辑，请启用 `invokeInitializers` 选项。由于在未来会解决的 [`KT-18667`](https://youtrack.jetbrains.com/issue/KT-18667) 及 [`KT-18668`](https://youtrack.jetbrains.com/issue/KT-18668)，自 Kotlin 1.1.3-2 起，它被默认禁用：
 
 ```groovy
 noArg {

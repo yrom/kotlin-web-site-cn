@@ -205,6 +205,16 @@ kotlin {
 }
 ```
 
+## Module names
+
+The Kotlin modules that the build produces are named accordingly to the `archivesBaseName` property of the project. If a project has a broad name like `lib` or `jvm`, which is common for subprojects, the Kotlin output files related to the module (`*.kotlin_module`) might clash with those from third-party modules with the same name. This causes problems when a project is packaged into a single archive (e.g. APK).
+
+To avoid this, consider setting a unique `archivesBaseName` manually:
+
+``` groovy
+archivesBaseName = 'myExampleProject_lib'
+```
+
 ## 编译器选项
 
 要指定附加的编译选项，请使用 Kotlin 编译任务的 `kotlinOptions` 属性。

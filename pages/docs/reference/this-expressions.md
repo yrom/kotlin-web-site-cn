@@ -9,7 +9,7 @@ title: "This 表达式"
 
 为了表示当前的 _接收者_ 我们使用 *this*{: .keyword } 表达式：
 
-* 在[类](classes.html#继承)的成员中，*this*{: .keyword } 指的是该类的当前对象
+* 在[类](classes.html#继承)的成员中，*this*{: .keyword } 指的是该类的当前对象。
 * 在[扩展函数](extensions.html)或者[带接收者的函数字面值](lambdas.html#带接收者的函数字面值)中，
 *this*{: .keyword } 表示在点左侧传递的 _接收者_ 参数。
 

@@ -8,7 +8,7 @@ title: "区间"
 # 区间
 
 区间表达式由具有操作符形式 `..` 的 `rangeTo` 函数辅以 *in*{: .keyword } 和 *!in*{: .keyword } 形成。
-区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例
+区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例：
 
 ``` kotlin
 if (i in 1..10) { // 等同于 1 <= i && i <= 10
@@ -17,7 +17,7 @@ if (i in 1..10) { // 等同于 1 <= i && i <= 10
 ```
 
 整型区间（`IntRange`、 `LongRange`、 `CharRange`）有一个额外的特性：它们可以迭代。
-编译器负责将其转换为类似 Java 的基于索引的 *for*{: .keyword }-循环而无额外开销。
+编译器负责将其转换为类似 Java 的基于索引的 *for*{: .keyword }-循环而无额外开销：
 
 ``` kotlin
 for (i in 1..4) print(i) // 输出“1234”
@@ -25,13 +25,13 @@ for (i in 1..4) print(i) // 输出“1234”
 for (i in 4..1) print(i) // 什么都不输出
 ```
 
-如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 `downTo()` 函数
+如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 `downTo()` 函数：
 
 ``` kotlin
 for (i in 4 downTo 1) print(i) // 输出“4321”
 ```
 
-能否以不等于 1 的任意步长迭代数字？ 当然没问题， `step()` 函数有助于此
+能否以不等于 1 的任意步长迭代数字？ 当然没问题， `step()` 函数有助于此：
 
 ``` kotlin
 for (i in 1..4 step 2) print(i) // 输出“13”
@@ -122,7 +122,7 @@ fun Byte.downTo(other: Int): IntProgression {
 
 ### `reversed()`
 
-扩展函数 `reversed()` 是为每个 `*Progression` 类定义的，并且所有这些函数返回反转后的数列。
+扩展函数 `reversed()` 是为每个 `*Progression` 类定义的，并且所有这些函数返回反转后的数列：
 
 ``` kotlin
 fun IntProgression.reversed(): IntProgression {
@@ -134,7 +134,7 @@ fun IntProgression.reversed(): IntProgression {
 
 扩展函数 `step()` 是为每个 `*Progression` 类定义的，
 所有这些函数都返回带有修改了 `step` 值（函数参数）的数列。
-步长（step）值必须始终为正，因此该函数不会更改迭代的方向。
+步长（step）值必须始终为正，因此该函数不会更改迭代的方向：
 
 ``` kotlin
 fun IntProgression.step(step: Int): IntProgression {

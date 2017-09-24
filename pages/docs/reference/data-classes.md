@@ -7,18 +7,18 @@ title: "数据类"
 
 # 数据类
 
-我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从<!--
+我们经常创建一些只保存数据的类。
+在这些类中，一些标准函数往往是从<!--
 -->数据机械推导而来的。在 Kotlin 中，这叫做 _数据类_ 并标记为 `data`：
-
 ``` kotlin
 data class User(val name: String, val age: Int)
 ```
 
 编译器自动从主构造函数中声明的所有属性导出以下成员：
 
-  * `equals()`/`hashCode()` 对，
-  * `toString()` 格式是 `"User(name=John, age=42)"`，
-  * [`componentN()` 函数](multi-declarations.html) 按声明顺序对应于所有属性，
+  * `equals()`/`hashCode()` 对；
+  * `toString()` 格式是 `"User(name=John, age=42)"`；
+  * [`componentN()` 函数](multi-declarations.html) 按声明顺序对应于所有属性；
   * `copy()` 函数（见下文）。
 
 为了确保生成的代码的一致性和有意义的行为，数据类必须满足以下要求：
@@ -56,7 +56,7 @@ data class User(val name: String = "", val age: Int = 0)
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)     
 ```
 
-这让我们可以写
+这让我们可以写：
 
 ``` kotlin
 val jack = User(name = "Jack", age = 1)
