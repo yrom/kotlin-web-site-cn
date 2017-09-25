@@ -116,7 +116,7 @@ inline fun f(crossinline body: () -> Unit) {
 ```
 
 
-> `break` 和 `continue` 在内联的 lambda 表达式中还不可用，但我们也计划支持它们
+> `break` 和 `continue` 在内联的 lambda 表达式中还不可用，但我们也计划支持它们。
 
 ## 具体化的类型参数
 

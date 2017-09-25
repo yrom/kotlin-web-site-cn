@@ -10,7 +10,7 @@ title: "Kotlin 中调用 Java"
 Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以<!--
 -->很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。
 
-几乎所有 Java 代码都可以使用而没有任何问题
+几乎所有 Java 代码都可以使用而没有任何问题：
 
 ``` kotlin
 import java.util.*
@@ -61,7 +61,7 @@ fun calendarDemo() {
 
 一些 Kotlin 关键字在 Java 中是有效标识符：*in*{: .keyword }、 *object*{: .keyword }、 *is*{: .keyword } 等等。
 如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它<!--
--->来调用该方法
+-->来调用该方法：
 
 ``` kotlin
 foo.`is`(bar)
@@ -206,12 +206,12 @@ Java 的数组按[下文](java-interop.html#java-数组)所述映射：
 
 Kotlin 的泛型与 Java 有点不同（参见[泛型](generics.html)）。当将 Java 类型导入 Kotlin 时，我们会执行一些转换：
 
-* Java 的通配符转换成类型投影
-  * `Foo<? extends Bar>` 转换成 `Foo<out Bar!>!`
-  * `Foo<? super Bar>` 转换成 `Foo<in Bar!>!`
+* Java 的通配符转换成类型投影，
+  * `Foo<? extends Bar>` 转换成 `Foo<out Bar!>!`，
+  * `Foo<? super Bar>` 转换成 `Foo<in Bar!>!`；
 
-* Java的原始类型转换成星投影
-  * `List` 转换成 `List<*>!`，即 `List<out Any?>!`
+* Java的原始类型转换成星投影，
+  * `List` 转换成 `List<*>!`，即 `List<out Any?>!`。
 
 和 Java 一样，Kotlin 在运行时不保留泛型，即对象不携带传递到他们构造器中的那些类型参数的实际类型。
 即 `ArrayList<Integer>()` 和 `ArrayList<Character>()` 是不能区分的。
@@ -264,7 +264,7 @@ for (x in array) { // 不会创建迭代器
 }
 ```
 
-即使当我们使用索引定位时，也不会引入任何开销
+即使当我们使用索引定位时，也不会引入任何开销：
 
 ``` kotlin
 for (i in array.indices) {// 不会创建迭代器
@@ -272,7 +272,7 @@ for (i in array.indices) {// 不会创建迭代器
 }
 ```
 
-最后，*in*{: .keyword }-检测也没有额外开销
+最后，*in*{: .keyword }-检测也没有额外开销：
 
 ``` kotlin
 if (i in array.indices) { // 同 (i >= 0 && i < array.size)
@@ -282,7 +282,7 @@ if (i in array.indices) { // 同 (i >= 0 && i < array.size)
 
 ## Java 可变参数
 
-Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引。
+Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引：
 
 ``` java
 public class JavaArrayExample {
@@ -341,13 +341,13 @@ fun render(list: List<*>, to: Appendable) {
 
 ### getClass()
 
-要取得对象的 Java 类，请在[类引用](reflection.html#类引用)上使用 `java` 扩展属性。
+要取得对象的 Java 类，请在[类引用](reflection.html#类引用)上使用 `java` 扩展属性：
 
 ``` kotlin
 val fooClass = foo::class.java
 ```
 
-上面的代码使用了自 Kotlin 1.1 起支持的[绑定的类引用](reflection.html#绑定的类引用自-11-起)。你也可以使用 `javaClass` 扩展属性。
+上面的代码使用了自 Kotlin 1.1 起支持的[绑定的类引用](reflection.html#绑定的类引用自-11-起)。你也可以使用 `javaClass` 扩展属性：
 
 ``` kotlin
 val fooClass = foo.javaClass
@@ -424,7 +424,7 @@ executor.execute { println("This runs in a thread pool") }
 
 如果 Java 类有多个接受函数式接口的方法，那么可以通过使用<!--
 -->将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需<!--
--->由编译器生成。
+-->由编译器生成：
 
 ``` kotlin
 executor.execute(Runnable { println("This runs in a thread pool") })

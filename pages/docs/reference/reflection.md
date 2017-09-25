@@ -205,7 +205,7 @@ function(::Foo)
 
 ## 绑定的函数与属性引用（自 1.1 起）
 
-你可以引用特定对象的实例方法。
+你可以引用特定对象的实例方法：
 
 ``` kotlin 
 val numberRegex = "\\d+".toRegex()

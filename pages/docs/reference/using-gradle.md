@@ -205,6 +205,16 @@ kotlin {
 }
 ```
 
+## 模块名称
+
+构建生成的 Kotlin 模块会按照该项目的 `archivesBaseName` 属性命名。 如果一个项目具有宽泛的名称如 `lib` 或者 `jvm`——这在子项目中很常见，与该模块相关的 Kotlin 输出文件（`*.kotlin_module`）可能会与来自第三方的同名模块发生冲突。 当项目打包成单一归档（例如 APK）时这会出问题。
+
+为了避免这种情况，请考虑手动设置唯一的 `archivesBaseName`：
+
+``` groovy
+archivesBaseName = 'myExampleProject_lib'
+```
+
 ## 编译器选项
 
 要指定附加的编译选项，请使用 Kotlin 编译任务的 `kotlinOptions` 属性。

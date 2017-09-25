@@ -27,7 +27,7 @@ else {
 ## 智能转换
 
 在许多情况下，不需要在 Kotlin 中使用显式转换操作符，因为编译器跟踪<!--
--->不可变值的 `is`-检查，并在需要时自动插入（安全的）转换：
+-->不可变值的 `is`-检查以及[显式转换](#不安全的转换操作符)，并在需要时自动插入（安全的）转换：
 
 ``` kotlin
 fun demo(x: Any) {
@@ -55,7 +55,6 @@ fun demo(x: Any) {
         print(x.length) // x 自动转换为字符串
     }
 ```
-
 
 这些 _智能转换_ 用于 [*when*{: .keyword }-表达式](control-flow.html#when-表达式)
 和 [*while*{: .keyword }-循环 ](control-flow.html#while-循环) 也一样：

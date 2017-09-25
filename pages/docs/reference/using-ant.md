@@ -11,16 +11,16 @@ description: "This tutorial walks you through different scenarios when using Ant
 
 Kotlin 为 Ant 提供了三个任务：
 
-* kotlinc: 针对 JVM 的 Kotlin 编译器
-* kotlin2js: 针对 JavaScript 的 Kotlin 编译器
-* withKotlin: 使用标准 *javac* Ant 任务时编译 Kotlin 文件的任务
+* kotlinc: 针对 JVM 的 Kotlin 编译器；
+* kotlin2js: 针对 JavaScript 的 Kotlin 编译器；
+* withKotlin: 使用标准 *javac* Ant 任务时编译 Kotlin 文件的任务。
 
 这仨任务在 *kotlin-ant.jar* 库中定义，该库位于 [Kotlin 编译器](https://github.com/JetBrains/kotlin/releases/tag/v1.1.1)的 *lib* 文件夹中
 
 
 ## 针对 JVM 只用 Kotlin 源代码
 
-当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 *kotlinc* 任务
+当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 *kotlinc* 任务：
 
 ``` xml
 <project name="Ant Task Test" default="build">
@@ -36,7 +36,7 @@ Kotlin 为 Ant 提供了三个任务：
 
 ## 针对 JVM 只用 Kotlin 源代码且多根
 
-如果项目由多个源代码根组成，那么使用 *src* 作为元素来定义路径
+如果项目由多个源代码根组成，那么使用 *src* 作为元素来定义路径：
 
 ``` xml
 <project name="Ant Task Test" default="build">
@@ -54,7 +54,7 @@ Kotlin 为 Ant 提供了三个任务：
 ## 针对 JVM 使用 Kotlin 和 Java 源代码
 
 如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 *kotlinc* 来避免任务参数的重复，但是<!--
--->建议使用 *withKotlin* 任务
+-->建议使用 *withKotlin* 任务：
 
 ``` xml
 <project name="Ant Task Test" default="build">
@@ -113,7 +113,7 @@ Kotlin 为 Ant 提供了三个任务：
 如果要将翻译结果作为 Kotlin/JavaScript 库分发，那么 `metaInfo` 选项会很有用。
 如果 `metaInfo` 设置为 `true`，则在编译期间将创建具有<!--
 -->二进制元数据的额外的 JS 文件。该文件应该与翻译<!--
--->结果一起分发。
+-->结果一起分发：
 
 ``` xml
 <project name="Ant Task Test" default="build">
@@ -128,7 +128,7 @@ Kotlin 为 Ant 提供了三个任务：
 
 ## 参考
 
-元素和属性的完整列表如下
+元素和属性的完整列表如下：
 
 ### kotlinc 和 kotlin2js 的公共属性
 
@@ -161,5 +161,3 @@ Kotlin 为 Ant 提供了三个任务：
 | `sourcemap`  | 是否要生成 sourcemap 文件 | 否 |
 | `metaInfo`  | 是否要生成具有二进制描述符的元数据文件 | 否 |
 | `main`  | 编译器是否生成调用 main 函数的代码 | 否 |
-
-

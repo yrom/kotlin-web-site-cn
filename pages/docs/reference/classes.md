@@ -147,9 +147,9 @@ val customer = Customer("Joe Smith")
 
 ### 类成员
 
-类可以包含
+类可以包含：
 
-* 构造函数和初始化块
+* [构造函数和初始化块](classes.html#构造函数)
 * [函数](functions.html)
 * [属性](properties.html)
 * [嵌套类和内部类](nested-classes.html)

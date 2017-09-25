@@ -157,15 +157,15 @@ class Example {
 
 支持的使用处目标的完整列表为：
 
-  * `file`
-  * `property`（具有此目标的注解对 Java 不可见）
-  * `field`
-  * `get`（属性 getter）
-  * `set`（属性 setter）
-  * `receiver`（扩展函数或属性的接收者参数）
-  * `param`（构造函数参数）
-  * `setparam`（属性 setter 参数）
-  * `delegate`（为委托属性存储其委托实例的字段）
+  * `file`；
+  * `property`（具有此目标的注解对 Java 不可见）；
+  * `field`；
+  * `get`（属性 getter）；
+  * `set`（属性 setter）；
+  * `receiver`（扩展函数或属性的接收者参数）；
+  * `param`（构造函数参数）；
+  * `setparam`（属性 setter 参数）；
+  * `delegate`（为委托属性存储其委托实例的字段）。
 
 要标注扩展函数的接收者参数，请使用以下语法：
 
@@ -176,9 +176,9 @@ fun @receiver:Fancy String.myExtension() { }
 如果不指定使用处目标，则根据正在使用的注解的 `@Target` 注解来选择目标
 。如果有多个适用的目标，则使用以下列表中的第一个适用目标：
 
-  * `param`
-  * `property`
-  * `field`
+  * `param`;
+  * `property`;
+  * `field`.
 
 
 ## Java 注解
@@ -203,7 +203,7 @@ class Tests {
 ```
 
 因为 Java 编写的注解没有定义参数顺序，所以不能使用常规函数调用<!--
--->语法来传递参数。相反，你需要使用命名参数语法。
+-->语法来传递参数。相反，你需要使用命名参数语法：
 
 ``` java
 // Java
@@ -218,7 +218,7 @@ public @interface Ann {
 @Ann(intValue = 1, stringValue = "abc") class C
 ```
 
-就像在 Java 中一样，一个特殊的情况是 `value` 参数；它的值无需显式名称指定。
+就像在 Java 中一样，一个特殊的情况是 `value` 参数；它的值无需显式名称指定：
 
 ``` java
 // Java
@@ -260,7 +260,7 @@ public @interface AnnWithArrayMethod {
 @AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) class C
 ```
 
-注解实例的值会作为属性暴露给 Kotlin 代码。
+注解实例的值会作为属性暴露给 Kotlin 代码：
 
 ``` java
 // Java

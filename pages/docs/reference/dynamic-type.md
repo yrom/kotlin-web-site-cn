@@ -19,8 +19,8 @@ val dyn: dynamic = ……
 
 `dynamic` 类型基本上关闭了 Kotlin 的类型检查系统：
 
-  - 该类型的值可以赋值给任何变量或作为参数传递到任何位置，
-  - 任何值都可以赋值给 `dynamic` 类型的变量，或者传递给一个接受 `dynamic` 作为参数的函数，
+  - 该类型的值可以赋值给任何变量或作为参数传递到任何位置；
+  - 任何值都可以赋值给 `dynamic` 类型的变量，或者传递给一个接受 `dynamic` 作为参数的函数；
   - `null`-检查对这些值是禁用的。
 
 `dynamic` 最特别的特性是，我们可以对 `dynamic` 变量调用**任何**属性或以任意参数调用**任何**函数
@@ -67,5 +67,3 @@ dyn.foo {
 `in`、 `!in` 以及 `..` 操作对于 `dynamic` 类型的值是禁用的。
 
 更多技术说明请参见[规范文档](https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md)。
-
-
