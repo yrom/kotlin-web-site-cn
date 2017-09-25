@@ -603,14 +603,14 @@ fun main(args: Array<String>) {
 
 参见[高阶函数及Lambda表达式](lambdas.html)。
 
-## Creating basic classes and their instances:
+## 创建基本类及其实例：
 
 <div class="sample" markdown="1">
 
 ``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
-    val rectangle = Rectangle(5.0, 2.0) //no 'new' keyword required
+    val rectangle = Rectangle(5.0, 2.0) // 不需要“new”关键字
     val triangle = Triangle(3.0, 4.0, 5.0)
 //sampleEnd
     println("Area of rectangle is ${rectangle.calculateArea()}, its perimeter is ${rectangle.perimeter}")
@@ -647,4 +647,4 @@ class Triangle(
 ```
 </div>
 
-See [classes](classes.html) and [objects and instances](object-declarations.html).
+参见[类](classes.html)以及[对象与实例](object-declarations.html)。

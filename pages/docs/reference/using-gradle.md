@@ -205,11 +205,11 @@ kotlin {
 }
 ```
 
-## Module names
+## 模块名称
 
-The Kotlin modules that the build produces are named accordingly to the `archivesBaseName` property of the project. If a project has a broad name like `lib` or `jvm`, which is common for subprojects, the Kotlin output files related to the module (`*.kotlin_module`) might clash with those from third-party modules with the same name. This causes problems when a project is packaged into a single archive (e.g. APK).
+构建生成的 Kotlin 模块会按照该项目的 `archivesBaseName` 属性命名。 如果一个项目具有宽泛的名称如 `lib` 或者 `jvm`——这在子项目中很常见，与该模块相关的 Kotlin 输出文件（`*.kotlin_module`）可能会与来自第三方的同名模块发生冲突。 当项目打包成单一归档（例如 APK）时这会出问题。
 
-To avoid this, consider setting a unique `archivesBaseName` manually:
+为了避免这种情况，请考虑手动设置唯一的 `archivesBaseName`：
 
 ``` groovy
 archivesBaseName = 'myExampleProject_lib'

@@ -101,7 +101,7 @@ operator fun <K, V> Map.Entry<K, V>.component2() = getValue()
 val (_, status) = getResult()
 ```
 
-The `componentN()` operator functions are not called for the components that are skipped in this way.
+对于以这种方式跳过的组件，不会调用相应的 `componentN()` 操作符函数。
 
 {:#在-lambda-表达式中解构自-11-起}
 
