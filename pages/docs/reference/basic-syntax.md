@@ -555,8 +555,6 @@ fun main(args: Array<String>) {
 
 ## 创建基本类及其实例：
 
-<div class="sample" markdown="1">
-
 ``` kotlin
 fun main(args: Array<String>) {
 //sampleStart
@@ -595,6 +593,5 @@ class Triangle(
     }
 }
 ```
-</div>
 
 参见[类](classes.html)以及[对象与实例](object-declarations.html)。
