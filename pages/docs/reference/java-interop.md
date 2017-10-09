@@ -128,7 +128,7 @@ Kotlin 类型。编译器支持多种可空性注解，包括：
 
 你可以在 [Kotlin 编译器源代码](https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt)中找到完整的列表。
 
-#### JSR-305 支持
+### JSR-305 支持
 
 已支持 [JSR-305](https://jcp.org/en/jsr/detail?id=305) 中定义的 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html)
 注解来表示 Java 类型的可空性。
@@ -144,7 +144,7 @@ Kotlin 类型。编译器支持多种可空性注解，包括：
 也支持[自定义可空限定符（KEEP-79）](https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md)
 （见下文）。
 
-##### 类型限定符别称（自 1.1.50 起）
+#### 类型限定符别称（自 1.1.50 起）
 
 如果一个注解类型同时标注有
 [`@TypeQualifierNickname`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html)
@@ -170,7 +170,7 @@ interface A {
 }
 ```
 
-##### 类型限定符默认值（自 1.1.50 起）
+#### 类型限定符默认值（自 1.1.50 起）
 
 [`@TypeQualifierDefault`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html)
 引入应用时在所标注元素的作用域内定义默认可空性的注解<!--
@@ -218,7 +218,7 @@ interface A {
 package test;
 ```
 
-##### 编译器配置
+#### 编译器配置
 
 可以通过添加带有下述值之一的 `-Xjsr305` 编译器标志来配置 JSR-305 检测：
 

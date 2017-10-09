@@ -159,6 +159,8 @@ reference:
           title: 类型安全的构建器
         - url: /docs/reference/type-aliases.html
           title: 类型别名
+        - url: /docs/reference/multiplatform.html
+          title: 多平台项目（预览版）
 
 
     - title: 核心库
