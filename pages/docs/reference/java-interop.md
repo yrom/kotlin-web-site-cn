@@ -67,7 +67,7 @@ fun calendarDemo() {
 foo.`is`(bar)
 ```
 
-## 空安全和平台类型
+## 空安全与平台类型
 
 Java 中的任何引用都可能是 *null*{: .keyword }，这使得 Kotlin 对来自 Java 的对象要求严格空安全是不现实的。
 Java 声明的类型在 Kotlin 中会被特别对待并称为*平台类型*。对这种类型的空检查会放宽，
@@ -128,28 +128,28 @@ Kotlin 类型。编译器支持多种可空性注解，包括：
 
 你可以在 [Kotlin 编译器源代码](https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt)中找到完整的列表。
 
-#### JSR-305 Support
+#### JSR-305 支持
 
-The [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html) annotation defined 
-in [JSR-305](https://jcp.org/en/jsr/detail?id=305) is supported for denoting nullability of Java types.
+已支持 [JSR-305](https://jcp.org/en/jsr/detail?id=305) 中定义的 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html)
+注解来表示 Java 类型的可空性。
 
-If the `@Nonnull(when = ...)` value is `When.ALWAYS`, the annotated type is treated as non-null; `When.MAYBE` and 
-`When.NEVER` denote a nullable type; and `When.UNKNOWN` forces the type to be [platform one](#null-safety-and-platform-types).
+如果 `@Nonnull(when = ...)` 值为 `When.ALWAYS`，那么该注解类型会被视为非空；`When.MAYBE` 与
+`When.NEVER` 表示可空类型；而 `When.UNKNOWN` 强制类型为[平台类型](#空安全与平台类型)。
 
-A library can be compiled against the JSR-305 annotations, but there's no need to make the annotations artifact (e.g. `jsr305.jar`)
-a compile dependency for the library consumers. The Kotlin compiler can read the JSR-305 annotations from a library without the annotations 
-present on the classpath.
+可针对 JSR-305 注解编译库，但不需要为库的消费者将注解构件（如 `jsr305.jar`）<!--
+-->指定为编译依赖。Kotlin 编译器可以从库中读取 JSR-305 注解，并不需要该注解<!--
+-->出现在类路径中。
 
-Since Kotlin 1.1.50, 
-[custom nullability qualifiers (KEEP-79)](https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md) 
-are also supported (see below).
+自 Kotlin 1.1.50 起，
+也支持[自定义可空限定符（KEEP-79）](https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md)
+（见下文）。
 
-##### Type qualifier nicknames (since 1.1.50)
+##### 类型限定符别称（自 1.1.50 起）
 
-If an annotation type is annotated with both
-[`@TypeQualifierNickname`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html) 
-and JSR-305 `@Nonnull` (or its another nickname, such as `@CheckForNull`), then the annotation type is itself used for 
-retrieving precise nullability and has the same meaning as that nullability annotation:
+如果一个注解类型同时标注有
+[`@TypeQualifierNickname`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html)
+与 JSR-305 `@Nonnull`（或者它的其他别称，如 `@CheckForNull`），那么该注解类型自身将用于
+检索精确的可空性，且具有与该可空性注解相同的含义：
 
 ``` java
 @TypeQualifierNickname
@@ -159,32 +159,32 @@ public @interface MyNonnull {
 }
 
 @TypeQualifierNickname
-@CheckForNull // a nickname to another type qualifier nickname
+@CheckForNull // 另一个类型限定符别称的别称
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyNullable {
 }
 
 interface A {
-    @MyNullable String foo(@MyNonnull String x); // seen as `fun foo(x: String): String?`
-    String bar(List<@MyNonnull String> x);       // seen as `fun bar(x: List<String>!): String!`
+    @MyNullable String foo(@MyNonnull String x); // 被视为 `fun foo(x: String): String?`
+    String bar(List<@MyNonnull String> x);       // 被视为 `fun bar(x: List<String>!): String!`
 }
 ```
 
-##### Type qualifier defaults (since 1.1.50)
+##### 类型限定符默认值（自 1.1.50 起）
 
-[`@TypeQualifierDefault`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html) 
-allows introducing annotations that, when being applied, define the default nullability within the scope of the annotated 
-element.
+[`@TypeQualifierDefault`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html)
+引入应用时在所标注元素的作用域内定义默认可空性的注解<!--
+-->。
 
-Such annotation type should itself be annotated with both `@Nonnull` (or its nickname) and `@TypeQualifierDefault(...)` 
-with one or more `ElementType` values:
-* `ElementType.METHOD` for return types of methods;
-* `ElementType.PARAMETER` for value parameters;
-* `ElementType.FIELD` for fields.
+这些注解类型应自身同时标注有 `@Nonnull`（或其别称）与 `@TypeQualifierDefault(...)` 注解，
+后者带有一到多个 `ElementType` 值：
+* `ElementType.METHOD` 用于方法的返回值；
+* `ElementType.PARAMETER` 用于值参数；
+* `ElementType.FIELD` 用于字段。
 
-The default nullability is used when a type itself is not annotated by a nullability annotation, and the default is
-determined by the innermost enclosing element annotated with a type qualifier default annotation with the 
-`ElementType` matching the type usage.
+当类型并未标注可空性注解时使用默认可空性，并且该默认值是<!--
+-->由最内层标注有带有与所用类型相匹配的
+`ElementType` 的类型限定符默认注解的元素确定。
 
 ```java
 @Nonnull
@@ -201,42 +201,42 @@ public @interface NullableApi {
 interface A {
     String foo(String x); // fun foo(x: String?): String?
  
-    @NotNullApi // overriding default from the interface
+    @NotNullApi // 覆盖来自接口的默认值
     String bar(String x, @Nullable String y); // fun bar(x: String, y: String?): String 
     
-    // The type of `x` parameter remains platform because there's explicit UNKNOWN-marked
-    // nullability annotation:
+    // “x”参数仍然是平台类型，因为有显式 UNKNOWN 标记的
+    // 可空性注解：
     String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
 }
 ```
 
-Package-level default nullability is also supported:
+也支持包级的默认可空性：
 
 ```java
-// FILE: test/package-info.java
-@NonNullApi // declaring all types in package 'test' as non-nullable by default
+// 文件：test/package-info.java
+@NonNullApi // 默认将“test”包中所有类型声明为不可空
 package test;
 ```
 
-##### Compiler configuration
+##### 编译器配置
 
-The JSR-305 checks can be configured by adding the `-Xjsr305` compiler flag with one of the values:
+可以通过添加带有下述值之一的 `-Xjsr305` 编译器标志来配置 JSR-305 检测：
 
-* `-Xjsr305=strict` makes JSR-305 annotation work as any plain nullability annotation, i.e. reporting error for 
-the inappropriate usages of the annotated types;
+* `-Xjsr305=strict` 使 JSR-305 注解作为简单可空注解来用，即对<!--
+-->已标注类型的不当用法报错；
 
-* `-Xjsr305=warn` makes the inappropriate usages produce compilation warnings instead of errors;
+* `-Xjsr305=warn` 使不当用法产生警告而非错误；
 
-* `-Xjsr305=ignore` makes the compiler ignore the JSR-305 nullability annotations completely.
+* `-Xjsr305=ignore` 使编译器完全忽略 JSR-305 可空性注解。
 
-For kotlin versions 1.1.50+/1.2, the default behavior is the same to `-Xjsr305=warn`. The
-`strict` value should be considered experimental (more checks may be added to it in the future).
+对于 kotlin 1.1.50+/1.2 版本，其默认行为等同于 `-Xjsr305=warn`。
+`strict` 值应认为是实验性的（以后可能添加更多检测）。
 
 ## 已映射类型
 
 Kotlin 特殊处理一部分 Java 类型。这样的类型不是“按原样”从 Java 加载，而是 _映射_ 到相应的 Kotlin 类型。
 映射只发生在编译期间，运行时表示保持不变。
-Java 的原生类型映射到相应的 Kotlin 类型（请记住[平台类型](#空安全和平台类型)）：
+Java 的原生类型映射到相应的 Kotlin 类型（请记住[平台类型](#空安全与平台类型)）：
 
 | **Java 类型** | **Kotlin 类型**  |
 |---------------|------------------|
@@ -332,7 +332,7 @@ if (a is List<*>) // OK：不保证列表的内容
 
 与 Java 不同，Kotlin 中的数组是不型变的。这意味着 Kotlin 不允许我们把一个 `Array<String>` 赋值给一个 `Array<Any>`，
 从而避免了可能的运行时故障。Kotlin 也禁止我们把一个子类的数组当做超类的数组传递给 Kotlin 的方法，
-但是对于 Java 方法，这是允许的（通过 `Array<(out) String>!` 这种形式的[平台类型](#空安全和平台类型)）。
+但是对于 Java 方法，这是允许的（通过 `Array<(out) String>!` 这种形式的[平台类型](#空安全与平台类型)）。
 
 Java 平台上，数组会使用原生数据类型以避免装箱/拆箱操作的开销。
 由于 Kotlin 隐藏了这些实现细节，因此需要一个变通方法来与 Java 代码进行交互。
