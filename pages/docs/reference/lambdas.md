@@ -286,10 +286,10 @@ sum : Int.(other: Int) -> Int
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
-A non-literal value of a function-with-receiver type can also be assigned or passed as an argument where an ordinary function is expected that has an
-additional *first* parameter of the receiver type, and vice versa. For example, the types `String.(Int) -> Boolean` and `(String, Int) -> Boolean` are compatible:
+带有接收者的函数类型的字面值可以在赋值或者传参中用于期待具有<!--
+-->多出*第一个*参数为接收者类型的普通函数的地方，反之亦然。例如，类型 `String.(Int) -> Boolean` 与 `(String, Int) -> Boolean` 兼容：
 
-``` kotln
+``` kotlin
 val represents: String.(Int) -> Boolean = { other -> toIntOrNull() == other }
 println("123".represents(123)) // true
 
