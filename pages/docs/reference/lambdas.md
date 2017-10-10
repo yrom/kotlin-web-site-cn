@@ -286,6 +286,19 @@ sum : Int.(other: Int) -> Int
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
+A non-literal value of a function-with-receiver type can also be assigned or passed as an argument where an ordinary function is expected that has an
+additional *first* parameter of the receiver type, and vice versa. For example, the types `String.(Int) -> Boolean` and `(String, Int) -> Boolean` are compatible:
+
+``` kotln
+val represents: String.(Int) -> Boolean = { other -> toIntOrNull() == other }
+println("123".represents(123)) // true
+
+fun testOperation(op: (String, Int) -> Boolean, a: String, b: Int, c: Boolean) =
+    assert(op(a, b) == c)
+
+testOperation(represents, "100", 100, true) // OK
+```
+
 当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。
 
 ``` kotlin
@@ -304,3 +317,5 @@ html {       // 带接收者的 lambda 由此开始
     body()   // 调用该接收者对象的一个方法
 }
 ```
+
+
