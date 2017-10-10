@@ -2,67 +2,67 @@
 type: doc
 layout: reference
 category: "Other"
-title: "Multiplatform Projects (Preview)"
+title: "多平台项目（预览版）"
 ---
 
-# Multiplatform Projects (Preview)
+# 多平台项目（预览版）
 
-> Multiplatform projects are a new experimental feature in Kotlin 1.2. All of the language
-and tooling features described in this document are subject to change in future Kotlin versions.
+> 多平台项目是 Kotlin 1.2 中的一个新的实验性功能。本文档中所描述的全部语言与<!--
+-->工具功能都可能在未来的 Kotlin 版本中发生变化。
 {:.note}
 
-A Kotlin multiplatform project allows you to compile the same code to multiple target
-platforms. At this time supported target platforms are the JVM and JS, with Native to be added later.
+Kotlin 多平台项目允许你将相同的代码编译到多个目标平台。
+目前支持的目标平台为 JVM 与 JS，即将增加 Native。
 
-## Multiplatform Project Structure
+## 多平台项目结构
 
-A multiplatform project consists of three types of modules:
+多平台项目由三种类型的模块组成：
 
-  * A _common_ module contains code that is not specific to any platform, as well as declarations
-    without implementation of platform-dependent APIs. Those declarations allow common code to depend on 
-    platform-specific implementations.
-  * A _platform_ module contains implementations of platform-dependent declarations in the common module
-    for a specific platform, as well as other platform-dependent code. A platform module is always
-    an implementation of a single common module.
-  * A regular module. Such modules target a specific platform and can either be dependencies of
-    platform modules or depend on platform modules.
+  * _公共_ 模块包含平台无关代码以及<!--
+    -->不含实现的平台相关 API 声明。这些声明允许公共代码依赖于<!--
+    -->平台相关实现。
+  * _平台_ 模块包含公共模块中的<!--
+    -->平台相关声明针对指定平台的实现以及其他平台相关代码。一个平台模块始终是<!--
+    -->单个公共模块的一个实现。
+  * 常规模块。这类模块针对指定的平台，并且既可以成为<!--
+    -->平台模块的依赖也可以依赖于平台模块。
     
-A common module can depend only on other common modules and libraries, including the common
-version of the Kotlin standard library (`kotlin-stdlib-common`). Common modules contain only Kotlin
-code, and not code in any other languages.
+公共模块只能依赖其他公共模块与库，包括
+Kotlin 标准库的公共版（`kotlin-stdlib-common`）。公共模块只包含 Kotlin
+代码，而不包含任何其他语言代码。
 
-A platform module can depend on any modules and libraries available on the given platform
-(including Java libraries in case of Kotlin/JVM and JS libraries for Kotlin/JS). Platform modules
-targeting Kotlin/JVM can also contain code in Java and other JVM languages.
+平台模块可以依赖在指定平台上可用的任何模块与库
+（包括对于 Kotlin/JVM 平台的 Java 库与 Kotlin/JS 平台的 JS 库）。针对
+Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的代码。
 
-Compiling a common module produces a special _metadata_ file containing all the declarations in the
-module. Compiling a platform module produces target-specific code (JVM bytecode or JS source code)
-for the code in the platform module as well as the common module that it implements.
+编译一个公共模块会生成一个特殊的 _元数据_ 文件，其中包含模块中的所有声明。
+编译一个平台模块，会为平台模块中的代码以及它所实现的公共模块代码生成平台相关代码<!--
+-->（JVM 字节码或者 JS 源代码）。
 
-Therefore, each multiplatform library needs to be distributed as a set of artifacts - a common
-.jar containing the metadata for common code, as well as platform specific .jars containing the
-compiled implementation code for each platform.
+因此，每个多平台库需要分发为一组构件——
+一个包含用于公共代码的元数据的公共 .jar，以及包含用于<!--
+-->每个平台的编译后的实现代码的多个平台相关 .jar。
 
 
-## Setting Up a Multiplatform Project
+## 设置多平台项目
 
-As of Kotlin 1.2, multiplatform projects have to be built with Gradle; other build systems
-are not supported.
+截止到 Kotlin 1.2，多平台项目必须用 Gradle 构建；暂不支持其他构建系统<!--
+-->。
 
-To create a new multiplatform project in the IDE, select the "Kotlin (Multiplatform)" option
-under "Kotlin" in the New Project dialog. This will create a project with three modules, a common one
-and two platform ones for JVM and JS. To add additional modules, select one of the "Kotlin (Multiplatform)"
-options under "Gradle" in the New Module dialog.
+要在 IDE 中创建一个新的多平台项目，请在“New Project”对话框中选择<!--
+-->“Kotlin”下的“Kotlin (Multiplatform)”选项。这会创建一个具有三个模块的项目，一个公共项目<!--
+-->以及分别用于 JVM 与 JS 平台的两个平台项目。要添加额外的模块，请在“New Module”对话框中选择“Gradle”下的<!--
+-->“Kotlin (Multiplatform)”系列选项之一。
 
-If you need to configure the project manually, use the following steps:
+如需手动配置项目，请用以下步骤：
 
-  * Add the Kotlin Gradle plugin to the buildscript classpath: `classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"`
-  * Apply the `kotlin-platform-common` plugin to the common module
-  * Add the `kotlin-stdlib-common` dependency to the common module
-  * Apply the `kotlin-platform-jvm` and `kotlin-platform-js` plugins to the platform modules for JVM and JS
-  * Add dependencies with `implement` scope from the platform modules to the common module
+  * 将 Kotlin Gradle 插件添加到构建脚本的类路径中：`classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"`。
+  * 将 `kotlin-platform-common` 插件应用到公共模块
+  * 将 `kotlin-stdlib-common` 依赖添加到公共模块中
+  * 将 `kotlin-platform-jvm` 与 `kotlin-platform-js` 插件分别应用到 JVM 与 JS 平台模块
+  * 将平台模块 `implement` 作用域中添加到到公共模块的依赖
   
-The following example demonstrates a complete `build.gradle` file for a common module with Kotlin 1.2-Beta:
+以下示例演示了一个使用 Kotlin 1.2-Beta 的公共模块的完整的 `build.gradle` 文件：
 
 ``` groovy
 buildscript {
@@ -90,8 +90,8 @@ dependencies {
 }
 ```
 
-And the example below shows a complete `build.gradle` for a JVM module. Pay special
-attention to the `implement` line in the `dependencies` block:
+而下述示例展示了一个用于 JVM 平台模块的完整的 `build.gradle`。请<!--
+-->特别注意其 `dependencies` 块中的 `implement` 行：
 
 ``` groovy
 buildscript {
@@ -123,20 +123,20 @@ dependencies {
 ```
 
 
-## Platform-Specific Declarations
+## 平台相关声明
 
-One of the key capabilities of Kotlin's multiplatform code is a way for common code to
-depend on platform-specific declarations. In other languages, this can often be accomplished
-by building a set of interfaces in the common code and implementing these interfaces in platform-specific
-modules. However, this approach is not ideal in cases when you have a library on one of the platforms
-that implements the functionality you need, and you'd like to use the API of this library directly
-without extra wrappers. Also, it requires common declarations to be expressed as interfaces, which
-doesn't cover all possible cases.
+Kotlin 多平台代码的关键潜能之一就是公共代码依赖平台相关声明的一种方式。
+在其他语言中，这通常<!--
+-->可以通过在公共代码中构建一组接口并在平台相关<!--
+-->模块中实现这些接口来完成。不过，当有其中一个平台的库<!--
+-->实现了所需功能，并且希望直接使用该库的 API 而无需额外包装时，这种方式并不理想。
+另外，它需要公共声明表示为接口，而这<!--
+-->并不能覆盖所有可能场景。
 
-As an alternative, Kotlin provides a mechanism of _expected and actual declarations_.
-With this mechanism, a common module can define _expected declarations_, and a platform module
-can provide _actual declarations_ corresponding to the expected ones. 
-To see how this works, let's look at an example first. This code is part of a common module:
+作为替代方案，Kotlin 提供了一种 _预期与实际声明_ 机制。
+通过这种机制，公共模块中可定义 _预期声明_，而平台模块<!--
+-->中可提供与预期声明相对应的 _实际声明_。
+为了解其工作原理，我们先看一个示例。这段代码是公共模块的一部分：
 
 ``` kotlin
 package org.jetbrains.foo
@@ -150,7 +150,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-And this is the corresponding JVM module:
+而这是相应的 JVM 模块：
 
 ``` kotlin
 package org.jetbrains.foo
@@ -162,41 +162,41 @@ actual class Foo actual constructor(val bar: String) {
 }
 ```
 
-This illustrates several important points:
+这阐明了几个重点：
 
-  * An expected declaration in the common module and its actual counterparts always
-    have exactly the same fully qualified name.
-  * An expected declaration is marked with the `expect` keyword; the actual declaration
-    is marked with the `actual` keyword.
-  * All actual declarations that match any part of an expected declaration need to be marked
-    as `actual`.
-  * Expected declarations never contain any implementation code.
+  * 公共模块中的预期声明与相应的实际声明总是<!--
+    -->具有完全相同的完整限定名。
+  * 预期声明标有 `expect` 关键字；实际声明<!--
+    -->标有 `actual` 关键字。
+  * 与预期声明的任何部分相匹配的所有实际声明都需要标记为
+    `actual`。
+  * 预期声明决不包含任何实现代码。
 
-Note that expected declarations are not restricted to interfaces and interface members.
-In this example, the expected class has a constructor and can be created directly from common code.
-You can apply the `expect` modifier to other declarations as well, including top-level declarations and
-annotations:
+请注意，预期声明并不仅限于接口与接口成员。
+在本例中，预期的类有一个构造函数，可以直接在公共代码中创建该类。
+也可以将 `expect` 修饰符应用于其他声明，包括顶层声明与<!--
+-->注解：
 
 ``` kotlin
-// Common
+// 公共
 expect fun formatString(source: String, vararg args: Any): String
 
 expect annotation class Test
 
-// JVM
+// JVM 平台
 actual fun formatString(source: String, vararg args: Any) =
     String.format(source, args)
     
 actual typealias Test = org.junit.Test
 ```
 
-The compiler ensures that every expected declaration has actual declarations in all platform
-modules that implement the corresponding common module, and reports an error if any actual declarations are 
-missing. The IDE provides tools that help you create the missing actual declarations.
+编译器确保每个预期声明在实现相应公共模块的所有平台<!--
+-->模块中都有实际声明，缺失任何实际声明都会报错。
+IDE 提供了帮你创建所缺实际声明的工具。
 
-If you have a platform-specific library that you want to use in common code while providing your own
-implementation for another platform, you can provide a typealias to an existing class as the actual
-declaration:
+如果你有一个平台相关的库，并希望在公共模块中使用，同时为另一平台提供自己<!--
+-->的实现，那么你可以提供一个已有类的类型别名作为实际<!--
+-->声明：
 
 ``` kotlin
 expect class AtomicRef<V>(value: V) {
