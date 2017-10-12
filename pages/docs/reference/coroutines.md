@@ -49,6 +49,8 @@ async {
 }
 ```
 
+> **Note:** currently, suspending function types cannot be used as supertypes, and anonymous suspending functions are currently not supported.
+
 继续该类比，`await()` 可以是一个挂起函数（因此也可以在一个 `async {}` 块中调用），该函数挂起一个协程，直到一些计算完成并返回其结果：
 
 ``` kotlin
