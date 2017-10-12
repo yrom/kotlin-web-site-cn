@@ -49,7 +49,7 @@ async {
 }
 ```
 
-> **Note:** currently, suspending function types cannot be used as supertypes, and anonymous suspending functions are currently not supported.
+> **注意：**目前挂起函数类型不能用作超类型，并且目前不支持匿名挂起函数。
 
 继续该类比，`await()` 可以是一个挂起函数（因此也可以在一个 `async {}` 块中调用），该函数挂起一个协程，直到一些计算完成并返回其结果：
 
