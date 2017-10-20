@@ -235,7 +235,7 @@ fun printProduct(arg1: String, arg2: String) {
     val x = parseInt(arg1)
     val y = parseInt(arg2)
 
-    // 直接使用 `x * y` 可能会报错，因为他们可能为 null
+    // 直接使用 `x * y` 会导致编译错误，因为他们可能为 null
     if (x != null && y != null) {
         // 在空检测后，x 和 y 会自动转换为非空值（non-nullable）
         println(x * y)
