@@ -118,7 +118,6 @@ fun main(args: Array<String>) {
 
 顶层变量：
 
-<div class="sample" markdown="1">
 ``` kotlin
 //sampleStart
 val PI = 3.14
@@ -136,7 +135,6 @@ fun main(args: Array<String>) {
     println("x = $x; PI = $PI")
 }
 ```
-</div>
 
 参见[属性和字段](properties.html)。
 
