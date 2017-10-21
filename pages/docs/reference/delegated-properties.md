@@ -271,6 +271,10 @@ Kotlin 编译器在参数中提供了关于 `prop` 的所有必要信息：第�
 例如，如果要在绑定之前检查属性名称，可以这样写：
 
 ``` kotlin
+class ResourceDelegate<T> : ReadOnlyProperty<MyUI, T> {
+    override fun getValue(thisRef: MyUI, property: KProperty<*>): T { ... }
+}
+    
 class ResourceLoader<T>(id: ResourceID<T>) {
     operator fun provideDelegate(
             thisRef: MyUI,
@@ -278,14 +282,15 @@ class ResourceLoader<T>(id: ResourceID<T>) {
     ): ReadOnlyProperty<MyUI, T> {
         checkProperty(thisRef, prop.name)
         // 创建委托
+        return ResourceDelegate()
     }
 
     private fun checkProperty(thisRef: MyUI, name: String) { …… }
 }
 
-fun <T> bindResource(id: ResourceID<T>): ResourceLoader<T> { …… }
-
 class MyUI {
+    fun <T> bindResource(id: ResourceID<T>): ResourceLoader<T> { …… }
+
     val image by bindResource(ResourceID.image_id)
     val text by bindResource(ResourceID.text_id)
 }

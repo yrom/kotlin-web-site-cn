@@ -94,7 +94,7 @@ fun main(args: Array<String>) {
 
 参见[函数](functions.html)。
 
-## 定义局部变量
+## 定义变量
 
 一次赋值（只读）的局部变量:
 
@@ -124,6 +124,28 @@ fun main(args: Array<String>) {
     x += 1
 //sampleEnd
     println("x = $x")
+}
+```
+</div>
+
+Top-level variables:
+
+<div class="sample" markdown="1">
+``` kotlin
+//sampleStart
+val PI = 3.14
+var x = 0
+
+fun incrementX() { 
+    x += 1 
+}
+//sampleEnd
+
+fun main(args: Array<String>) {
+    println("x = $x; PI = $PI")
+    incrementX()
+    println("incrementX()")
+    println("x = $x; PI = $PI")
 }
 ```
 </div>
