@@ -110,12 +110,11 @@ println(strings.filter(oddLength)) // 输出 "[a, abc]"
 要把属性作为 Kotlin中 的一等对象来访问，我们也可以使用 `::` 运算符：
 
 ``` kotlin
-var x = 1
+val x = 1
 
 fun main(args: Array<String>) {
     println(::x.get()) // 输出 "1"
-    ::x.set(2)
-    println(x)         // 输出 "2"
+    println(::x.name)  // 输出 "x"
 }
 ```
 
@@ -125,6 +124,15 @@ fun main(args: Array<String>) {
 
 对于可变属性，例如 `var y = 1`，`::y` 返回 [`KMutableProperty<Int>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html) 类型的一个值，
 该类型有一个 `set()` 方法。
+
+``` kotlin
+var y = 1
+
+fun main(args: Array<String>) {
+    ::y.set(2)
+    println(y) // 输出 "2"
+}
+```
 
 属性引用可以用在不需要参数的函数处：
 

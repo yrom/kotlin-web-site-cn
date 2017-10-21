@@ -286,6 +286,19 @@ sum : Int.(other: Int) -> Int
 val sum = fun Int.(other: Int): Int = this + other
 ```
 
+带有接收者的函数类型的字面值可以在赋值或者传参中用于期待具有<!--
+-->多出*第一个*参数为接收者类型的普通函数的地方，反之亦然。例如，类型 `String.(Int) -> Boolean` 与 `(String, Int) -> Boolean` 兼容：
+
+``` kotlin
+val represents: String.(Int) -> Boolean = { other -> toIntOrNull() == other }
+println("123".represents(123)) // true
+
+fun testOperation(op: (String, Int) -> Boolean, a: String, b: Int, c: Boolean) =
+    assert(op(a, b) == c)
+
+testOperation(represents, "100", 100, true) // OK
+```
+
 当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。
 
 ``` kotlin
@@ -304,3 +317,5 @@ html {       // 带接收者的 lambda 由此开始
     body()   // 调用该接收者对象的一个方法
 }
 ```
+
+

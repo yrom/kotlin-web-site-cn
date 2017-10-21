@@ -141,16 +141,16 @@ println(files?.size ?: "empty")
 ### if null 执行一个语句
 
 ``` kotlin
-val data = ……
-val email = data["email"] ?: throw IllegalStateException("Email is missing!")
+val values = ……
+val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
 ### if not null 执行代码
 
 ``` kotlin
-val data = ……
+val value = ……
 
-data?.let {
+value?.let {
     …… // 代码会执行到此处, 假如data不为null
 }
 ```
@@ -158,9 +158,9 @@ data?.let {
 ### 映射可空值（如果非空的话）
 
 ``` kotlin
-val data = ……
+val value = ……
 
-val mapped = data?.let { transformData(it) } ?: defaultValueIfDataIsNull
+val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
 ```
 
 ### 返回 when 表达式
