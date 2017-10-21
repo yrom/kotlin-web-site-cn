@@ -128,7 +128,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-Top-level variables:
+顶层变量：
 
 <div class="sample" markdown="1">
 ``` kotlin

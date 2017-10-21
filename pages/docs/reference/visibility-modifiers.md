@@ -32,7 +32,7 @@ class Bar {}
 * 如果你声明为 `internal`，它会在相同[模块](#模块)内随处可见；
 * `protected` 不适用于顶层声明。
 
-Note: to use a visible top-level declaration from another package, you should still [import](packages.html#imports) it.
+注意：要使用另一包中可见的顶层声明，仍需将其[导入](packages.html#imports)进来。
 
 例如:
 
