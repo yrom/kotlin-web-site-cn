@@ -77,3 +77,6 @@ Kotlin 编程语言中文站翻译贡献者如下（排名不分先后）：
 * [SnakeEys](https://github.com/SnakeEys)
 * [wssccc](https://github.com/wssccc)
 * [592357390](https://github.com/592357390)
+* [imknown](https://github.com/imknown)
+* [XuToTo](https://github.com/XuToTo)
+* [ovear](https://github.com/ovear)
