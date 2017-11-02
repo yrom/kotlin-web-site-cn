@@ -8,15 +8,15 @@ title: "使用 kapt"
 
 > 译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。
 
-Annotation processors (see [JSR 269](https://jcp.org/en/jsr/detail?id=269)) are supported in Kotlin with the *kapt* compiler plugin.
+在 Kotlin 中通过 *kapt* 编译器插件支持注解处理器（参见[JSR 269](https://jcp.org/en/jsr/detail?id=269)）。
 
-Being short, you can use libraries such as [Dagger](https://google.github.io/dagger/) or [Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) in your Kotlin projects.
+简而言之，你可以在 Kotlin 项目中使用像 [Dagger](https://google.github.io/dagger/) 或者 [Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) 这样的库。
 
-Please read below about how to apply the *kapt* plugin to your Gradle/Maven build.
+关于如何将 *kapt* 插件应用于 Gradle/Maven 构建中，请阅读下文。
 
-## Using in Gradle
+## 在 Gradle 中使用
 
-Apply the `kotlin-kapt` Gradle plugin:
+应用 `kotlin-kapt` Gradle 插件：
 
 ```groovy
 apply plugin: 'kotlin-kapt'
@@ -38,7 +38,7 @@ dependencies {
 }
 ```
 
-如果你以前使用 [Android support](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#annotationProcessor_config) 作为注解处理器，那么以 `kapt` 取代 `annotationProcessor` 配置的使用。如果你的项目包含 Java 类，`kapt` 也会顾全到它们。
+如果你以前使用 [Android 支持](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#annotationProcessor_config)作为注解处理器，那么以 `kapt` 取代 `annotationProcessor` 配置的使用。如果你的项目包含 Java 类，`kapt` 也会顾全到它们。
 
 如果为 `androidTest` 或 `test` 源代码使用注解处理器，那么相应的 `kapt` 配置名为 `kaptAndroidTest` 和 `kaptTest`。请注意 `kaptAndroidTest` 和 `kaptTest` 扩展了 `kapt`，所以你可以只提供 `kapt` 依赖而它对生产和测试源代码都可用。
 
@@ -50,7 +50,7 @@ kapt {
 }
 ```
 
-## Using in Maven
+## 在 Maven 中使用
 
 在 `compile` 之前在 kotlin-maven-plugin 中添加 `kapt` 目标的执行：
 
@@ -83,36 +83,36 @@ kapt {
 请注意，IntelliJ IDEA 自身的构建系统目前还不支持 kapt。当你想要重新运行注解处理时，请从“Maven Projects”工具栏启动构建。
 
 
-## Using in CLI
+## 在命令行中使用
 
-Kapt compiler plugin is available in the binary distribution of the Kotlin compiler.
+Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。
 
-You can attach the plugin by providing the path to its JAR file using the `Xplugin` kotlinc option:
+可以使用 kotlinc 选项 `Xplugin` 提供该 JAR 文件的路径来附加该插件：
 
 ```bash
 -Xplugin=$KOTLIN_HOME/lib/kotlin-annotation-processing.jar
 ```
 
-Here is a list of the available options:
+以下是可用选项的列表：
 
-* `sources` (*required*): An output path for the generated files.
-* `classes` (*required*): An output path for the generated class files and resources.
-* `stubs` (*required*): An output path for the stub files. In other words, some temporary directory.
-* `incrementalData`: An output path for the binary stubs.
-* `apclasspath` (*repeatable*): A path to the annotation processor JAR. Pass as many `apclasspath` options as many JARs you have.
-* `apoptions`: A base64-encoded list of the annotation processor options. See [AP/javac options encoding](#apjavac-options-encoding) for more information.
-* `javacArguments`: A base64-encoded list of the options passed to javac. See [AP/javac options encoding](#apjavac-options-encoding) for more information.
-* `processors`: A comma-specified list of annotation processor qualified class names. If specified, kapt does not try to find annotation processors in `apclasspath`.
-* `verbose`: Enable verbose output.
-* `aptMode` (*required*)
-    * `stubs` – only generate stubs needed for annotation processing;
-    * `apt` – only run annotation processing;
-    * `stubsAndApt` – generate stubs and run annotation processing.
-* `correctErrorTypes`: See [below](#using-in-gradle). Disabled by default.
+* `sources`（*必需*）：所生成文件的输出路径。
+* `classes`（*必需*）：所生成类文件与资源的输出路径。
+* `stubs`（*必需*）：存根文件的输出路径。换句话说，一些临时目录。
+* `incrementalData`：二进制存根的输出路径。
+* `apclasspath`（*可重复*）：注解处理器 JAR 包路径。如果有的多个 JAR 包就传多个 `apclasspath` 选项。
+* `apoptions`：注解处理器选项的 base64 编码列表。详见 [AP/javac options encoding](#apjavac-选项编码)。
+* `javacArguments`：传给 javac 的选项的 base64 编码列表。详见 [AP/javac options encoding](#apjavac-选项编码)。
+* `processors`：逗号分隔的注解处理器全类名列表。如果指定，kapt 就不会尝试在 `apclasspath` 中查找注解处理器。
+* `verbose`：启用详细输出。
+* `aptMode`（*必需*）
+    * `stubs`——只生成注解处理所需的存根；
+    * `apt`——只运行注解处理；
+    * `stubsAndApt`——生成存根并运行注解处理。
+* `correctErrorTypes`：参见[下文](#在-gradle-中使用)。默认未启用。
 
-The plugin option format is: `-P plugin:<plugin id>:<key>=<value>`. Options can be repeated.
+插件选项格式为：`-P plugin:<plugin id>:<key>=<value>`。选项可以重复。
 
-An example:
+一个示例：
 
 ```bash
 -P plugin:org.jetbrains.kotlin.kapt3:sources=build/kapt/sources
@@ -126,19 +126,19 @@ An example:
 ```
 
 
-## Generating Kotlin sources
+## 生成 Kotlin 代码
 
-Kapt can generate Kotlin sources. Just write the generated Kotlin source files to the directory specified by `processingEnv.options["kapt.kotlin.generated"]`, and these files will be compiled together with the main sources.
+Kapt 可生成 Kotlin 代码。是将生成的 Kotlin 源文件写入`processingEnv.options["kapt.kotlin.generated"]` 所指定的目录，这些文件会与主源代码一起编译。
 
-You can find the complete sample in the [kotlin-examples](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-code-generation) Github repository.
+可以在 [kotlin-examples](https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-code-generation) Github 版本库中找到完整的示例。
 
-Note that Kapt does not support multiple rounds for the generated Kotlin files.
+请注意，对于所生成 Kotlin 文件，Kapt 不支持多轮处理。
 
 
-## AP/javac options encoding
+## AP/javac 选项编码
 
-`apoptions` and `javacArguments` CLI options accept an encoded map of options.  
-Here is how you can encode options by yourself:
+`apoptions` 与 `javacArguments` 命令行选项接受选项编码映射。
+这是自己编码选项的方式：
 
 ```kotlin
 fun encodeList(options: Map<String, String>): String {
