@@ -37,7 +37,7 @@ Kotlin 非常适合开发服务器端应用程序，允许编写简明且表现�
 它可以作为传统模板系统（如JSP和FreeMarker）的替代品。
 
  * 通过相应 Java 驱动程序进行持久化的可用选项包括直接 JDBC 访问、JPA 以及使用 NoSQL 数据库。
-对于 JPA，[kotlin-jpa 编译器插件](compiler-plugins.html#kotlin-jpa-编译器插件)使
+对于 JPA，[kotlin-jpa 编译器插件](compiler-plugins.html#jpa-支持)使
 Kotlin 编译的类适应框架的要求。
 
 ## 部署 Kotlin 服务器端应用程序
