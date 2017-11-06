@@ -63,6 +63,8 @@ reference:
           title: Kotlin 用于 Android
         - url: /docs/reference/js-overview.html
           title: Kotlin 用于 JavaScript
+        - url: /docs/reference/native-overview.html
+          title: Kotlin/Native
         - url: /docs/reference/whatsnew11.html
           title: 1.1 的新特性
 
