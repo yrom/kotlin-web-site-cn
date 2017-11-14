@@ -121,7 +121,7 @@ Kotlin 类型。编译器支持多种可空性注解，包括：
   * [JetBrains](https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html)
 （`org.jetbrains.annotations` 包中的  `@Nullable` 和 `@NotNull`）
   * Android（`com.android.annotations` 和 `android.support.annotations`)
-  * JSR-305（`javax.annotation`, more details below）
+  * JSR-305（`javax.annotation`，详见下文）
   * FindBugs（`edu.umd.cs.findbugs.annotations`）
   * Eclipse（`org.eclipse.jdt.annotation`）
   * Lombok（`lombok.NonNull`）。
@@ -181,7 +181,7 @@ interface A {
 * `ElementType.METHOD` 用于方法的返回值；
 * `ElementType.PARAMETER` 用于值参数；
 * `ElementType.FIELD` 用于字段；以及
-* `ElementType.TYPE_USE` (since 1.1.60) for any type including type arguments, upper bounds of type parameters and wildcard types.
+* `ElementType.TYPE_USE`（自 1.1.60 起）适用于任何类型，包括类型参数、类型参数的上界与通配符类型。
 
 
 当类型并未标注可空性注解时使用默认可空性，并且该默认值是<!--
@@ -206,8 +206,8 @@ interface A {
     @NotNullApi // 覆盖来自接口的默认值
     String bar(String x, @Nullable String y); // fun bar(x: String, y: String?): String 
     
-    // The List<String> type argument is seen as nullable because of `@NullableApi`
-    // having the `TYPE_USE` element type: 
+    // 由于 `@NullableApi` 具有 `TYPE_USE` 元素类型，
+    // 因此认为 List<String> 类型参数是可空的：
     String baz(List<String> x); // fun baz(List<String?>?): String?
 
     // “x”参数仍然是平台类型，因为有显式 UNKNOWN 标记的
@@ -224,22 +224,22 @@ interface A {
 package test;
 ```
 
-#### `@UnderMigration` annotation (since 1.1.60)
+#### `@UnderMigration` 注解（自 1.1.60 起）
 
-The `@UnderMigration` annotation (provided in a separate artifact `kotlin-annotations-jvm`) can be used by library 
-maintainers to define the migration status for the nullability type qualifiers.
+库的维护者可以使用 `@UnderMigration` 注解（在单独的构件 `kotlin-annotations-jvm` 中提供）<!--
+-->来定义可为空性类型限定符的迁移状态。
 
-The status value in `@UnderMigration(status = ...)` specifies how the compiler treats inappropriate usages of the 
-annotated types in Kotlin (e.g. using a `@MyNullable`-annotated type value as non-null):
+`@UnderMigration(status = ...)` 中的状态值指定了编译器如何处理 Kotlin 中注解类型的不当用法<!--
+-->（例如，使用 `@MyNullable` 标注的类型值作为非空值）：
 
-* `MigrationStatus.STRICT` makes annotation work as any plain nullability annotation, i.e. reporting error for 
-the inappropriate usages;
+* `MigrationStatus.STRICT` 使注解像任何纯可空性注解一样工作，即对<!--
+-->不当用法报错；
 
-* with `MigrationStatus.WARN`, the inappropriate usages are reported as compilation warnings instead of errors; and
+* 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；而
 
-* `MigrationStatus.IGNORE` makes the compiler ignore the nullability annotation completely.
+* `MigrationStatus.IGNORE` 使编译器完全忽略可空性注解。
 
-A library maintainer can add `@UnderMigration` status to both type qualifier nicknames and type qualifier defaults:  
+库的维护者还可以将 `@UnderMigration` 状态添加到类型限定符别名与类型限定符默认值：
 
 ```java
 @Nonnull(when = When.ALWAYS)
@@ -248,41 +248,41 @@ A library maintainer can add `@UnderMigration` status to both type qualifier nic
 public @interface NonNullApi {
 }
 
-// The types in the class are non-null, but only warnings are reported
-// because `@NonNullApi` is annotated `@UnderMigration(status = MigrationStatus.WARN)`
+// 类中的类型是非空的，但是只报警告
+// 因为 `@NonNullApi` 标注了 `@UnderMigration(status = MigrationStatus.WARN)`
 @NonNullApi 
 public class Test {}
 ```
 
-Note: the migration status of a nullability annotation is not inherited by its type qualifier nicknames but is applied
-to its usages in default type qualifiers.
+注意：可空性注解的迁移状态并不会从其类型限定符别名继承，而是适用<!--
+-->于默认类型限定符的用法。
 
-If a default type qualifier uses a type qualifier nickname and they are both `@UnderMigration`, the status
-from the default type qualifier is used. 
+如果默认类型限定符使用类型限定符别名，并且它们都标注有 `@UnderMigration`，那么<!--
+-->使用默认类型限定符的状态。
 
 #### 编译器配置
 
 可以通过添加带有以下选项的 `-Xjsr305` 编译器标志来配置 JSR-305 检测：
 
-* `-Xjsr305={strict|warn|ignore}` to set up the behavior for non-`@UnderMigration` annotations.
-Custom nullability qualifiers, especially 
-`@TypeQualifierDefault`, are already spread among many well-known libraries, and users may need to migrate smoothly when 
-updating to the Kotlin version containing JSR-305 support. Since Kotlin 1.1.60, this flag only affects non-`@UnderMigration` annotations.
+* `-Xjsr305={strict|warn|ignore}` 设置非 `@UnderMigration` 注解的行为。
+自定义的可空性限定符，尤其是
+`@TypeQualifierDefault` 已经在很多知名库中流传，而用户<!--
+-->更新到包含 JSR-305 支持的 Kotlin 版本时可能需要平滑迁移。自 Kotlin 1.1.60 起，这一标志只影响非 `@UnderMigration` 注解。
 
-* `-Xjsr305=under-migration:{strict|warn|ignore}` (since 1.1.60) to override the behavior for the `@UnderMigration` annotations.
-Users may have different view on the migration status for the libraries: 
-they may want to have errors while the official migration status is `WARN`, or vice versa, 
-they may wish to postpone errors reporting for some until they complete their migration.
+* `-Xjsr305=under-migration:{strict|warn|ignore}`（自 1.1.60 起）覆盖 `@UnderMigration` 注解的行为。
+用户可能对库的迁移状态有不同的看法：
+他们可能希望在官方迁移状态为 `WARN` 时报错误，反之亦然，<!--
+-->他们可能希望推迟错误报告直到他们完成迁移。
 
-* `-Xjsr305=@<fq.name>:{strict|warn|ignore}` (since 1.1.60) to override the behavior for a single annotation, where `<fq.name>` 
-is the fully qualified class name of the annotation. May appear several times for different annotations. This is useful
-for managing the migration state for a particular library.
+* `-Xjsr305=@<fq.name>:{strict|warn|ignore}`（自 1.1.60 起）覆盖单个注解的行为，其中 `<fq.name>` 是<!--
+-->该注解的完整限定类名。对于不同的注解可以多次出现。这<!--
+-->对于管理特定库的迁移状态非常有用。
 
-The `strict`, `warn` and `ignore` values have the same meaning as those of `MigrationStatus`.
+其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同。
 
-For example, adding `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn` to the 
-compiler arguments makes the compiler generate warnings for inappropriate usages of types annotated by 
-`@org.library.MyNullable` and ignore all other JSR-305 annotations. 
+例如，将 `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn` 添加到<!--
+-->编译器参数中，会使编译器对由
+`@org.library.MyNullable` 标注的不当用法生成警告，而忽略所有其他 JSR-305 注解。
 
 对于 kotlin 1.1.50+/1.2 版本，其默认行为等同于 `-Xjsr305=warn`。
 `strict` 值应认为是实验性的（以后可能添加更多检测）。
