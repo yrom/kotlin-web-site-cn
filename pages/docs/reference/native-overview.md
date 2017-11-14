@@ -7,44 +7,44 @@ title: "Kotlin/Native"
 
 # Kotlin/Native
 
-[Kotlin/Native](https://github.com/JetBrains/kotlin-native/) is a technology for compiling Kotlin to native binaries that run without any VM.
-It comprises a LLVM-based backend for the Kotlin compiler and a native implementation of the Kotlin runtime
-library. Kotlin/Native is primarily designed to allow compilation for platforms where virtual machines 
-are not desirable or possible (such as iOS, embedded targets), or where a developer needs to produce 
-a reasonably-sized self-contained program that does not require an additional runtime.
+[Kotlin/Native](https://github.com/JetBrains/kotlin-native/) 是一种将 Kotlin 编译为没有任何虚拟机的原生二进制文件的技术。
+它包含基于 LLVM 的 Kotlin 编译器后端以及 Kotlin 运行时库的原生实现<!--
+-->。Kotlin/Native 主要为允许在<!--
+-->不希望或不可能使用虚拟机的平台（如 iOS、嵌入式领域等）编译、
+或者开发人员需要生成不需要额外运行时的合理大小的独立程序而设计的。
 
-Kotlin/Native fully supports interoperability with native code. For platform libraries, the corresponding
-interop libraries are available out of the box. For other libraries, we provide a 
-[tool to generate an interop library](https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md) 
-from a C header file, with full support for all C language features. 
-On macOS and iOS, interoperability with Objective/C code is also supported.
+Kotlin/Native 完全支持与原生代码的互操作。对于平台库，相应<!--
+-->互操作库已可以开箱即用。对于其他库，我们提供了一个<!--
+-->由 C 语言头文件[生成互操作库的工具](https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md)<!--
+-->，完全支持所有 C 语言功能。
+在 macOS 与 iOS 上，还支持与 Objective/C 代码互操作。
 
-Kotlin/Native is currently in development; preview releases are available for you to try. IDE support
-for Kotlin/Native is available as plugins for [CLion](https://www.jetbrains.com/clion/).
+Kotlin/Native 目前还在开发中；可以试用其预览版。
+Kotlin/Native 的 IDE 支持已作为 [CLion](https://www.jetbrains.com/clion/) 的插件提供。
 
-### Target Platforms
+### 目标平台
 
-Kotlin/Native currently supports the following platforms:
+Kotlin/Native 目前支持以下平台：
 
-    * Windows (x86_64 only at the moment)
-    * Linux (x86_64, arm32, MIPS, MIPS little endian)
-    * MacOS (x86_64)
-    * iOS (arm64 only)
-    * Android (arm32 and arm64)
-    * WebAssembly (wasm32 only)
+    * Windows（目前只支持 x86_64）
+    * Linux（x86_64、 arm32、 MIPS、 MIPS little endian）
+    * MacOS（x86_64）
+    * iOS（只支持 arm64）
+    * Android（arm32 与 arm64）
+    * WebAssembly（只支持 wasm32)
 
-### Sample Projects
+### 示例项目
 
-We've built a number of sample projects to showcase the possibilities of Kotlin/Native:
+我们已经构建了一些示例项目来展示 Kotlin/Native 的可能性：
 
- * The [Kotlin/Native GitHub repository](https://github.com/JetBrains/kotlin-native/tree/master/samples) contains a number of sample projects;
- * The [KotlinConf Spinner app](https://github.com/jetbrains/kotlinconf-spinner) is a simple cross-platform 
-   mobile multiplayer game fully built in Kotlin/Native, consisting of the following components:
-       - a backend, using SQLite for data storage and exposing a REST/JSON API;
-       - mobile clients for iOS and Android, using OpenGL;
-       - a WebAssembly-based browser frontend for viewing the game scores.
- * The [KotlinConf app](https://github.com/JetBrains/kotlinconf-app/tree/master/ios) is an iOS app
-   with a UIKit-based UI, showcasing the Objective/C interop facilities of Kotlin/Native.
+ * [Kotlin/Native GitHub 版本库](https://github.com/JetBrains/kotlin-native/tree/master/samples)包含一些示例项目；
+ * [KotlinConf Spinner 应用](https://github.com/jetbrains/kotlinconf-spinner)是一个简单的跨平台<!--
+   -->移动端多人游戏，完全使用 Kotlin/Native 构建，由以下组件组成：
+       - 后端，使用 SQLite 来做数据存储并暴露一个 REST/JSON API；
+       - iOS 与 Android 移动客户端，使用 OpenGL；
+       - 一个基于 WebAssembly 的浏览器前端用于查看游戏分数。
+ * [KotlinConf 应用](https://github.com/JetBrains/kotlinconf-app/tree/master/ios)是一个具有<!--
+   -->基于 UIKit 的 UI 的 iOS 应用程序，展示了 Kotlin/Native 与 Objective/C 互操作的便利性。
 
        
 
