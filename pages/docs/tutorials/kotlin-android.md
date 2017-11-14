@@ -92,7 +92,7 @@ Kotlin 配置完成后，应用程序的 build.gradle 文件会更新。
 
 Kotlin有着极小的运行时文件体积：整个库的大小约 {{ site.data.releases.latest.runtime_size }}（{{ site.data.releases.latest.version }} 版本）。这意味着 Kotlin 对 apk 文件大小影响微乎其微。
 
-就对比 Kotlin 与 Jav a所编写的程序而言，Kotlin 编译器所生成的字节码看上去几乎毫无差异。
+就对比 Kotlin 与 Java所编写的程序而言，Kotlin 编译器所生成的字节码看上去几乎毫无差异。
 
 ### 后续？
 

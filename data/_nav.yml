@@ -63,6 +63,8 @@ reference:
           title: Kotlin 用于 Android
         - url: /docs/reference/js-overview.html
           title: Kotlin 用于 JavaScript
+        - url: /docs/reference/native-overview.html
+          title: Kotlin/Native
         - url: /docs/reference/whatsnew11.html
           title: 1.1 的新特性
 
@@ -299,3 +301,10 @@ tutorials:
       content:
         - url: /docs/tutorials/kotlin-and-ci.html
           title: TeamCity 配置 Kotlin
+
+    - title: 教学
+      content:
+        - url: /docs/tutorials/edu-tools-learner.html
+          title: 通过 EduTools 插件学习 Kotlin
+        - url: /docs/tutorials/edu-tools-educator.html
+          title: 通过 EduTools 插件讲授 Kotlin
