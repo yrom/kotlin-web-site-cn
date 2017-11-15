@@ -239,7 +239,7 @@ package test;
 
 * `MigrationStatus.IGNORE` 使编译器完全忽略可空性注解。
 
-库的维护者还可以将 `@UnderMigration` 状态添加到类型限定符别名与类型限定符默认值：
+库的维护者还可以将 `@UnderMigration` 状态添加到类型限定符别称与类型限定符默认值：
 
 ```java
 @Nonnull(when = When.ALWAYS)
@@ -254,10 +254,10 @@ public @interface NonNullApi {
 public class Test {}
 ```
 
-注意：可空性注解的迁移状态并不会从其类型限定符别名继承，而是适用<!--
+注意：可空性注解的迁移状态并不会从其类型限定符别称继承，而是适用<!--
 -->于默认类型限定符的用法。
 
-如果默认类型限定符使用类型限定符别名，并且它们都标注有 `@UnderMigration`，那么<!--
+如果默认类型限定符使用类型限定符别称，并且它们都标注有 `@UnderMigration`，那么<!--
 -->使用默认类型限定符的状态。
 
 #### 编译器配置
