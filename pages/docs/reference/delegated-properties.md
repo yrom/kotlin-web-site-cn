@@ -50,7 +50,7 @@ println(e.p)
 
 输出结果：
 
-``` kotlin
+```
 Example@33a17727, thank you for delegating ‘p’ to me!
 ```
 
@@ -62,7 +62,7 @@ e.p = "NEW"
 
 输出结果：
 
-``` kotlin
+```
 NEW has been assigned to ‘p’ in Example@33a17727.
 ```
 
