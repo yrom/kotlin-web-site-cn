@@ -219,7 +219,7 @@ interface A {
 }
 ```
 
-> Note: the types in this example only take place with the strict mode enabled, otherwise, the platform types remain. See the [`@UnderMigration` annotation](#undermigration-annotation-since-1160) and [Compiler configuration](#compiler-configuration) sections.
+> 注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 [`@UnderMigration` 注解](#undermigration-注解自-1160-起)与[编译器配置](#编译器配置)两节。
 
 也支持包级的默认可空性：
 
@@ -229,6 +229,7 @@ interface A {
 package test;
 ```
 
+{:#undermigration-注解自-1160-起}
 #### `@UnderMigration` 注解（自 1.1.60 起）
 
 库的维护者可以使用 `@UnderMigration` 注解（在单独的构件 `kotlin-annotations-jvm` 中提供）<!--
@@ -238,12 +239,12 @@ package test;
 -->（例如，使用 `@MyNullable` 标注的类型值作为非空值）：
 
 * `MigrationStatus.STRICT` 使注解像任何纯可空性注解一样工作，即对<!--
--->不当用法报错 and affect the types in the annotated declarations as they are seen in Kotlin;
+-->不当用法报错并影响注解声明内的类型在 Kotlin 中的呈现；
 
 * 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；
-but the types in the annotated declarations remain platform; 而
+但注解声明内的类型仍是平台类型；而
 
-* `MigrationStatus.IGNORE` 使编译器完全忽略可空性注解。
+* `MigrationStatus.IGNORE` 则使编译器完全忽略可空性注解。
 
 库的维护者还可以将 `@UnderMigration` 状态添加到类型限定符别称与类型限定符默认值：
 
@@ -284,9 +285,9 @@ public class Test {}
 -->该注解的完整限定类名。对于不同的注解可以多次出现。这<!--
 -->对于管理特定库的迁移状态非常有用。
 
-其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同, and only the `strict` mode affects the types in the annotated declarations as they are seen in Kotlin.
+其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同，并且只有 `strict` 模式会影响注解声明中的类型在 Kotlin 中的呈现。
 
-> Note: the built-in JSR-305 annotations [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html), [`@Nullable`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html) and [`@CheckForNull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html) are always enabled and affect the types of the annotated declarations in Kotlin, regardless of compiler configuration with the `-Xjsr305` flag.
+> 注意：内置的 JSR-305 注解 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html)、 [`@Nullable`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html) 与 [`@CheckForNull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html) 总是启用并影响所注解的声明在 Kotlin 中呈现，无论如何配置编译器的 `-Xjsr305` 标志。
 
 例如，将 `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn` 添加到<!--
 -->编译器参数中，会使编译器对由
