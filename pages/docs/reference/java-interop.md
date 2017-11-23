@@ -165,8 +165,11 @@ public @interface MyNullable {
 }
 
 interface A {
-    @MyNullable String foo(@MyNonnull String x); // 被视为 `fun foo(x: String): String?`
-    String bar(List<@MyNonnull String> x);       // 被视为 `fun bar(x: List<String>!): String!`
+    @MyNullable String foo(@MyNonnull String x); 
+    // 在 Kotlin（严格模式）中：`fun foo(x: String): String?`
+    
+    String bar(List<@MyNonnull String> x);       
+    // 在 Kotlin（严格模式）中：`fun bar(x: List<String>!): String!`
 }
 ```
 
@@ -210,11 +213,13 @@ interface A {
     // 因此认为 List<String> 类型参数是可空的：
     String baz(List<String> x); // fun baz(List<String?>?): String?
 
-    // “x”参数仍然是平台类型，因为有显式 UNKNOWN 标记的
-    // 可空性注解：
+    // “x”参数仍然是平台类型，因为有显式
+    // UNKNOWN 标记的可空性注解：
     String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
 }
 ```
+
+> Note: the types in this example only take place with the strict mode enabled, otherwise, the platform types remain. See the [`@UnderMigration` annotation](#undermigration-annotation-since-1160) and [Compiler configuration](#compiler-configuration) sections.
 
 也支持包级的默认可空性：
 
@@ -233,9 +238,10 @@ package test;
 -->（例如，使用 `@MyNullable` 标注的类型值作为非空值）：
 
 * `MigrationStatus.STRICT` 使注解像任何纯可空性注解一样工作，即对<!--
--->不当用法报错；
+-->不当用法报错 and affect the types in the annotated declarations as they are seen in Kotlin;
 
-* 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；而
+* 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；
+but the types in the annotated declarations remain platform; 而
 
 * `MigrationStatus.IGNORE` 使编译器完全忽略可空性注解。
 
@@ -278,7 +284,9 @@ public class Test {}
 -->该注解的完整限定类名。对于不同的注解可以多次出现。这<!--
 -->对于管理特定库的迁移状态非常有用。
 
-其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同。
+其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同, and only the `strict` mode affects the types in the annotated declarations as they are seen in Kotlin.
+
+> Note: the built-in JSR-305 annotations [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html), [`@Nullable`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html) and [`@CheckForNull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html) are always enabled and affect the types of the annotated declarations in Kotlin, regardless of compiler configuration with the `-Xjsr305` flag.
 
 例如，将 `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn` 添加到<!--
 -->编译器参数中，会使编译器对由
