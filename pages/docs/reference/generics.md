@@ -290,7 +290,7 @@ sort(listOf(HashMap<Int, String>())) // 错误：HashMap<Int, String> 不是 Com
 
 ``` kotlin
 fun <T> cloneWhenGreater(list: List<T>, threshold: T): List<T>
-    where T : Comparable,
+    where T : Comparable<T>,
           T : Cloneable {
   return list.filter { it > threshold }.map { it.clone() }
 }

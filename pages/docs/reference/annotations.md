@@ -232,6 +232,8 @@ public @interface AnnWithValue {
 @AnnWithValue("abc") class C
 ```
 
+### 数组作为注解参数
+
 如果 Java 中的 `value` 参数具有数组类型，它会成为 Kotlin 中的一个 `vararg` 参数：
 
 ``` java
@@ -246,7 +248,8 @@ public @interface AnnWithArrayValue {
 @AnnWithArrayValue("abc", "foo", "bar") class C
 ```
 
-对于具有数组类型的其他参数，你需要显式使用 `arrayOf`：
+对于具有数组类型的其他参数，你需要显式使用数组字面值语法（自 Kotlin 1.2 起）或者
+`arrayOf(……)`：
 
 ``` java
 // Java
@@ -256,9 +259,16 @@ public @interface AnnWithArrayMethod {
 ```
 
 ``` kotlin
-// Kotlin
-@AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) class C
+// Kotlin 1.2+：
+@AnnWithArrayMethod(names = ["abc", "foo", "bar"]) 
+class C
+
+// 旧版本 Kotlin：
+@AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) 
+class D
 ```
+
+### 访问注解实例的属性
 
 注解实例的值会作为属性暴露给 Kotlin 代码：
 

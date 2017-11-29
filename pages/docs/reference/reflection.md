@@ -247,3 +247,5 @@ val matches: (Regex, CharSequence) -> Boolean = Regex::matches
 val prop = "abc"::length
 println(prop.get())   // 输出“3”
 ```
+
+自 Kotlin 1.2 起，无需显式指定 `this` 作为接收者：`this::foo` 与 `::foo` 是等价的。

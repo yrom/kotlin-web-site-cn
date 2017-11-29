@@ -165,8 +165,11 @@ public @interface MyNullable {
 }
 
 interface A {
-    @MyNullable String foo(@MyNonnull String x); // 被视为 `fun foo(x: String): String?`
-    String bar(List<@MyNonnull String> x);       // 被视为 `fun bar(x: List<String>!): String!`
+    @MyNullable String foo(@MyNonnull String x); 
+    // 在 Kotlin（严格模式）中：`fun foo(x: String): String?`
+    
+    String bar(List<@MyNonnull String> x);       
+    // 在 Kotlin（严格模式）中：`fun bar(x: List<String>!): String!`
 }
 ```
 
@@ -210,11 +213,13 @@ interface A {
     // 因此认为 List<String> 类型参数是可空的：
     String baz(List<String> x); // fun baz(List<String?>?): String?
 
-    // “x”参数仍然是平台类型，因为有显式 UNKNOWN 标记的
-    // 可空性注解：
+    // “x”参数仍然是平台类型，因为有显式
+    // UNKNOWN 标记的可空性注解：
     String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
 }
 ```
+
+> 注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 [`@UnderMigration` 注解](#undermigration-注解自-1160-起)与[编译器配置](#编译器配置)两节。
 
 也支持包级的默认可空性：
 
@@ -224,6 +229,7 @@ interface A {
 package test;
 ```
 
+{:#undermigration-注解自-1160-起}
 #### `@UnderMigration` 注解（自 1.1.60 起）
 
 库的维护者可以使用 `@UnderMigration` 注解（在单独的构件 `kotlin-annotations-jvm` 中提供）<!--
@@ -233,13 +239,14 @@ package test;
 -->（例如，使用 `@MyNullable` 标注的类型值作为非空值）：
 
 * `MigrationStatus.STRICT` 使注解像任何纯可空性注解一样工作，即对<!--
--->不当用法报错；
+-->不当用法报错并影响注解声明内的类型在 Kotlin 中的呈现；
 
-* 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；而
+* 对于 `MigrationStatus.WARN`，不当用法报为警告而不是错误；
+但注解声明内的类型仍是平台类型；而
 
-* `MigrationStatus.IGNORE` 使编译器完全忽略可空性注解。
+* `MigrationStatus.IGNORE` 则使编译器完全忽略可空性注解。
 
-库的维护者还可以将 `@UnderMigration` 状态添加到类型限定符别名与类型限定符默认值：
+库的维护者还可以将 `@UnderMigration` 状态添加到类型限定符别称与类型限定符默认值：
 
 ```java
 @Nonnull(when = When.ALWAYS)
@@ -254,10 +261,10 @@ public @interface NonNullApi {
 public class Test {}
 ```
 
-注意：可空性注解的迁移状态并不会从其类型限定符别名继承，而是适用<!--
+注意：可空性注解的迁移状态并不会从其类型限定符别称继承，而是适用<!--
 -->于默认类型限定符的用法。
 
-如果默认类型限定符使用类型限定符别名，并且它们都标注有 `@UnderMigration`，那么<!--
+如果默认类型限定符使用类型限定符别称，并且它们都标注有 `@UnderMigration`，那么<!--
 -->使用默认类型限定符的状态。
 
 #### 编译器配置
@@ -278,7 +285,9 @@ public class Test {}
 -->该注解的完整限定类名。对于不同的注解可以多次出现。这<!--
 -->对于管理特定库的迁移状态非常有用。
 
-其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同。
+其中 `strict`、 `warn` 与 `ignore` 值的含义与 `MigrationStatus` 中的相同，并且只有 `strict` 模式会影响注解声明中的类型在 Kotlin 中的呈现。
+
+> 注意：内置的 JSR-305 注解 [`@Nonnull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html)、 [`@Nullable`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html) 与 [`@CheckForNull`](https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html) 总是启用并影响所注解的声明在 Kotlin 中呈现，无论如何配置编译器的 `-Xjsr305` 标志。
 
 例如，将 `-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn` 添加到<!--
 -->编译器参数中，会使编译器对由

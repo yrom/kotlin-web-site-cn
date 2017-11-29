@@ -138,7 +138,6 @@ reformat(str, wordSeparator = '_')
 fun foo(vararg strings: String) { /* …… */ }
 
 foo(strings = *arrayOf("a", "b", "c"))
-foo(strings = "a") // 对于单个值不需要星号
 ```
 
 请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--
@@ -341,7 +340,7 @@ private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {
         val y = Math.cos(x)
-        if (x == y) return y
+        if (x == y) return x
         x = y
     }
 }

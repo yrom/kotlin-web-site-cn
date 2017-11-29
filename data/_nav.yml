@@ -67,6 +67,8 @@ reference:
           title: Kotlin/Native
         - url: /docs/reference/whatsnew11.html
           title: 1.1 的新特性
+        - url: /docs/reference/whatsnew12.html
+          title: 1.2 的新特性
 
     - title: 开始
       description: 开始熟悉 Kotlin 基础包括操作、编码习惯与习惯用法。
@@ -162,7 +164,7 @@ reference:
         - url: /docs/reference/type-aliases.html
           title: 类型别名
         - url: /docs/reference/multiplatform.html
-          title: 多平台项目（预览版）
+          title: 多平台项目
 
 
     - title: 核心库

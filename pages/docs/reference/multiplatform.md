@@ -2,10 +2,10 @@
 type: doc
 layout: reference
 category: "Other"
-title: "多平台项目（预览版）"
+title: "多平台项目"
 ---
 
-# 多平台项目（预览版）
+# 多平台项目
 
 > 多平台项目是 Kotlin 1.2 中的一个新的实验性功能。本文档中所描述的全部语言与<!--
 -->工具功能都可能在未来的 Kotlin 版本中发生变化。
@@ -60,16 +60,15 @@ Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的�
   * 将 `kotlin-platform-common` 插件应用到公共模块
   * 将 `kotlin-stdlib-common` 依赖添加到公共模块中
   * 将 `kotlin-platform-jvm` 与 `kotlin-platform-js` 插件分别应用到 JVM 与 JS 平台模块
-  * 将平台模块 `implement` 作用域中添加到到公共模块的依赖
+  * 将平台模块 `expectedBy` 作用域中添加到到公共模块的依赖
   
 以下示例演示了一个使用 Kotlin 1.2-Beta 的公共模块的完整的 `build.gradle` 文件：
 
 ``` groovy
 buildscript {
-    ext.kotlin_version = '1.2-Beta'
+    ext.kotlin_version = '{{ site.data.releases.latest.version }}'
 
     repositories {
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
         mavenCentral()
     }
     dependencies {
@@ -80,7 +79,6 @@ buildscript {
 apply plugin: 'kotlin-platform-common'
 
 repositories {
-    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     mavenCentral()
 }
 
@@ -91,14 +89,13 @@ dependencies {
 ```
 
 而下述示例展示了一个用于 JVM 平台模块的完整的 `build.gradle`。请<!--
--->特别注意其 `dependencies` 块中的 `implement` 行：
+-->特别注意其 `dependencies` 块中的 `expectedBy` 行：
 
 ``` groovy
 buildscript {
-    ext.kotlin_version = '1.2-Beta'
+    ext.kotlin_version = '{{ site.data.releases.latest.version }}'
 
     repositories {
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
         mavenCentral()
     }
     dependencies {
@@ -109,13 +106,12 @@ buildscript {
 apply plugin: 'kotlin-platform-jvm'
 
 repositories {
-    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     mavenCentral()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implement project(":")
+    expectedBy project(":")
     testCompile "junit:junit:4.12"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
@@ -208,3 +204,14 @@ expect class AtomicRef<V>(value: V) {
 
 actual typealias AtomicRef<V> = java.util.concurrent.atomic.AtomicReference<V>
 ```
+
+## 多平台测试
+
+可以在公共项目中编写测试，这样就可以在每个平台中编译与运行了。
+`kotlin.test` 包中提供了 4 个注解用于标记公共代码中的测试：`@Test`、 `@Ignore`、
+`@BeforeTest` 以及 `@AfterTest`.
+在 JVM 平台中这些注解会映射到相应 JUnit 4 注解，而在 JS 中自 1.1.4 起它们也已<!-- 
+可用于支持 JS 单元测试。
+
+为了使用它们，你需要将依赖 `kotlin-test-annotations-common` 添加到你的公共模块，将依赖 
+`kotlin-test-junit` 添加到你的 JVM 模块，并且将依赖 `kotlin-test-js` 添加到 JS 模块。
