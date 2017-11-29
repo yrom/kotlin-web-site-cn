@@ -36,6 +36,8 @@ data class User(val name: String, val age: Int)
 * 如果超类型具有 *open*{: .keyword } 的 `componentN()` 函数并且返回兼容的类型，
 那么会为数据类生成相应的函数，并覆盖超类的实现。如果超类型的这些函数<!--
 -->由于签名不兼容或者是 final 而导致无法覆盖，那么会报错；
+* Deriving a data class from a type that already has a `copy(...)` function with a matching signature is deprecated in 
+Kotlin 1.2 and will be prohibited in Kotlin 1.3.
 * 不允许为 `componentN()` 以及 `copy()` 函数提供显式实现。
 
 自 1.1 起，数据类可以扩展其他类（示例请参见[密封类](sealed-classes.html)）。

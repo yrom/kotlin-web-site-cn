@@ -150,7 +150,7 @@ lateinit var title: TextView
 ```
 `@BindView` 被定义为仅应用于变量字段，而将注解应用于整个属性时，Kotlin 编译器能够理解并且覆盖相应注解的字段。
 
-[lateinit 修饰符](/docs/reference/properties.html#延迟初始化属性)允许声明非空类型，并在对象创建后(构造函数调用后)初始化。
+[lateinit 修饰符](/docs/reference/properties.html#延迟初始化属性与变量)允许声明非空类型，并在对象创建后(构造函数调用后)初始化。
 不使用 `lateinit` 则需要声明[可空类型](/docs/reference/null-safety.html)并且有额外的空安全检测操作。
  
 使用 ButterKnife 注解可以将方法设置为监听器：

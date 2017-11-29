@@ -34,8 +34,8 @@ Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配�
 ```
 
 如果你是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，
-其中包含为新版 JDK 所增 API 而加的额外的扩展函数。使用 `kotlin-stdlib-jre7`
-或 `kotlin-stdlib-jre8` 取代 `kotlin-stdlib`，这取决于你的 JDK 版本。
+其中包含为新版 JDK 所增 API 而加的额外的扩展函数。使用 `kotlin-stdlib-jdk7`
+或 `kotlin-stdlib-jdk8` 取代 `kotlin-stdlib`，这取决于你的 JDK 版本 (for Kotlin 1.1.x, `kotlin-stdlib-jre7` and `kotlin-stdlib-jre8`)。
 
 如果你的项目使用 [Kotlin 反射](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html) 或者测试设施，那么你还需要添加相应的依赖项。
 其构件 ID 对于反射库是 `kotlin-reflect`，对于测试库是 `kotlin-test` 与 `kotlin-test-junit`

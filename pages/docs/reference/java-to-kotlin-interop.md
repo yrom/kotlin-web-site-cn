@@ -132,7 +132,7 @@ class JavaClient {
 }
 ```
 
-[延迟初始化的](properties.html#延迟初始化属性)属性（在Java中）也会暴露为字段。
+[延迟初始化的](properties.html#延迟初始化属性与变量)属性（在Java中）也会暴露为字段。
 该字段的可见性与 `lateinit` 属性的 setter 相同。
 
 ## 静态字段
@@ -163,7 +163,7 @@ Key.COMPARATOR.compare(key1, key2);
 // Key 类中的 public static final 字段
 ```
 
-在命名对象或者伴生对象中的一个[延迟初始化的](properties.html#延迟初始化属性)属性<!--
+在命名对象或者伴生对象中的一个[延迟初始化的](properties.html#延迟初始化属性与变量)属性<!--
 -->具有与属性 setter 相同可见性的静态幕后字段。
 
 ``` kotlin

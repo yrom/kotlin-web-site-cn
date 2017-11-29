@@ -157,7 +157,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 ```
 
 
-## 延迟初始化属性
+## 延迟初始化属性与变量
 
 一般地，属性声明为非空类型必须在构造函数中初始化。
 然而，这经常不方便。例如：属性可以通过依赖注入来初始化，
@@ -180,12 +180,26 @@ public class MyTest {
 }
 ```
 
-该修饰符只能用于在类体中（不是在主构造函数中）声明的 `var` 属性，并且仅<!--
--->当该属性没有自定义 getter 或 setter 时。该属性必须是非空类型，并且不能是<!--
--->原生类型。
+该修饰符只能用于在类体中（不是在主构造函数中声明的 `var` 属性，并且仅<!--
+-->当该属性没有自定义 getter 或 setter 时）and, since Kotlin 1.2, for top-level properties and 
+local variables。该属性或变量必须为非空类型，并且不能是原生类型。
 
 在初始化前访问一个 `lateinit` 属性会抛出一个特定异常，该异常明确标识该属性<!--
 -->被访问及它没有初始化的事实。
+
+### Checking whether a lateinit var is initialized (since 1.2)
+
+To check whether a `lateinit var` has already been initialized, use `.isInitialized` on 
+the [reference to that property](reflection.html#property-references):
+
+```kotlin
+if (foo::bar.isInitialized) {
+    println(foo.bar)
+}
+```
+
+This check is only available for the properties that are lexically accessible, i.e. declared in the same type or in one of
+the outer types, or at top level in the same file.
 
 ## 覆盖属性
 

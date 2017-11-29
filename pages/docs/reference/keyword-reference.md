@@ -94,6 +94,7 @@ title: "关键字与操作符"
 以下符号作为声明中修饰符列表中的关键字，并可用作其他上下文中<!--
 -->的标识符：
 
+ * `actual` denotes a platform-specific implementation in [multiplatform projects](/docs/reference/multiplatform.html) 
  * `abstract` 将一个类或成员标记为[抽象](classes.html#抽象类)
  * `annotation` 声明一个[注解类](annotations.html)
  * `companion` 声明一个[伴生对象](object-declarations.html#伴生对象)
@@ -101,13 +102,14 @@ title: "关键字与操作符"
  * `crossinline` 禁止[传递给内联函数的 lambda 中的非局部返回](inline-functions.html#非局部返回) 
  * `data` 指示编译器[为类生成典型成员](data-classes.html)
  * `enum` 声明一个[枚举](enum-classes.html)
+ * `expect` marks a declaration as [platform-specific](/docs/reference/multiplatform.html), expecting an implementation in platform modules.
  * `external` 将一个声明标记为不是在 Kotlin 中实现（通过 [JNI](java-interop.html#在-kotlin-中使用-jni) 访问或者在 [JavaScript](js-interop.html#external-修饰符) 中实现）
  * `final` 禁止[成员覆盖](classes.html#覆盖方法)
  * `infix` 允许以[中缀表示法](functions.html#中缀表示法)调用函数
  * `inline` 告诉编译器[在调用处内联传给它的函数和 lambda 表达式](inline-functions.html)
  * `inner` 允许在[嵌套类](nested-classes.html)中引用外部类实例
  * `internal` 将一个声明标记为[在当前模块中可见](visibility-modifiers.html)
- * `lateinit` 允许[在构造函数之外初始化非空属性](properties.html#延迟初始化属性)
+ * `lateinit` 允许[在构造函数之外初始化非空属性](properties.html#延迟初始化属性与变量)
  * `noinline` 关闭[传给内联函数的 lambda 表达式的内联](inline-functions.html#禁用内联)
  * `open` 允许[一个类子类化或覆盖成员](classes.html#继承)
  * `operator` 将一个函数标记为[重载一个操作符或者实现一个约定](operator-overloading.html)
