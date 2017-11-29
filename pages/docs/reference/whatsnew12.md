@@ -1,10 +1,10 @@
 ---
 type: doc
 layout: reference
-title: "What's New in Kotlin 1.2"
+title: "Kotlin 1.2 的新特性"
 ---
 
-# What's New in Kotlin 1.2
+# Kotlin 1.2 的新特性
 
 ## Table of Contents
 

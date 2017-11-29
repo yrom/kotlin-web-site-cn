@@ -248,4 +248,4 @@ val prop = "abc"::length
 println(prop.get())   // 输出“3”
 ```
 
-Since Kotlin 1.2, explicitly specifying `this` as the receiver is not necessary: `this::foo` and `::foo` are equivalent.
+自 Kotlin 1.2 起，无需显式指定 `this` 作为接收者：`this::foo` 与 `::foo` 是等价的。

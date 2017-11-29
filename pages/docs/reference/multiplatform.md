@@ -205,13 +205,13 @@ expect class AtomicRef<V>(value: V) {
 actual typealias AtomicRef<V> = java.util.concurrent.atomic.AtomicReference<V>
 ```
 
-## Multiplatform tests
+## 多平台测试
 
-It is possible to write tests in a common project so that they will be compiled and run in each platform project. 
-There are 4 annotations provided in `kotlin.test` package to markup tests in common code: `@Test`, `@Ignore`, 
-`@BeforeTest` and `@AfterTest`.
-In JVM platform these annotations are mapped to the corresponding JUnit 4 annotations, and in JS they are already 
-available since 1.1.4 to support JS unit testing.
+可以在公共项目中编写测试，这样就可以在每个平台中编译与运行了。
+`kotlin.test` 包中提供了 4 个注解用于标记公共代码中的测试：`@Test`、 `@Ignore`、
+`@BeforeTest` 以及 `@AfterTest`.
+在 JVM 平台中这些注解会映射到相应 JUnit 4 注解，而在 JS 中自 1.1.4 起它们也已<!-- 
+可用于支持 JS 单元测试。
 
-In order to use them you need to add a dependency on `kotlin-test-annotations-common` to your common module, on 
-`kotlin-test-junit` to your JVM module, and on `kotlin-test-js` to the JS module.
+为了使用它们，你需要将依赖 `kotlin-test-annotations-common` 添加到你的公共模块，将依赖 
+`kotlin-test-junit` 添加到你的 JVM 模块，并且将依赖 `kotlin-test-js` 添加到 JS 模块。

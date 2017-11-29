@@ -156,7 +156,7 @@ compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 ```
 
-In Kotlin 1.1.x, use `kotlin-stdlib-jre7` and `kotlin-stdlib-jre8` instead.
+在 Kotlin 1.1.x 中，请使用 `kotlin-stdlib-jre7` 与 `kotlin-stdlib-jre8`。
 
 如果你的项目中使用 [Kotlin 反射](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html)或者测试设施，你也需要添加相应的依赖：
 

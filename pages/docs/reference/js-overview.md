@@ -37,7 +37,7 @@ API 访问第三方框架，可以使用 [ts2kt](https://github.com/kotlin/ts2kt
 类型定义仓库转换为 Kotlin。或者，你可以使用<!--
 -->[动态类型](dynamic-type.html)访问任何框架，而无需强类型。
 
-JetBrains develops and maintains several tools specifically for the React community: [React bindings](https://github.com/JetBrains/kotlin-wrappers) as well as [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). The latter helps you start building React apps with Kotlin with no build configuration.
+JetBrains 特地为 React 社区开发并维护了几个工具：[React bindings](https://github.com/JetBrains/kotlin-wrappers) 以及 [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app)。后者可以帮你开始使用 Kotlin 构建 React 应用程序而无需构建配置。
 
 Kotlin 兼容 CommonJS、AMD 和 UMD，直截了当[与不同的模块系统交互](/docs/tutorials/javascript/working-with-modules/working-with-modules.html)。
 

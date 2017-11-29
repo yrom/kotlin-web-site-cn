@@ -51,7 +51,7 @@ enum class ProtocolState {
 -->成员，要使用分号将成员定义中的枚举常量定义分隔开，就像<!--
 -->在 Java 中一样。
 
-Enum entries cannot contain nested types other than inner classes (deprecated in Kotlin 1.2).
+枚举条目不能包含内部类以外的嵌套类型（已在 Kotlin 1.2 中弃用）。
 
 ## 使用枚举常量
 

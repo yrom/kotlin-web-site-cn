@@ -180,17 +180,17 @@ public class MyTest {
 }
 ```
 
-该修饰符只能用于在类体中（不是在主构造函数中声明的 `var` 属性，并且仅<!--
--->当该属性没有自定义 getter 或 setter 时）and, since Kotlin 1.2, for top-level properties and 
-local variables。该属性或变量必须为非空类型，并且不能是原生类型。
+该修饰符只能用于在类体中的属性（不是在主构造函数中声明的 `var` 属性，并且仅<!--
+-->当该属性没有自定义 getter 或 setter 时），而自 Kotlin 1.2 起，也用于顶层属性与<!-- 
+-->局部变量。该属性或变量必须为非空类型，并且不能是原生类型。
 
 在初始化前访问一个 `lateinit` 属性会抛出一个特定异常，该异常明确标识该属性<!--
 -->被访问及它没有初始化的事实。
 
-### Checking whether a lateinit var is initialized (since 1.2)
+### 检测一个 lateinit var 是否已初始化（自 1.2 起）
 
-To check whether a `lateinit var` has already been initialized, use `.isInitialized` on 
-the [reference to that property](reflection.html#property-references):
+要检测一个 `lateinit var` 是否已经初始化过，请在[该属性的引用](reflection.html#属性引用)上使用
+`.isInitialized`：
 
 ```kotlin
 if (foo::bar.isInitialized) {
@@ -198,8 +198,8 @@ if (foo::bar.isInitialized) {
 }
 ```
 
-This check is only available for the properties that are lexically accessible, i.e. declared in the same type or in one of
-the outer types, or at top level in the same file.
+此检测仅对可词法级访问的属性可用，即声明位于同一个类型内、位于其中一个<!--
+-->外围类型中或者位于相同文件的顶层的属性。
 
 ## 覆盖属性
 
