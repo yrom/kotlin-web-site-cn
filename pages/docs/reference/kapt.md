@@ -42,6 +42,35 @@ dependencies {
 
 如果为 `androidTest` 或 `test` 源代码使用注解处理器，那么相应的 `kapt` 配置名为 `kaptAndroidTest` 和 `kaptTest`。请注意 `kaptAndroidTest` 和 `kaptTest` 扩展了 `kapt`，所以你可以只提供 `kapt` 依赖而它对生产和测试源代码都可用。
 
+## Annotation Processor Arguments
+
+Use `arguments {}` block to pass arguments to annotation processors:
+
+``` groovy
+kapt {
+    arguments {
+        arg("key", "value")
+    }
+}
+```
+
+## Java Compiler Options
+
+Kapt uses Java compiler to run annotation processors.  
+Here is how you can pass arbitrary options to javac:
+
+``` groovy
+kapt {
+    javacOptions {
+        // Increase the max count of errors from annotation processors.
+        // Default is 100.
+        option("-Xmaxerrs", 500)
+    }
+}
+```
+
+## Non Existent Type Correction
+
 一些注解处理器（如 `AutoFactory`）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 `NonExistentClass`，但你可以更改此行为。将额外标志添加到 `build.gradle` 文件以启用在存根（stub）中推断出的错误类型：
 
 ``` groovy

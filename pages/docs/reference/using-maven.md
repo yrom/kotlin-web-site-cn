@@ -161,6 +161,17 @@ Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配�
 
 请参见 [Kotlin 注解处理工具](kapt.html)（`kapt`）的描述。
 
+## Coroutines support
+
+[Coroutines](coroutines.html) support is an experimental feature in Kotlin 1.2, so the Kotlin compiler reports a warning when you use coroutines in your project.
+To turn off the warning, add the following block to your `pom.xml` file:
+
+``` xml
+<configuration>
+    <experimentalCoroutines>enable</experimentalCoroutines>
+</configuration>
+```
+
 ## Jar 文件
 
 要创建一个仅包含模块代码的小型 Jar 文件，请在 Maven pom.xml 文件中的 `build->plugins` 下面包含以下内容，
