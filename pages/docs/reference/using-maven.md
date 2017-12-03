@@ -161,10 +161,10 @@ Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配�
 
 请参见 [Kotlin 注解处理工具](kapt.html)（`kapt`）的描述。
 
-## Coroutines support
+## 协程支持
 
-[Coroutines](coroutines.html) support is an experimental feature in Kotlin 1.2, so the Kotlin compiler reports a warning when you use coroutines in your project.
-To turn off the warning, add the following block to your `pom.xml` file:
+在 Kotlin 1.2 中[协程](coroutines.html)支持是一项实验性的功能，因此当你在项目中使用协程时 Kotlin 编译器会报警告。
+可以将以下代码块添加到 `pom.xml` 文件中来关闭这一警告：
 
 ``` xml
 <configuration>
