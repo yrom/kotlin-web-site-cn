@@ -48,15 +48,35 @@ class Person(firstName: String) {
 ```
 
 主构造函数不能包含任何的代码。初始化的代码可以放<!--
--->到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中：
+-->到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中。
+
+During an instance initialization, the initializer blocks are executed in the same order as they appear 
+in the class body, interleaved with the property initializers:
+
+<div class="sample" markdown="1">
 
 ``` kotlin
-class Customer(name: String) {
+//sampleStart
+class InitOrderDemo(name: String) {
+    val firstProperty = "First property: $name".also(::println)
+    
     init {
-        logger.info("Customer initialized with value ${name}")
+        println("First initializer block that prints ${name}")
+    }
+    
+    val secondProperty = "Second property: ${name.length}".also(::println)
+    
+    init {
+        println("Second initializer block that prints ${name.length}")
     }
 }
+//sampleEnd
+
+fun main(args: Array<String>) {
+    InitOrderDemo("hello")
+}
 ```
+</div>
 
 注意，主构造的参数可以在初始化块中使用。它们也可以在<!--
 -->类体内声明的属性初始化器中使用：
@@ -112,6 +132,32 @@ class Person(val name: String) {
     }
 }
 ```
+
+Note that code in initializer blocks effectively becomes part of the primary constructor. Delegation to the primary
+constructor happens as the first statement of a secondary constructor, so the code in all initializer blocks is executed
+before the secondary constructor body. Even if the class has no primary constructor, the delegation still happens
+implicitly, and the initializer blocks are still executed:
+
+<div class="sample" markdown="1">
+
+``` kotlin
+//sampleStart
+class Constructors {
+    init {
+        println("Init block")
+    }
+
+    constructor(i: Int) {
+        println("Constructor")
+    }
+}
+//sampleEnd
+
+fun main(args: Array<String>) {
+    Constructors(1)
+}
+```
+</div>
 
 如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的<!--
 -->不带参数的主构造函数。构造函数的可见性是 public。如果你不希望你的类<!--
