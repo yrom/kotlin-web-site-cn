@@ -106,39 +106,39 @@ val x: String? = y as? String
 
 请注意，尽管事实上 *as?*{: .keyword } 的右边是一个非空类型的 `String`，但是其转换的结果是可空的。
 
-## Type erasure and generic type checks
+## 类型擦除与泛型检测
 
-Kotlin ensures type safety of operations involving [generics](generics.html) at compile time,
-while, at runtime, instances of generic types hold no information about their actual type arguments. For example, 
-`List<Foo>` is erased to just `List<*>`. In general, there is no way to check whether an instance belongs to a generic 
-type with certain type arguments at runtime. 
+Kotlin 在编译时确保涉及[泛型](generics.html)操作的类型安全性，
+而在运行时，泛型类型的实例并无未带有关于它们实际类型参数的信息。例如，
+`List<Foo>` 会被擦除为 `List<*>`。通常，在运行时无法检测一个实例是否属于带有某个类型参数的泛型类型<!--
+-->。
 
-Given that, the compiler prohibits *is*{: .keyword }-checks that cannot be performed at runtime due to type erasure, such as 
-`ints is List<Int>` or `list is T` (type parameter). You can, however, check an instance against a [star-projected type](generics.html#star-projections):
+为此，编译器会禁止由于类型擦除而无法执行的 *is*{: .keyword } 检测，例如
+`ints is List<Int>` 或者 `list is T`（类型参数）。当然，你可以对一个实例检测[星投影的类型](generics.html#星投影)：
 
 ```kotlin
 if (something is List<*>) {
-    something.forEach { println(it) } // The items are typed as `Any?`
+    something.forEach { println(it) } // 这些项的类型都是 `Any?`
 }
 ```
 
-Similarly, when you already have the type arguments of an instance checked statically (at compile time),
-you can make an *is*{: .keyword }-check or a cast that involves the non-generic part of the type. Note that 
-angle brackets are omitted in this case:
+类似地，当已经让一个实例的类型参数（在编译期）静态检测，
+就可以对涉及非泛型部分做 *is*{: .keyword } 检测或者类型转换。请注意，
+在这种情况下，会省略尖括号：
 
 ```kotlin
 fun handleStrings(list: List<String>) {
     if (list is ArrayList) {
-        // `list` is smart-cast to `ArrayList<String>`
+        // `list` 会智能转换为 `ArrayList<String>`
     }
 }
 ```
 
-The same syntax with omitted type arguments can be used for casts that do not take type arguments into account: `list as ArrayList`. 
+省略类型参数的这种语法可用于不考虑类型参数的类型转换：`list as ArrayList`。
 
-Inline functions with [reified type parameters](inline-functions.html#reified-type-parameters) have their actual type arguments
- inlined at each call site, which enables `arg is T` checks for the type parameters, but if `arg` is an instance of a 
-generic type itself, *its* type arguments are still erased. Example:
+带有[具体化的类型参数](inline-functions.html#具体化的类型参数)的内联函数使其类型实参<!--
+-->在每个调用处内联，这就能够对类型参数进行 `arg is T` 检测，但是如果 `arg`
+自身是一个泛型实例，**其**类型参数还是会被擦除。例如：
 
 <div class="sample" markdown="1">
 
@@ -154,7 +154,7 @@ val somePair: Pair<Any?, Any?> = "items" to listOf(1, 2, 3)
 val stringToSomething = somePair.asPairOf<String, Any>()
 val stringToInt = somePair.asPairOf<String, Int>()
 val stringToList = somePair.asPairOf<String, List<*>>()
-val stringToStringList = somePair.asPairOf<String, List<String>>() // Breaks type safety!
+val stringToStringList = somePair.asPairOf<String, List<String>>() // 破坏类型安全！
 //sampleEnd
 
 fun main(args: Array<String>) {
@@ -166,39 +166,39 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-## Unchecked casts
+## 非受检类型转换
 
-As said above, type erasure makes checking actual type arguments of a generic type instance impossible at runtime, and 
-generic types in the code might be connected to each other not closely enough for the compiler to ensure 
-type safety. 
+如上所述，类型擦除使运行时不可能对泛型类型实例的类型实参进行检测，并且<!--
+-->代码中的泛型可能相互连接不够紧密，以致于编译器无法确保<!--
+-->类型安全。
 
-Even so, sometimes we have high-level program logic that implies type safety instead. For example:
+即便如此，有时候我们有高级的程序逻辑来暗示类型安全。例如：
 
 ```kotlin 
 fun readDictionary(file: File): Map<String, *> = file.inputStream().use { 
     TODO("Read a mapping of strings to arbitrary elements.")
 }
 
-// We saved a map with `Int`s into that file
+// 我们已将存有一些 `Int` 的映射保存到该文件
 val intsFile = File("ints.dictionary")
 
 // Warning: Unchecked cast: `Map<String, *>` to `Map<String, Int>`
 val intsDictionary: Map<String, Int> = readDictionary(intsFile) as Map<String, Int>
 ```
 
-The compiler produces a warning for the cast in the last line. The cast cannot be fully checked at runtime and provides 
-no guarantee that the values in the map are `Int`.
+编译器会对最后一行的类型转换产生一个警告。该类型转换不能在运行时完全检测，并且<!--
+-->不能保证映射中的值是“Int”。
 
-To avoid unchecked casts, you can redesign the program structure: in the example above, there could be interfaces
- `DictionaryReader<T>` and `DictionaryWriter<T>` with type-safe implementations for different types. 
- You can introduce reasonable abstractions to move unchecked casts from calling code to the implementation details.
- Proper use of [generic variance](generics.html#variance) can also help. 
+为避免未受检类型转换，可以重新设计程序结构：在上例中，可以使用具有类型安全实现的不同接口
+`DictionaryReader<T>` 与 `DictionaryWriter<T>`。
+可以引入合理的抽象，将未受检的类型转换从调用代码移动到实现细节中。
+正确使用[泛型型变](generics.html#型变)也有帮助。
  
-For generic functions, using [reified type parameters](inline-functions.html#reified-type-parameters) makes the casts 
-such as `arg as T` checked, unless `arg`'s type has *its own* type arguments that are erased.
+对于泛型函数，使用[具体化的类型参数](inline-functions.html#具体化的类型参数)可以使<!--
+-->诸如 `arg as T` 这样的类型转换受检，除非 `arg` 对应类型的*自身*类型参数已被擦除。
 
-An unchecked cast warning can be suppressed by [annotating](annotations.html#annotations) the statement or the 
-declaration where it occurs with `@Suppress("UNCHECKED_CAST")`:
+可以通过在产生警告的语句或声明上用注解 `@Suppress("UNCHECKED_CAST")`
+[标注](annotations.html#注解)来禁止未受检类型转换警告：
 
 ```kotlin
 inline fun <reified T> List<*>.asListOfType(): List<T>? =
