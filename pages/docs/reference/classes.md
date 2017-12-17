@@ -50,8 +50,8 @@ class Person(firstName: String) {
 主构造函数不能包含任何的代码。初始化的代码可以放<!--
 -->到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中。
 
-During an instance initialization, the initializer blocks are executed in the same order as they appear 
-in the class body, interleaved with the property initializers:
+在实例初始化期间，初始化块按照它们出现在<!--
+-->类体中的顺序执行，与属性初始化器交织在一起：
 
 <div class="sample" markdown="1">
 
@@ -78,7 +78,7 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-注意，主构造的参数可以在初始化块中使用。它们也可以在<!--
+请注意，主构造的参数可以在初始化块中使用。它们也可以在<!--
 -->类体内声明的属性初始化器中使用：
 
 ``` kotlin
@@ -133,10 +133,10 @@ class Person(val name: String) {
 }
 ```
 
-Note that code in initializer blocks effectively becomes part of the primary constructor. Delegation to the primary
-constructor happens as the first statement of a secondary constructor, so the code in all initializer blocks is executed
-before the secondary constructor body. Even if the class has no primary constructor, the delegation still happens
-implicitly, and the initializer blocks are still executed:
+请注意，初始化块中的代码实际上会成为主构造函数的一部分。委托给主<!--
+-->构造函数会作为次构造函数的第一条语句，因此所有初始化块中的代码都会<!--
+-->在次构造函数体之前执行。即使该类没有主构造函数，这种委托仍会<!--
+-->隐式发生，并且仍会执行初始化块：
 
 <div class="sample" markdown="1">
 
