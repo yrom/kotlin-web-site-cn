@@ -140,7 +140,6 @@ fun handleStrings(list: List<String>) {
 -->在每个调用处内联，这就能够对类型参数进行 `arg is T` 检测，但是如果 `arg`
 自身是一个泛型实例，**其**类型参数还是会被擦除。例如：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -164,7 +163,6 @@ fun main(args: Array<String>) {
     println("stringToStringList = " + stringToStringList)
 }
 ```
-</div>
 
 ## 非受检类型转换
 

@@ -53,7 +53,6 @@ class Person(firstName: String) {
 在实例初始化期间，初始化块按照它们出现在<!--
 -->类体中的顺序执行，与属性初始化器交织在一起：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -76,7 +75,6 @@ fun main(args: Array<String>) {
     InitOrderDemo("hello")
 }
 ```
-</div>
 
 请注意，主构造的参数可以在初始化块中使用。它们也可以在<!--
 -->类体内声明的属性初始化器中使用：
@@ -138,7 +136,6 @@ class Person(val name: String) {
 -->在次构造函数体之前执行。即使该类没有主构造函数，这种委托仍会<!--
 -->隐式发生，并且仍会执行初始化块：
 
-<div class="sample" markdown="1">
 
 ``` kotlin
 //sampleStart
@@ -157,7 +154,6 @@ fun main(args: Array<String>) {
     Constructors(1)
 }
 ```
-</div>
 
 如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的<!--
 -->不带参数的主构造函数。构造函数的可见性是 public。如果你不希望你的类<!--
