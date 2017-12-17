@@ -48,17 +48,37 @@ class Person(firstName: String) {
 ```
 
 主构造函数不能包含任何的代码。初始化的代码可以放<!--
--->到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中：
+-->到以 *init*{:.keyword} 关键字作为前缀的**初始化块（initializer blocks）**中。
+
+在实例初始化期间，初始化块按照它们出现在<!--
+-->类体中的顺序执行，与属性初始化器交织在一起：
+
+<div class="sample" markdown="1">
 
 ``` kotlin
-class Customer(name: String) {
+//sampleStart
+class InitOrderDemo(name: String) {
+    val firstProperty = "First property: $name".also(::println)
+    
     init {
-        logger.info("Customer initialized with value ${name}")
+        println("First initializer block that prints ${name}")
+    }
+    
+    val secondProperty = "Second property: ${name.length}".also(::println)
+    
+    init {
+        println("Second initializer block that prints ${name.length}")
     }
 }
-```
+//sampleEnd
 
-注意，主构造的参数可以在初始化块中使用。它们也可以在<!--
+fun main(args: Array<String>) {
+    InitOrderDemo("hello")
+}
+```
+</div>
+
+请注意，主构造的参数可以在初始化块中使用。它们也可以在<!--
 -->类体内声明的属性初始化器中使用：
 
 ``` kotlin
@@ -112,6 +132,32 @@ class Person(val name: String) {
     }
 }
 ```
+
+请注意，初始化块中的代码实际上会成为主构造函数的一部分。委托给主<!--
+-->构造函数会作为次构造函数的第一条语句，因此所有初始化块中的代码都会<!--
+-->在次构造函数体之前执行。即使该类没有主构造函数，这种委托仍会<!--
+-->隐式发生，并且仍会执行初始化块：
+
+<div class="sample" markdown="1">
+
+``` kotlin
+//sampleStart
+class Constructors {
+    init {
+        println("Init block")
+    }
+
+    constructor(i: Int) {
+        println("Constructor")
+    }
+}
+//sampleEnd
+
+fun main(args: Array<String>) {
+    Constructors(1)
+}
+```
+</div>
 
 如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的<!--
 -->不带参数的主构造函数。构造函数的可见性是 public。如果你不希望你的类<!--

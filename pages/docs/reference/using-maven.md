@@ -272,7 +272,7 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## 指定编译器选项
 
-可以将额外的编译器选项指定为 Maven 插件节点的 `<configuration>` 元素下的标签
+可以将额外的编译器选项与参数指定为 Maven 插件节点的 `<configuration>` 元素下的标签
 ：
 
 ``` xml
@@ -283,6 +283,10 @@ java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
     <executions>……</executions>
     <configuration>
         <nowarn>true</nowarn>  <!-- 禁用警告 -->
+        <args>
+            <arg>-Xjsr305=strict</arg> <!-- 对 JSR-305 注解启用严格模式 -->
+            ...
+        </args>
     </configuration>
 </plugin>
 ```
