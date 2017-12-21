@@ -6,34 +6,34 @@ title: "Kotlin 1.2 的新特性"
 
 # Kotlin 1.2 的新特性
 
-## Table of Contents
+## 目录
 
-* [Multiplatform projects](#multiplatform-projects-experimental)
-* [Other language features](#other-language-features)
-* [Standard library](#standard-library)
+* [多平台项目](#multiplatform-projects-experimental)
+* [其它语言特性](#other-language-features)
+* [标准库](#standard-library)
 * [JVM backend](#jvm-backend)
 * [JavaScript backend](#javascript-backend)
 
-## Multiplatform Projects (experimental)
+## 多平台项目 (实验性的)
 
-Multiplatform projects are a new **experimental** feature in Kotlin 1.2, allowing you to reuse code between target platforms supported by Kotlin – JVM, JavaScript and (in the future) Native. In a multiplatform project, you have three kinds of modules:
+多平台项目是 Kotlin 1.2 的一个新的**试验性**功能，它允许你在不同的 Kotlin 所支持的目标平台 —— JVM，JavaScript 以及(未来的)Native —— 之间共用代码。在多平台项目中，存在三种类型的模块：
 
-* A *common* module contains code that is not specific to any platform, as well as declarations without implementation of platform-dependent APIs.
-* A *platform* module contains implementations of platform-dependent declarations in the common module for a specific platform, as well as other platform-dependent code.
-* A regular module targets a specific platform and can either be a dependency of platform modules or depend on platform modules.
+* *通用* 模块，包含了平台无关的代码，以及声明一些跟平台相关的未实现的API。
+* *平台* 模块，包含了特定平台对于通用模块里平台相关性API的实现，以及其他平台相关的代码。
+* 面向特定平台的普通模块，可以作为平台模块的依赖，也可以依赖于平台模块。
 
-When you compile a multiplatform project for a specific platform, the code for both the common and platform-specific parts is generated.
+将一个多平台项目编译到指定平台时，会同时生成通用部分和平台指定部分的代码。
 
-A key feature of the multiplatform project support is the possibility to express dependencies of common code on platform-specific parts through **expected and actual declarations**. An expected declaration specifies an API (class, interface, annotation, top-level declaration etc.). An actual declaration is either a platform-dependent implementation of the API or a typealias referring to an existing implementation of the API in an external library. Here's an example:
+多平台项目所支持的一个关键特性是，使得通用代码在平台指定部分的依赖关系可通过**预期(expect)和实际(actual)的声明**表达出来。预期(expect)声明用于指定API（类、接口、注解、顶级声明等），实际(actual)声明用于指定API的平台相关实现或者用`typealias`引用外部库的现有实现。举个例子：
 
-In common code:
+在通用代码中:
 
 ```kotlin
-// expected platform-specific API:
+// 预期平台指定的API:
 expect fun hello(world: String): String
 
 fun greet() {
-    // usage of the expected API:
+    // 使用预期 API:
     val greeting = hello("multi-platform world")
     println(greeting)
 }
@@ -44,25 +44,23 @@ expect class URL(spec: String) {
 }
 ```
 
-In JVM platform code:
+在 JVM 平台代码中:
 
 ```kotlin
 actual fun hello(world: String): String =
     "Hello, $world, on the JVM platform!"
 
-// using existing platform-specific implementation:
+// 使用现有平台特定实现:
 actual typealias URL = java.net.URL
 ```
 
-See the [documentation](http://kotlinlang.org/docs/reference/multiplatform.html) for details and steps to build a 
-multiplatform project.
+详细内容及构建多平台项目的步骤可参见其[文档](http://kotlinlang.org/docs/reference/multiplatform.html)。
 
-## Other Language Features
+## 其它语言特性
 
-### Array literals in annotations
+### 注解中的数组字面值
 
-Starting with Kotlin 1.2, array arguments for annotations can be passed with the new array literal syntax instead 
-of the `arrayOf` function:
+从 Kotlin 1.2 开始，注解的数组参数可以用创建数组字面值语法（即用中括号）来取代函数`arrayOf`:
 
 ```kotlin
 @CacheConfig(cacheNames = ["books", "default"])
@@ -71,13 +69,11 @@ public class BookRepositoryImpl {
 }
 ```
 
-The array literal syntax is constrained to annotation arguments.
+数组字面值语法仅限用于注解的数组参数。
 
-### Lateinit top-level properties and local variables
+### 延迟初始化顶级属性和局部变量
 
-The `lateinit` modifier can now be used on top-level properties and local variables. The latter can be used, 
-for example, when a lambda passed as a constructor argument to one object refers to another object 
-which has to be defined later:
+修饰符`lateinit`现在可以用于顶级属性和局部变量了。例如，当一个lambda 作为构造函数参数传递给一个对象时，后者可以用于引用一个不得不稍后定义的对象：
 
 <div class="sample" markdown="1" data-min-compiler-version="1.2">
 
@@ -86,7 +82,7 @@ class Node<T>(val value: T, val next: () -> Node<T>)
 
 fun main(args: Array<String>) {
     //sampleStart
-    // A cycle of three nodes:
+    // 3个node循环引用:
     lateinit var third: Node<Int>
     
     val second = Node(2, next = { third })
@@ -101,9 +97,9 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-### Checking whether a lateinit var is initialized
+### 检查lateinit变量是否被初始化
 
-You can now check whether a lateinit var has been initialized using `isInitialized` on the property reference:
+现在可以用`isInitialized`来检查一个lateinit的变量是否已被初始化：
 
 <div class="sample" markdown="1" data-min-compiler-version="1.2">
 
@@ -126,9 +122,9 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-### Inline functions with default functional parameters
+### 有默认参数值的内联函数
 
-Inline functions are now allowed to have default values for their inlined functional parameters:
+现在，内联函数的参数也可以有默认值了:
 
 <div class="sample" markdown="1" data-min-compiler-version="1.2">
 
@@ -148,20 +144,18 @@ fun main(args: Array<String>) {
 ```
 </div>
 
-### Information from explicit casts is used for type inference
+### 显式转换的信息将用于类型推导
 
-The Kotlin compiler can now use information from type casts in type inference. If you’re calling a generic method 
-that returns a type parameter `T` and casting the return value to a specific type `Foo`, the compiler now understands 
-that `T` for this call needs to be bound to the type `Foo`. 
+Kotlin 的编译器现在可以将从显式类型转换得到信息用于类型推导。假设现在正调用一个返回类型参数为`T`的泛型方法，你将返回值强转为指定类型`Foo`，
+编译器这时就会知道这里的 `T` 需要被绑定为类型 `Foo`。
 
-This is particularly important for Android developers, since the compiler can now correctly analyze generic 
-`findViewById` calls in Android API level 26:
+这对于Android 的开发者来说尤其重要，因为编译器现在能正确的分析 Android API 级别 26 中的泛型化的 `findViewById`：
 
 ```kotlin
 val button = findViewById(R.id.button) as Button
 ```
 
-### Smart cast improvements
+### 优化智能转换
 
 When a variable is assigned from a safe call expression and checked for null, the smart cast is now applied to 
 the safe call receiver as well:
@@ -269,7 +263,7 @@ thus have been deprecated, with a warning in Kotlin 1.2 and an error in Kotlin 1
 Mutating the backing field of a read-only property by assigning `field = ...` in the custom getter has been 
 deprecated, with a warning in Kotlin 1.2 and an error in Kotlin 1.3.
 
-## Standard Library
+## 标准库
 
 ### Kotlin standard library artifacts and split packages
 
